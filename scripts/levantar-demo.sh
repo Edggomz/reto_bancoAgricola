@@ -115,7 +115,9 @@ else
     echo "  compilando…"
     (cd "$RAIZ/backend" && mvn -q -DskipTests package)
   fi
-  (cd "$RAIZ/backend" && nohup "$JAVA_HOME/bin/java" -jar "$JAR" > "$LOGS/backend.log" 2>&1 & echo $! > "$LOGS/backend.pid")
+  # exec: sin un bash intermedio que se quede con la salida de este script
+  (cd "$RAIZ/backend" && exec nohup "$JAVA_HOME/bin/java" -jar "$JAR") > "$LOGS/backend.log" 2>&1 < /dev/null &
+  echo $! > "$LOGS/backend.pid"
   esperar http://localhost:8080/api/admin/auditoria/resumen 120
   echo "  arriba (registro en .demo-logs/backend.log)"
 fi
