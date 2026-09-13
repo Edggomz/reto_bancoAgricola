@@ -35,6 +35,11 @@ public class CopyService {
     return reemplazar(texto(clave), variables);
   }
 
+  /** Para parámetros que pueden no existir (p. ej. los de demo en una base sin volver a sembrar). */
+  public java.util.Optional<String> opcional(String clave) {
+    return java.util.Optional.ofNullable(valores().get(clave)).map(String::trim).filter(s -> !s.isEmpty());
+  }
+
   public int entero(String clave) {
     return Integer.parseInt(texto(clave).trim());
   }

@@ -84,7 +84,8 @@ public class CuentaDigitalService {
     c.setProductName(o.getAccountProductName());
     c.setNumberMasked("····" + numero.substring(numero.length() - 4));
     c.setNumberFull(numero);
-    c.setBalanceAvailable(BigDecimal.ZERO);
+    BigDecimal deposito = depositoDemo(clienteId);
+    c.setBalanceAvailable(deposito);
     c.setBalanceApartado(BigDecimal.ZERO);
     c.setCurrency(copy.texto("moneda.default"));
     c.setPrimarySource(datos.cuentas().stream().noneMatch(Cuenta::isPrimarySource));
@@ -92,7 +93,19 @@ public class CuentaDigitalService {
     avisos.emitir(clienteId, AvisoService.CONFIRM, copy.texto("aviso.cuenta.titulo"),
         copy.render("aviso.cuenta.cuerpo", Map.of("producto", c.getProductName(), "numero", c.getNumberMasked())),
         null, null, "cuenta-abierta");
-    auditoria.info(AuditoriaService.APP, "cuenta.abierta", clienteId, c.getId(), "Abrió su " + c.getProductName() + " " + c.getNumberMasked(), null);
+    auditoria.info(AuditoriaService.APP, "cuenta.abierta", clienteId, c.getId(), "Abrió su " + c.getProductName() + " " + c.getNumberMasked()
+        + (deposito.signum() > 0 ? " · con " + Fechas.monto(deposito) + " de su primer ingreso (demo)" : ""), null);
     return c;
+  }
+
+  /** demo.deposito_apertura: «clienteId=monto,…». Sin el parámetro, la cuenta abre en cero, como en producción. */
+  private BigDecimal depositoDemo(String clienteId) {
+    return copy.opcional("demo.deposito_apertura").stream()
+        .flatMap(v -> java.util.Arrays.stream(v.split(",")))
+        .map(String::trim)
+        .filter(par -> par.startsWith(clienteId + "="))
+        .map(par -> new BigDecimal(par.substring(clienteId.length() + 1).trim()))
+        .findFirst()
+        .orElse(BigDecimal.ZERO);
   }
 }

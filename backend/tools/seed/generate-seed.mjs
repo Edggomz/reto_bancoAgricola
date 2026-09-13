@@ -249,6 +249,8 @@ const PARAMETROS = [
   ['cita.sobre', 'tu {tema}', 'Sobre qué es la asistencia.'],
   ['cita.nota', '{asesora} ya sabe que es sobre tu {tema}, así llegas y van al grano.', 'Confirmación de la asistencia.'],
   ['apertura.debe_aceptar', 'Para abrir tu cuenta necesitamos que aceptes las condiciones.', 'Mensaje si no se aceptan las condiciones.'],
+  ['demo.deposito_apertura', 'cust-mauricio-sosa=640.00,cust-samuel-quijada=420.00,cust-gabriela-romero=560.00,cust-fatima-argueta=380.00',
+    'Demo: su primer ingreso ya acreditado al abrir la cuenta, para que quien no tenía cuenta tenga saldo que apartar. Ilustrativo: vacío en producción.'],
   ['chat.max_turnos', '30', 'Turnos del cliente antes de escalar a una persona (MAX_MESSAGES_BEFORE_ESCALATION).'],
   ['chat.historial_max', '12', 'Mensajes recientes que se envían como contexto al modelo.'],
   ['chat.tiers_asesora', 'platino,black', 'Tarjetas que escalan a su asesora nombrada. El resto va al Centro de Atención.'],
