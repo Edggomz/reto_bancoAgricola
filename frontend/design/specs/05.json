@@ -1,0 +1,685 @@
+{
+ "id": "184:584",
+ "name": "05 · Listo",
+ "type": "FRAME",
+ "x": 0,
+ "y": 0,
+ "w": 390,
+ "h": 844,
+ "sizing": [
+  "FIXED",
+  "FIXED"
+ ],
+ "clip": true,
+ "radius": 24,
+ "fills": [
+  {
+   "type": "SOLID",
+   "hex": "#FFFFFF",
+   "token": "color/bg/canvas"
+  }
+ ],
+ "effect": "elevation/2",
+ "tok": {
+  "topLeftRadius": "radius/xl",
+  "topRightRadius": "radius/xl",
+  "bottomLeftRadius": "radius/xl",
+  "bottomRightRadius": "radius/xl"
+ },
+ "children": [
+  {
+   "id": "184:585",
+   "name": "Fondo · 04 · Elige tu fecha",
+   "type": "FRAME",
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "layout": {
+    "mode": "VERTICAL",
+    "main": "MIN",
+    "cross": "MIN",
+    "pad": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "gap": 0,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "FIXED",
+    "FIXED"
+   ],
+   "clip": true,
+   "radius": 24,
+   "fills": [
+    {
+     "type": "SOLID",
+     "hex": "#FFFFFF",
+     "token": "color/bg/canvas"
+    }
+   ],
+   "tok": {
+    "topLeftRadius": "radius/xl",
+    "topRightRadius": "radius/xl",
+    "bottomLeftRadius": "radius/xl",
+    "bottomRightRadius": "radius/xl"
+   },
+   "note": "clon bloqueado de la vista de fondo; hijos omitidos"
+  },
+  {
+   "id": "184:646",
+   "name": "Velo",
+   "type": "RECTANGLE",
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "opacity": 0.5,
+   "sizing": [
+    "FIXED",
+    "FIXED"
+   ],
+   "fills": [
+    {
+     "type": "SOLID",
+     "hex": "#1A1B1A",
+     "token": "color/bg/scrim"
+    }
+   ]
+  },
+  {
+   "id": "184:647",
+   "name": "Ventana",
+   "type": "FRAME",
+   "x": 0,
+   "y": 298,
+   "w": 390,
+   "h": 546,
+   "layout": {
+    "mode": "VERTICAL",
+    "main": "MIN",
+    "cross": "CENTER",
+    "pad": [
+     12,
+     20,
+     34,
+     20
+    ],
+    "gap": 16,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "FIXED",
+    "HUG"
+   ],
+   "radius": [
+    24,
+    24,
+    0,
+    0
+   ],
+   "fills": [
+    {
+     "type": "SOLID",
+     "hex": "#FFFFFF",
+     "token": "color/bg/surface"
+    }
+   ],
+   "effect": "elevation/3",
+   "tok": {
+    "itemSpacing": "space/4",
+    "paddingLeft": "space/5",
+    "paddingTop": "space/3",
+    "paddingRight": "space/5",
+    "paddingBottom": "size/safe-bottom",
+    "topLeftRadius": "radius/xl",
+    "topRightRadius": "radius/xl",
+    "bottomLeftRadius": "radius/none",
+    "bottomRightRadius": "radius/none"
+   },
+   "children": [
+    {
+     "id": "184:648",
+     "name": "Asa",
+     "type": "RECTANGLE",
+     "x": 177,
+     "y": 310,
+     "w": 36,
+     "h": 4,
+     "sizing": [
+      "FIXED",
+      "FIXED"
+     ],
+     "radius": 999,
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#C4C4C4",
+       "token": "color/border/default"
+      }
+     ],
+     "tok": {
+      "topLeftRadius": "radius/full",
+      "topRightRadius": "radius/full",
+      "bottomLeftRadius": "radius/full",
+      "bottomRightRadius": "radius/full"
+     }
+    },
+    {
+     "id": "184:649",
+     "name": "Ilustración · Check",
+     "type": "RECTANGLE",
+     "x": 159,
+     "y": 330,
+     "w": 72,
+     "h": 72,
+     "sizing": [
+      "FIXED",
+      "FIXED"
+     ],
+     "fills": [
+      {
+       "type": "IMAGE",
+       "imageHash": "872f5eb002ac9ade565d59e183a64c17803f4b85",
+       "scaleMode": "FIT"
+      }
+     ]
+    },
+    {
+     "id": "184:650",
+     "name": "Confirmación",
+     "type": "FRAME",
+     "x": 20,
+     "y": 418,
+     "w": 350,
+     "h": 82,
+     "layout": {
+      "mode": "VERTICAL",
+      "main": "MIN",
+      "cross": "CENTER",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 4,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "tok": {
+      "itemSpacing": "space/1"
+     },
+     "children": [
+      {
+       "id": "184:651",
+       "name": "Listo. Tu cobro ahora es el …",
+       "type": "TEXT",
+       "x": 20,
+       "y": 418,
+       "w": 350,
+       "h": 60,
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#1A1B1A",
+         "token": "color/text/primary"
+        }
+       ],
+       "text": "Listo.\nTu cobro es el día 18",
+       "textStyle": "heading/xl",
+       "font": "Open Sans Bold",
+       "fontSize": 24,
+       "lineHeight": "30px",
+       "letterSpacing": "-1%",
+       "align": [
+        "CENTER",
+        "TOP"
+       ],
+       "autoResize": "HEIGHT"
+      },
+      {
+       "id": "184:652",
+       "name": "Desde el 18 de octubre de 20…",
+       "type": "TEXT",
+       "x": 20,
+       "y": 482,
+       "w": 350,
+       "h": 18,
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#6D6E72",
+         "token": "color/text/tertiary"
+        }
+       ],
+       "text": "Desde el 18 de octubre de 2026 · Operación N.º 3242785",
+       "textStyle": "body/s",
+       "font": "Open Sans Regular",
+       "fontSize": 13,
+       "lineHeight": "18px",
+       "align": [
+        "CENTER",
+        "TOP"
+       ],
+       "autoResize": "HEIGHT"
+      }
+     ]
+    },
+    {
+     "id": "184:653",
+     "name": "Recomendación",
+     "type": "FRAME",
+     "x": 20,
+     "y": 516,
+     "w": 350,
+     "h": 162,
+     "layout": {
+      "mode": "VERTICAL",
+      "main": "MIN",
+      "cross": "MIN",
+      "pad": [
+       16,
+       16,
+       16,
+       16
+      ],
+      "gap": 8,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "radius": 12,
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#F5F7F9",
+       "token": "color/bg/surface-sunken"
+      }
+     ],
+     "tok": {
+      "itemSpacing": "space/2",
+      "paddingLeft": "space/4",
+      "paddingTop": "space/4",
+      "paddingRight": "space/4",
+      "paddingBottom": "space/4",
+      "topLeftRadius": "radius/md",
+      "topRightRadius": "radius/md",
+      "bottomLeftRadius": "radius/md",
+      "bottomRightRadius": "radius/md"
+     },
+     "children": [
+      {
+       "id": "184:654",
+       "name": "Etiqueta · Recomendado",
+       "type": "FRAME",
+       "x": 36,
+       "y": 532,
+       "w": 113,
+       "h": 24,
+       "layout": {
+        "mode": "HORIZONTAL",
+        "main": "MIN",
+        "cross": "MIN",
+        "pad": [
+         4,
+         8,
+         4,
+         8
+        ],
+        "gap": 0,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "radius": 999,
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#2C2A29",
+         "token": "color/bg/inverse"
+        }
+       ],
+       "tok": {
+        "paddingLeft": "space/2",
+        "paddingTop": "space/1",
+        "paddingRight": "space/2",
+        "paddingBottom": "space/1",
+        "topLeftRadius": "radius/full",
+        "topRightRadius": "radius/full",
+        "bottomLeftRadius": "radius/full",
+        "bottomRightRadius": "radius/full"
+       },
+       "children": [
+        {
+         "id": "184:655",
+         "name": "RECOMENDADO",
+         "type": "TEXT",
+         "x": 44,
+         "y": 536,
+         "w": 97,
+         "h": 16,
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#FFFFFF",
+           "token": "color/text/inverse"
+          }
+         ],
+         "text": "RECOMENDADO",
+         "textStyle": "overline",
+         "font": "Open Sans Bold",
+         "fontSize": 11,
+         "lineHeight": "16px",
+         "letterSpacing": "8%",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        }
+       ]
+      },
+      {
+       "id": "184:656",
+       "name": "Aparta tu cuota en partes",
+       "type": "TEXT",
+       "x": 36,
+       "y": 564,
+       "w": 318,
+       "h": 24,
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#1A1B1A",
+         "token": "color/text/primary"
+        }
+       ],
+       "text": "Aparta tu cuota en partes",
+       "textStyle": "heading/m",
+       "font": "Open Sans SemiBold",
+       "fontSize": 17,
+       "lineHeight": "24px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "HEIGHT"
+      },
+      {
+       "id": "184:657",
+       "name": "De cada pago que recibes gua…",
+       "type": "TEXT",
+       "x": 36,
+       "y": 596,
+       "w": 318,
+       "h": 66,
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#5B5B5B",
+         "token": "color/text/secondary"
+        }
+       ],
+       "text": "De cada pago que recibes guardamos una parte. El 18 tu cuota ya está completa y se paga sola.",
+       "textStyle": "body/m",
+       "font": "Open Sans Regular",
+       "fontSize": 15,
+       "lineHeight": "22px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "HEIGHT"
+      }
+     ]
+    },
+    {
+     "id": "184:658",
+     "name": "Acciones",
+     "type": "FRAME",
+     "x": 20,
+     "y": 694,
+     "w": 350,
+     "h": 116,
+     "layout": {
+      "mode": "VERTICAL",
+      "main": "MIN",
+      "cross": "MIN",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 12,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "tok": {
+      "itemSpacing": "space/3"
+     },
+     "children": [
+      {
+       "id": "184:659",
+       "name": "Botón · Apartar mi cuota",
+       "type": "INSTANCE",
+       "x": 20,
+       "y": 694,
+       "w": 350,
+       "h": 52,
+       "layout": {
+        "mode": "HORIZONTAL",
+        "main": "CENTER",
+        "cross": "CENTER",
+        "pad": [
+         0,
+         0,
+         0,
+         0
+        ],
+        "gap": 0,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "FILL",
+        "FIXED"
+       ],
+       "radius": 999,
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#FDDA24",
+         "token": "color/action/primary-bg"
+        }
+       ],
+       "tok": {
+        "topLeftRadius": "radius/full",
+        "topRightRadius": "radius/full",
+        "bottomLeftRadius": "radius/full",
+        "bottomRightRadius": "radius/full"
+       },
+       "component": "Button / Variant=Primario",
+       "reactions": [
+        {
+         "trigger": "ON_CLICK",
+         "nav": "NAVIGATE",
+         "dest": "184:665",
+         "transition": {
+          "type": "SLIDE_IN",
+          "dir": "LEFT",
+          "ms": 300,
+          "easing": "EASE_OUT"
+         }
+        }
+       ],
+       "children": [
+        {
+         "id": "I184:659;3:145",
+         "name": "Label",
+         "type": "TEXT",
+         "x": 134,
+         "y": 712,
+         "w": 122,
+         "h": 16,
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#2C2A29",
+           "token": "color/action/primary-fg"
+          }
+         ],
+         "text": "APARTAR MI CUOTA",
+         "textStyle": "overline",
+         "font": "Open Sans Bold",
+         "fontSize": 11,
+         "lineHeight": "16px",
+         "letterSpacing": "8%",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        }
+       ]
+      },
+      {
+       "id": "184:661",
+       "name": "Botón · Ahora no",
+       "type": "INSTANCE",
+       "x": 20,
+       "y": 758,
+       "w": 350,
+       "h": 52,
+       "layout": {
+        "mode": "HORIZONTAL",
+        "main": "CENTER",
+        "cross": "CENTER",
+        "pad": [
+         0,
+         0,
+         0,
+         0
+        ],
+        "gap": 0,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "FILL",
+        "FIXED"
+       ],
+       "radius": 999,
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#FFFFFF",
+         "token": "color/action/secondary-bg"
+        }
+       ],
+       "strokes": [
+        {
+         "type": "SOLID",
+         "hex": "#2C2A29",
+         "token": "color/action/secondary-border"
+        }
+       ],
+       "strokeWeight": 1.5,
+       "strokeAlign": "INSIDE",
+       "tok": {
+        "topLeftRadius": "radius/full",
+        "topRightRadius": "radius/full",
+        "bottomLeftRadius": "radius/full",
+        "bottomRightRadius": "radius/full"
+       },
+       "component": "Button / Variant=Secundario",
+       "reactions": [
+        {
+         "trigger": "ON_CLICK",
+         "nav": "NAVIGATE",
+         "dest": "184:1103",
+         "transition": {
+          "type": "SLIDE_IN",
+          "dir": "LEFT",
+          "ms": 300,
+          "easing": "EASE_OUT"
+         }
+        }
+       ],
+       "children": [
+        {
+         "id": "I184:661;3:147",
+         "name": "Label",
+         "type": "TEXT",
+         "x": 161.5,
+         "y": 776,
+         "w": 67,
+         "h": 16,
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#1A1B1A",
+           "token": "color/action/secondary-fg"
+          }
+         ],
+         "text": "AHORA NO",
+         "textStyle": "overline",
+         "font": "Open Sans Bold",
+         "fontSize": 11,
+         "lineHeight": "16px",
+         "letterSpacing": "8%",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "section": "1 · Inicio y fecha de cobro"
+}

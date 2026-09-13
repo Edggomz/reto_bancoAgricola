@@ -1,0 +1,152 @@
+[
+ {
+  "name": "caption",
+  "font": "Open Sans Regular",
+  "fontSize": 12,
+  "lineHeight": "16px",
+  "letterSpacing": "0%",
+  "textCase": "ORIGINAL",
+  "decoration": "NONE",
+  "description": "Nota al pie, marca de tiempo."
+ },
+ {
+  "name": "overline",
+  "font": "Open Sans Bold",
+  "fontSize": 11,
+  "lineHeight": "16px",
+  "letterSpacing": "8%",
+  "textCase": "ORIGINAL",
+  "decoration": "NONE",
+  "description": "MAYÚSCULAS. Texto de CTA y chips."
+ },
+ {
+  "name": "display/xl",
+  "font": "Open Sans Bold",
+  "fontSize": 40,
+  "lineHeight": "44px",
+  "letterSpacing": "-2%",
+  "textCase": "ORIGINAL",
+  "decoration": "NONE",
+  "description": "Monto hero. Una sola vez por pantalla."
+ },
+ {
+  "name": "display/l",
+  "font": "Open Sans Bold",
+  "fontSize": 32,
+  "lineHeight": "38px",
+  "letterSpacing": "-1.5%",
+  "textCase": "ORIGINAL",
+  "decoration": "NONE",
+  "description": ""
+ },
+ {
+  "name": "heading/xl",
+  "font": "Open Sans Bold",
+  "fontSize": 24,
+  "lineHeight": "30px",
+  "letterSpacing": "-1%",
+  "textCase": "ORIGINAL",
+  "decoration": "NONE",
+  "description": "Título de pantalla."
+ },
+ {
+  "name": "heading/l",
+  "font": "Open Sans Bold",
+  "fontSize": 20,
+  "lineHeight": "26px",
+  "letterSpacing": "-0.5%",
+  "textCase": "ORIGINAL",
+  "decoration": "NONE",
+  "description": ""
+ },
+ {
+  "name": "heading/m",
+  "font": "Open Sans SemiBold",
+  "fontSize": 17,
+  "lineHeight": "24px",
+  "letterSpacing": "0%",
+  "textCase": "ORIGINAL",
+  "decoration": "NONE",
+  "description": "Título de card o sección."
+ },
+ {
+  "name": "body/l",
+  "font": "Open Sans Regular",
+  "fontSize": 16,
+  "lineHeight": "24px",
+  "letterSpacing": "0%",
+  "textCase": "ORIGINAL",
+  "decoration": "NONE",
+  "description": "Cuerpo por defecto."
+ },
+ {
+  "name": "body/m",
+  "font": "Open Sans Regular",
+  "fontSize": 15,
+  "lineHeight": "22px",
+  "letterSpacing": "0%",
+  "textCase": "ORIGINAL",
+  "decoration": "NONE",
+  "description": ""
+ },
+ {
+  "name": "body/s",
+  "font": "Open Sans Regular",
+  "fontSize": 13,
+  "lineHeight": "18px",
+  "letterSpacing": "0%",
+  "textCase": "ORIGINAL",
+  "decoration": "NONE",
+  "description": "Texto de apoyo."
+ },
+ {
+  "name": "label/l",
+  "font": "Open Sans SemiBold",
+  "fontSize": 15,
+  "lineHeight": "20px",
+  "letterSpacing": "0%",
+  "textCase": "ORIGINAL",
+  "decoration": "NONE",
+  "description": "Etiqueta de campo, item de lista."
+ },
+ {
+  "name": "label/m",
+  "font": "Open Sans SemiBold",
+  "fontSize": 13,
+  "lineHeight": "16px",
+  "letterSpacing": "0%",
+  "textCase": "ORIGINAL",
+  "decoration": "NONE",
+  "description": ""
+ },
+ {
+  "name": "numeral/xl",
+  "font": "Open Sans Light",
+  "fontSize": 40,
+  "lineHeight": "44px",
+  "letterSpacing": "-1%",
+  "textCase": "ORIGINAL",
+  "decoration": "NONE",
+  "description": "Cifra grande. Cifras tabulares."
+ },
+ {
+  "name": "numeral/l",
+  "font": "Open Sans Light",
+  "fontSize": 28,
+  "lineHeight": "34px",
+  "letterSpacing": "0%",
+  "textCase": "ORIGINAL",
+  "decoration": "NONE",
+  "description": "Saldo, cuota."
+ },
+ {
+  "name": "numeral/m",
+  "font": "Open Sans SemiBold",
+  "fontSize": 20,
+  "lineHeight": "26px",
+  "letterSpacing": "0%",
+  "textCase": "ORIGINAL",
+  "decoration": "NONE",
+  "description": "Cifra en línea."
+ }
+]

@@ -1,0 +1,13 @@
+# Perfil Oracle: mvn spring-boot:run -Dspring-boot.run.profiles=oracle
+# El esquema y el dataset se crean con db/oracle-schema.sql y db/oracle-seed.sql;
+# Hibernate solo valida que las entidades coincidan con las tablas.
+spring:
+  datasource:
+    url: ${ORACLE_URL}
+    username: ${ORACLE_USER}
+    password: ${ORACLE_PASSWORD}
+    hikari:
+      maximum-pool-size: 5
+  sql:
+    init:
+      mode: never

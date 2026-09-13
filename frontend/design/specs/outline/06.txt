@@ -1,0 +1,36 @@
+FRAME "06 · ¿Qué cuota apartamos?" | 390×844 @0,0 | V pad[0,0,0,0] gap0 main:MIN cross:MIN strokesInLayout | fill:color/bg/canvas | r24 | fx:elevation/2 | clip | sz:F/F | tok{topLeftRadius=radius/xl topRightRadius=radius/xl bottomLeftRadius=radius/xl bottomRightRadius=radius/xl}
+  FRAME "Status bar" | 390×54 @0,0 | (barra de estado del sistema; hijos omitidos) | sz:F/F | tok{paddingLeft=space/5 paddingRight=space/5}
+  FRAME "App bar" | 390×52 @0,54 | H pad[0,8,0,8] gap0 main:SPACE_BETWEEN cross:CENTER strokesInLayout | stroke:color/border/subtle 0,0,1,0 inside | sz:F/F | tok{paddingLeft=space/2 paddingTop=space/0 paddingRight=space/2 paddingBottom=space/0}
+    FRAME "Atrás" | 44×44 @8,57.5 | H pad[0,0,0,0] gap0 main:CENTER cross:CENTER strokesInLayout | sz:F/F | → BACK
+      T "‹" | heading/l | Open Sans Bold 20/26px ls-0.5% | color/text/secondary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 8×26 @26,66.5 | sz:H/H
+    FRAME "Título" | 139×24 @125.5,67.5 | V pad[0,0,0,0] gap0 main:MIN cross:CENTER strokesInLayout | sz:H/H
+      T "Apartar mi cuota" | heading/m | Open Sans SemiBold 17/24px | color/text/primary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 139×24 @125.5,67.5 | sz:H/H
+    FRAME "Cerrar" | 44×44 @338,57.5 | H pad[0,0,0,0] gap0 main:CENTER cross:CENTER strokesInLayout | sz:F/F | → NAVIGATE:184:1103 DISSOLVE 250ms
+      T "×" | heading/l | Open Sans Bold 20/26px ls-0.5% | color/text/secondary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 12×26 @354,66.5 | sz:H/H
+  FRAME "Contenido" | 390×738 @0,106 | V pad[20,20,0,20] gap20 main:MIN cross:MIN strokesInLayout | sz:F/F | tok{itemSpacing=space/5 paddingLeft=space/5 paddingTop=space/5 paddingRight=space/5 paddingBottom=space/0}
+    FRAME "Pasos · 1 de 3" | 350×4 @20,126 | H pad[0,0,0,0] gap4 main:MIN cross:MIN strokesInLayout | sz:F/H | tok{itemSpacing=space/1}
+      RECTANGLE "hecho" | 114×4 @20,126 | fill:color/bg/inverse | r999 | sz:F/F | tok{topLeftRadius=radius/full topRightRadius=radius/full bottomLeftRadius=radius/full bottomRightRadius=radius/full}
+      RECTANGLE "pendiente" | 114×4 @138,126 | fill:color/border/subtle | r999 | sz:F/F | tok{topLeftRadius=radius/full topRightRadius=radius/full bottomLeftRadius=radius/full bottomRightRadius=radius/full}
+      RECTANGLE "pendiente" | 114×4 @256,126 | fill:color/border/subtle | r999 | sz:F/F | tok{topLeftRadius=radius/full topRightRadius=radius/full bottomLeftRadius=radius/full bottomRightRadius=radius/full}
+    FRAME "Encabezado" | 350×82 @20,150 | V pad[0,0,0,0] gap8 main:MIN cross:MIN strokesInLayout | sz:F/H | tok{itemSpacing=space/2}
+      T "¿Qué cuota quieres apartar?" | heading/xl | Open Sans Bold 24/30px ls-1% | color/text/primary | align:LEFT/TOP | auto:HEIGHT | 350×30 @20,150 | sz:F/H
+      T "Tienes dos créditos. Elige uno; después puedes sumar el otro." | body/m | Open Sans Regular 15/22px | color/text/secondary | align:LEFT/TOP | auto:HEIGHT | 350×44 @20,188 | sz:F/H
+    FRAME "Créditos" | 350×174 @20,252 | V pad[0,0,0,0] gap12 main:MIN cross:MIN strokesInLayout | sz:F/H | tok{itemSpacing=space/3}
+      FRAME "Crédito personal" | 350×81 @20,252 | H pad[16,16,16,16] gap12 main:MIN cross:CENTER strokesInLayout | fill:color/bg/surface | stroke:color/border/default 1.5 inside | r12 | sz:F/H | tok{itemSpacing=space/3 paddingLeft=space/4 paddingTop=space/4 paddingRight=space/4 paddingBottom=space/4 topLeftRadius=radius/md topRightRadius=radius/md bottomLeftRadius=radius/md bottomRightRadius=radius/md} | → NAVIGATE:184:719 SLIDE_IN-LEFT 300ms
+        RECTANGLE "Ilustración · Bolsa de Dinero" | 40×40 @37.5,272.5 | fill:img(FIT) | sz:F/F
+        FRAME "Texto" | 152×42 @89.5,271.5 | V pad[0,0,0,0] gap4 main:MIN cross:MIN strokesInLayout | sz:F/H | tok{itemSpacing=space/1}
+          T "Crédito personal" | label/l | Open Sans SemiBold 15/20px | color/text/primary | align:LEFT/TOP | auto:HEIGHT | 152×20 @89.5,271.5 | sz:F/H
+          T "N.º 0452" | body/s | Open Sans Regular 13/18px | color/text/secondary | align:LEFT/TOP | auto:HEIGHT | 152×18 @89.5,295.5 | sz:F/H
+        FRAME "Monto" | 79×46 @253.5,269.5 | V pad[0,0,0,0] gap4 main:MIN cross:MAX strokesInLayout | sz:H/H | tok{itemSpacing=space/1}
+          T "$248.50" | numeral/m | Open Sans SemiBold 20/26px | color/text/primary | align:RIGHT/TOP | auto:WIDTH_AND_HEIGHT | 75×26 @257.5,269.5 | sz:H/H
+          T "cuota del mes" | caption | Open Sans Regular 12/16px | color/text/tertiary | align:RIGHT/TOP | auto:WIDTH_AND_HEIGHT | 79×16 @253.5,299.5 | sz:H/H
+        T "›" | heading/l | Open Sans Bold 20/26px ls-0.5% | color/text/tertiary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 8×26 @344.5,279.5 | sz:H/H
+      FRAME "Tarjeta de crédito" | 350×81 @20,345 | H pad[16,16,16,16] gap12 main:MIN cross:CENTER strokesInLayout | fill:color/bg/surface | stroke:color/border/default 1.5 inside | r12 | sz:F/H | tok{itemSpacing=space/3 paddingLeft=space/4 paddingTop=space/4 paddingRight=space/4 paddingBottom=space/4 topLeftRadius=radius/md topRightRadius=radius/md bottomLeftRadius=radius/md bottomRightRadius=radius/md}
+        RECTANGLE "Ilustración · Tarjeta de Credito" | 40×40 @37.5,365.5 | fill:img(FIT) | sz:F/F
+        FRAME "Texto" | 137×42 @89.5,364.5 | V pad[0,0,0,0] gap4 main:MIN cross:MIN strokesInLayout | sz:F/H | tok{itemSpacing=space/1}
+          T "Tarjeta de crédito" | label/l | Open Sans SemiBold 15/20px | color/text/primary | align:LEFT/TOP | auto:HEIGHT | 137×20 @89.5,364.5 | sz:F/H
+          T "Visa ····4821" | body/s | Open Sans Regular 13/18px | color/text/secondary | align:LEFT/TOP | auto:HEIGHT | 137×18 @89.5,388.5 | sz:F/H
+        FRAME "Monto" | 94×46 @238.5,362.5 | V pad[0,0,0,0] gap4 main:MIN cross:MAX strokesInLayout | sz:H/H | tok{itemSpacing=space/1}
+          T "$340.00" | numeral/m | Open Sans SemiBold 20/26px | color/text/primary | align:RIGHT/TOP | auto:WIDTH_AND_HEIGHT | 75×26 @257.5,362.5 | sz:H/H
+          T "pago de contado" | caption | Open Sans Regular 12/16px | color/text/tertiary | align:RIGHT/TOP | auto:WIDTH_AND_HEIGHT | 94×16 @238.5,392.5 | sz:H/H
+        T "›" | heading/l | Open Sans Bold 20/26px ls-0.5% | color/text/tertiary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 8×26 @344.5,372.5 | sz:H/H

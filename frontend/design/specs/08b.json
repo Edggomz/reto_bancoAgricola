@@ -1,0 +1,1511 @@
+{
+ "id": "184:905",
+ "name": "08b · Revisa y firma",
+ "type": "FRAME",
+ "x": 0,
+ "y": 0,
+ "w": 390,
+ "h": 844,
+ "layout": {
+  "mode": "VERTICAL",
+  "main": "MIN",
+  "cross": "MIN",
+  "pad": [
+   0,
+   0,
+   0,
+   0
+  ],
+  "gap": 0,
+  "strokesInLayout": true
+ },
+ "sizing": [
+  "FIXED",
+  "FIXED"
+ ],
+ "clip": true,
+ "radius": 24,
+ "fills": [
+  {
+   "type": "SOLID",
+   "hex": "#FFFFFF",
+   "token": "color/bg/canvas"
+  }
+ ],
+ "effect": "elevation/2",
+ "tok": {
+  "topLeftRadius": "radius/xl",
+  "topRightRadius": "radius/xl",
+  "bottomLeftRadius": "radius/xl",
+  "bottomRightRadius": "radius/xl"
+ },
+ "children": [
+  {
+   "id": "184:906",
+   "name": "Status bar",
+   "type": "FRAME",
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 54,
+   "sizing": [
+    "FILL",
+    "FIXED"
+   ],
+   "tok": {
+    "paddingLeft": "space/5",
+    "paddingRight": "space/5"
+   },
+   "note": "barra de estado del sistema; hijos omitidos"
+  },
+  {
+   "id": "184:922",
+   "name": "App bar",
+   "type": "FRAME",
+   "x": 0,
+   "y": 54,
+   "w": 390,
+   "h": 52,
+   "layout": {
+    "mode": "HORIZONTAL",
+    "main": "SPACE_BETWEEN",
+    "cross": "CENTER",
+    "pad": [
+     0,
+     8,
+     0,
+     8
+    ],
+    "gap": 0,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "FILL",
+    "FIXED"
+   ],
+   "strokes": [
+    {
+     "type": "SOLID",
+     "hex": "#E6E7E8",
+     "token": "color/border/subtle"
+    }
+   ],
+   "strokeWeight": [
+    0,
+    0,
+    1,
+    0
+   ],
+   "strokeAlign": "INSIDE",
+   "tok": {
+    "paddingLeft": "space/2",
+    "paddingTop": "space/0",
+    "paddingRight": "space/2",
+    "paddingBottom": "space/0"
+   },
+   "children": [
+    {
+     "id": "184:923",
+     "name": "Atrás",
+     "type": "FRAME",
+     "x": 8,
+     "y": 57.5,
+     "w": 44,
+     "h": 44,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "CENTER",
+      "cross": "CENTER",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FIXED",
+      "FIXED"
+     ],
+     "reactions": [
+      {
+       "trigger": "ON_CLICK",
+       "nav": "BACK"
+      }
+     ],
+     "children": [
+      {
+       "id": "184:924",
+       "name": "‹",
+       "type": "TEXT",
+       "x": 26,
+       "y": 66.5,
+       "w": 8,
+       "h": 26,
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#5B5B5B",
+         "token": "color/text/secondary"
+        }
+       ],
+       "text": "‹",
+       "textStyle": "heading/l",
+       "font": "Open Sans Bold",
+       "fontSize": 20,
+       "lineHeight": "26px",
+       "letterSpacing": "-0.5%",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "WIDTH_AND_HEIGHT"
+      }
+     ]
+    },
+    {
+     "id": "184:925",
+     "name": "Título",
+     "type": "FRAME",
+     "x": 131,
+     "y": 67.5,
+     "w": 128,
+     "h": 24,
+     "layout": {
+      "mode": "VERTICAL",
+      "main": "MIN",
+      "cross": "CENTER",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "HUG",
+      "HUG"
+     ],
+     "children": [
+      {
+       "id": "184:926",
+       "name": "Abrir mi cuenta",
+       "type": "TEXT",
+       "x": 131,
+       "y": 67.5,
+       "w": 128,
+       "h": 24,
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#1A1B1A",
+         "token": "color/text/primary"
+        }
+       ],
+       "text": "Abrir mi cuenta",
+       "textStyle": "heading/m",
+       "font": "Open Sans SemiBold",
+       "fontSize": 17,
+       "lineHeight": "24px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "WIDTH_AND_HEIGHT"
+      }
+     ]
+    },
+    {
+     "id": "184:927",
+     "name": "Cerrar",
+     "type": "FRAME",
+     "x": 338,
+     "y": 57.5,
+     "w": 44,
+     "h": 44,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "CENTER",
+      "cross": "CENTER",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FIXED",
+      "FIXED"
+     ],
+     "reactions": [
+      {
+       "trigger": "ON_CLICK",
+       "nav": "NAVIGATE",
+       "dest": "184:1103",
+       "transition": {
+        "type": "DISSOLVE",
+        "ms": 250,
+        "easing": "EASE_OUT"
+       }
+      }
+     ],
+     "children": [
+      {
+       "id": "184:928",
+       "name": "×",
+       "type": "TEXT",
+       "x": 354,
+       "y": 66.5,
+       "w": 12,
+       "h": 26,
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#5B5B5B",
+         "token": "color/text/secondary"
+        }
+       ],
+       "text": "×",
+       "textStyle": "heading/l",
+       "font": "Open Sans Bold",
+       "fontSize": 20,
+       "lineHeight": "26px",
+       "letterSpacing": "-0.5%",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "WIDTH_AND_HEIGHT"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "184:929",
+   "name": "Contenido",
+   "type": "FRAME",
+   "x": 0,
+   "y": 106,
+   "w": 390,
+   "h": 636,
+   "layout": {
+    "mode": "VERTICAL",
+    "main": "MIN",
+    "cross": "MIN",
+    "pad": [
+     20,
+     20,
+     0,
+     20
+    ],
+    "gap": 20,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "FILL",
+    "FILL"
+   ],
+   "tok": {
+    "itemSpacing": "space/5",
+    "paddingLeft": "space/5",
+    "paddingTop": "space/5",
+    "paddingRight": "space/5",
+    "paddingBottom": "space/0"
+   },
+   "children": [
+    {
+     "id": "184:930",
+     "name": "Encabezado",
+     "type": "FRAME",
+     "x": 20,
+     "y": 126,
+     "w": 350,
+     "h": 82,
+     "layout": {
+      "mode": "VERTICAL",
+      "main": "MIN",
+      "cross": "MIN",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 8,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "tok": {
+      "itemSpacing": "space/2"
+     },
+     "children": [
+      {
+       "id": "184:931",
+       "name": "Revisa y firma",
+       "type": "TEXT",
+       "x": 20,
+       "y": 126,
+       "w": 350,
+       "h": 30,
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#1A1B1A",
+         "token": "color/text/primary"
+        }
+       ],
+       "text": "Revisa y firma",
+       "textStyle": "heading/xl",
+       "font": "Open Sans Bold",
+       "fontSize": 24,
+       "lineHeight": "30px",
+       "letterSpacing": "-1%",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "HEIGHT"
+      },
+      {
+       "id": "184:932",
+       "name": "Esto es lo que vas a firmar.…",
+       "type": "TEXT",
+       "x": 20,
+       "y": 164,
+       "w": 350,
+       "h": 44,
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#5B5B5B",
+         "token": "color/text/secondary"
+        }
+       ],
+       "text": "Esto es lo que vas a firmar. Te enviamos una copia a tu correo.",
+       "textStyle": "body/m",
+       "font": "Open Sans Regular",
+       "fontSize": 15,
+       "lineHeight": "22px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "HEIGHT"
+      }
+     ]
+    },
+    {
+     "id": "184:933",
+     "name": "Resumen",
+     "type": "FRAME",
+     "x": 20,
+     "y": 228,
+     "w": 350,
+     "h": 205,
+     "layout": {
+      "mode": "VERTICAL",
+      "main": "MIN",
+      "cross": "MIN",
+      "pad": [
+       16,
+       16,
+       16,
+       16
+      ],
+      "gap": 12,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "radius": 12,
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#FFFFFF",
+       "token": "color/bg/surface"
+      }
+     ],
+     "strokes": [
+      {
+       "type": "SOLID",
+       "hex": "#E6E7E8",
+       "token": "color/border/subtle"
+      }
+     ],
+     "strokeWeight": 1,
+     "strokeAlign": "INSIDE",
+     "effect": "elevation/1",
+     "tok": {
+      "itemSpacing": "space/3",
+      "paddingLeft": "space/4",
+      "paddingTop": "space/4",
+      "paddingRight": "space/4",
+      "paddingBottom": "space/4",
+      "topLeftRadius": "radius/md",
+      "topRightRadius": "radius/md",
+      "bottomLeftRadius": "radius/md",
+      "bottomRightRadius": "radius/md"
+     },
+     "children": [
+      {
+       "id": "184:934",
+       "name": "Titular",
+       "type": "FRAME",
+       "x": 37,
+       "y": 245,
+       "w": 316,
+       "h": 22,
+       "layout": {
+        "mode": "HORIZONTAL",
+        "main": "SPACE_BETWEEN",
+        "cross": "CENTER",
+        "pad": [
+         0,
+         0,
+         0,
+         0
+        ],
+        "gap": 12,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "tok": {
+        "itemSpacing": "space/3"
+       },
+       "children": [
+        {
+         "id": "184:935",
+         "name": "Titular",
+         "type": "TEXT",
+         "x": 37,
+         "y": 245,
+         "w": 45,
+         "h": 22,
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#5B5B5B",
+           "token": "color/text/secondary"
+          }
+         ],
+         "text": "Titular",
+         "textStyle": "body/m",
+         "font": "Open Sans Regular",
+         "fontSize": 15,
+         "lineHeight": "22px",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        },
+        {
+         "id": "184:936",
+         "name": "Edgar Gómez",
+         "type": "TEXT",
+         "x": 257,
+         "y": 246,
+         "w": 96,
+         "h": 20,
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#1A1B1A",
+           "token": "color/text/primary"
+          }
+         ],
+         "text": "Edgar Gómez",
+         "textStyle": "label/l",
+         "font": "Open Sans SemiBold",
+         "fontSize": 15,
+         "lineHeight": "20px",
+         "align": [
+          "RIGHT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        }
+       ]
+      },
+      {
+       "id": "184:937",
+       "name": "Cuenta",
+       "type": "FRAME",
+       "x": 37,
+       "y": 279,
+       "w": 316,
+       "h": 22,
+       "layout": {
+        "mode": "HORIZONTAL",
+        "main": "SPACE_BETWEEN",
+        "cross": "CENTER",
+        "pad": [
+         0,
+         0,
+         0,
+         0
+        ],
+        "gap": 12,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "tok": {
+        "itemSpacing": "space/3"
+       },
+       "children": [
+        {
+         "id": "184:938",
+         "name": "Cuenta",
+         "type": "TEXT",
+         "x": 37,
+         "y": 279,
+         "w": 50,
+         "h": 22,
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#5B5B5B",
+           "token": "color/text/secondary"
+          }
+         ],
+         "text": "Cuenta",
+         "textStyle": "body/m",
+         "font": "Open Sans Regular",
+         "fontSize": 15,
+         "lineHeight": "22px",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        },
+        {
+         "id": "184:939",
+         "name": "Ahorro digital",
+         "type": "TEXT",
+         "x": 253,
+         "y": 280,
+         "w": 100,
+         "h": 20,
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#1A1B1A",
+           "token": "color/text/primary"
+          }
+         ],
+         "text": "Ahorro digital",
+         "textStyle": "label/l",
+         "font": "Open Sans SemiBold",
+         "fontSize": 15,
+         "lineHeight": "20px",
+         "align": [
+          "RIGHT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        }
+       ]
+      },
+      {
+       "id": "184:940",
+       "name": "Costo de apertura",
+       "type": "FRAME",
+       "x": 37,
+       "y": 313,
+       "w": 316,
+       "h": 22,
+       "layout": {
+        "mode": "HORIZONTAL",
+        "main": "SPACE_BETWEEN",
+        "cross": "CENTER",
+        "pad": [
+         0,
+         0,
+         0,
+         0
+        ],
+        "gap": 12,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "tok": {
+        "itemSpacing": "space/3"
+       },
+       "children": [
+        {
+         "id": "184:941",
+         "name": "Costo de apertura",
+         "type": "TEXT",
+         "x": 37,
+         "y": 313,
+         "w": 127,
+         "h": 22,
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#5B5B5B",
+           "token": "color/text/secondary"
+          }
+         ],
+         "text": "Costo de apertura",
+         "textStyle": "body/m",
+         "font": "Open Sans Regular",
+         "fontSize": 15,
+         "lineHeight": "22px",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        },
+        {
+         "id": "184:942",
+         "name": "$0.00",
+         "type": "TEXT",
+         "x": 314,
+         "y": 314,
+         "w": 39,
+         "h": 20,
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#1A1B1A",
+           "token": "color/text/primary"
+          }
+         ],
+         "text": "$0.00",
+         "textStyle": "label/l",
+         "font": "Open Sans SemiBold",
+         "fontSize": 15,
+         "lineHeight": "20px",
+         "align": [
+          "RIGHT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        }
+       ]
+      },
+      {
+       "id": "184:943",
+       "name": "Costo mensual",
+       "type": "FRAME",
+       "x": 37,
+       "y": 347,
+       "w": 316,
+       "h": 22,
+       "layout": {
+        "mode": "HORIZONTAL",
+        "main": "SPACE_BETWEEN",
+        "cross": "CENTER",
+        "pad": [
+         0,
+         0,
+         0,
+         0
+        ],
+        "gap": 12,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "tok": {
+        "itemSpacing": "space/3"
+       },
+       "children": [
+        {
+         "id": "184:944",
+         "name": "Costo mensual",
+         "type": "TEXT",
+         "x": 37,
+         "y": 347,
+         "w": 104,
+         "h": 22,
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#5B5B5B",
+           "token": "color/text/secondary"
+          }
+         ],
+         "text": "Costo mensual",
+         "textStyle": "body/m",
+         "font": "Open Sans Regular",
+         "fontSize": 15,
+         "lineHeight": "22px",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        },
+        {
+         "id": "184:945",
+         "name": "$0.00",
+         "type": "TEXT",
+         "x": 314,
+         "y": 348,
+         "w": 39,
+         "h": 20,
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#1A1B1A",
+           "token": "color/text/primary"
+          }
+         ],
+         "text": "$0.00",
+         "textStyle": "label/l",
+         "font": "Open Sans SemiBold",
+         "fontSize": 15,
+         "lineHeight": "20px",
+         "align": [
+          "RIGHT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        }
+       ]
+      },
+      {
+       "id": "184:946",
+       "name": "Divisor",
+       "type": "RECTANGLE",
+       "x": 37,
+       "y": 381,
+       "w": 316,
+       "h": 1,
+       "sizing": [
+        "FILL",
+        "FIXED"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#E6E7E8",
+         "token": "color/border/subtle"
+        }
+       ]
+      },
+      {
+       "id": "184:947",
+       "name": "Para qué",
+       "type": "FRAME",
+       "x": 37,
+       "y": 394,
+       "w": 316,
+       "h": 22,
+       "layout": {
+        "mode": "HORIZONTAL",
+        "main": "SPACE_BETWEEN",
+        "cross": "CENTER",
+        "pad": [
+         0,
+         0,
+         0,
+         0
+        ],
+        "gap": 12,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "tok": {
+        "itemSpacing": "space/3"
+       },
+       "children": [
+        {
+         "id": "184:948",
+         "name": "Para qué",
+         "type": "TEXT",
+         "x": 37,
+         "y": 394,
+         "w": 63,
+         "h": 22,
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#5B5B5B",
+           "token": "color/text/secondary"
+          }
+         ],
+         "text": "Para qué",
+         "textStyle": "body/m",
+         "font": "Open Sans Regular",
+         "fontSize": 15,
+         "lineHeight": "22px",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        },
+        {
+         "id": "184:949",
+         "name": "Apartar tu cuota",
+         "type": "TEXT",
+         "x": 233,
+         "y": 395,
+         "w": 120,
+         "h": 20,
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#1A1B1A",
+           "token": "color/text/primary"
+          }
+         ],
+         "text": "Apartar tu cuota",
+         "textStyle": "label/l",
+         "font": "Open Sans SemiBold",
+         "fontSize": 15,
+         "lineHeight": "20px",
+         "align": [
+          "RIGHT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "184:950",
+     "name": "Documentos",
+     "type": "FRAME",
+     "x": 20,
+     "y": 453,
+     "w": 350,
+     "h": 104,
+     "layout": {
+      "mode": "VERTICAL",
+      "main": "MIN",
+      "cross": "MIN",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "children": [
+      {
+       "id": "184:951",
+       "name": "Contrato de cuenta de ahorro",
+       "type": "FRAME",
+       "x": 20,
+       "y": 453,
+       "w": 350,
+       "h": 52,
+       "layout": {
+        "mode": "HORIZONTAL",
+        "main": "MIN",
+        "cross": "CENTER",
+        "pad": [
+         0,
+         0,
+         0,
+         0
+        ],
+        "gap": 12,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "FILL",
+        "FIXED"
+       ],
+       "strokes": [
+        {
+         "type": "SOLID",
+         "hex": "#E6E7E8",
+         "token": "color/border/subtle"
+        }
+       ],
+       "strokeWeight": [
+        0,
+        0,
+        1,
+        0
+       ],
+       "strokeAlign": "INSIDE",
+       "tok": {
+        "itemSpacing": "space/3"
+       },
+       "children": [
+        {
+         "id": "184:952",
+         "name": "Contrato de cuenta de ahorro",
+         "type": "TEXT",
+         "x": 20,
+         "y": 467.5,
+         "w": 294,
+         "h": 22,
+         "sizing": [
+          "FILL",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#1A1B1A",
+           "token": "color/text/primary"
+          }
+         ],
+         "text": "Contrato de cuenta de ahorro",
+         "textStyle": "body/m",
+         "font": "Open Sans Regular",
+         "fontSize": 15,
+         "lineHeight": "22px",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "HEIGHT"
+        },
+        {
+         "id": "190:2764",
+         "name": "Enlace · Ver",
+         "type": "FRAME",
+         "x": 326,
+         "y": 456.5,
+         "w": 44,
+         "h": 44,
+         "layout": {
+          "mode": "HORIZONTAL",
+          "main": "CENTER",
+          "cross": "CENTER",
+          "pad": [
+           0,
+           0,
+           0,
+           0
+          ],
+          "gap": 0,
+          "strokesInLayout": true
+         },
+         "sizing": [
+          "FIXED",
+          "FIXED"
+         ],
+         "children": [
+          {
+           "id": "184:953",
+           "name": "Ver",
+           "type": "TEXT",
+           "x": 335.5,
+           "y": 468.5,
+           "w": 25,
+           "h": 20,
+           "sizing": [
+            "HUG",
+            "HUG"
+           ],
+           "fills": [
+            {
+             "type": "SOLID",
+             "hex": "#1A1B1A",
+             "token": "color/text/link"
+            }
+           ],
+           "text": "Ver",
+           "textStyle": "label/l",
+           "font": "Open Sans SemiBold",
+           "fontSize": 15,
+           "lineHeight": "20px",
+           "decoration": "UNDERLINE",
+           "align": [
+            "LEFT",
+            "TOP"
+           ],
+           "autoResize": "WIDTH_AND_HEIGHT"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "184:954",
+       "name": "Autorización para apartar en automático",
+       "type": "FRAME",
+       "x": 20,
+       "y": 505,
+       "w": 350,
+       "h": 52,
+       "layout": {
+        "mode": "HORIZONTAL",
+        "main": "MIN",
+        "cross": "CENTER",
+        "pad": [
+         0,
+         0,
+         0,
+         0
+        ],
+        "gap": 12,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "FILL",
+        "FIXED"
+       ],
+       "tok": {
+        "itemSpacing": "space/3"
+       },
+       "children": [
+        {
+         "id": "184:955",
+         "name": "Autorización para apartar en…",
+         "type": "TEXT",
+         "x": 20,
+         "y": 520,
+         "w": 294,
+         "h": 22,
+         "sizing": [
+          "FILL",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#1A1B1A",
+           "token": "color/text/primary"
+          }
+         ],
+         "text": "Autorización para apartar en automático",
+         "textStyle": "body/m",
+         "font": "Open Sans Regular",
+         "fontSize": 15,
+         "lineHeight": "22px",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "HEIGHT"
+        },
+        {
+         "id": "190:2765",
+         "name": "Enlace · Ver",
+         "type": "FRAME",
+         "x": 326,
+         "y": 509,
+         "w": 44,
+         "h": 44,
+         "layout": {
+          "mode": "HORIZONTAL",
+          "main": "CENTER",
+          "cross": "CENTER",
+          "pad": [
+           0,
+           0,
+           0,
+           0
+          ],
+          "gap": 0,
+          "strokesInLayout": true
+         },
+         "sizing": [
+          "FIXED",
+          "FIXED"
+         ],
+         "children": [
+          {
+           "id": "184:956",
+           "name": "Ver",
+           "type": "TEXT",
+           "x": 335.5,
+           "y": 521,
+           "w": 25,
+           "h": 20,
+           "sizing": [
+            "HUG",
+            "HUG"
+           ],
+           "fills": [
+            {
+             "type": "SOLID",
+             "hex": "#1A1B1A",
+             "token": "color/text/link"
+            }
+           ],
+           "text": "Ver",
+           "textStyle": "label/l",
+           "font": "Open Sans SemiBold",
+           "fontSize": 15,
+           "lineHeight": "20px",
+           "decoration": "UNDERLINE",
+           "align": [
+            "LEFT",
+            "TOP"
+           ],
+           "autoResize": "WIDTH_AND_HEIGHT"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "184:957",
+     "name": "Acepto",
+     "type": "FRAME",
+     "x": 20,
+     "y": 577,
+     "w": 350,
+     "h": 44,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "MIN",
+      "cross": "CENTER",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 12,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "FIXED"
+     ],
+     "tok": {
+      "itemSpacing": "space/3"
+     },
+     "children": [
+      {
+       "id": "184:958",
+       "name": "Casilla vacía",
+       "type": "FRAME",
+       "x": 20,
+       "y": 587,
+       "w": 24,
+       "h": 24,
+       "layout": {
+        "mode": "HORIZONTAL",
+        "main": "CENTER",
+        "cross": "CENTER",
+        "pad": [
+         0,
+         0,
+         0,
+         0
+        ],
+        "gap": 0,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "FIXED",
+        "FIXED"
+       ],
+       "radius": 4,
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#FFFFFF",
+         "token": "color/bg/surface"
+        }
+       ],
+       "strokes": [
+        {
+         "type": "SOLID",
+         "hex": "#2C2A29",
+         "token": "color/border/strong"
+        }
+       ],
+       "strokeWeight": 1.5,
+       "strokeAlign": "INSIDE",
+       "tok": {
+        "topLeftRadius": "radius/xs",
+        "topRightRadius": "radius/xs",
+        "bottomLeftRadius": "radius/xs",
+        "bottomRightRadius": "radius/xs"
+       },
+       "children": [
+        {
+         "id": "184:959",
+         "name": "✓",
+         "type": "TEXT",
+         "hidden": true,
+         "x": 26.5,
+         "y": 591,
+         "w": 11,
+         "h": 16,
+         "sizing": [
+          "FIXED",
+          "FIXED"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#FFFFFF",
+           "token": "color/text/inverse"
+          }
+         ],
+         "text": "✓",
+         "textStyle": "label/m",
+         "font": "Open Sans SemiBold",
+         "fontSize": 13,
+         "lineHeight": "16px",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        }
+       ]
+      },
+      {
+       "id": "184:960",
+       "name": "Leí y acepto el contrato y l…",
+       "type": "TEXT",
+       "x": 56,
+       "y": 588,
+       "w": 314,
+       "h": 22,
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#1A1B1A",
+         "token": "color/text/primary"
+        }
+       ],
+       "text": "Leí y acepto el contrato y la autorización",
+       "textStyle": "body/m",
+       "font": "Open Sans Regular",
+       "fontSize": 15,
+       "lineHeight": "22px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "HEIGHT"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "184:961",
+   "name": "Pie",
+   "type": "FRAME",
+   "x": 0,
+   "y": 742,
+   "w": 390,
+   "h": 102,
+   "layout": {
+    "mode": "VERTICAL",
+    "main": "MIN",
+    "cross": "CENTER",
+    "pad": [
+     16,
+     20,
+     34,
+     20
+    ],
+    "gap": 12,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "FILL",
+    "HUG"
+   ],
+   "tok": {
+    "itemSpacing": "space/3",
+    "paddingLeft": "space/5",
+    "paddingTop": "space/4",
+    "paddingRight": "space/5",
+    "paddingBottom": "size/safe-bottom"
+   },
+   "children": [
+    {
+     "id": "184:962",
+     "name": "Botón · Firmar con Face ID",
+     "type": "INSTANCE",
+     "x": 20,
+     "y": 758,
+     "w": 350,
+     "h": 52,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "CENTER",
+      "cross": "CENTER",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "FIXED"
+     ],
+     "radius": 999,
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#E6E7E8",
+       "token": "color/action/disabled-bg"
+      }
+     ],
+     "tok": {
+      "topLeftRadius": "radius/full",
+      "topRightRadius": "radius/full",
+      "bottomLeftRadius": "radius/full",
+      "bottomRightRadius": "radius/full"
+     },
+     "component": "Button / Variant=Inactivo",
+     "reactions": [
+      {
+       "trigger": "ON_CLICK",
+       "nav": "NAVIGATE",
+       "dest": "184:787",
+       "transition": {
+        "type": "SLIDE_IN",
+        "dir": "LEFT",
+        "ms": 300,
+        "easing": "EASE_OUT"
+       }
+      }
+     ],
+     "children": [
+      {
+       "id": "I184:962;3:149",
+       "name": "Label",
+       "type": "TEXT",
+       "x": 130,
+       "y": 776,
+       "w": 130,
+       "h": 16,
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#6D6E72",
+         "token": "color/action/disabled-fg"
+        }
+       ],
+       "text": "FIRMAR CON FACE ID",
+       "textStyle": "overline",
+       "font": "Open Sans Bold",
+       "fontSize": 11,
+       "lineHeight": "16px",
+       "letterSpacing": "8%",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "WIDTH_AND_HEIGHT"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "section": "2 · Apartar la cuota"
+}

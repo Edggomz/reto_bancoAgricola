@@ -1,0 +1,24 @@
+FRAME "09 · Tu ruta quedó lista" | 390×844 @0,0 | fill:color/bg/canvas | r24 | fx:elevation/2 | clip | sz:F/F | tok{topLeftRadius=radius/xl topRightRadius=radius/xl bottomLeftRadius=radius/xl bottomRightRadius=radius/xl}
+  FRAME "Fondo · 08 · ¿Lo hacemos en automático?" | 390×844 @0,0 | V pad[0,0,0,0] gap0 main:MIN cross:MIN strokesInLayout | fill:color/bg/canvas | r24 | clip | (clon bloqueado de la vista de fondo; hijos omitidos) | sz:F/F | tok{topLeftRadius=radius/xl topRightRadius=radius/xl bottomLeftRadius=radius/xl bottomRightRadius=radius/xl}
+  RECTANGLE "Velo" | 390×844 @0,0 | fill:color/bg/scrim | sz:F/F | op0.5
+  FRAME "Ventana" | 390×472 @0,372 | V pad[12,20,34,20] gap16 main:MIN cross:CENTER strokesInLayout | fill:color/bg/surface | r24,24,0,0 | fx:elevation/3 | sz:F/H | tok{itemSpacing=space/4 paddingLeft=space/5 paddingTop=space/3 paddingRight=space/5 paddingBottom=size/safe-bottom topLeftRadius=radius/xl topRightRadius=radius/xl bottomLeftRadius=radius/none bottomRightRadius=radius/none}
+    RECTANGLE "Asa" | 36×4 @177,384 | fill:color/border/default | r999 | sz:F/F | tok{topLeftRadius=radius/full topRightRadius=radius/full bottomLeftRadius=radius/full bottomRightRadius=radius/full}
+    RECTANGLE "Ilustración · CalendarioMarcado" | 72×72 @159,404 | fill:img(FIT) | sz:F/F
+    FRAME "Confirmación" | 350×78 @20,492 | V pad[0,0,0,0] gap4 main:MIN cross:CENTER strokesInLayout | sz:F/H | tok{itemSpacing=space/1}
+      T "Tu ruta quedó lista" | heading/xl | Open Sans Bold 24/30px ls-1% | color/text/primary | align:CENTER/TOP | auto:HEIGHT | 350×30 @20,492 | sz:F/H
+      T "Esto es lo que acordamos. Te avisamos cada vez que pase algo." | body/m | Open Sans Regular 15/22px | color/text/secondary | align:CENTER/TOP | auto:HEIGHT | 350×44 @20,526 | sz:F/H
+    FRAME "Resumen" | 350×156 @20,586 | V pad[16,16,16,16] gap12 main:MIN cross:MIN strokesInLayout | fill:color/bg/surface-sunken | r12 | sz:F/H | tok{itemSpacing=space/3 paddingLeft=space/4 paddingTop=space/4 paddingRight=space/4 paddingBottom=space/4 topLeftRadius=radius/md topRightRadius=radius/md bottomLeftRadius=radius/md bottomRightRadius=radius/md}
+      FRAME "Tu cobro" | 318×22 @36,602 | H pad[0,0,0,0] gap12 main:SPACE_BETWEEN cross:CENTER strokesInLayout | sz:F/H | tok{itemSpacing=space/3}
+        T "Tu cobro" | body/m | Open Sans Regular 15/22px | color/text/secondary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 62×22 @36,602 | sz:H/H
+        T "Día 18 de cada mes" | label/l | Open Sans SemiBold 15/20px | color/text/primary | align:RIGHT/TOP | auto:WIDTH_AND_HEIGHT | 140×20 @214,603 | sz:H/H
+      FRAME "Apartamos" | 318×22 @36,636 | H pad[0,0,0,0] gap12 main:SPACE_BETWEEN cross:CENTER strokesInLayout | sz:F/H | tok{itemSpacing=space/3}
+        T "Apartamos" | body/m | Open Sans Regular 15/22px | color/text/secondary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 77×22 @36,636 | sz:H/H
+        T "$124.25 el 30 y el 15" | label/l | Open Sans SemiBold 15/20px | color/text/primary | align:RIGHT/TOP | auto:WIDTH_AND_HEIGHT | 144×20 @210,637 | sz:H/H
+      FRAME "Desde" | 318×22 @36,670 | H pad[0,0,0,0] gap12 main:SPACE_BETWEEN cross:CENTER strokesInLayout | sz:F/H | tok{itemSpacing=space/3}
+        T "Desde" | body/m | Open Sans Regular 15/22px | color/text/secondary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 45×22 @36,670 | sz:H/H
+        T "Ahorro ····0110" | label/l | Open Sans SemiBold 15/20px | color/text/primary | align:RIGHT/TOP | auto:WIDTH_AND_HEIGHT | 106×20 @248,671 | sz:H/H
+      FRAME "Primera cuota completa" | 318×22 @36,704 | H pad[0,0,0,0] gap12 main:SPACE_BETWEEN cross:CENTER strokesInLayout | sz:F/H | tok{itemSpacing=space/3}
+        T "Primera cuota completa" | body/m | Open Sans Regular 15/22px | color/text/secondary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 168×22 @36,704 | sz:H/H
+        T "18 de octubre" | label/l | Open Sans SemiBold 15/20px | color/text/primary | align:RIGHT/TOP | auto:WIDTH_AND_HEIGHT | 100×20 @254,705 | sz:H/H
+    INSTANCE "Botón · Ir al inicio" | 350×52 @20,758 | ⟨Button / Variant=Primario⟩ | H pad[0,0,0,0] gap0 main:CENTER cross:CENTER strokesInLayout | fill:color/action/primary-bg | r999 | sz:F/F | tok{topLeftRadius=radius/full topRightRadius=radius/full bottomLeftRadius=radius/full bottomRightRadius=radius/full} | → NAVIGATE:184:1030 SLIDE_IN-LEFT 300ms
+      T "IR AL INICIO" | overline | Open Sans Bold 11/16px ls8% | color/action/primary-fg | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 76×16 @157,776 | sz:H/H

@@ -1,0 +1,1166 @@
+{
+ "id": "184:665",
+ "name": "06 · ¿Qué cuota apartamos?",
+ "type": "FRAME",
+ "x": 0,
+ "y": 0,
+ "w": 390,
+ "h": 844,
+ "layout": {
+  "mode": "VERTICAL",
+  "main": "MIN",
+  "cross": "MIN",
+  "pad": [
+   0,
+   0,
+   0,
+   0
+  ],
+  "gap": 0,
+  "strokesInLayout": true
+ },
+ "sizing": [
+  "FIXED",
+  "FIXED"
+ ],
+ "clip": true,
+ "radius": 24,
+ "fills": [
+  {
+   "type": "SOLID",
+   "hex": "#FFFFFF",
+   "token": "color/bg/canvas"
+  }
+ ],
+ "effect": "elevation/2",
+ "tok": {
+  "topLeftRadius": "radius/xl",
+  "topRightRadius": "radius/xl",
+  "bottomLeftRadius": "radius/xl",
+  "bottomRightRadius": "radius/xl"
+ },
+ "children": [
+  {
+   "id": "184:666",
+   "name": "Status bar",
+   "type": "FRAME",
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 54,
+   "sizing": [
+    "FILL",
+    "FIXED"
+   ],
+   "tok": {
+    "paddingLeft": "space/5",
+    "paddingRight": "space/5"
+   },
+   "note": "barra de estado del sistema; hijos omitidos"
+  },
+  {
+   "id": "184:682",
+   "name": "App bar",
+   "type": "FRAME",
+   "x": 0,
+   "y": 54,
+   "w": 390,
+   "h": 52,
+   "layout": {
+    "mode": "HORIZONTAL",
+    "main": "SPACE_BETWEEN",
+    "cross": "CENTER",
+    "pad": [
+     0,
+     8,
+     0,
+     8
+    ],
+    "gap": 0,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "FILL",
+    "FIXED"
+   ],
+   "strokes": [
+    {
+     "type": "SOLID",
+     "hex": "#E6E7E8",
+     "token": "color/border/subtle"
+    }
+   ],
+   "strokeWeight": [
+    0,
+    0,
+    1,
+    0
+   ],
+   "strokeAlign": "INSIDE",
+   "tok": {
+    "paddingLeft": "space/2",
+    "paddingTop": "space/0",
+    "paddingRight": "space/2",
+    "paddingBottom": "space/0"
+   },
+   "children": [
+    {
+     "id": "184:683",
+     "name": "Atrás",
+     "type": "FRAME",
+     "x": 8,
+     "y": 57.5,
+     "w": 44,
+     "h": 44,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "CENTER",
+      "cross": "CENTER",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FIXED",
+      "FIXED"
+     ],
+     "reactions": [
+      {
+       "trigger": "ON_CLICK",
+       "nav": "BACK"
+      }
+     ],
+     "children": [
+      {
+       "id": "184:684",
+       "name": "‹",
+       "type": "TEXT",
+       "x": 26,
+       "y": 66.5,
+       "w": 8,
+       "h": 26,
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#5B5B5B",
+         "token": "color/text/secondary"
+        }
+       ],
+       "text": "‹",
+       "textStyle": "heading/l",
+       "font": "Open Sans Bold",
+       "fontSize": 20,
+       "lineHeight": "26px",
+       "letterSpacing": "-0.5%",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "WIDTH_AND_HEIGHT"
+      }
+     ]
+    },
+    {
+     "id": "184:685",
+     "name": "Título",
+     "type": "FRAME",
+     "x": 125.5,
+     "y": 67.5,
+     "w": 139,
+     "h": 24,
+     "layout": {
+      "mode": "VERTICAL",
+      "main": "MIN",
+      "cross": "CENTER",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "HUG",
+      "HUG"
+     ],
+     "children": [
+      {
+       "id": "184:686",
+       "name": "Apartar mi cuota",
+       "type": "TEXT",
+       "x": 125.5,
+       "y": 67.5,
+       "w": 139,
+       "h": 24,
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#1A1B1A",
+         "token": "color/text/primary"
+        }
+       ],
+       "text": "Apartar mi cuota",
+       "textStyle": "heading/m",
+       "font": "Open Sans SemiBold",
+       "fontSize": 17,
+       "lineHeight": "24px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "WIDTH_AND_HEIGHT"
+      }
+     ]
+    },
+    {
+     "id": "184:687",
+     "name": "Cerrar",
+     "type": "FRAME",
+     "x": 338,
+     "y": 57.5,
+     "w": 44,
+     "h": 44,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "CENTER",
+      "cross": "CENTER",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FIXED",
+      "FIXED"
+     ],
+     "reactions": [
+      {
+       "trigger": "ON_CLICK",
+       "nav": "NAVIGATE",
+       "dest": "184:1103",
+       "transition": {
+        "type": "DISSOLVE",
+        "ms": 250,
+        "easing": "EASE_OUT"
+       }
+      }
+     ],
+     "children": [
+      {
+       "id": "184:688",
+       "name": "×",
+       "type": "TEXT",
+       "x": 354,
+       "y": 66.5,
+       "w": 12,
+       "h": 26,
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#5B5B5B",
+         "token": "color/text/secondary"
+        }
+       ],
+       "text": "×",
+       "textStyle": "heading/l",
+       "font": "Open Sans Bold",
+       "fontSize": 20,
+       "lineHeight": "26px",
+       "letterSpacing": "-0.5%",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "WIDTH_AND_HEIGHT"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "184:689",
+   "name": "Contenido",
+   "type": "FRAME",
+   "x": 0,
+   "y": 106,
+   "w": 390,
+   "h": 738,
+   "layout": {
+    "mode": "VERTICAL",
+    "main": "MIN",
+    "cross": "MIN",
+    "pad": [
+     20,
+     20,
+     0,
+     20
+    ],
+    "gap": 20,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "FILL",
+    "FILL"
+   ],
+   "tok": {
+    "itemSpacing": "space/5",
+    "paddingLeft": "space/5",
+    "paddingTop": "space/5",
+    "paddingRight": "space/5",
+    "paddingBottom": "space/0"
+   },
+   "children": [
+    {
+     "id": "184:690",
+     "name": "Pasos · 1 de 3",
+     "type": "FRAME",
+     "x": 20,
+     "y": 126,
+     "w": 350,
+     "h": 4,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "MIN",
+      "cross": "MIN",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 4,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "tok": {
+      "itemSpacing": "space/1"
+     },
+     "children": [
+      {
+       "id": "184:691",
+       "name": "hecho",
+       "type": "RECTANGLE",
+       "x": 20,
+       "y": 126,
+       "w": 114,
+       "h": 4,
+       "sizing": [
+        "FILL",
+        "FIXED"
+       ],
+       "radius": 999,
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#2C2A29",
+         "token": "color/bg/inverse"
+        }
+       ],
+       "tok": {
+        "topLeftRadius": "radius/full",
+        "topRightRadius": "radius/full",
+        "bottomLeftRadius": "radius/full",
+        "bottomRightRadius": "radius/full"
+       }
+      },
+      {
+       "id": "184:692",
+       "name": "pendiente",
+       "type": "RECTANGLE",
+       "x": 138,
+       "y": 126,
+       "w": 114,
+       "h": 4,
+       "sizing": [
+        "FILL",
+        "FIXED"
+       ],
+       "radius": 999,
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#E6E7E8",
+         "token": "color/border/subtle"
+        }
+       ],
+       "tok": {
+        "topLeftRadius": "radius/full",
+        "topRightRadius": "radius/full",
+        "bottomLeftRadius": "radius/full",
+        "bottomRightRadius": "radius/full"
+       }
+      },
+      {
+       "id": "184:693",
+       "name": "pendiente",
+       "type": "RECTANGLE",
+       "x": 256,
+       "y": 126,
+       "w": 114,
+       "h": 4,
+       "sizing": [
+        "FILL",
+        "FIXED"
+       ],
+       "radius": 999,
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#E6E7E8",
+         "token": "color/border/subtle"
+        }
+       ],
+       "tok": {
+        "topLeftRadius": "radius/full",
+        "topRightRadius": "radius/full",
+        "bottomLeftRadius": "radius/full",
+        "bottomRightRadius": "radius/full"
+       }
+      }
+     ]
+    },
+    {
+     "id": "184:694",
+     "name": "Encabezado",
+     "type": "FRAME",
+     "x": 20,
+     "y": 150,
+     "w": 350,
+     "h": 82,
+     "layout": {
+      "mode": "VERTICAL",
+      "main": "MIN",
+      "cross": "MIN",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 8,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "tok": {
+      "itemSpacing": "space/2"
+     },
+     "children": [
+      {
+       "id": "184:695",
+       "name": "¿Qué cuota quieres apartar?",
+       "type": "TEXT",
+       "x": 20,
+       "y": 150,
+       "w": 350,
+       "h": 30,
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#1A1B1A",
+         "token": "color/text/primary"
+        }
+       ],
+       "text": "¿Qué cuota quieres apartar?",
+       "textStyle": "heading/xl",
+       "font": "Open Sans Bold",
+       "fontSize": 24,
+       "lineHeight": "30px",
+       "letterSpacing": "-1%",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "HEIGHT"
+      },
+      {
+       "id": "184:696",
+       "name": "Tienes dos créditos. Elige u…",
+       "type": "TEXT",
+       "x": 20,
+       "y": 188,
+       "w": 350,
+       "h": 44,
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#5B5B5B",
+         "token": "color/text/secondary"
+        }
+       ],
+       "text": "Tienes dos créditos. Elige uno; después puedes sumar el otro.",
+       "textStyle": "body/m",
+       "font": "Open Sans Regular",
+       "fontSize": 15,
+       "lineHeight": "22px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "HEIGHT"
+      }
+     ]
+    },
+    {
+     "id": "184:697",
+     "name": "Créditos",
+     "type": "FRAME",
+     "x": 20,
+     "y": 252,
+     "w": 350,
+     "h": 174,
+     "layout": {
+      "mode": "VERTICAL",
+      "main": "MIN",
+      "cross": "MIN",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 12,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "tok": {
+      "itemSpacing": "space/3"
+     },
+     "children": [
+      {
+       "id": "184:698",
+       "name": "Crédito personal",
+       "type": "FRAME",
+       "x": 20,
+       "y": 252,
+       "w": 350,
+       "h": 81,
+       "layout": {
+        "mode": "HORIZONTAL",
+        "main": "MIN",
+        "cross": "CENTER",
+        "pad": [
+         16,
+         16,
+         16,
+         16
+        ],
+        "gap": 12,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "radius": 12,
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#FFFFFF",
+         "token": "color/bg/surface"
+        }
+       ],
+       "strokes": [
+        {
+         "type": "SOLID",
+         "hex": "#C4C4C4",
+         "token": "color/border/default"
+        }
+       ],
+       "strokeWeight": 1.5,
+       "strokeAlign": "INSIDE",
+       "tok": {
+        "itemSpacing": "space/3",
+        "paddingLeft": "space/4",
+        "paddingTop": "space/4",
+        "paddingRight": "space/4",
+        "paddingBottom": "space/4",
+        "topLeftRadius": "radius/md",
+        "topRightRadius": "radius/md",
+        "bottomLeftRadius": "radius/md",
+        "bottomRightRadius": "radius/md"
+       },
+       "reactions": [
+        {
+         "trigger": "ON_CLICK",
+         "nav": "NAVIGATE",
+         "dest": "184:719",
+         "transition": {
+          "type": "SLIDE_IN",
+          "dir": "LEFT",
+          "ms": 300,
+          "easing": "EASE_OUT"
+         }
+        }
+       ],
+       "children": [
+        {
+         "id": "184:699",
+         "name": "Ilustración · Bolsa de Dinero",
+         "type": "RECTANGLE",
+         "x": 37.5,
+         "y": 272.5,
+         "w": 40,
+         "h": 40,
+         "sizing": [
+          "FIXED",
+          "FIXED"
+         ],
+         "fills": [
+          {
+           "type": "IMAGE",
+           "imageHash": "caba3c6ddeb12862cdad17419943c9d7adbcc1ef",
+           "scaleMode": "FIT"
+          }
+         ]
+        },
+        {
+         "id": "184:700",
+         "name": "Texto",
+         "type": "FRAME",
+         "x": 89.5,
+         "y": 271.5,
+         "w": 152,
+         "h": 42,
+         "layout": {
+          "mode": "VERTICAL",
+          "main": "MIN",
+          "cross": "MIN",
+          "pad": [
+           0,
+           0,
+           0,
+           0
+          ],
+          "gap": 4,
+          "strokesInLayout": true
+         },
+         "sizing": [
+          "FILL",
+          "HUG"
+         ],
+         "tok": {
+          "itemSpacing": "space/1"
+         },
+         "children": [
+          {
+           "id": "184:701",
+           "name": "Crédito personal",
+           "type": "TEXT",
+           "x": 89.5,
+           "y": 271.5,
+           "w": 152,
+           "h": 20,
+           "sizing": [
+            "FILL",
+            "HUG"
+           ],
+           "fills": [
+            {
+             "type": "SOLID",
+             "hex": "#1A1B1A",
+             "token": "color/text/primary"
+            }
+           ],
+           "text": "Crédito personal",
+           "textStyle": "label/l",
+           "font": "Open Sans SemiBold",
+           "fontSize": 15,
+           "lineHeight": "20px",
+           "align": [
+            "LEFT",
+            "TOP"
+           ],
+           "autoResize": "HEIGHT"
+          },
+          {
+           "id": "184:702",
+           "name": "N.º 0452",
+           "type": "TEXT",
+           "x": 89.5,
+           "y": 295.5,
+           "w": 152,
+           "h": 18,
+           "sizing": [
+            "FILL",
+            "HUG"
+           ],
+           "fills": [
+            {
+             "type": "SOLID",
+             "hex": "#5B5B5B",
+             "token": "color/text/secondary"
+            }
+           ],
+           "text": "N.º 0452",
+           "textStyle": "body/s",
+           "font": "Open Sans Regular",
+           "fontSize": 13,
+           "lineHeight": "18px",
+           "align": [
+            "LEFT",
+            "TOP"
+           ],
+           "autoResize": "HEIGHT"
+          }
+         ]
+        },
+        {
+         "id": "184:703",
+         "name": "Monto",
+         "type": "FRAME",
+         "x": 253.5,
+         "y": 269.5,
+         "w": 79,
+         "h": 46,
+         "layout": {
+          "mode": "VERTICAL",
+          "main": "MIN",
+          "cross": "MAX",
+          "pad": [
+           0,
+           0,
+           0,
+           0
+          ],
+          "gap": 4,
+          "strokesInLayout": true
+         },
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "tok": {
+          "itemSpacing": "space/1"
+         },
+         "children": [
+          {
+           "id": "184:704",
+           "name": "$248.50",
+           "type": "TEXT",
+           "x": 257.5,
+           "y": 269.5,
+           "w": 75,
+           "h": 26,
+           "sizing": [
+            "HUG",
+            "HUG"
+           ],
+           "fills": [
+            {
+             "type": "SOLID",
+             "hex": "#1A1B1A",
+             "token": "color/text/primary"
+            }
+           ],
+           "text": "$248.50",
+           "textStyle": "numeral/m",
+           "font": "Open Sans SemiBold",
+           "fontSize": 20,
+           "lineHeight": "26px",
+           "align": [
+            "RIGHT",
+            "TOP"
+           ],
+           "autoResize": "WIDTH_AND_HEIGHT"
+          },
+          {
+           "id": "184:705",
+           "name": "cuota del mes",
+           "type": "TEXT",
+           "x": 253.5,
+           "y": 299.5,
+           "w": 79,
+           "h": 16,
+           "sizing": [
+            "HUG",
+            "HUG"
+           ],
+           "fills": [
+            {
+             "type": "SOLID",
+             "hex": "#6D6E72",
+             "token": "color/text/tertiary"
+            }
+           ],
+           "text": "cuota del mes",
+           "textStyle": "caption",
+           "font": "Open Sans Regular",
+           "fontSize": 12,
+           "lineHeight": "16px",
+           "align": [
+            "RIGHT",
+            "TOP"
+           ],
+           "autoResize": "WIDTH_AND_HEIGHT"
+          }
+         ]
+        },
+        {
+         "id": "184:706",
+         "name": "›",
+         "type": "TEXT",
+         "x": 344.5,
+         "y": 279.5,
+         "w": 8,
+         "h": 26,
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#6D6E72",
+           "token": "color/text/tertiary"
+          }
+         ],
+         "text": "›",
+         "textStyle": "heading/l",
+         "font": "Open Sans Bold",
+         "fontSize": 20,
+         "lineHeight": "26px",
+         "letterSpacing": "-0.5%",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        }
+       ]
+      },
+      {
+       "id": "184:707",
+       "name": "Tarjeta de crédito",
+       "type": "FRAME",
+       "x": 20,
+       "y": 345,
+       "w": 350,
+       "h": 81,
+       "layout": {
+        "mode": "HORIZONTAL",
+        "main": "MIN",
+        "cross": "CENTER",
+        "pad": [
+         16,
+         16,
+         16,
+         16
+        ],
+        "gap": 12,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "radius": 12,
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#FFFFFF",
+         "token": "color/bg/surface"
+        }
+       ],
+       "strokes": [
+        {
+         "type": "SOLID",
+         "hex": "#C4C4C4",
+         "token": "color/border/default"
+        }
+       ],
+       "strokeWeight": 1.5,
+       "strokeAlign": "INSIDE",
+       "tok": {
+        "itemSpacing": "space/3",
+        "paddingLeft": "space/4",
+        "paddingTop": "space/4",
+        "paddingRight": "space/4",
+        "paddingBottom": "space/4",
+        "topLeftRadius": "radius/md",
+        "topRightRadius": "radius/md",
+        "bottomLeftRadius": "radius/md",
+        "bottomRightRadius": "radius/md"
+       },
+       "children": [
+        {
+         "id": "184:708",
+         "name": "Ilustración · Tarjeta de Credito",
+         "type": "RECTANGLE",
+         "x": 37.5,
+         "y": 365.5,
+         "w": 40,
+         "h": 40,
+         "sizing": [
+          "FIXED",
+          "FIXED"
+         ],
+         "fills": [
+          {
+           "type": "IMAGE",
+           "imageHash": "f6152571bcab1cdd1a468f51a7ff90c065f15fa8",
+           "scaleMode": "FIT"
+          }
+         ]
+        },
+        {
+         "id": "184:709",
+         "name": "Texto",
+         "type": "FRAME",
+         "x": 89.5,
+         "y": 364.5,
+         "w": 137,
+         "h": 42,
+         "layout": {
+          "mode": "VERTICAL",
+          "main": "MIN",
+          "cross": "MIN",
+          "pad": [
+           0,
+           0,
+           0,
+           0
+          ],
+          "gap": 4,
+          "strokesInLayout": true
+         },
+         "sizing": [
+          "FILL",
+          "HUG"
+         ],
+         "tok": {
+          "itemSpacing": "space/1"
+         },
+         "children": [
+          {
+           "id": "184:710",
+           "name": "Tarjeta de crédito",
+           "type": "TEXT",
+           "x": 89.5,
+           "y": 364.5,
+           "w": 137,
+           "h": 20,
+           "sizing": [
+            "FILL",
+            "HUG"
+           ],
+           "fills": [
+            {
+             "type": "SOLID",
+             "hex": "#1A1B1A",
+             "token": "color/text/primary"
+            }
+           ],
+           "text": "Tarjeta de crédito",
+           "textStyle": "label/l",
+           "font": "Open Sans SemiBold",
+           "fontSize": 15,
+           "lineHeight": "20px",
+           "align": [
+            "LEFT",
+            "TOP"
+           ],
+           "autoResize": "HEIGHT"
+          },
+          {
+           "id": "184:711",
+           "name": "Visa ····4821",
+           "type": "TEXT",
+           "x": 89.5,
+           "y": 388.5,
+           "w": 137,
+           "h": 18,
+           "sizing": [
+            "FILL",
+            "HUG"
+           ],
+           "fills": [
+            {
+             "type": "SOLID",
+             "hex": "#5B5B5B",
+             "token": "color/text/secondary"
+            }
+           ],
+           "text": "Visa ····4821",
+           "textStyle": "body/s",
+           "font": "Open Sans Regular",
+           "fontSize": 13,
+           "lineHeight": "18px",
+           "align": [
+            "LEFT",
+            "TOP"
+           ],
+           "autoResize": "HEIGHT"
+          }
+         ]
+        },
+        {
+         "id": "184:712",
+         "name": "Monto",
+         "type": "FRAME",
+         "x": 238.5,
+         "y": 362.5,
+         "w": 94,
+         "h": 46,
+         "layout": {
+          "mode": "VERTICAL",
+          "main": "MIN",
+          "cross": "MAX",
+          "pad": [
+           0,
+           0,
+           0,
+           0
+          ],
+          "gap": 4,
+          "strokesInLayout": true
+         },
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "tok": {
+          "itemSpacing": "space/1"
+         },
+         "children": [
+          {
+           "id": "184:713",
+           "name": "$340.00",
+           "type": "TEXT",
+           "x": 257.5,
+           "y": 362.5,
+           "w": 75,
+           "h": 26,
+           "sizing": [
+            "HUG",
+            "HUG"
+           ],
+           "fills": [
+            {
+             "type": "SOLID",
+             "hex": "#1A1B1A",
+             "token": "color/text/primary"
+            }
+           ],
+           "text": "$340.00",
+           "textStyle": "numeral/m",
+           "font": "Open Sans SemiBold",
+           "fontSize": 20,
+           "lineHeight": "26px",
+           "align": [
+            "RIGHT",
+            "TOP"
+           ],
+           "autoResize": "WIDTH_AND_HEIGHT"
+          },
+          {
+           "id": "184:714",
+           "name": "pago de contado",
+           "type": "TEXT",
+           "x": 238.5,
+           "y": 392.5,
+           "w": 94,
+           "h": 16,
+           "sizing": [
+            "HUG",
+            "HUG"
+           ],
+           "fills": [
+            {
+             "type": "SOLID",
+             "hex": "#6D6E72",
+             "token": "color/text/tertiary"
+            }
+           ],
+           "text": "pago de contado",
+           "textStyle": "caption",
+           "font": "Open Sans Regular",
+           "fontSize": 12,
+           "lineHeight": "16px",
+           "align": [
+            "RIGHT",
+            "TOP"
+           ],
+           "autoResize": "WIDTH_AND_HEIGHT"
+          }
+         ]
+        },
+        {
+         "id": "184:715",
+         "name": "›",
+         "type": "TEXT",
+         "x": 344.5,
+         "y": 372.5,
+         "w": 8,
+         "h": 26,
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#6D6E72",
+           "token": "color/text/tertiary"
+          }
+         ],
+         "text": "›",
+         "textStyle": "heading/l",
+         "font": "Open Sans Bold",
+         "fontSize": 20,
+         "lineHeight": "26px",
+         "letterSpacing": "-0.5%",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "section": "2 · Apartar la cuota"
+}

@@ -1,0 +1,398 @@
+{
+ "id": "3:168",
+ "name": "EstadoBadge",
+ "type": "COMPONENT_SET",
+ "x": 0,
+ "y": 0,
+ "w": 443,
+ "h": 82,
+ "layout": {
+  "mode": "HORIZONTAL",
+  "main": "MIN",
+  "cross": "CENTER",
+  "pad": [
+   28,
+   28,
+   28,
+   28
+  ],
+  "gap": 24,
+  "strokesInLayout": true
+ },
+ "sizing": [
+  "HUG",
+  "HUG"
+ ],
+ "clip": true,
+ "radius": 5,
+ "children": [
+  {
+   "id": "3:156",
+   "name": "Estado=Al día",
+   "type": "COMPONENT",
+   "x": 28,
+   "y": 28,
+   "w": 70,
+   "h": 26,
+   "layout": {
+    "mode": "HORIZONTAL",
+    "main": "MIN",
+    "cross": "CENTER",
+    "pad": [
+     5,
+     11,
+     5,
+     11
+    ],
+    "gap": 6,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "HUG",
+    "HUG"
+   ],
+   "radius": 999,
+   "fills": [
+    {
+     "type": "SOLID",
+     "hex": "#E0F7EF",
+     "token": "color/estado/al-dia-bg"
+    }
+   ],
+   "tok": {
+    "topLeftRadius": "radius/full",
+    "topRightRadius": "radius/full",
+    "bottomLeftRadius": "radius/full",
+    "bottomRightRadius": "radius/full"
+   },
+   "children": [
+    {
+     "id": "3:157",
+     "name": "Punto",
+     "type": "ELLIPSE",
+     "x": 39,
+     "y": 37.5,
+     "w": 7,
+     "h": 7,
+     "sizing": [
+      "FIXED",
+      "FIXED"
+     ],
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#00714E",
+       "token": "color/estado/al-dia-fg"
+      }
+     ]
+    },
+    {
+     "id": "3:158",
+     "name": "Label",
+     "type": "TEXT",
+     "x": 52,
+     "y": 33,
+     "w": 35,
+     "h": 16,
+     "sizing": [
+      "HUG",
+      "HUG"
+     ],
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#00714E",
+       "token": "color/estado/al-dia-fg"
+      }
+     ],
+     "text": "Al día",
+     "textStyle": "label/m",
+     "font": "Open Sans SemiBold",
+     "fontSize": 13,
+     "lineHeight": "16px",
+     "align": [
+      "LEFT",
+      "TOP"
+     ],
+     "autoResize": "WIDTH_AND_HEIGHT"
+    }
+   ]
+  },
+  {
+   "id": "3:159",
+   "name": "Estado=En plan",
+   "type": "COMPONENT",
+   "x": 122,
+   "y": 28,
+   "w": 82,
+   "h": 26,
+   "layout": {
+    "mode": "HORIZONTAL",
+    "main": "MIN",
+    "cross": "CENTER",
+    "pad": [
+     5,
+     11,
+     5,
+     11
+    ],
+    "gap": 6,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "HUG",
+    "HUG"
+   ],
+   "radius": 999,
+   "fills": [
+    {
+     "type": "SOLID",
+     "hex": "#E4F6FC",
+     "token": "color/estado/plan-bg"
+    }
+   ],
+   "tok": {
+    "topLeftRadius": "radius/full",
+    "topRightRadius": "radius/full",
+    "bottomLeftRadius": "radius/full",
+    "bottomRightRadius": "radius/full"
+   },
+   "children": [
+    {
+     "id": "3:160",
+     "name": "Punto",
+     "type": "ELLIPSE",
+     "x": 133,
+     "y": 37.5,
+     "w": 7,
+     "h": 7,
+     "sizing": [
+      "FIXED",
+      "FIXED"
+     ],
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#00448C",
+       "token": "color/estado/plan-fg"
+      }
+     ]
+    },
+    {
+     "id": "3:161",
+     "name": "Label",
+     "type": "TEXT",
+     "x": 146,
+     "y": 33,
+     "w": 47,
+     "h": 16,
+     "sizing": [
+      "HUG",
+      "HUG"
+     ],
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#00448C",
+       "token": "color/estado/plan-fg"
+      }
+     ],
+     "text": "En plan",
+     "textStyle": "label/m",
+     "font": "Open Sans SemiBold",
+     "fontSize": 13,
+     "lineHeight": "16px",
+     "align": [
+      "LEFT",
+      "TOP"
+     ],
+     "autoResize": "WIDTH_AND_HEIGHT"
+    }
+   ]
+  },
+  {
+   "id": "3:162",
+   "name": "Estado=Atraso",
+   "type": "COMPONENT",
+   "x": 228,
+   "y": 28,
+   "w": 77,
+   "h": 26,
+   "layout": {
+    "mode": "HORIZONTAL",
+    "main": "MIN",
+    "cross": "CENTER",
+    "pad": [
+     5,
+     11,
+     5,
+     11
+    ],
+    "gap": 6,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "HUG",
+    "HUG"
+   ],
+   "radius": 999,
+   "fills": [
+    {
+     "type": "SOLID",
+     "hex": "#FFEDE4",
+     "token": "color/estado/atraso-bg"
+    }
+   ],
+   "tok": {
+    "topLeftRadius": "radius/full",
+    "topRightRadius": "radius/full",
+    "bottomLeftRadius": "radius/full",
+    "bottomRightRadius": "radius/full"
+   },
+   "children": [
+    {
+     "id": "3:163",
+     "name": "Punto",
+     "type": "ELLIPSE",
+     "x": 239,
+     "y": 37.5,
+     "w": 7,
+     "h": 7,
+     "sizing": [
+      "FIXED",
+      "FIXED"
+     ],
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#A8420F",
+       "token": "color/estado/atraso-fg"
+      }
+     ]
+    },
+    {
+     "id": "3:164",
+     "name": "Label",
+     "type": "TEXT",
+     "x": 252,
+     "y": 33,
+     "w": 42,
+     "h": 16,
+     "sizing": [
+      "HUG",
+      "HUG"
+     ],
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#A8420F",
+       "token": "color/estado/atraso-fg"
+      }
+     ],
+     "text": "Atraso",
+     "textStyle": "label/m",
+     "font": "Open Sans SemiBold",
+     "fontSize": 13,
+     "lineHeight": "16px",
+     "align": [
+      "LEFT",
+      "TOP"
+     ],
+     "autoResize": "WIDTH_AND_HEIGHT"
+    }
+   ]
+  },
+  {
+   "id": "3:165",
+   "name": "Estado=Quiebre",
+   "type": "COMPONENT",
+   "x": 329,
+   "y": 28,
+   "w": 86,
+   "h": 26,
+   "layout": {
+    "mode": "HORIZONTAL",
+    "main": "MIN",
+    "cross": "CENTER",
+    "pad": [
+     5,
+     11,
+     5,
+     11
+    ],
+    "gap": 6,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "HUG",
+    "HUG"
+   ],
+   "radius": 999,
+   "fills": [
+    {
+     "type": "SOLID",
+     "hex": "#FBE6E2",
+     "token": "color/estado/quiebre-bg"
+    }
+   ],
+   "tok": {
+    "topLeftRadius": "radius/full",
+    "topRightRadius": "radius/full",
+    "bottomLeftRadius": "radius/full",
+    "bottomRightRadius": "radius/full"
+   },
+   "children": [
+    {
+     "id": "3:166",
+     "name": "Punto",
+     "type": "ELLIPSE",
+     "x": 340,
+     "y": 37.5,
+     "w": 7,
+     "h": 7,
+     "sizing": [
+      "FIXED",
+      "FIXED"
+     ],
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#B02D18",
+       "token": "color/estado/quiebre-fg"
+      }
+     ]
+    },
+    {
+     "id": "3:167",
+     "name": "Label",
+     "type": "TEXT",
+     "x": 353,
+     "y": 33,
+     "w": 51,
+     "h": 16,
+     "sizing": [
+      "HUG",
+      "HUG"
+     ],
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#B02D18",
+       "token": "color/estado/quiebre-fg"
+      }
+     ],
+     "text": "Quiebre",
+     "textStyle": "label/m",
+     "font": "Open Sans SemiBold",
+     "fontSize": 13,
+     "lineHeight": "16px",
+     "align": [
+      "LEFT",
+      "TOP"
+     ],
+     "autoResize": "WIDTH_AND_HEIGHT"
+    }
+   ]
+  }
+ ]
+}

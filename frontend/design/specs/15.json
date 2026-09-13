@@ -1,0 +1,473 @@
+{
+ "id": "230:4222",
+ "name": "15 · Asesor · ¿Terminamos?",
+ "type": "FRAME",
+ "x": 0,
+ "y": 0,
+ "w": 390,
+ "h": 844,
+ "sizing": [
+  "FIXED",
+  "FIXED"
+ ],
+ "clip": true,
+ "radius": 24,
+ "fills": [
+  {
+   "type": "SOLID",
+   "hex": "#FFFFFF",
+   "token": "color/bg/canvas"
+  }
+ ],
+ "effect": "elevation/2",
+ "tok": {
+  "topLeftRadius": "radius/xl",
+  "topRightRadius": "radius/xl",
+  "bottomLeftRadius": "radius/xl",
+  "bottomRightRadius": "radius/xl"
+ },
+ "children": [
+  {
+   "id": "230:4294",
+   "name": "Fondo · 14 · Asesor · Conversación",
+   "type": "FRAME",
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "layout": {
+    "mode": "VERTICAL",
+    "main": "MIN",
+    "cross": "MIN",
+    "pad": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "gap": 0,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "FIXED",
+    "FIXED"
+   ],
+   "clip": true,
+   "radius": 24,
+   "fills": [
+    {
+     "type": "SOLID",
+     "hex": "#FFFFFF",
+     "token": "color/bg/canvas"
+    }
+   ],
+   "tok": {
+    "topLeftRadius": "radius/xl",
+    "topRightRadius": "radius/xl",
+    "bottomLeftRadius": "radius/xl",
+    "bottomRightRadius": "radius/xl"
+   },
+   "note": "clon bloqueado de la vista de fondo; hijos omitidos"
+  },
+  {
+   "id": "230:4279",
+   "name": "Velo",
+   "type": "RECTANGLE",
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "opacity": 0.5,
+   "sizing": [
+    "FIXED",
+    "FIXED"
+   ],
+   "fills": [
+    {
+     "type": "SOLID",
+     "hex": "#1A1B1A",
+     "token": "color/bg/scrim"
+    }
+   ]
+  },
+  {
+   "id": "230:4280",
+   "name": "Ventana",
+   "type": "FRAME",
+   "x": 0,
+   "y": 564,
+   "w": 390,
+   "h": 280,
+   "layout": {
+    "mode": "VERTICAL",
+    "main": "MIN",
+    "cross": "CENTER",
+    "pad": [
+     12,
+     20,
+     34,
+     20
+    ],
+    "gap": 16,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "FIXED",
+    "HUG"
+   ],
+   "radius": [
+    24,
+    24,
+    0,
+    0
+   ],
+   "fills": [
+    {
+     "type": "SOLID",
+     "hex": "#FFFFFF",
+     "token": "color/bg/surface"
+    }
+   ],
+   "effect": "elevation/3",
+   "tok": {
+    "itemSpacing": "space/4",
+    "paddingLeft": "space/5",
+    "paddingTop": "space/3",
+    "paddingRight": "space/5",
+    "paddingBottom": "size/safe-bottom",
+    "topLeftRadius": "radius/xl",
+    "topRightRadius": "radius/xl",
+    "bottomLeftRadius": "radius/none",
+    "bottomRightRadius": "radius/none"
+   },
+   "children": [
+    {
+     "id": "230:4281",
+     "name": "Asa",
+     "type": "RECTANGLE",
+     "x": 177,
+     "y": 576,
+     "w": 36,
+     "h": 4,
+     "sizing": [
+      "FIXED",
+      "FIXED"
+     ],
+     "radius": 999,
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#C4C4C4",
+       "token": "color/border/default"
+      }
+     ],
+     "tok": {
+      "topLeftRadius": "radius/full",
+      "topRightRadius": "radius/full",
+      "bottomLeftRadius": "radius/full",
+      "bottomRightRadius": "radius/full"
+     }
+    },
+    {
+     "id": "230:4283",
+     "name": "Confirmación",
+     "type": "FRAME",
+     "x": 20,
+     "y": 596,
+     "w": 350,
+     "h": 82,
+     "layout": {
+      "mode": "VERTICAL",
+      "main": "MIN",
+      "cross": "CENTER",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 4,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "tok": {
+      "itemSpacing": "space/1"
+     },
+     "children": [
+      {
+       "id": "230:4284",
+       "name": "Listo. Tu cobro ahora es el …",
+       "type": "TEXT",
+       "x": 20,
+       "y": 596,
+       "w": 350,
+       "h": 60,
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#1A1B1A",
+         "token": "color/text/primary"
+        }
+       ],
+       "text": "¿Terminamos la conversación?",
+       "textStyle": "heading/xl",
+       "font": "Open Sans Bold",
+       "fontSize": 24,
+       "lineHeight": "30px",
+       "letterSpacing": "-1%",
+       "align": [
+        "CENTER",
+        "TOP"
+       ],
+       "autoResize": "HEIGHT"
+      },
+      {
+       "id": "230:4285",
+       "name": "Desde el 18 de octubre de 20…",
+       "type": "TEXT",
+       "x": 20,
+       "y": 660,
+       "w": 350,
+       "h": 18,
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#6D6E72",
+         "token": "color/text/tertiary"
+        }
+       ],
+       "text": "Cuando quieras, vuelves con el botón «Asesor».",
+       "textStyle": "body/s",
+       "font": "Open Sans Regular",
+       "fontSize": 13,
+       "lineHeight": "18px",
+       "align": [
+        "CENTER",
+        "TOP"
+       ],
+       "autoResize": "HEIGHT"
+      }
+     ]
+    },
+    {
+     "id": "230:4291",
+     "name": "Acciones",
+     "type": "FRAME",
+     "x": 20,
+     "y": 694,
+     "w": 350,
+     "h": 116,
+     "layout": {
+      "mode": "VERTICAL",
+      "main": "MIN",
+      "cross": "MIN",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 12,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "tok": {
+      "itemSpacing": "space/3"
+     },
+     "children": [
+      {
+       "id": "230:4292",
+       "name": "Botón · Terminar",
+       "type": "INSTANCE",
+       "x": 20,
+       "y": 694,
+       "w": 350,
+       "h": 52,
+       "layout": {
+        "mode": "HORIZONTAL",
+        "main": "CENTER",
+        "cross": "CENTER",
+        "pad": [
+         0,
+         0,
+         0,
+         0
+        ],
+        "gap": 0,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "FILL",
+        "FIXED"
+       ],
+       "radius": 999,
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#FDDA24",
+         "token": "color/action/primary-bg"
+        }
+       ],
+       "tok": {
+        "topLeftRadius": "radius/full",
+        "topRightRadius": "radius/full",
+        "bottomLeftRadius": "radius/full",
+        "bottomRightRadius": "radius/full"
+       },
+       "component": "Button / Variant=Primario",
+       "reactions": [
+        {
+         "trigger": "ON_CLICK",
+         "nav": "CLOSE"
+        }
+       ],
+       "children": [
+        {
+         "id": "I230:4292;3:145",
+         "name": "Label",
+         "type": "TEXT",
+         "x": 163,
+         "y": 712,
+         "w": 64,
+         "h": 16,
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#2C2A29",
+           "token": "color/action/primary-fg"
+          }
+         ],
+         "text": "TERMINAR",
+         "textStyle": "overline",
+         "font": "Open Sans Bold",
+         "fontSize": 11,
+         "lineHeight": "16px",
+         "letterSpacing": "8%",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        }
+       ]
+      },
+      {
+       "id": "230:4293",
+       "name": "Botón · Seguir conversando",
+       "type": "INSTANCE",
+       "x": 20,
+       "y": 758,
+       "w": 350,
+       "h": 52,
+       "layout": {
+        "mode": "HORIZONTAL",
+        "main": "CENTER",
+        "cross": "CENTER",
+        "pad": [
+         0,
+         0,
+         0,
+         0
+        ],
+        "gap": 0,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "FILL",
+        "FIXED"
+       ],
+       "radius": 999,
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#FFFFFF",
+         "token": "color/action/secondary-bg"
+        }
+       ],
+       "strokes": [
+        {
+         "type": "SOLID",
+         "hex": "#2C2A29",
+         "token": "color/action/secondary-border"
+        }
+       ],
+       "strokeWeight": 1.5,
+       "strokeAlign": "INSIDE",
+       "tok": {
+        "topLeftRadius": "radius/full",
+        "topRightRadius": "radius/full",
+        "bottomLeftRadius": "radius/full",
+        "bottomRightRadius": "radius/full"
+       },
+       "component": "Button / Variant=Secundario",
+       "reactions": [
+        {
+         "trigger": "ON_CLICK",
+         "nav": "SWAP",
+         "dest": "230:4090",
+         "transition": {
+          "type": "DISSOLVE",
+          "ms": 250,
+          "easing": "EASE_OUT"
+         }
+        }
+       ],
+       "children": [
+        {
+         "id": "I230:4293;3:147",
+         "name": "Label",
+         "type": "TEXT",
+         "x": 123.5,
+         "y": 776,
+         "w": 143,
+         "h": 16,
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#1A1B1A",
+           "token": "color/action/secondary-fg"
+          }
+         ],
+         "text": "SEGUIR CONVERSANDO",
+         "textStyle": "overline",
+         "font": "Open Sans Bold",
+         "fontSize": 11,
+         "lineHeight": "16px",
+         "letterSpacing": "8%",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "section": "4 · Asesor bancario"
+}

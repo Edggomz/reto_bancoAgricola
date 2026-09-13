@@ -1,0 +1,410 @@
+{
+ "ids": {
+  "10": "184:1030",
+  "11": "186:1174",
+  "12": "186:1232",
+  "13": "230:4029",
+  "14": "230:4090",
+  "15": "230:4222",
+  "01": "4:452",
+  "03": "184:472",
+  "04": "184:520",
+  "05": "184:584",
+  "02": "184:964",
+  "06": "184:665",
+  "07": "184:719",
+  "08": "184:787",
+  "08a": "184:850",
+  "08b": "184:905",
+  "09": "186:1639",
+  "02-B": "217:3864",
+  "10b": "184:1103",
+  "14b": "230:4159"
+ },
+ "edges": [
+  {
+   "from": "01",
+   "id": "4:476",
+   "label": "CONTINUAR",
+   "kind": "nav",
+   "to": "02"
+  },
+  {
+   "from": "03",
+   "id": "184:490",
+   "label": "‹",
+   "kind": "back",
+   "to": null
+  },
+  {
+   "from": "03",
+   "id": "184:494",
+   "label": "×",
+   "kind": "nav",
+   "to": "02"
+  },
+  {
+   "from": "03",
+   "id": "184:515",
+   "label": "CONTINUAR",
+   "kind": "nav",
+   "to": "04"
+  },
+  {
+   "from": "04",
+   "id": "184:538",
+   "label": "‹",
+   "kind": "back",
+   "to": null
+  },
+  {
+   "from": "04",
+   "id": "184:542",
+   "label": "×",
+   "kind": "nav",
+   "to": "02"
+  },
+  {
+   "from": "04",
+   "id": "184:579",
+   "label": "CONFIRMAR",
+   "kind": "nav",
+   "to": "05"
+  },
+  {
+   "from": "05",
+   "id": "184:659",
+   "label": "APARTAR MI CUOTA",
+   "kind": "nav",
+   "to": "06"
+  },
+  {
+   "from": "05",
+   "id": "184:661",
+   "label": "AHORA NO",
+   "kind": "nav",
+   "to": "10b"
+  },
+  {
+   "from": "02",
+   "id": "184:1011",
+   "label": "ACTIVAR",
+   "kind": "nav",
+   "to": "03"
+  },
+  {
+   "from": "02",
+   "id": "184:1020",
+   "label": "Asesor",
+   "kind": "overlay",
+   "to": "13"
+  },
+  {
+   "from": "06",
+   "id": "184:683",
+   "label": "‹",
+   "kind": "back",
+   "to": null
+  },
+  {
+   "from": "06",
+   "id": "184:687",
+   "label": "×",
+   "kind": "nav",
+   "to": "10b"
+  },
+  {
+   "from": "06",
+   "id": "184:698",
+   "label": "Crédito personal",
+   "kind": "nav",
+   "to": "07"
+  },
+  {
+   "from": "07",
+   "id": "184:737",
+   "label": "‹",
+   "kind": "back",
+   "to": null
+  },
+  {
+   "from": "07",
+   "id": "184:741",
+   "label": "×",
+   "kind": "nav",
+   "to": "10b"
+  },
+  {
+   "from": "07",
+   "id": "184:782",
+   "label": "CONTINUAR",
+   "kind": "nav",
+   "to": "08"
+  },
+  {
+   "from": "08",
+   "id": "184:805",
+   "label": "‹",
+   "kind": "back",
+   "to": null
+  },
+  {
+   "from": "08",
+   "id": "184:809",
+   "label": "×",
+   "kind": "nav",
+   "to": "10b"
+  },
+  {
+   "from": "08",
+   "id": "184:842",
+   "label": "Ahora no",
+   "kind": "nav",
+   "to": "10b"
+  },
+  {
+   "from": "08",
+   "id": "184:844",
+   "label": "ACTIVAR EN AUTOMÁTICO",
+   "kind": "nav",
+   "to": "09"
+  },
+  {
+   "from": "08a",
+   "id": "184:868",
+   "label": "‹",
+   "kind": "back",
+   "to": null
+  },
+  {
+   "from": "08a",
+   "id": "184:872",
+   "label": "×",
+   "kind": "nav",
+   "to": "10b"
+  },
+  {
+   "from": "08a",
+   "id": "184:898",
+   "label": "Ahora no",
+   "kind": "nav",
+   "to": "10b"
+  },
+  {
+   "from": "08a",
+   "id": "184:900",
+   "label": "ABRIR MI CUENTA",
+   "kind": "nav",
+   "to": "08b"
+  },
+  {
+   "from": "08b",
+   "id": "184:923",
+   "label": "‹",
+   "kind": "back",
+   "to": null
+  },
+  {
+   "from": "08b",
+   "id": "184:927",
+   "label": "×",
+   "kind": "nav",
+   "to": "10b"
+  },
+  {
+   "from": "08b",
+   "id": "184:962",
+   "label": "FIRMAR CON FACE ID",
+   "kind": "nav",
+   "to": "08"
+  },
+  {
+   "from": "09",
+   "id": "186:1719",
+   "label": "IR AL INICIO",
+   "kind": "nav",
+   "to": "10"
+  },
+  {
+   "from": "02-B",
+   "id": "217:3950",
+   "label": "ACTIVAR",
+   "kind": "nav",
+   "to": "03"
+  },
+  {
+   "from": "02-B",
+   "id": "217:3918",
+   "label": "Asesor",
+   "kind": "overlay",
+   "to": "13"
+  },
+  {
+   "from": "10",
+   "id": "184:1093",
+   "label": "Asesor",
+   "kind": "overlay",
+   "to": "13"
+  },
+  {
+   "from": "10b",
+   "id": "184:1152",
+   "label": "APARTAR",
+   "kind": "nav",
+   "to": "06"
+  },
+  {
+   "from": "10b",
+   "id": "184:1163",
+   "label": "Asesor",
+   "kind": "overlay",
+   "to": "13"
+  },
+  {
+   "from": "11",
+   "id": "186:1196",
+   "label": "Este mes vino distinto, y está bien",
+   "kind": "overlay",
+   "to": "14b"
+  },
+  {
+   "from": "11",
+   "id": "186:1205",
+   "label": "Pagado, y a tiempo",
+   "kind": "nav",
+   "to": "12"
+  },
+  {
+   "from": "11",
+   "id": "228:3967",
+   "label": "‹",
+   "kind": "back",
+   "to": null
+  },
+  {
+   "from": "12",
+   "id": "186:1250",
+   "label": "‹",
+   "kind": "back",
+   "to": null
+  },
+  {
+   "from": "12",
+   "id": "186:1304",
+   "label": "Asesor",
+   "kind": "overlay",
+   "to": "13"
+  },
+  {
+   "from": "13",
+   "id": "230:4047",
+   "label": "‹",
+   "kind": "close",
+   "to": null
+  },
+  {
+   "from": "13",
+   "id": "230:4052",
+   "label": "×",
+   "kind": "close",
+   "to": null
+  },
+  {
+   "from": "13",
+   "id": "230:4078",
+   "label": "Mi crédito personal",
+   "kind": "swap",
+   "to": "14"
+  },
+  {
+   "from": "13",
+   "id": "230:4086",
+   "label": "Mi fecha de cobro",
+   "kind": "swap",
+   "to": "14"
+  },
+  {
+   "from": "13",
+   "id": "230:4088",
+   "label": "Apartar mi cuota",
+   "kind": "swap",
+   "to": "14"
+  },
+  {
+   "from": "13",
+   "id": "230:4069",
+   "label": "↑",
+   "kind": "swap",
+   "to": "14"
+  },
+  {
+   "from": "14",
+   "id": "230:4108",
+   "label": "‹",
+   "kind": "close",
+   "to": null
+  },
+  {
+   "from": "14",
+   "id": "230:4113",
+   "label": "×",
+   "kind": "swap",
+   "to": "15"
+  },
+  {
+   "from": "14b",
+   "id": "230:4177",
+   "label": "‹",
+   "kind": "close",
+   "to": null
+  },
+  {
+   "from": "14b",
+   "id": "230:4182",
+   "label": "×",
+   "kind": "close",
+   "to": null
+  },
+  {
+   "from": "14b",
+   "id": "230:4212",
+   "label": "Mover la fecha",
+   "kind": "swap",
+   "to": "14"
+  },
+  {
+   "from": "14b",
+   "id": "230:4220",
+   "label": "Repartir lo que falta",
+   "kind": "swap",
+   "to": "14"
+  },
+  {
+   "from": "14b",
+   "id": "230:4200",
+   "label": "↑",
+   "kind": "swap",
+   "to": "14"
+  },
+  {
+   "from": "15",
+   "id": "230:4292",
+   "label": "TERMINAR",
+   "kind": "close",
+   "to": null
+  },
+  {
+   "from": "15",
+   "id": "230:4293",
+   "label": "SEGUIR CONVERSANDO",
+   "kind": "swap",
+   "to": "14"
+  }
+ ],
+ "pre": {
+  "03": "184:504",
+  "04": "184:554",
+  "07": "184:753",
+  "08b": "184:957"
+ }
+}

@@ -1,0 +1,9 @@
+COMPONENT_SET "Campo" | 700×114 @0,0 | H pad[28,28,28,28] gap24 main:MIN cross:CENTER strokesInLayout | r5 | clip | sz:H/H
+  COMPONENT "Variant=Vacío" | 310×58 @28,28 | V pad[0,0,0,0] gap6 main:MIN cross:MIN strokesInLayout | sz:F/H
+    T "Usuario" | body/s | Open Sans Regular 13/18px | color/text/secondary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 48×18 @28,28 | sz:H/H
+    FRAME "Línea" | 310×34 @28,52 | V pad[0,0,0,0] gap0 main:CENTER cross:MIN strokesInLayout | stroke:color/border/strong 0,0,1.5,0 inside | sz:F/F
+      T "" | body/l | Open Sans Regular 16/24px | color/text/tertiary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 0×24 @28,56.25 | sz:H/H
+  COMPONENT "Variant=Lleno" | 310×58 @362,28 | V pad[0,0,0,0] gap6 main:MIN cross:MIN strokesInLayout | sz:F/H
+    T "Usuario" | body/s | Open Sans Regular 13/18px | color/text/secondary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 48×18 @362,28 | sz:H/H
+    FRAME "Línea" | 310×34 @362,52 | V pad[0,0,0,0] gap0 main:CENTER cross:MIN strokesInLayout | stroke:color/border/strong 0,0,1.5,0 inside | sz:F/F
+      T "edgar.gomez" | body/l | Open Sans Regular 16/24px | color/text/primary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 97×24 @362,56.25 | sz:H/H

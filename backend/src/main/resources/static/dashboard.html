@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ruta · Dashboard de gestión</title>
+  <style>
+    :root { --ink: #1A1B1A; --muted: #5B5B5B; --line: #E6E7E8; --brand: #FDDA24; --ok: #00714E; --okbg: #E0F7EF; --plan: #00448C; --planbg: #E4F6FC; --bg: #F5F7F9; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "Open Sans", system-ui, sans-serif; color: var(--ink); background: var(--bg); }
+    header { background: #fff; border-bottom: 1px solid var(--line); padding: 16px 24px; display: flex; align-items: center; gap: 16px; }
+    header h1 { font-size: 18px; margin: 0; }
+    header .tag { font-size: 11px; letter-spacing: .08em; font-weight: 700; color: var(--muted); }
+    main { padding: 24px; max-width: 1100px; margin: 0 auto; display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .card { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+    .card h2 { font-size: 11px; letter-spacing: .08em; color: var(--muted); margin: 0 0 8px; }
+    .big { font-size: 36px; font-weight: 300; font-variant-numeric: tabular-nums; }
+    .row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
+    .row:last-child { border-bottom: 0; }
+    .row b { font-variant-numeric: tabular-nums; }
+    .pill { display: inline-block; padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+    .ok { background: var(--okbg); color: var(--ok); }
+    .plan { background: var(--planbg); color: var(--plan); }
+    button { border: 0; background: var(--brand); color: #2C2A29; font-weight: 700; letter-spacing: .06em; font-size: 11px; padding: 12px 18px; border-radius: 999px; cursor: pointer; }
+    button.sec { background: #fff; border: 1.5px solid #2C2A29; }
+    input { border: 1px solid #C4C4C4; border-radius: 8px; padding: 8px 10px; font-size: 13px; }
+    .wide { grid-column: 1 / -1; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+    .muted { color: var(--muted); font-size: 12px; }
+    pre { white-space: pre-wrap; font-size: 12px; background: var(--bg); padding: 8px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+<header>
+  <span class="tag">BANCOAGRÍCOLA · RUTA</span>
+  <h1>Dashboard de gestión</h1>
+  <span style="flex:1"></span>
+  <input id="key" placeholder="X-Admin-Key (si aplica)" size="22">
+  <button class="sec" onclick="cargar()">ACTUALIZAR</button>
+  <button onclick="correr()">CORRER MOTOR HOY</button>
+</header>
+<main id="main">
+  <div class="card wide muted">Cargando métricas…</div>
+</main>
+<script>
+  const base = location.pathname.replace(/\/dashboard\.html.*$/, '');
+  const headers = () => ({ 'X-Admin-Key': document.getElementById('key').value });
+  const fila = (k, v) => `<div class="row"><span>${k}</span><b>${v}</b></div>`;
+  const obj = (o) => Object.entries(o || {}).map(([k, v]) => fila(k, typeof v === 'object' ? JSON.stringify(v) : v)).join('');
+
+  async function cargar() {
+    const r = await fetch(base + '/admin/metrics', { headers: headers() });
+    const m = await r.json();
+    if (!r.ok) { document.getElementById('main').innerHTML = `<div class="card wide">${m.message || 'Error'}</div>`; return; }
+    const c = m.clientes, p = m.cobranzaPreventiva, ch = m.chat, ps = m.push, ia = m.ia;
+    document.getElementById('main').innerHTML = `
+      <div class="card"><h2>CLIENTES</h2><div class="big">${c.total}</div>${obj(c.porPerfil)}</div>
+      <div class="card"><h2>A ${p.diasAviso} DÍAS DEL CORTE</h2><div class="big">${p.aDiasDelCorte}</div>
+        ${fila('Con saldo en el ciclo', p.creditosConSaldoEnCiclo)}${fila('Apartados activos', p.apartadosActivos)}${fila('Citas agendadas', p.citasAgendadas)}</div>
+      <div class="card"><h2>CONVERSACIONES DEL ASESOR</h2><div class="big">${ch.total}</div>
+        ${fila('Acuerdo con fecha', ch.acuerdo)}${fila('Siguiente paso', ch.siguientePaso)}${fila('Negativa explícita', ch.negativa)}${fila('Escaladas a persona', ch.escalado)}${fila('En curso', ch.enCurso)}
+        <p><span class="pill ok">${ch.pctResueltosSinEscalar}% resueltas sin escalar</span> <span class="pill plan">${ch.pctCierresNoAmbiguos}% cierres no ambiguos</span></p></div>
+      <div class="card"><h2>PUSH</h2><div class="big">${ps.enviados + ps.simulados}</div>${fila('Enviados', ps.enviados)}${fila('Simulados (sin FCM/Expo)', ps.simulados)}${fila('Errores', ps.errores)}${fila('Últimas 24 h', ps.ultimas24h)}</div>
+      <div class="card"><h2>IA · PLAN B</h2>${fila('Primario', ia.primary)}${fila('Secundario', ia.secondary)}${fila('Llamadas (sesión)', ia.calls)}${fila('Fallbacks', ia.fallbacks)}${fila('Sin modelo', ia.withoutModel)}${fila('Latencia media', (ia.latenciaPromedioMs ?? 0) + ' ms')}${fila('Guardrails aplicados', ia.guardrailsAplicados ?? 0)}${obj(ia.registradas)}</div>
+      <div class="card"><h2>CATEGORÍAS NCB-022</h2>${obj(c.porCategoria)}<h2 style="margin-top:12px">ARQUETIPOS</h2>${obj(c.porArquetipo)}</div>
+      <div class="card wide"><h2>ÚLTIMOS PUSH REGISTRADOS</h2><div id="notif" class="muted">…</div></div>`;
+    const n = await fetch(base + '/admin/notificaciones', { headers: headers() }).then((x) => x.json());
+    document.getElementById('notif').innerHTML = `<table><tr><th>Fecha</th><th>Cliente</th><th>Tipo</th><th>Título</th><th>Canal</th><th>Estado</th></tr>` +
+      (n.slice ? n : []).slice(0, 25).map((x) => `<tr><td>${(x.fechaEnvio || '').replace('T', ' ').slice(0, 16)}</td><td>${x.clienteId}</td><td>${x.tipo}</td><td>${x.titulo}</td><td>${x.canal}</td><td>${x.estado}</td></tr>`).join('') + '</table>';
+  }
+
+  async function correr() {
+    const r = await fetch(base + '/admin/ruta/procesar', { method: 'POST', headers: headers() });
+    const j = await r.json();
+    alert('Motor: ' + JSON.stringify(j));
+    cargar();
+  }
+  cargar();
+</script>
+</body>
+</html>

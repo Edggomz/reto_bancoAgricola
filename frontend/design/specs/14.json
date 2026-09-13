@@ -1,0 +1,1263 @@
+{
+ "id": "230:4090",
+ "name": "14 · Asesor · Conversación",
+ "type": "FRAME",
+ "x": 0,
+ "y": 0,
+ "w": 390,
+ "h": 844,
+ "layout": {
+  "mode": "VERTICAL",
+  "main": "MIN",
+  "cross": "MIN",
+  "pad": [
+   0,
+   0,
+   0,
+   0
+  ],
+  "gap": 0,
+  "strokesInLayout": true
+ },
+ "sizing": [
+  "FIXED",
+  "FIXED"
+ ],
+ "clip": true,
+ "radius": 24,
+ "fills": [
+  {
+   "type": "SOLID",
+   "hex": "#FFFFFF",
+   "token": "color/bg/canvas"
+  }
+ ],
+ "effect": "elevation/2",
+ "tok": {
+  "topLeftRadius": "radius/xl",
+  "topRightRadius": "radius/xl",
+  "bottomLeftRadius": "radius/xl",
+  "bottomRightRadius": "radius/xl"
+ },
+ "children": [
+  {
+   "id": "230:4091",
+   "name": "Status bar",
+   "type": "FRAME",
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 54,
+   "sizing": [
+    "FILL",
+    "FIXED"
+   ],
+   "tok": {
+    "paddingLeft": "space/5",
+    "paddingRight": "space/5"
+   },
+   "note": "barra de estado del sistema; hijos omitidos"
+  },
+  {
+   "id": "230:4107",
+   "name": "App bar",
+   "type": "FRAME",
+   "x": 0,
+   "y": 54,
+   "w": 390,
+   "h": 52,
+   "layout": {
+    "mode": "HORIZONTAL",
+    "main": "SPACE_BETWEEN",
+    "cross": "CENTER",
+    "pad": [
+     0,
+     8,
+     0,
+     8
+    ],
+    "gap": 0,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "FILL",
+    "FIXED"
+   ],
+   "strokes": [
+    {
+     "type": "SOLID",
+     "hex": "#E6E7E8",
+     "token": "color/border/subtle"
+    }
+   ],
+   "strokeWeight": [
+    0,
+    0,
+    1,
+    0
+   ],
+   "strokeAlign": "INSIDE",
+   "tok": {
+    "paddingLeft": "space/2",
+    "paddingTop": "space/0",
+    "paddingRight": "space/2",
+    "paddingBottom": "space/0"
+   },
+   "children": [
+    {
+     "id": "230:4108",
+     "name": "Atrás",
+     "type": "FRAME",
+     "x": 8,
+     "y": 57.5,
+     "w": 44,
+     "h": 44,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "CENTER",
+      "cross": "CENTER",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FIXED",
+      "FIXED"
+     ],
+     "reactions": [
+      {
+       "trigger": "ON_CLICK",
+       "nav": "CLOSE"
+      }
+     ],
+     "children": [
+      {
+       "id": "230:4109",
+       "name": "‹",
+       "type": "TEXT",
+       "x": 26,
+       "y": 66.5,
+       "w": 8,
+       "h": 26,
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#5B5B5B",
+         "token": "color/text/secondary"
+        }
+       ],
+       "text": "‹",
+       "textStyle": "heading/l",
+       "font": "Open Sans Bold",
+       "fontSize": 20,
+       "lineHeight": "26px",
+       "letterSpacing": "-0.5%",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "WIDTH_AND_HEIGHT"
+      }
+     ]
+    },
+    {
+     "id": "230:4110",
+     "name": "Título",
+     "type": "FRAME",
+     "x": 129,
+     "y": 59.5,
+     "w": 132,
+     "h": 40,
+     "layout": {
+      "mode": "VERTICAL",
+      "main": "MIN",
+      "cross": "CENTER",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "HUG",
+      "HUG"
+     ],
+     "children": [
+      {
+       "id": "230:4111",
+       "name": "Asesoría bancaria",
+       "type": "TEXT",
+       "x": 129,
+       "y": 59.5,
+       "w": 132,
+       "h": 24,
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#1A1B1A",
+         "token": "color/text/primary"
+        }
+       ],
+       "text": "Asesor bancario",
+       "textStyle": "heading/m",
+       "font": "Open Sans SemiBold",
+       "fontSize": 17,
+       "lineHeight": "24px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "WIDTH_AND_HEIGHT"
+      },
+      {
+       "id": "230:4112",
+       "name": "Asistente con IA",
+       "type": "TEXT",
+       "x": 150.5,
+       "y": 83.5,
+       "w": 89,
+       "h": 16,
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#6D6E72",
+         "token": "color/text/tertiary"
+        }
+       ],
+       "text": "Asistente con IA",
+       "textStyle": "caption",
+       "font": "Open Sans Regular",
+       "fontSize": 12,
+       "lineHeight": "16px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "WIDTH_AND_HEIGHT"
+      }
+     ]
+    },
+    {
+     "id": "230:4113",
+     "name": "Cerrar",
+     "type": "FRAME",
+     "x": 338,
+     "y": 57.5,
+     "w": 44,
+     "h": 44,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "CENTER",
+      "cross": "CENTER",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FIXED",
+      "FIXED"
+     ],
+     "reactions": [
+      {
+       "trigger": "ON_CLICK",
+       "nav": "SWAP",
+       "dest": "230:4222",
+       "transition": {
+        "type": "DISSOLVE",
+        "ms": 250,
+        "easing": "EASE_OUT"
+       }
+      }
+     ],
+     "children": [
+      {
+       "id": "230:4114",
+       "name": "×",
+       "type": "TEXT",
+       "x": 354,
+       "y": 66.5,
+       "w": 12,
+       "h": 26,
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#5B5B5B",
+         "token": "color/text/secondary"
+        }
+       ],
+       "text": "×",
+       "textStyle": "heading/l",
+       "font": "Open Sans Bold",
+       "fontSize": 20,
+       "lineHeight": "26px",
+       "letterSpacing": "-0.5%",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "WIDTH_AND_HEIGHT"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "230:4115",
+   "name": "Contenido",
+   "type": "FRAME",
+   "x": 0,
+   "y": 106,
+   "w": 390,
+   "h": 647,
+   "layout": {
+    "mode": "VERTICAL",
+    "main": "MAX",
+    "cross": "MIN",
+    "pad": [
+     16,
+     16,
+     16,
+     16
+    ],
+    "gap": 12,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "FILL",
+    "FILL"
+   ],
+   "fills": [
+    {
+     "type": "SOLID",
+     "hex": "#F5F7F9",
+     "token": "color/bg/surface-sunken"
+    }
+   ],
+   "tok": {
+    "itemSpacing": "space/3",
+    "paddingLeft": "space/4",
+    "paddingTop": "space/4",
+    "paddingRight": "space/4",
+    "paddingBottom": "space/4"
+   },
+   "children": [
+    {
+     "id": "230:4136",
+     "name": "Mensaje IA",
+     "type": "FRAME",
+     "x": 16,
+     "y": 345,
+     "w": 358,
+     "h": 70,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "MIN",
+      "cross": "MIN",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "children": [
+      {
+       "id": "230:4137",
+       "name": "Burbuja IA",
+       "type": "FRAME",
+       "x": 16,
+       "y": 345,
+       "w": 296,
+       "h": 70,
+       "layout": {
+        "mode": "VERTICAL",
+        "main": "MIN",
+        "cross": "MIN",
+        "pad": [
+         12,
+         16,
+         12,
+         16
+        ],
+        "gap": 0,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "radius": [
+        16,
+        16,
+        16,
+        4
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#FFFFFF",
+         "token": "color/bg/surface"
+        }
+       ],
+       "strokes": [
+        {
+         "type": "SOLID",
+         "hex": "#E6E7E8",
+         "token": "color/border/subtle"
+        }
+       ],
+       "strokeWeight": 1,
+       "strokeAlign": "INSIDE",
+       "tok": {
+        "paddingLeft": "space/4",
+        "paddingTop": "space/3",
+        "paddingRight": "space/4",
+        "paddingBottom": "space/3",
+        "topLeftRadius": "radius/lg",
+        "topRightRadius": "radius/lg",
+        "bottomLeftRadius": "radius/xs",
+        "bottomRightRadius": "radius/lg"
+       },
+       "children": [
+        {
+         "id": "230:4138",
+         "name": "Hola, Edgar. ¿Sobre cuál de …",
+         "type": "TEXT",
+         "x": 33,
+         "y": 358,
+         "w": 262,
+         "h": 44,
+         "sizing": [
+          "FIXED",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#1A1B1A",
+           "token": "color/text/primary"
+          }
+         ],
+         "text": "Hola, Edgar. Soy tu asesor. ¿En qué te ayudo hoy?",
+         "textStyle": "body/m",
+         "font": "Open Sans Regular",
+         "fontSize": 15,
+         "lineHeight": "22px",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "HEIGHT"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "230:4139",
+     "name": "Mensaje tuyo",
+     "type": "FRAME",
+     "x": 16,
+     "y": 427,
+     "w": 358,
+     "h": 68,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "MAX",
+      "cross": "MIN",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "children": [
+      {
+       "id": "230:4140",
+       "name": "Burbuja tuya",
+       "type": "FRAME",
+       "x": 78,
+       "y": 427,
+       "w": 296,
+       "h": 68,
+       "layout": {
+        "mode": "VERTICAL",
+        "main": "MIN",
+        "cross": "MIN",
+        "pad": [
+         12,
+         16,
+         12,
+         16
+        ],
+        "gap": 0,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "minmax": {
+        "minW": null,
+        "maxW": 296,
+        "minH": null,
+        "maxH": null
+       },
+       "radius": [
+        16,
+        16,
+        4,
+        16
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#2C2A29",
+         "token": "color/bg/inverse"
+        }
+       ],
+       "tok": {
+        "paddingLeft": "space/4",
+        "paddingTop": "space/3",
+        "paddingRight": "space/4",
+        "paddingBottom": "space/3",
+        "topLeftRadius": "radius/lg",
+        "topRightRadius": "radius/lg",
+        "bottomLeftRadius": "radius/lg",
+        "bottomRightRadius": "radius/xs"
+       },
+       "children": [
+        {
+         "id": "230:4141",
+         "name": "Crédito personal",
+         "type": "TEXT",
+         "x": 94,
+         "y": 439,
+         "w": 264,
+         "h": 44,
+         "sizing": [
+          "FILL",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#FFFFFF",
+           "token": "color/text/inverse"
+          }
+         ],
+         "text": "¿Puedo mover mi cuota si este mes me pagan tarde?",
+         "textStyle": "body/m",
+         "font": "Open Sans Regular",
+         "fontSize": 15,
+         "lineHeight": "22px",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "HEIGHT"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "230:4142",
+     "name": "Mensaje IA",
+     "type": "FRAME",
+     "x": 16,
+     "y": 507,
+     "w": 358,
+     "h": 92,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "MIN",
+      "cross": "MIN",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "children": [
+      {
+       "id": "230:4143",
+       "name": "Burbuja IA",
+       "type": "FRAME",
+       "x": 16,
+       "y": 507,
+       "w": 296,
+       "h": 92,
+       "layout": {
+        "mode": "VERTICAL",
+        "main": "MIN",
+        "cross": "MIN",
+        "pad": [
+         12,
+         16,
+         12,
+         16
+        ],
+        "gap": 0,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "radius": [
+        16,
+        16,
+        16,
+        4
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#FFFFFF",
+         "token": "color/bg/surface"
+        }
+       ],
+       "strokes": [
+        {
+         "type": "SOLID",
+         "hex": "#E6E7E8",
+         "token": "color/border/subtle"
+        }
+       ],
+       "strokeWeight": 1,
+       "strokeAlign": "INSIDE",
+       "tok": {
+        "paddingLeft": "space/4",
+        "paddingTop": "space/3",
+        "paddingRight": "space/4",
+        "paddingBottom": "space/3",
+        "topLeftRadius": "radius/lg",
+        "topRightRadius": "radius/lg",
+        "bottomLeftRadius": "radius/xs",
+        "bottomRightRadius": "radius/lg"
+       },
+       "children": [
+        {
+         "id": "230:4144",
+         "name": "Hola, Edgar. ¿Sobre cuál de …",
+         "type": "TEXT",
+         "x": 33,
+         "y": 520,
+         "w": 262,
+         "h": 66,
+         "sizing": [
+          "FIXED",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#1A1B1A",
+           "token": "color/text/primary"
+          }
+         ],
+         "text": "Sí. Tu cobro es el día 18. Si te pagan después, lo movemos a un día en que ya tengas el dinero, sin costo.",
+         "textStyle": "body/m",
+         "font": "Open Sans Regular",
+         "fontSize": 15,
+         "lineHeight": "22px",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "HEIGHT"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "230:4145",
+     "name": "Mensaje IA",
+     "type": "FRAME",
+     "x": 16,
+     "y": 611,
+     "w": 358,
+     "h": 70,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "MIN",
+      "cross": "MIN",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "children": [
+      {
+       "id": "230:4146",
+       "name": "Burbuja IA",
+       "type": "FRAME",
+       "x": 16,
+       "y": 611,
+       "w": 296,
+       "h": 70,
+       "layout": {
+        "mode": "VERTICAL",
+        "main": "MIN",
+        "cross": "MIN",
+        "pad": [
+         12,
+         16,
+         12,
+         16
+        ],
+        "gap": 0,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "radius": [
+        16,
+        16,
+        16,
+        4
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#FFFFFF",
+         "token": "color/bg/surface"
+        }
+       ],
+       "strokes": [
+        {
+         "type": "SOLID",
+         "hex": "#E6E7E8",
+         "token": "color/border/subtle"
+        }
+       ],
+       "strokeWeight": 1,
+       "strokeAlign": "INSIDE",
+       "tok": {
+        "paddingLeft": "space/4",
+        "paddingTop": "space/3",
+        "paddingRight": "space/4",
+        "paddingBottom": "space/3",
+        "topLeftRadius": "radius/lg",
+        "topRightRadius": "radius/lg",
+        "bottomLeftRadius": "radius/xs",
+        "bottomRightRadius": "radius/lg"
+       },
+       "children": [
+        {
+         "id": "230:4147",
+         "name": "Hola, Edgar. ¿Sobre cuál de …",
+         "type": "TEXT",
+         "x": 33,
+         "y": 624,
+         "w": 262,
+         "h": 44,
+         "sizing": [
+          "FIXED",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#1A1B1A",
+           "token": "color/text/primary"
+          }
+         ],
+         "text": "¿Te muestro los días que te quedan mejor?",
+         "textStyle": "body/m",
+         "font": "Open Sans Regular",
+         "fontSize": 15,
+         "lineHeight": "22px",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "HEIGHT"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "230:4148",
+     "name": "Respuestas sugeridas",
+     "type": "FRAME",
+     "x": 16,
+     "y": 693,
+     "w": 358,
+     "h": 44,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "MIN",
+      "cross": "MIN",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 8,
+      "wrap": true,
+      "crossGap": 8,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "tok": {
+      "itemSpacing": "space/2",
+      "counterAxisSpacing": "space/2"
+     },
+     "children": [
+      {
+       "id": "230:4149",
+       "name": "Chip · Sí, muéstrame",
+       "type": "INSTANCE",
+       "x": 16,
+       "y": 693,
+       "w": 137,
+       "h": 44,
+       "layout": {
+        "mode": "HORIZONTAL",
+        "main": "CENTER",
+        "cross": "CENTER",
+        "pad": [
+         12,
+         16,
+         12,
+         16
+        ],
+        "gap": 0
+       },
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "radius": 999,
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#FFFFFF",
+         "token": "color/action/secondary-bg"
+        }
+       ],
+       "strokes": [
+        {
+         "type": "SOLID",
+         "hex": "#C4C4C4",
+         "token": "color/border/default"
+        }
+       ],
+       "strokeWeight": 1.5,
+       "strokeAlign": "INSIDE",
+       "tok": {
+        "paddingLeft": "space/4",
+        "paddingTop": "space/3",
+        "paddingRight": "space/4",
+        "paddingBottom": "space/3",
+        "topLeftRadius": "radius/full",
+        "topRightRadius": "radius/full",
+        "bottomLeftRadius": "radius/full",
+        "bottomRightRadius": "radius/full"
+       },
+       "component": "Chip / Variant=Normal",
+       "children": [
+        {
+         "id": "I230:4149;3:152",
+         "name": "Label",
+         "type": "TEXT",
+         "x": 32,
+         "y": 705,
+         "w": 105,
+         "h": 20,
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#5B5B5B",
+           "token": "color/text/secondary"
+          }
+         ],
+         "text": "Sí, muéstrame",
+         "textStyle": "label/l",
+         "font": "Open Sans SemiBold",
+         "fontSize": 15,
+         "lineHeight": "20px",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        }
+       ]
+      },
+      {
+       "id": "230:4157",
+       "name": "Chip · Tengo otra pregunta",
+       "type": "INSTANCE",
+       "x": 161,
+       "y": 693,
+       "w": 181,
+       "h": 44,
+       "layout": {
+        "mode": "HORIZONTAL",
+        "main": "CENTER",
+        "cross": "CENTER",
+        "pad": [
+         12,
+         16,
+         12,
+         16
+        ],
+        "gap": 0
+       },
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "radius": 999,
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#FFFFFF",
+         "token": "color/action/secondary-bg"
+        }
+       ],
+       "strokes": [
+        {
+         "type": "SOLID",
+         "hex": "#C4C4C4",
+         "token": "color/border/default"
+        }
+       ],
+       "strokeWeight": 1.5,
+       "strokeAlign": "INSIDE",
+       "tok": {
+        "paddingLeft": "space/4",
+        "paddingTop": "space/3",
+        "paddingRight": "space/4",
+        "paddingBottom": "space/3",
+        "topLeftRadius": "radius/full",
+        "topRightRadius": "radius/full",
+        "bottomLeftRadius": "radius/full",
+        "bottomRightRadius": "radius/full"
+       },
+       "component": "Chip / Variant=Normal",
+       "children": [
+        {
+         "id": "I230:4157;3:152",
+         "name": "Label",
+         "type": "TEXT",
+         "x": 177,
+         "y": 705,
+         "w": 149,
+         "h": 20,
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#5B5B5B",
+           "token": "color/text/secondary"
+          }
+         ],
+         "text": "Tengo otra pregunta",
+         "textStyle": "label/l",
+         "font": "Open Sans SemiBold",
+         "fontSize": 15,
+         "lineHeight": "20px",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "230:4131",
+   "name": "Escribir",
+   "type": "FRAME",
+   "x": 0,
+   "y": 753,
+   "w": 390,
+   "h": 91,
+   "layout": {
+    "mode": "HORIZONTAL",
+    "main": "MIN",
+    "cross": "CENTER",
+    "pad": [
+     12,
+     16,
+     34,
+     16
+    ],
+    "gap": 8,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "FILL",
+    "HUG"
+   ],
+   "fills": [
+    {
+     "type": "SOLID",
+     "hex": "#FFFFFF",
+     "token": "color/bg/surface"
+    }
+   ],
+   "strokes": [
+    {
+     "type": "SOLID",
+     "hex": "#E6E7E8",
+     "token": "color/border/subtle"
+    }
+   ],
+   "strokeWeight": [
+    1,
+    0,
+    0,
+    0
+   ],
+   "strokeAlign": "INSIDE",
+   "tok": {
+    "itemSpacing": "space/2",
+    "paddingLeft": "space/4",
+    "paddingTop": "space/3",
+    "paddingRight": "space/4",
+    "paddingBottom": "size/safe-bottom"
+   },
+   "children": [
+    {
+     "id": "230:4132",
+     "name": "Campo de texto",
+     "type": "FRAME",
+     "x": 16,
+     "y": 766,
+     "w": 306,
+     "h": 44,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "MIN",
+      "cross": "CENTER",
+      "pad": [
+       0,
+       16,
+       0,
+       16
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "FIXED"
+     ],
+     "radius": 999,
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#F5F7F9",
+       "token": "color/bg/surface-sunken"
+      }
+     ],
+     "strokes": [
+      {
+       "type": "SOLID",
+       "hex": "#C4C4C4",
+       "token": "color/border/default"
+      }
+     ],
+     "strokeWeight": 1,
+     "strokeAlign": "INSIDE",
+     "tok": {
+      "paddingLeft": "space/4",
+      "paddingTop": "space/0",
+      "paddingRight": "space/4",
+      "paddingBottom": "space/0",
+      "topLeftRadius": "radius/full",
+      "topRightRadius": "radius/full",
+      "bottomLeftRadius": "radius/full",
+      "bottomRightRadius": "radius/full"
+     },
+     "children": [
+      {
+       "id": "230:4133",
+       "name": "Escribe tu pregunta",
+       "type": "TEXT",
+       "x": 33,
+       "y": 777,
+       "w": 137,
+       "h": 22,
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#6D6E72",
+         "token": "color/text/tertiary"
+        }
+       ],
+       "text": "Escribe tu pregunta",
+       "textStyle": "body/m",
+       "font": "Open Sans Regular",
+       "fontSize": 15,
+       "lineHeight": "22px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "WIDTH_AND_HEIGHT"
+      }
+     ]
+    },
+    {
+     "id": "230:4134",
+     "name": "Enviar",
+     "type": "FRAME",
+     "x": 330,
+     "y": 766,
+     "w": 44,
+     "h": 44,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "CENTER",
+      "cross": "CENTER",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FIXED",
+      "FIXED"
+     ],
+     "radius": 999,
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#2C2A29",
+       "token": "color/bg/inverse"
+      }
+     ],
+     "tok": {
+      "topLeftRadius": "radius/full",
+      "topRightRadius": "radius/full",
+      "bottomLeftRadius": "radius/full",
+      "bottomRightRadius": "radius/full"
+     },
+     "children": [
+      {
+       "id": "230:4135",
+       "name": "↑",
+       "type": "TEXT",
+       "x": 347.5,
+       "y": 776,
+       "w": 9,
+       "h": 24,
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#FFFFFF",
+         "token": "color/text/inverse"
+        }
+       ],
+       "text": "↑",
+       "textStyle": "heading/m",
+       "font": "Open Sans SemiBold",
+       "fontSize": 17,
+       "lineHeight": "24px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "WIDTH_AND_HEIGHT"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "section": "4 · Asesor bancario"
+}

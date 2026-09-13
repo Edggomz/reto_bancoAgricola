@@ -1,0 +1,13 @@
+COMPONENT_SET "EstadoBadge" | 443×82 @0,0 | H pad[28,28,28,28] gap24 main:MIN cross:CENTER strokesInLayout | r5 | clip | sz:H/H
+  COMPONENT "Estado=Al día" | 70×26 @28,28 | H pad[5,11,5,11] gap6 main:MIN cross:CENTER strokesInLayout | fill:color/estado/al-dia-bg | r999 | sz:H/H | tok{topLeftRadius=radius/full topRightRadius=radius/full bottomLeftRadius=radius/full bottomRightRadius=radius/full}
+    ELLIPSE "Punto" | 7×7 @39,37.5 | fill:color/estado/al-dia-fg | sz:F/F
+    T "Al día" | label/m | Open Sans SemiBold 13/16px | color/estado/al-dia-fg | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 35×16 @52,33 | sz:H/H
+  COMPONENT "Estado=En plan" | 82×26 @122,28 | H pad[5,11,5,11] gap6 main:MIN cross:CENTER strokesInLayout | fill:color/estado/plan-bg | r999 | sz:H/H | tok{topLeftRadius=radius/full topRightRadius=radius/full bottomLeftRadius=radius/full bottomRightRadius=radius/full}
+    ELLIPSE "Punto" | 7×7 @133,37.5 | fill:color/estado/plan-fg | sz:F/F
+    T "En plan" | label/m | Open Sans SemiBold 13/16px | color/estado/plan-fg | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 47×16 @146,33 | sz:H/H
+  COMPONENT "Estado=Atraso" | 77×26 @228,28 | H pad[5,11,5,11] gap6 main:MIN cross:CENTER strokesInLayout | fill:color/estado/atraso-bg | r999 | sz:H/H | tok{topLeftRadius=radius/full topRightRadius=radius/full bottomLeftRadius=radius/full bottomRightRadius=radius/full}
+    ELLIPSE "Punto" | 7×7 @239,37.5 | fill:color/estado/atraso-fg | sz:F/F
+    T "Atraso" | label/m | Open Sans SemiBold 13/16px | color/estado/atraso-fg | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 42×16 @252,33 | sz:H/H
+  COMPONENT "Estado=Quiebre" | 86×26 @329,28 | H pad[5,11,5,11] gap6 main:MIN cross:CENTER strokesInLayout | fill:color/estado/quiebre-bg | r999 | sz:H/H | tok{topLeftRadius=radius/full topRightRadius=radius/full bottomLeftRadius=radius/full bottomRightRadius=radius/full}
+    ELLIPSE "Punto" | 7×7 @340,37.5 | fill:color/estado/quiebre-fg | sz:F/F
+    T "Quiebre" | label/m | Open Sans SemiBold 13/16px | color/estado/quiebre-fg | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 51×16 @353,33 | sz:H/H

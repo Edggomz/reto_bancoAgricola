@@ -1,0 +1,2062 @@
+{
+ "id": "184:1030",
+ "name": "10 · Inicio con tu ruta",
+ "type": "FRAME",
+ "x": 0,
+ "y": 0,
+ "w": 390,
+ "h": 844,
+ "layout": {
+  "mode": "VERTICAL",
+  "main": "MIN",
+  "cross": "MIN",
+  "pad": [
+   0,
+   0,
+   0,
+   0
+  ],
+  "gap": 0,
+  "strokesInLayout": true
+ },
+ "sizing": [
+  "FIXED",
+  "FIXED"
+ ],
+ "clip": true,
+ "radius": 24,
+ "fills": [
+  {
+   "type": "SOLID",
+   "hex": "#FFFFFF",
+   "token": "color/bg/canvas"
+  }
+ ],
+ "effect": "elevation/2",
+ "tok": {
+  "topLeftRadius": "radius/xl",
+  "topRightRadius": "radius/xl",
+  "bottomLeftRadius": "radius/xl",
+  "bottomRightRadius": "radius/xl"
+ },
+ "children": [
+  {
+   "id": "184:1031",
+   "name": "Status bar",
+   "type": "FRAME",
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 54,
+   "sizing": [
+    "FILL",
+    "FIXED"
+   ],
+   "tok": {
+    "paddingLeft": "space/5",
+    "paddingRight": "space/5"
+   },
+   "note": "barra de estado del sistema; hijos omitidos"
+  },
+  {
+   "id": "184:1047",
+   "name": "App bar",
+   "type": "FRAME",
+   "x": 0,
+   "y": 54,
+   "w": 390,
+   "h": 52,
+   "layout": {
+    "mode": "HORIZONTAL",
+    "main": "SPACE_BETWEEN",
+    "cross": "CENTER",
+    "pad": [
+     0,
+     8,
+     0,
+     8
+    ],
+    "gap": 0,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "FILL",
+    "FIXED"
+   ],
+   "strokes": [
+    {
+     "type": "SOLID",
+     "hex": "#E6E7E8",
+     "token": "color/border/subtle"
+    }
+   ],
+   "strokeWeight": [
+    0,
+    0,
+    1,
+    0
+   ],
+   "strokeAlign": "INSIDE",
+   "tok": {
+    "paddingLeft": "space/2",
+    "paddingTop": "space/0",
+    "paddingRight": "space/2",
+    "paddingBottom": "space/0"
+   },
+   "children": [
+    {
+     "id": "184:1048",
+     "name": "Perfil",
+     "type": "FRAME",
+     "x": 8,
+     "y": 57.5,
+     "w": 44,
+     "h": 44,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "CENTER",
+      "cross": "CENTER",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FIXED",
+      "FIXED"
+     ],
+     "children": [
+      {
+       "id": "184:1049",
+       "name": "Avatar",
+       "type": "FRAME",
+       "x": 14,
+       "y": 63.5,
+       "w": 32,
+       "h": 32,
+       "layout": {
+        "mode": "HORIZONTAL",
+        "main": "CENTER",
+        "cross": "CENTER",
+        "pad": [
+         0,
+         0,
+         0,
+         0
+        ],
+        "gap": 0,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "FIXED",
+        "FIXED"
+       ],
+       "radius": 999,
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#7E4FBC",
+         "token": "color/bg/avatar"
+        }
+       ],
+       "tok": {
+        "topLeftRadius": "radius/full",
+        "topRightRadius": "radius/full",
+        "bottomLeftRadius": "radius/full",
+        "bottomRightRadius": "radius/full"
+       },
+       "children": [
+        {
+         "id": "184:1050",
+         "name": "EG",
+         "type": "TEXT",
+         "x": 21.5,
+         "y": 71.5,
+         "w": 17,
+         "h": 16,
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#FFFFFF",
+           "token": "color/text/inverse"
+          }
+         ],
+         "text": "EG",
+         "textStyle": "label/m",
+         "font": "Open Sans SemiBold",
+         "fontSize": 13,
+         "lineHeight": "16px",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "184:1051",
+     "name": "Marca",
+     "type": "FRAME",
+     "x": 132,
+     "y": 68.5,
+     "w": 126,
+     "h": 22,
+     "sizing": [
+      "FIXED",
+      "FIXED"
+     ],
+     "children": [
+      {
+       "id": "184:1052",
+       "name": "Logo Bancoagrícola",
+       "type": "RECTANGLE",
+       "x": 132,
+       "y": 68.5,
+       "w": 126,
+       "h": 22,
+       "sizing": [
+        "FIXED",
+        "FIXED"
+       ],
+       "fills": [
+        {
+         "type": "IMAGE",
+         "imageHash": "f3dad90e03e5a8c337c41d1779cebcbab86cbabb",
+         "scaleMode": "CROP"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "184:1053",
+     "name": "Más",
+     "type": "FRAME",
+     "x": 338,
+     "y": 57.5,
+     "w": 44,
+     "h": 44,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "CENTER",
+      "cross": "CENTER",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FIXED",
+      "FIXED"
+     ],
+     "children": [
+      {
+       "id": "184:1054",
+       "name": "···",
+       "type": "TEXT",
+       "x": 351.5,
+       "y": 66.5,
+       "w": 17,
+       "h": 26,
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#5B5B5B",
+         "token": "color/text/secondary"
+        }
+       ],
+       "text": "···",
+       "textStyle": "heading/l",
+       "font": "Open Sans Bold",
+       "fontSize": 20,
+       "lineHeight": "26px",
+       "letterSpacing": "-0.5%",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "WIDTH_AND_HEIGHT"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "184:1055",
+   "name": "Contenido",
+   "type": "FRAME",
+   "x": 0,
+   "y": 106,
+   "w": 390,
+   "h": 738,
+   "layout": {
+    "mode": "VERTICAL",
+    "main": "MIN",
+    "cross": "MIN",
+    "pad": [
+     20,
+     20,
+     0,
+     20
+    ],
+    "gap": 12,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "FILL",
+    "FILL"
+   ],
+   "tok": {
+    "itemSpacing": "space/3",
+    "paddingLeft": "space/5",
+    "paddingTop": "space/5",
+    "paddingRight": "space/5",
+    "paddingBottom": "space/0"
+   },
+   "children": [
+    {
+     "id": "184:1056",
+     "name": "Hola, Edgar",
+     "type": "TEXT",
+     "x": 20,
+     "y": 126,
+     "w": 350,
+     "h": 30,
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#1A1B1A",
+       "token": "color/text/primary"
+      }
+     ],
+     "text": "Hola, Edgar",
+     "textStyle": "heading/xl",
+     "font": "Open Sans Bold",
+     "fontSize": 24,
+     "lineHeight": "30px",
+     "letterSpacing": "-1%",
+     "align": [
+      "LEFT",
+      "TOP"
+     ],
+     "autoResize": "HEIGHT"
+    },
+    {
+     "id": "184:1057",
+     "name": "Cuenta principal",
+     "type": "FRAME",
+     "x": 20,
+     "y": 168,
+     "w": 350,
+     "h": 124,
+     "layout": {
+      "mode": "VERTICAL",
+      "main": "MIN",
+      "cross": "MIN",
+      "pad": [
+       20,
+       20,
+       20,
+       20
+      ],
+      "gap": 4,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "radius": 16,
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#2C2A29",
+       "token": "color/bg/inverse"
+      }
+     ],
+     "effect": "elevation/2",
+     "tok": {
+      "itemSpacing": "space/1",
+      "paddingLeft": "space/5",
+      "paddingTop": "space/5",
+      "paddingRight": "space/5",
+      "paddingBottom": "space/5",
+      "topLeftRadius": "radius/lg",
+      "topRightRadius": "radius/lg",
+      "bottomLeftRadius": "radius/lg",
+      "bottomRightRadius": "radius/lg"
+     },
+     "children": [
+      {
+       "id": "184:1058",
+       "name": "Cuenta de ahorro · Max Elect…",
+       "type": "TEXT",
+       "x": 40,
+       "y": 188,
+       "w": 310,
+       "h": 16,
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#FFFFFF",
+         "token": "color/text/inverse"
+        }
+       ],
+       "text": "Cuenta de ahorro · Max Electrónico",
+       "textStyle": "label/m",
+       "font": "Open Sans SemiBold",
+       "fontSize": 13,
+       "lineHeight": "16px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "HEIGHT"
+      },
+      {
+       "id": "184:1059",
+       "name": "$1,357.89",
+       "type": "TEXT",
+       "x": 40,
+       "y": 208,
+       "w": 310,
+       "h": 44,
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#FFFFFF",
+         "token": "color/text/inverse"
+        }
+       ],
+       "text": "$1,482.14",
+       "textStyle": "numeral/xl",
+       "font": "Open Sans Light",
+       "fontSize": 40,
+       "lineHeight": "44px",
+       "letterSpacing": "-1%",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "HEIGHT"
+      },
+      {
+       "id": "184:1060",
+       "name": "Disponible · $124.25 apartad…",
+       "type": "TEXT",
+       "x": 40,
+       "y": 256,
+       "w": 310,
+       "h": 16,
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#FFFFFF",
+         "token": "color/text/inverse"
+        }
+       ],
+       "text": "Saldo disponible · N.º 3007040110",
+       "textStyle": "caption",
+       "font": "Open Sans Regular",
+       "fontSize": 12,
+       "lineHeight": "16px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "HEIGHT"
+      }
+     ]
+    },
+    {
+     "id": "184:1061",
+     "name": "Otras cuentas",
+     "type": "FRAME",
+     "x": 20,
+     "y": 304,
+     "w": 350,
+     "h": 116,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "MIN",
+      "cross": "MIN",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 12,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "tok": {
+      "itemSpacing": "space/3"
+     },
+     "children": [
+      {
+       "id": "184:1062",
+       "name": "Tarjeta de crédito",
+       "type": "FRAME",
+       "x": 20,
+       "y": 304,
+       "w": 169,
+       "h": 116,
+       "layout": {
+        "mode": "VERTICAL",
+        "main": "MIN",
+        "cross": "MIN",
+        "pad": [
+         16,
+         16,
+         16,
+         16
+        ],
+        "gap": 4,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "FILL",
+        "FILL"
+       ],
+       "radius": 12,
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#FFFFFF",
+         "token": "color/bg/surface"
+        }
+       ],
+       "strokes": [
+        {
+         "type": "SOLID",
+         "hex": "#E6E7E8",
+         "token": "color/border/subtle"
+        }
+       ],
+       "strokeWeight": 1,
+       "strokeAlign": "INSIDE",
+       "effect": "elevation/1",
+       "tok": {
+        "itemSpacing": "space/1",
+        "paddingLeft": "space/4",
+        "paddingTop": "space/4",
+        "paddingRight": "space/4",
+        "paddingBottom": "space/4",
+        "topLeftRadius": "radius/md",
+        "topRightRadius": "radius/md",
+        "bottomLeftRadius": "radius/md",
+        "bottomRightRadius": "radius/md"
+       },
+       "children": [
+        {
+         "id": "184:1063",
+         "name": "Tarjeta de crédito",
+         "type": "TEXT",
+         "x": 37,
+         "y": 321,
+         "w": 135,
+         "h": 16,
+         "sizing": [
+          "FILL",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#5B5B5B",
+           "token": "color/text/secondary"
+          }
+         ],
+         "text": "Tarjeta de crédito",
+         "textStyle": "label/m",
+         "font": "Open Sans SemiBold",
+         "fontSize": 13,
+         "lineHeight": "16px",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "HEIGHT"
+        },
+        {
+         "id": "184:1064",
+         "name": "$660.00",
+         "type": "TEXT",
+         "x": 37,
+         "y": 341,
+         "w": 135,
+         "h": 26,
+         "sizing": [
+          "FILL",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#1A1B1A",
+           "token": "color/text/primary"
+          }
+         ],
+         "text": "$660.00",
+         "textStyle": "numeral/m",
+         "font": "Open Sans SemiBold",
+         "fontSize": 20,
+         "lineHeight": "26px",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "HEIGHT"
+        },
+        {
+         "id": "184:1065",
+         "name": "Disponible de $1,000.00",
+         "type": "TEXT",
+         "x": 37,
+         "y": 371,
+         "w": 135,
+         "h": 16,
+         "sizing": [
+          "FILL",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#6D6E72",
+           "token": "color/text/tertiary"
+          }
+         ],
+         "text": "Disponible de $1,000.00",
+         "textStyle": "caption",
+         "font": "Open Sans Regular",
+         "fontSize": 12,
+         "lineHeight": "16px",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "HEIGHT"
+        }
+       ]
+      },
+      {
+       "id": "184:1066",
+       "name": "Crédito personal",
+       "type": "FRAME",
+       "x": 201,
+       "y": 304,
+       "w": 169,
+       "h": 116,
+       "layout": {
+        "mode": "VERTICAL",
+        "main": "MIN",
+        "cross": "MIN",
+        "pad": [
+         16,
+         16,
+         16,
+         16
+        ],
+        "gap": 4,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "FILL",
+        "FILL"
+       ],
+       "radius": 12,
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#FFFFFF",
+         "token": "color/bg/surface"
+        }
+       ],
+       "strokes": [
+        {
+         "type": "SOLID",
+         "hex": "#E6E7E8",
+         "token": "color/border/subtle"
+        }
+       ],
+       "strokeWeight": 1,
+       "strokeAlign": "INSIDE",
+       "effect": "elevation/1",
+       "tok": {
+        "itemSpacing": "space/1",
+        "paddingLeft": "space/4",
+        "paddingTop": "space/4",
+        "paddingRight": "space/4",
+        "paddingBottom": "space/4",
+        "topLeftRadius": "radius/md",
+        "topRightRadius": "radius/md",
+        "bottomLeftRadius": "radius/md",
+        "bottomRightRadius": "radius/md"
+       },
+       "children": [
+        {
+         "id": "184:1067",
+         "name": "Crédito personal",
+         "type": "TEXT",
+         "x": 218,
+         "y": 321,
+         "w": 135,
+         "h": 16,
+         "sizing": [
+          "FILL",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#5B5B5B",
+           "token": "color/text/secondary"
+          }
+         ],
+         "text": "Crédito personal",
+         "textStyle": "label/m",
+         "font": "Open Sans SemiBold",
+         "fontSize": 13,
+         "lineHeight": "16px",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "HEIGHT"
+        },
+        {
+         "id": "184:1068",
+         "name": "$248.50",
+         "type": "TEXT",
+         "x": 218,
+         "y": 341,
+         "w": 135,
+         "h": 26,
+         "sizing": [
+          "FILL",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#1A1B1A",
+           "token": "color/text/primary"
+          }
+         ],
+         "text": "$248.50",
+         "textStyle": "numeral/m",
+         "font": "Open Sans SemiBold",
+         "fontSize": 20,
+         "lineHeight": "26px",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "HEIGHT"
+        },
+        {
+         "id": "184:1069",
+         "name": "Cuota · se cobra el 18",
+         "type": "TEXT",
+         "x": 218,
+         "y": 371,
+         "w": 135,
+         "h": 32,
+         "sizing": [
+          "FILL",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#6D6E72",
+           "token": "color/text/tertiary"
+          }
+         ],
+         "text": "Cuota · el 18 desde octubre",
+         "textStyle": "caption",
+         "font": "Open Sans Regular",
+         "fontSize": 12,
+         "lineHeight": "16px",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "HEIGHT"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "190:2688",
+     "name": "Mi ruta",
+     "type": "FRAME",
+     "x": 20,
+     "y": 432,
+     "w": 350,
+     "h": 144,
+     "layout": {
+      "mode": "VERTICAL",
+      "main": "MIN",
+      "cross": "MIN",
+      "pad": [
+       16,
+       16,
+       16,
+       16
+      ],
+      "gap": 12,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "radius": 12,
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#FFFFFF",
+       "token": "color/bg/surface"
+      }
+     ],
+     "strokes": [
+      {
+       "type": "SOLID",
+       "hex": "#E6E7E8",
+       "token": "color/border/subtle"
+      }
+     ],
+     "strokeWeight": 1,
+     "strokeAlign": "INSIDE",
+     "effect": "elevation/1",
+     "tok": {
+      "itemSpacing": "space/3",
+      "paddingLeft": "space/4",
+      "paddingTop": "space/4",
+      "paddingRight": "space/4",
+      "paddingBottom": "space/4",
+      "topLeftRadius": "radius/md",
+      "topRightRadius": "radius/md",
+      "bottomLeftRadius": "radius/md",
+      "bottomRightRadius": "radius/md"
+     },
+     "children": [
+      {
+       "id": "190:2689",
+       "name": "Encabezado",
+       "type": "FRAME",
+       "x": 37,
+       "y": 449,
+       "w": 316,
+       "h": 26,
+       "layout": {
+        "mode": "HORIZONTAL",
+        "main": "SPACE_BETWEEN",
+        "cross": "CENTER",
+        "pad": [
+         0,
+         0,
+         0,
+         0
+        ],
+        "gap": 12,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "tok": {
+        "itemSpacing": "space/3"
+       },
+       "children": [
+        {
+         "id": "190:2690",
+         "name": "MI RUTA",
+         "type": "TEXT",
+         "x": 37,
+         "y": 454,
+         "w": 52,
+         "h": 16,
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#6D6E72",
+           "token": "color/text/tertiary"
+          }
+         ],
+         "text": "MI RUTA",
+         "textStyle": "overline",
+         "font": "Open Sans Bold",
+         "fontSize": 11,
+         "lineHeight": "16px",
+         "letterSpacing": "8%",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        },
+        {
+         "id": "190:2691",
+         "name": "Estado · Al día",
+         "type": "INSTANCE",
+         "x": 283,
+         "y": 449,
+         "w": 70,
+         "h": 26,
+         "layout": {
+          "mode": "HORIZONTAL",
+          "main": "MIN",
+          "cross": "CENTER",
+          "pad": [
+           5,
+           11,
+           5,
+           11
+          ],
+          "gap": 6,
+          "strokesInLayout": true
+         },
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "radius": 999,
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#E0F7EF",
+           "token": "color/estado/al-dia-bg"
+          }
+         ],
+         "tok": {
+          "topLeftRadius": "radius/full",
+          "topRightRadius": "radius/full",
+          "bottomLeftRadius": "radius/full",
+          "bottomRightRadius": "radius/full"
+         },
+         "component": "EstadoBadge / Estado=Al día",
+         "children": [
+          {
+           "id": "I190:2691;3:157",
+           "name": "Punto",
+           "type": "ELLIPSE",
+           "x": 294,
+           "y": 458.5,
+           "w": 7,
+           "h": 7,
+           "sizing": [
+            "FIXED",
+            "FIXED"
+           ],
+           "fills": [
+            {
+             "type": "SOLID",
+             "hex": "#00714E",
+             "token": "color/estado/al-dia-fg"
+            }
+           ]
+          },
+          {
+           "id": "I190:2691;3:158",
+           "name": "Label",
+           "type": "TEXT",
+           "x": 307,
+           "y": 454,
+           "w": 35,
+           "h": 16,
+           "sizing": [
+            "HUG",
+            "HUG"
+           ],
+           "fills": [
+            {
+             "type": "SOLID",
+             "hex": "#00714E",
+             "token": "color/estado/al-dia-fg"
+            }
+           ],
+           "text": "Al día",
+           "textStyle": "label/m",
+           "font": "Open Sans SemiBold",
+           "fontSize": 13,
+           "lineHeight": "16px",
+           "align": [
+            "LEFT",
+            "TOP"
+           ],
+           "autoResize": "WIDTH_AND_HEIGHT"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "190:2694",
+       "name": "Tu ruta está activa",
+       "type": "TEXT",
+       "x": 37,
+       "y": 487,
+       "w": 316,
+       "h": 24,
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#1A1B1A",
+         "token": "color/text/primary"
+        }
+       ],
+       "text": "Tu ruta está activa",
+       "textStyle": "heading/m",
+       "font": "Open Sans SemiBold",
+       "fontSize": 17,
+       "lineHeight": "24px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "HEIGHT"
+      },
+      {
+       "id": "190:2695",
+       "name": "Calendario",
+       "type": "FRAME",
+       "x": 37,
+       "y": 523,
+       "w": 316,
+       "h": 36,
+       "layout": {
+        "mode": "HORIZONTAL",
+        "main": "MIN",
+        "cross": "MIN",
+        "pad": [
+         0,
+         0,
+         0,
+         0
+        ],
+        "gap": 8,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "tok": {
+        "itemSpacing": "space/2"
+       },
+       "children": [
+        {
+         "id": "190:2696",
+         "name": "30 sep",
+         "type": "FRAME",
+         "x": 37,
+         "y": 523,
+         "w": 100,
+         "h": 36,
+         "layout": {
+          "mode": "VERTICAL",
+          "main": "MIN",
+          "cross": "MIN",
+          "pad": [
+           0,
+           0,
+           0,
+           0
+          ],
+          "gap": 4,
+          "strokesInLayout": true
+         },
+         "sizing": [
+          "FILL",
+          "HUG"
+         ],
+         "tok": {
+          "itemSpacing": "space/1"
+         },
+         "children": [
+          {
+           "id": "190:2697",
+           "name": "Fecha",
+           "type": "FRAME",
+           "x": 37,
+           "y": 523,
+           "w": 57,
+           "h": 16,
+           "layout": {
+            "mode": "HORIZONTAL",
+            "main": "MIN",
+            "cross": "CENTER",
+            "pad": [
+             0,
+             0,
+             0,
+             0
+            ],
+            "gap": 8,
+            "strokesInLayout": true
+           },
+           "sizing": [
+            "HUG",
+            "HUG"
+           ],
+           "tok": {
+            "itemSpacing": "space/2"
+           },
+           "children": [
+            {
+             "id": "190:2698",
+             "name": "Punto",
+             "type": "ELLIPSE",
+             "x": 37,
+             "y": 527,
+             "w": 8,
+             "h": 8,
+             "sizing": [
+              "FIXED",
+              "FIXED"
+             ],
+             "fills": [
+              {
+               "type": "SOLID",
+               "hex": "#00448C",
+               "token": "color/estado/plan-fg"
+              }
+             ]
+            },
+            {
+             "id": "190:2699",
+             "name": "30 sep",
+             "type": "TEXT",
+             "x": 53,
+             "y": 523,
+             "w": 41,
+             "h": 16,
+             "sizing": [
+              "HUG",
+              "HUG"
+             ],
+             "fills": [
+              {
+               "type": "SOLID",
+               "hex": "#1A1B1A",
+               "token": "color/text/primary"
+              }
+             ],
+             "text": "30 sep",
+             "textStyle": "label/m",
+             "font": "Open Sans SemiBold",
+             "fontSize": 13,
+             "lineHeight": "16px",
+             "align": [
+              "LEFT",
+              "TOP"
+             ],
+             "autoResize": "WIDTH_AND_HEIGHT"
+            }
+           ]
+          },
+          {
+           "id": "190:2700",
+           "name": "Aparta $124.25",
+           "type": "TEXT",
+           "x": 37,
+           "y": 543,
+           "w": 100,
+           "h": 16,
+           "sizing": [
+            "FILL",
+            "HUG"
+           ],
+           "fills": [
+            {
+             "type": "SOLID",
+             "hex": "#5B5B5B",
+             "token": "color/text/secondary"
+            }
+           ],
+           "text": "Aparta $124.25",
+           "textStyle": "caption",
+           "font": "Open Sans Regular",
+           "fontSize": 12,
+           "lineHeight": "16px",
+           "align": [
+            "LEFT",
+            "TOP"
+           ],
+           "autoResize": "HEIGHT"
+          }
+         ]
+        },
+        {
+         "id": "190:2701",
+         "name": "15 oct",
+         "type": "FRAME",
+         "x": 145,
+         "y": 523,
+         "w": 100,
+         "h": 36,
+         "layout": {
+          "mode": "VERTICAL",
+          "main": "MIN",
+          "cross": "MIN",
+          "pad": [
+           0,
+           0,
+           0,
+           0
+          ],
+          "gap": 4,
+          "strokesInLayout": true
+         },
+         "sizing": [
+          "FILL",
+          "HUG"
+         ],
+         "tok": {
+          "itemSpacing": "space/1"
+         },
+         "children": [
+          {
+           "id": "190:2702",
+           "name": "Fecha",
+           "type": "FRAME",
+           "x": 145,
+           "y": 523,
+           "w": 54,
+           "h": 16,
+           "layout": {
+            "mode": "HORIZONTAL",
+            "main": "MIN",
+            "cross": "CENTER",
+            "pad": [
+             0,
+             0,
+             0,
+             0
+            ],
+            "gap": 8,
+            "strokesInLayout": true
+           },
+           "sizing": [
+            "HUG",
+            "HUG"
+           ],
+           "tok": {
+            "itemSpacing": "space/2"
+           },
+           "children": [
+            {
+             "id": "190:2703",
+             "name": "Punto",
+             "type": "ELLIPSE",
+             "x": 145,
+             "y": 527,
+             "w": 8,
+             "h": 8,
+             "sizing": [
+              "FIXED",
+              "FIXED"
+             ],
+             "fills": [
+              {
+               "type": "SOLID",
+               "hex": "#00448C",
+               "token": "color/estado/plan-fg"
+              }
+             ]
+            },
+            {
+             "id": "190:2704",
+             "name": "15 oct",
+             "type": "TEXT",
+             "x": 161,
+             "y": 523,
+             "w": 38,
+             "h": 16,
+             "sizing": [
+              "HUG",
+              "HUG"
+             ],
+             "fills": [
+              {
+               "type": "SOLID",
+               "hex": "#1A1B1A",
+               "token": "color/text/primary"
+              }
+             ],
+             "text": "15 oct",
+             "textStyle": "label/m",
+             "font": "Open Sans SemiBold",
+             "fontSize": 13,
+             "lineHeight": "16px",
+             "align": [
+              "LEFT",
+              "TOP"
+             ],
+             "autoResize": "WIDTH_AND_HEIGHT"
+            }
+           ]
+          },
+          {
+           "id": "190:2705",
+           "name": "Aparta $124.25",
+           "type": "TEXT",
+           "x": 145,
+           "y": 543,
+           "w": 100,
+           "h": 16,
+           "sizing": [
+            "FILL",
+            "HUG"
+           ],
+           "fills": [
+            {
+             "type": "SOLID",
+             "hex": "#5B5B5B",
+             "token": "color/text/secondary"
+            }
+           ],
+           "text": "Aparta $124.25",
+           "textStyle": "caption",
+           "font": "Open Sans Regular",
+           "fontSize": 12,
+           "lineHeight": "16px",
+           "align": [
+            "LEFT",
+            "TOP"
+           ],
+           "autoResize": "HEIGHT"
+          }
+         ]
+        },
+        {
+         "id": "190:2706",
+         "name": "18 oct",
+         "type": "FRAME",
+         "x": 253,
+         "y": 523,
+         "w": 100,
+         "h": 36,
+         "layout": {
+          "mode": "VERTICAL",
+          "main": "MIN",
+          "cross": "MIN",
+          "pad": [
+           0,
+           0,
+           0,
+           0
+          ],
+          "gap": 4,
+          "strokesInLayout": true
+         },
+         "sizing": [
+          "FILL",
+          "HUG"
+         ],
+         "tok": {
+          "itemSpacing": "space/1"
+         },
+         "children": [
+          {
+           "id": "190:2707",
+           "name": "Fecha",
+           "type": "FRAME",
+           "x": 253,
+           "y": 523,
+           "w": 54,
+           "h": 16,
+           "layout": {
+            "mode": "HORIZONTAL",
+            "main": "MIN",
+            "cross": "CENTER",
+            "pad": [
+             0,
+             0,
+             0,
+             0
+            ],
+            "gap": 8,
+            "strokesInLayout": true
+           },
+           "sizing": [
+            "HUG",
+            "HUG"
+           ],
+           "tok": {
+            "itemSpacing": "space/2"
+           },
+           "children": [
+            {
+             "id": "190:2708",
+             "name": "Punto",
+             "type": "ELLIPSE",
+             "x": 253,
+             "y": 527,
+             "w": 8,
+             "h": 8,
+             "sizing": [
+              "FIXED",
+              "FIXED"
+             ],
+             "fills": [
+              {
+               "type": "SOLID",
+               "hex": "#00714E",
+               "token": "color/estado/al-dia-fg"
+              }
+             ]
+            },
+            {
+             "id": "190:2709",
+             "name": "18 oct",
+             "type": "TEXT",
+             "x": 269,
+             "y": 523,
+             "w": 38,
+             "h": 16,
+             "sizing": [
+              "HUG",
+              "HUG"
+             ],
+             "fills": [
+              {
+               "type": "SOLID",
+               "hex": "#1A1B1A",
+               "token": "color/text/primary"
+              }
+             ],
+             "text": "18 oct",
+             "textStyle": "label/m",
+             "font": "Open Sans SemiBold",
+             "fontSize": 13,
+             "lineHeight": "16px",
+             "align": [
+              "LEFT",
+              "TOP"
+             ],
+             "autoResize": "WIDTH_AND_HEIGHT"
+            }
+           ]
+          },
+          {
+           "id": "190:2710",
+           "name": "Se paga $248.50",
+           "type": "TEXT",
+           "x": 253,
+           "y": 543,
+           "w": 100,
+           "h": 16,
+           "sizing": [
+            "FILL",
+            "HUG"
+           ],
+           "fills": [
+            {
+             "type": "SOLID",
+             "hex": "#5B5B5B",
+             "token": "color/text/secondary"
+            }
+           ],
+           "text": "Se paga $248.50",
+           "textStyle": "caption",
+           "font": "Open Sans Regular",
+           "fontSize": 12,
+           "lineHeight": "16px",
+           "align": [
+            "LEFT",
+            "TOP"
+           ],
+           "autoResize": "HEIGHT"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "184:1084",
+     "name": "Productos disponibles",
+     "type": "FRAME",
+     "x": 20,
+     "y": 588,
+     "w": 350,
+     "h": 124,
+     "layout": {
+      "mode": "VERTICAL",
+      "main": "MIN",
+      "cross": "MIN",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 12,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "tok": {
+      "itemSpacing": "space/3"
+     },
+     "children": [
+      {
+       "id": "184:1085",
+       "name": "TIENES PRODUCTOS DISPONIBLES",
+       "type": "TEXT",
+       "x": 20,
+       "y": 588,
+       "w": 207,
+       "h": 16,
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#6D6E72",
+         "token": "color/text/tertiary"
+        }
+       ],
+       "text": "TIENES PRODUCTOS DISPONIBLES",
+       "textStyle": "overline",
+       "font": "Open Sans Bold",
+       "fontSize": 11,
+       "lineHeight": "16px",
+       "letterSpacing": "8%",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "WIDTH_AND_HEIGHT"
+      },
+      {
+       "id": "184:1086",
+       "name": "Depósito a plazo digital",
+       "type": "FRAME",
+       "x": 20,
+       "y": 616,
+       "w": 350,
+       "h": 96,
+       "layout": {
+        "mode": "HORIZONTAL",
+        "main": "MIN",
+        "cross": "CENTER",
+        "pad": [
+         16,
+         16,
+         16,
+         16
+        ],
+        "gap": 12,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "radius": 12,
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#FFFFFF",
+         "token": "color/bg/surface"
+        }
+       ],
+       "strokes": [
+        {
+         "type": "SOLID",
+         "hex": "#E6E7E8",
+         "token": "color/border/subtle"
+        }
+       ],
+       "strokeWeight": 1,
+       "strokeAlign": "INSIDE",
+       "effect": "elevation/1",
+       "tok": {
+        "itemSpacing": "space/3",
+        "paddingLeft": "space/4",
+        "paddingTop": "space/4",
+        "paddingRight": "space/4",
+        "paddingBottom": "space/4",
+        "topLeftRadius": "radius/md",
+        "topRightRadius": "radius/md",
+        "bottomLeftRadius": "radius/md",
+        "bottomRightRadius": "radius/md"
+       },
+       "children": [
+        {
+         "id": "184:1087",
+         "name": "Ilustración · PilaDeMonedas",
+         "type": "RECTANGLE",
+         "x": 37,
+         "y": 642,
+         "w": 44,
+         "h": 44,
+         "sizing": [
+          "FIXED",
+          "FIXED"
+         ],
+         "fills": [
+          {
+           "type": "IMAGE",
+           "imageHash": "3c3d9741693735f043f4e5de4ff279a0e02c4ab9",
+           "scaleMode": "FIT"
+          }
+         ]
+        },
+        {
+         "id": "184:1088",
+         "name": "Texto",
+         "type": "FRAME",
+         "x": 93,
+         "y": 633,
+         "w": 144,
+         "h": 62,
+         "layout": {
+          "mode": "VERTICAL",
+          "main": "MIN",
+          "cross": "MIN",
+          "pad": [
+           0,
+           0,
+           0,
+           0
+          ],
+          "gap": 4,
+          "strokesInLayout": true
+         },
+         "sizing": [
+          "FILL",
+          "HUG"
+         ],
+         "tok": {
+          "itemSpacing": "space/1"
+         },
+         "children": [
+          {
+           "id": "184:1089",
+           "name": "Depósito a plazo digital",
+           "type": "TEXT",
+           "x": 93,
+           "y": 633,
+           "w": 144,
+           "h": 40,
+           "sizing": [
+            "FILL",
+            "HUG"
+           ],
+           "fills": [
+            {
+             "type": "SOLID",
+             "hex": "#1A1B1A",
+             "token": "color/text/primary"
+            }
+           ],
+           "text": "Depósito a plazo digital",
+           "textStyle": "label/l",
+           "font": "Open Sans SemiBold",
+           "fontSize": 15,
+           "lineHeight": "20px",
+           "align": [
+            "LEFT",
+            "TOP"
+           ],
+           "autoResize": "HEIGHT"
+          },
+          {
+           "id": "184:1090",
+           "name": "Crece a tasa fija",
+           "type": "TEXT",
+           "x": 93,
+           "y": 677,
+           "w": 144,
+           "h": 18,
+           "sizing": [
+            "FILL",
+            "HUG"
+           ],
+           "fills": [
+            {
+             "type": "SOLID",
+             "hex": "#5B5B5B",
+             "token": "color/text/secondary"
+            }
+           ],
+           "text": "Crece a tasa fija",
+           "textStyle": "body/s",
+           "font": "Open Sans Regular",
+           "fontSize": 13,
+           "lineHeight": "18px",
+           "align": [
+            "LEFT",
+            "TOP"
+           ],
+           "autoResize": "HEIGHT"
+          }
+         ]
+        },
+        {
+         "id": "184:1091",
+         "name": "Botón · Activar",
+         "type": "INSTANCE",
+         "x": 249,
+         "y": 642,
+         "w": 104,
+         "h": 44,
+         "layout": {
+          "mode": "HORIZONTAL",
+          "main": "CENTER",
+          "cross": "CENTER",
+          "pad": [
+           0,
+           0,
+           0,
+           0
+          ],
+          "gap": 0,
+          "strokesInLayout": true
+         },
+         "sizing": [
+          "FIXED",
+          "FIXED"
+         ],
+         "radius": 999,
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#FFFFFF",
+           "token": "color/action/secondary-bg"
+          }
+         ],
+         "strokes": [
+          {
+           "type": "SOLID",
+           "hex": "#2C2A29",
+           "token": "color/action/secondary-border"
+          }
+         ],
+         "strokeWeight": 1.5,
+         "strokeAlign": "INSIDE",
+         "tok": {
+          "topLeftRadius": "radius/full",
+          "topRightRadius": "radius/full",
+          "bottomLeftRadius": "radius/full",
+          "bottomRightRadius": "radius/full"
+         },
+         "component": "Button / Variant=Secundario",
+         "children": [
+          {
+           "id": "I184:1091;3:147",
+           "name": "Label",
+           "type": "TEXT",
+           "x": 275,
+           "y": 656,
+           "w": 52,
+           "h": 16,
+           "sizing": [
+            "HUG",
+            "HUG"
+           ],
+           "fills": [
+            {
+             "type": "SOLID",
+             "hex": "#1A1B1A",
+             "token": "color/action/secondary-fg"
+            }
+           ],
+           "text": "ACTIVAR",
+           "textStyle": "overline",
+           "font": "Open Sans Bold",
+           "fontSize": 11,
+           "lineHeight": "16px",
+           "letterSpacing": "8%",
+           "align": [
+            "LEFT",
+            "TOP"
+           ],
+           "autoResize": "WIDTH_AND_HEIGHT"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "184:1093",
+   "name": "FAB · Asesor bancario",
+   "type": "FRAME",
+   "x": 257,
+   "y": 742,
+   "w": 117,
+   "h": 52,
+   "layout": {
+    "mode": "HORIZONTAL",
+    "main": "MIN",
+    "cross": "CENTER",
+    "pad": [
+     0,
+     20,
+     0,
+     16
+    ],
+    "gap": 8,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "HUG",
+    "FIXED"
+   ],
+   "absolute": true,
+   "radius": 999,
+   "fills": [
+    {
+     "type": "SOLID",
+     "hex": "#2C2A29",
+     "token": "color/bg/inverse"
+    }
+   ],
+   "effect": "elevation/2",
+   "tok": {
+    "itemSpacing": "space/2",
+    "paddingLeft": "space/4",
+    "paddingTop": "space/0",
+    "paddingRight": "space/5",
+    "paddingBottom": "space/0",
+    "topLeftRadius": "radius/full",
+    "topRightRadius": "radius/full",
+    "bottomLeftRadius": "radius/full",
+    "bottomRightRadius": "radius/full"
+   },
+   "reactions": [
+    {
+     "trigger": "ON_CLICK",
+     "nav": "OVERLAY",
+     "dest": "230:4029",
+     "transition": {
+      "type": "DISSOLVE",
+      "ms": 250,
+      "easing": "EASE_OUT"
+     }
+    }
+   ],
+   "children": [
+    {
+     "id": "184:1094",
+     "name": "Icono · conversación",
+     "type": "FRAME",
+     "x": 273,
+     "y": 756,
+     "w": 24,
+     "h": 24,
+     "sizing": [
+      "FIXED",
+      "FIXED"
+     ],
+     "clip": true,
+     "children": [
+      {
+       "id": "184:1095",
+       "name": "globo",
+       "type": "RECTANGLE",
+       "x": 275,
+       "y": 759,
+       "w": 20,
+       "h": 15,
+       "sizing": [
+        "FIXED",
+        "FIXED"
+       ],
+       "radius": 4,
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#FFFFFF",
+         "token": "color/text/inverse"
+        }
+       ],
+       "tok": {
+        "topLeftRadius": "radius/xs",
+        "topRightRadius": "radius/xs",
+        "bottomLeftRadius": "radius/xs",
+        "bottomRightRadius": "radius/xs"
+       }
+      },
+      {
+       "id": "184:1096",
+       "name": "cola",
+       "type": "VECTOR",
+       "x": 278,
+       "y": 773,
+       "w": 7,
+       "h": 6,
+       "sizing": [
+        "FIXED",
+        "FIXED"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#FFFFFF",
+         "token": "color/text/inverse"
+        }
+       ],
+       "vector": true
+      },
+      {
+       "id": "184:1097",
+       "name": "punto",
+       "type": "ELLIPSE",
+       "x": 279,
+       "y": 765,
+       "w": 3,
+       "h": 3,
+       "sizing": [
+        "FIXED",
+        "FIXED"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#2C2A29",
+         "token": "color/bg/inverse"
+        }
+       ]
+      },
+      {
+       "id": "184:1098",
+       "name": "punto",
+       "type": "ELLIPSE",
+       "x": 284,
+       "y": 765,
+       "w": 3,
+       "h": 3,
+       "sizing": [
+        "FIXED",
+        "FIXED"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#2C2A29",
+         "token": "color/bg/inverse"
+        }
+       ]
+      },
+      {
+       "id": "184:1099",
+       "name": "punto",
+       "type": "ELLIPSE",
+       "x": 289,
+       "y": 765,
+       "w": 3,
+       "h": 3,
+       "sizing": [
+        "FIXED",
+        "FIXED"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#2C2A29",
+         "token": "color/bg/inverse"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "184:1100",
+     "name": "Asesoría",
+     "type": "TEXT",
+     "x": 305,
+     "y": 758,
+     "w": 49,
+     "h": 20,
+     "sizing": [
+      "HUG",
+      "HUG"
+     ],
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#FFFFFF",
+       "token": "color/text/inverse"
+      }
+     ],
+     "text": "Asesor",
+     "textStyle": "label/l",
+     "font": "Open Sans SemiBold",
+     "fontSize": 15,
+     "lineHeight": "20px",
+     "align": [
+      "LEFT",
+      "TOP"
+     ],
+     "autoResize": "WIDTH_AND_HEIGHT"
+    }
+   ]
+  }
+ ],
+ "section": "3 · Seguimiento"
+}

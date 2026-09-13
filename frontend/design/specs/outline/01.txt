@@ -1,0 +1,23 @@
+FRAME "01 · Ingreso" | 390×844 @0,0 | V pad[0,0,0,0] gap0 main:MIN cross:MIN strokesInLayout | fill:color/bg/canvas | r24 | fx:elevation/2 | clip | sz:F/F | tok{topLeftRadius=radius/xl topRightRadius=radius/xl bottomLeftRadius=radius/xl bottomRightRadius=radius/xl}
+  FRAME "Status bar" | 390×54 @0,0 | (barra de estado del sistema; hijos omitidos) | sz:F/F | tok{paddingLeft=space/5 paddingRight=space/5}
+  FRAME "App bar" | 390×52 @0,54 | H pad[0,20,0,20] gap0 main:SPACE_BETWEEN cross:CENTER strokesInLayout | stroke:color/border/subtle 0,0,1,0 inside | sz:F/F | tok{paddingLeft=space/5 paddingRight=space/5}
+    T " " | heading/m | Open Sans SemiBold 17/24px | color/text/secondary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 0×24 @20,67.5 | sz:H/H
+    FRAME "Marca" | 126×22 @128,68.5 | sz:F/F
+      RECTANGLE "Logo Bancoagrícola" | 126×22 @128,68.5 | fill:img(CROP) | sz:F/F
+    T "?" | heading/m | Open Sans SemiBold 17/24px | color/text/secondary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 8×24 @362,67.5 | sz:H/H
+  FRAME "Contenido" | 390×604 @0,106 | V pad[20,20,0,20] gap24 main:MIN cross:MIN strokesInLayout | sz:F/F | tok{itemSpacing=space/6 paddingLeft=space/5 paddingTop=space/5 paddingRight=space/5 paddingBottom=space/0}
+    T "Bienvenido a la aplicación\nde Banco Agrícola" | heading/m | Open Sans SemiBold 17/24px | color/text/primary | align:CENTER/TOP | auto:HEIGHT | 350×48 @20,126 | sz:F/H
+    INSTANCE "Campo" | 350×58 @20,198 | ⟨Campo / Variant=Lleno⟩ | V pad[0,0,0,0] gap6 main:MIN cross:MIN strokesInLayout | sz:F/H
+      T "Usuario" | body/s | Open Sans Regular 13/18px | color/text/secondary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 48×18 @20,198 | sz:H/H
+      FRAME "Línea" | 350×34 @20,222 | V pad[0,0,0,0] gap0 main:CENTER cross:MIN strokesInLayout | stroke:color/border/strong 0,0,1.5,0 inside | sz:F/F
+        T "edgar.gomez" | body/l | Open Sans Regular 16/24px | color/text/primary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 97×24 @20,226.25 | sz:H/H
+    INSTANCE "Campo" | 350×58 @20,280 | ⟨Campo / Variant=Lleno⟩ | V pad[0,0,0,0] gap6 main:MIN cross:MIN strokesInLayout | sz:F/H
+      T "Clave" | body/s | Open Sans Regular 13/18px | color/text/secondary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 33×18 @20,280 | sz:H/H
+      FRAME "Línea" | 350×34 @20,304 | V pad[0,0,0,0] gap0 main:CENTER cross:MIN strokesInLayout | stroke:color/border/strong 0,0,1.5,0 inside | sz:F/F
+        T "••••••••" | body/l | Open Sans Regular 16/24px | color/text/primary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 49×24 @20,308.25 | sz:H/H
+    RECTANGLE "␣" | 1×20 @20,362 | sz:F/F
+    T "¿Olvidaste o bloqueaste tu usuario o clave?" | label/l | Open Sans SemiBold 15/20px | UNDERLINE | color/text/link | align:CENTER/TOP | auto:HEIGHT | 350×20 @20,406 | sz:F/H
+  FRAME "Pie" | 390×134 @0,710 | V pad[16,20,30,20] gap16 main:MIN cross:MIN strokesInLayout | sz:F/H | tok{itemSpacing=space/4 paddingLeft=space/5 paddingTop=space/4 paddingRight=space/5}
+    T "Ingresar con huella o Face ID" | label/l | Open Sans SemiBold 15/20px | UNDERLINE | color/text/link | align:CENTER/TOP | auto:HEIGHT | 350×20 @20,726 | sz:F/H
+    INSTANCE "Button" | 350×52 @20,762 | ⟨Button / Variant=Primario⟩ | H pad[0,0,0,0] gap0 main:CENTER cross:CENTER strokesInLayout | fill:color/action/primary-bg | r999 | sz:F/F | tok{topLeftRadius=radius/full topRightRadius=radius/full bottomLeftRadius=radius/full bottomRightRadius=radius/full} | → NAVIGATE:184:964 SLIDE_IN-LEFT 300ms
+      T "CONTINUAR" | overline | Open Sans Bold 11/16px ls8% | color/action/primary-fg | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 74×16 @158,780 | sz:H/H

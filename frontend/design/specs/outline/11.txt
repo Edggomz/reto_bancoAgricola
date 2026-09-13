@@ -1,0 +1,42 @@
+FRAME "11 · Avisos" | 390×844 @0,0 | V pad[0,0,0,0] gap0 main:MIN cross:MIN strokesInLayout | fill:color/bg/inverse | r24 | fx:elevation/2 | clip | sz:F/F | tok{topLeftRadius=radius/xl topRightRadius=radius/xl bottomLeftRadius=radius/xl bottomRightRadius=radius/xl}
+  FRAME "Status bar" | 390×54 @0,0 | (barra de estado del sistema; hijos omitidos) | sz:F/F | tok{paddingLeft=space/5 paddingRight=space/5}
+  FRAME "Contenido" | 390×790 @0,54 | V pad[24,12,0,12] gap12 main:MIN cross:MIN strokesInLayout | sz:F/F | tok{itemSpacing=space/3 paddingLeft=space/3 paddingTop=space/6 paddingRight=space/3 paddingBottom=space/0}
+    FRAME "Reloj" | 366×64 @12,78 | V pad[0,0,0,0] gap0 main:MIN cross:CENTER strokesInLayout | sz:F/H
+      T "lunes 16 de noviembre" | label/l | Open Sans SemiBold 15/20px | color/text/inverse | align:CENTER/TOP | auto:WIDTH_AND_HEIGHT | 165×20 @112.5,78 | sz:H/H
+      T "8:05" | numeral/xl | Open Sans Light 40/44px ls-1% | color/text/inverse | align:CENTER/TOP | auto:WIDTH_AND_HEIGHT | 77×44 @156.5,98 | sz:H/H
+    T "HOY" | overline | Open Sans Bold 11/16px ls8% | color/text/inverse | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 26×16 @12,154 | sz:H/H
+    FRAME "Aviso · Este mes vino distinto, y está bien" | 366×108 @12,182 | V pad[12,16,12,16] gap4 main:MIN cross:MIN strokesInLayout | fill:color/bg/surface | r16 | sz:F/H | tok{itemSpacing=space/1 paddingLeft=space/4 paddingTop=space/3 paddingRight=space/4 paddingBottom=space/3 topLeftRadius=radius/lg topRightRadius=radius/lg bottomLeftRadius=radius/lg bottomRightRadius=radius/lg} | → OVERLAY:230:4159 DISSOLVE 250ms
+      FRAME "Cabecera" | 334×20 @28,194 | H pad[0,0,0,0] gap8 main:SPACE_BETWEEN cross:CENTER strokesInLayout | sz:F/H | tok{itemSpacing=space/2}
+        FRAME "App" | 199×20 @28,194 | H pad[0,0,0,0] gap8 main:MIN cross:CENTER strokesInLayout | sz:H/H | tok{itemSpacing=space/2}
+          FRAME "Ícono de la app" | 20×20 @28,194 | H pad[0,0,0,0] gap0 main:MIN cross:MIN strokesInLayout | fill:color/bg/brand | r4 | sz:F/F | tok{topLeftRadius=radius/xs topRightRadius=radius/xs bottomLeftRadius=radius/xs bottomRightRadius=radius/xs}
+          T "BANCOAGRÍCOLA · MI RUTA" | overline | Open Sans Bold 11/16px ls8% | color/text/tertiary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 171×16 @56,196 | sz:H/H
+        T "8:05" | caption | Open Sans Regular 12/16px | color/text/tertiary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 24×16 @338,196 | sz:H/H
+      T "Este mes vino distinto, y está bien" | label/l | Open Sans SemiBold 15/20px | color/text/primary | align:LEFT/TOP | auto:HEIGHT | 334×20 @28,218 | sz:F/H
+      T "No alcanzó para apartar los $124.25 de tu quincena. Toca aquí y tu asesor te ayuda a ajust…" | body/s | Open Sans Regular 13/18px | color/text/secondary | align:LEFT/TOP | auto:HEIGHT | 334×36 @28,242 | sz:F/H
+    T "ANTES" | overline | Open Sans Bold 11/16px ls8% | color/text/inverse | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 39×16 @12,302 | sz:H/H
+    FRAME "Aviso · Ya va la mitad" | 366×108 @12,330 | V pad[12,16,12,16] gap4 main:MIN cross:MIN strokesInLayout | fill:color/bg/surface | r16 | sz:F/H | tok{itemSpacing=space/1 paddingLeft=space/4 paddingTop=space/3 paddingRight=space/4 paddingBottom=space/3 topLeftRadius=radius/lg topRightRadius=radius/lg bottomLeftRadius=radius/lg bottomRightRadius=radius/lg}
+      FRAME "Cabecera" | 334×20 @28,342 | H pad[0,0,0,0] gap8 main:SPACE_BETWEEN cross:CENTER strokesInLayout | sz:F/H | tok{itemSpacing=space/2}
+        FRAME "App" | 199×20 @28,342 | H pad[0,0,0,0] gap8 main:MIN cross:CENTER strokesInLayout | sz:H/H | tok{itemSpacing=space/2}
+          FRAME "Ícono de la app" | 20×20 @28,342 | H pad[0,0,0,0] gap0 main:MIN cross:MIN strokesInLayout | fill:color/bg/brand | r4 | sz:F/F | tok{topLeftRadius=radius/xs topRightRadius=radius/xs bottomLeftRadius=radius/xs bottomRightRadius=radius/xs}
+          T "BANCOAGRÍCOLA · MI RUTA" | overline | Open Sans Bold 11/16px ls8% | color/text/tertiary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 171×16 @56,344 | sz:H/H
+        T "30 oct" | caption | Open Sans Regular 12/16px | color/text/tertiary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 35×16 @327,344 | sz:H/H
+      T "Ya va la mitad" | label/l | Open Sans SemiBold 15/20px | color/text/primary | align:LEFT/TOP | auto:HEIGHT | 334×20 @28,366 | sz:F/H
+      T "Apartamos $124.25 de tu pago. Tu cuota del 18 de noviembre va a la mitad." | body/s | Open Sans Regular 13/18px | color/text/secondary | align:LEFT/TOP | auto:HEIGHT | 334×36 @28,390 | sz:F/H
+    FRAME "Aviso · Pagado, y a tiempo" | 366×108 @12,450 | V pad[12,16,12,16] gap4 main:MIN cross:MIN strokesInLayout | fill:color/bg/surface | r16 | sz:F/H | tok{itemSpacing=space/1 paddingLeft=space/4 paddingTop=space/3 paddingRight=space/4 paddingBottom=space/3 topLeftRadius=radius/lg topRightRadius=radius/lg bottomLeftRadius=radius/lg bottomRightRadius=radius/lg} | → NAVIGATE:186:1232 SLIDE_IN-LEFT 300ms
+      FRAME "Cabecera" | 334×20 @28,462 | H pad[0,0,0,0] gap8 main:SPACE_BETWEEN cross:CENTER strokesInLayout | sz:F/H | tok{itemSpacing=space/2}
+        FRAME "App" | 199×20 @28,462 | H pad[0,0,0,0] gap8 main:MIN cross:CENTER strokesInLayout | sz:H/H | tok{itemSpacing=space/2}
+          FRAME "Ícono de la app" | 20×20 @28,462 | H pad[0,0,0,0] gap0 main:MIN cross:MIN strokesInLayout | fill:color/bg/brand | r4 | sz:F/F | tok{topLeftRadius=radius/xs topRightRadius=radius/xs bottomLeftRadius=radius/xs bottomRightRadius=radius/xs}
+          T "BANCOAGRÍCOLA · MI RUTA" | overline | Open Sans Bold 11/16px ls8% | color/text/tertiary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 171×16 @56,464 | sz:H/H
+        T "18 oct" | caption | Open Sans Regular 12/16px | color/text/tertiary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 35×16 @327,464 | sz:H/H
+      T "Pagado, y a tiempo" | label/l | Open Sans SemiBold 15/20px | color/text/primary | align:LEFT/TOP | auto:HEIGHT | 334×20 @28,486 | sz:F/H
+      T "Tu cuota de $248.50 se pagó sola. Ya son 19 meses seguidos: mira tu récord." | body/s | Open Sans Regular 13/18px | color/text/secondary | align:LEFT/TOP | auto:HEIGHT | 334×36 @28,510 | sz:F/H
+    FRAME "Aviso · Tu cuota ya está completa" | 366×108 @12,570 | V pad[12,16,12,16] gap4 main:MIN cross:MIN strokesInLayout | fill:color/bg/surface | r16 | sz:F/H | tok{itemSpacing=space/1 paddingLeft=space/4 paddingTop=space/3 paddingRight=space/4 paddingBottom=space/3 topLeftRadius=radius/lg topRightRadius=radius/lg bottomLeftRadius=radius/lg bottomRightRadius=radius/lg}
+      FRAME "Cabecera" | 334×20 @28,582 | H pad[0,0,0,0] gap8 main:SPACE_BETWEEN cross:CENTER strokesInLayout | sz:F/H | tok{itemSpacing=space/2}
+        FRAME "App" | 199×20 @28,582 | H pad[0,0,0,0] gap8 main:MIN cross:CENTER strokesInLayout | sz:H/H | tok{itemSpacing=space/2}
+          FRAME "Ícono de la app" | 20×20 @28,582 | H pad[0,0,0,0] gap0 main:MIN cross:MIN strokesInLayout | fill:color/bg/brand | r4 | sz:F/F | tok{topLeftRadius=radius/xs topRightRadius=radius/xs bottomLeftRadius=radius/xs bottomRightRadius=radius/xs}
+          T "BANCOAGRÍCOLA · MI RUTA" | overline | Open Sans Bold 11/16px ls8% | color/text/tertiary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 171×16 @56,584 | sz:H/H
+        T "15 oct" | caption | Open Sans Regular 12/16px | color/text/tertiary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 35×16 @327,584 | sz:H/H
+      T "Tu cuota ya está completa" | label/l | Open Sans SemiBold 15/20px | color/text/primary | align:LEFT/TOP | auto:HEIGHT | 334×20 @28,606 | sz:F/H
+      T "Apartamos los últimos $124.25. El 18 se paga sola; tú no tienes que hacer nada." | body/s | Open Sans Regular 13/18px | color/text/secondary | align:LEFT/TOP | auto:HEIGHT | 334×36 @28,630 | sz:F/H
+  FRAME "Atrás" | 44×44 @8,57.5 | H pad[0,0,0,0] gap0 main:CENTER cross:CENTER strokesInLayout | clip | sz:F/F | ABS | → BACK
+    T "‹" | heading/l | Open Sans Bold 20/26px ls-0.5% | color/text/inverse | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 8×26 @26,66.5 | sz:H/H

@@ -1,0 +1,49 @@
+FRAME "02 · Inicio" | 390×844 @0,0 | V pad[0,0,0,0] gap0 main:MIN cross:MIN strokesInLayout | fill:color/bg/canvas | r24 | fx:elevation/2 | clip | sz:F/F | tok{topLeftRadius=radius/xl topRightRadius=radius/xl bottomLeftRadius=radius/xl bottomRightRadius=radius/xl}
+  FRAME "Status bar" | 390×54 @0,0 | (barra de estado del sistema; hijos omitidos) | sz:F/F | tok{paddingLeft=space/5 paddingRight=space/5}
+  FRAME "App bar" | 390×52 @0,54 | H pad[0,8,0,8] gap0 main:SPACE_BETWEEN cross:CENTER strokesInLayout | stroke:color/border/subtle 0,0,1,0 inside | sz:F/F | tok{paddingLeft=space/2 paddingTop=space/0 paddingRight=space/2 paddingBottom=space/0}
+    FRAME "Perfil" | 44×44 @8,57.5 | H pad[0,0,0,0] gap0 main:CENTER cross:CENTER strokesInLayout | sz:F/F
+      FRAME "Avatar" | 32×32 @14,63.5 | H pad[0,0,0,0] gap0 main:CENTER cross:CENTER strokesInLayout | fill:color/bg/avatar | r999 | sz:F/F | tok{topLeftRadius=radius/full topRightRadius=radius/full bottomLeftRadius=radius/full bottomRightRadius=radius/full}
+        T "EG" | label/m | Open Sans SemiBold 13/16px | color/text/inverse | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 17×16 @21.5,71.5 | sz:H/H
+    FRAME "Marca" | 126×22 @132,68.5 | sz:F/F
+      RECTANGLE "Logo Bancoagrícola" | 126×22 @132,68.5 | fill:img(CROP) | sz:F/F
+    FRAME "Más" | 44×44 @338,57.5 | H pad[0,0,0,0] gap0 main:CENTER cross:CENTER strokesInLayout | sz:F/F
+      T "···" | heading/l | Open Sans Bold 20/26px ls-0.5% | color/text/secondary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 17×26 @351.5,66.5 | sz:H/H
+  FRAME "Contenido" | 390×738 @0,106 | V pad[20,20,0,20] gap12 main:MIN cross:MIN strokesInLayout | sz:F/F | tok{itemSpacing=space/3 paddingLeft=space/5 paddingTop=space/5 paddingRight=space/5 paddingBottom=space/0}
+    T "Hola, Edgar" | heading/xl | Open Sans Bold 24/30px ls-1% | color/text/primary | align:LEFT/TOP | auto:HEIGHT | 350×30 @20,126 | sz:F/H
+    FRAME "Cuenta principal" | 350×124 @20,168 | V pad[20,20,20,20] gap4 main:MIN cross:MIN strokesInLayout | fill:color/bg/inverse | r16 | fx:elevation/2 | sz:F/H | tok{itemSpacing=space/1 paddingLeft=space/5 paddingTop=space/5 paddingRight=space/5 paddingBottom=space/5 topLeftRadius=radius/lg topRightRadius=radius/lg bottomLeftRadius=radius/lg bottomRightRadius=radius/lg}
+      T "Cuenta de ahorro · Max Electrónico" | label/m | Open Sans SemiBold 13/16px | color/text/inverse | align:LEFT/TOP | auto:HEIGHT | 310×16 @40,188 | sz:F/H
+      T "$1,482.14" | numeral/xl | Open Sans Light 40/44px ls-1% | color/text/inverse | align:LEFT/TOP | auto:HEIGHT | 310×44 @40,208 | sz:F/H
+      T "Saldo disponible · N.º 3007040110" | caption | Open Sans Regular 12/16px | color/text/inverse | align:LEFT/TOP | auto:HEIGHT | 310×16 @40,256 | sz:F/H
+    FRAME "Otras cuentas" | 350×100 @20,304 | H pad[0,0,0,0] gap12 main:MIN cross:MIN strokesInLayout | sz:F/H | tok{itemSpacing=space/3}
+      FRAME "Tarjeta de crédito" | 169×100 @20,304 | V pad[16,16,16,16] gap4 main:MIN cross:MIN strokesInLayout | fill:color/bg/surface | stroke:color/border/subtle 1 inside | r12 | fx:elevation/1 | sz:F/F | tok{itemSpacing=space/1 paddingLeft=space/4 paddingTop=space/4 paddingRight=space/4 paddingBottom=space/4 topLeftRadius=radius/md topRightRadius=radius/md bottomLeftRadius=radius/md bottomRightRadius=radius/md}
+        T "Tarjeta de crédito" | label/m | Open Sans SemiBold 13/16px | color/text/secondary | align:LEFT/TOP | auto:HEIGHT | 135×16 @37,321 | sz:F/H
+        T "$660.00" | numeral/m | Open Sans SemiBold 20/26px | color/text/primary | align:LEFT/TOP | auto:HEIGHT | 135×26 @37,341 | sz:F/H
+        T "Disponible de $1,000.00" | caption | Open Sans Regular 12/16px | color/text/tertiary | align:LEFT/TOP | auto:HEIGHT | 135×16 @37,371 | sz:F/H
+      FRAME "Crédito personal" | 169×100 @201,304 | V pad[16,16,16,16] gap4 main:MIN cross:MIN strokesInLayout | fill:color/bg/surface | stroke:color/border/subtle 1 inside | r12 | fx:elevation/1 | sz:F/F | tok{itemSpacing=space/1 paddingLeft=space/4 paddingTop=space/4 paddingRight=space/4 paddingBottom=space/4 topLeftRadius=radius/md topRightRadius=radius/md bottomLeftRadius=radius/md bottomRightRadius=radius/md}
+        T "Crédito personal" | label/m | Open Sans SemiBold 13/16px | color/text/secondary | align:LEFT/TOP | auto:HEIGHT | 135×16 @218,321 | sz:F/H
+        T "$248.50" | numeral/m | Open Sans SemiBold 20/26px | color/text/primary | align:LEFT/TOP | auto:HEIGHT | 135×26 @218,341 | sz:F/H
+        T "Cuota · se cobra el 28" | caption | Open Sans Regular 12/16px | color/text/tertiary | align:LEFT/TOP | auto:HEIGHT | 135×16 @218,371 | sz:F/H
+    FRAME "Productos disponibles" | 350×250 @20,416 | V pad[0,0,0,0] gap12 main:MIN cross:MIN strokesInLayout | sz:F/H | tok{itemSpacing=space/3}
+      T "TIENES PRODUCTOS DISPONIBLES" | overline | Open Sans Bold 11/16px ls8% | color/text/tertiary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 207×16 @20,416 | sz:H/H
+      FRAME "Cambiar fecha de cobro" | 350×114 @20,444 | H pad[16,16,16,16] gap12 main:MIN cross:CENTER strokesInLayout | fill:color/bg/surface | stroke:color/border/subtle 1 inside | r12 | fx:elevation/1 | sz:F/H | tok{itemSpacing=space/3 paddingLeft=space/4 paddingTop=space/4 paddingRight=space/4 paddingBottom=space/4 topLeftRadius=radius/md topRightRadius=radius/md bottomLeftRadius=radius/md bottomRightRadius=radius/md}
+        RECTANGLE "Ilustración · CalendarioMarcado" | 44×44 @37,479 | fill:img(FIT) | sz:F/F
+        FRAME "Texto" | 144×80 @93,461 | V pad[0,0,0,0] gap4 main:MIN cross:MIN strokesInLayout | sz:F/H | tok{itemSpacing=space/1}
+          T "Cambiar fecha de cobro" | label/l | Open Sans SemiBold 15/20px | color/text/primary | align:LEFT/TOP | auto:HEIGHT | 144×40 @93,461 | sz:F/H
+          T "Que tu cuota caiga cuando ya te pagaron" | body/s | Open Sans Regular 13/18px | color/text/secondary | align:LEFT/TOP | auto:HEIGHT | 144×36 @93,505 | sz:F/H
+        INSTANCE "Botón · Activar" | 104×44 @249,479 | ⟨Button / Variant=Secundario⟩ | H pad[0,0,0,0] gap0 main:CENTER cross:CENTER strokesInLayout | fill:color/action/secondary-bg | stroke:color/action/secondary-border 1.5 inside | r999 | sz:F/F | tok{topLeftRadius=radius/full topRightRadius=radius/full bottomLeftRadius=radius/full bottomRightRadius=radius/full} | → NAVIGATE:184:472 SLIDE_IN-LEFT 300ms
+          T "ACTIVAR" | overline | Open Sans Bold 11/16px ls8% | color/action/secondary-fg | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 52×16 @275,493 | sz:H/H
+      FRAME "Depósito a plazo digital" | 350×96 @20,570 | H pad[16,16,16,16] gap12 main:MIN cross:CENTER strokesInLayout | fill:color/bg/surface | stroke:color/border/subtle 1 inside | r12 | fx:elevation/1 | sz:F/H | tok{itemSpacing=space/3 paddingLeft=space/4 paddingTop=space/4 paddingRight=space/4 paddingBottom=space/4 topLeftRadius=radius/md topRightRadius=radius/md bottomLeftRadius=radius/md bottomRightRadius=radius/md}
+        RECTANGLE "Ilustración · PilaDeMonedas" | 44×44 @37,596 | fill:img(FIT) | sz:F/F
+        FRAME "Texto" | 144×62 @93,587 | V pad[0,0,0,0] gap4 main:MIN cross:MIN strokesInLayout | sz:F/H | tok{itemSpacing=space/1}
+          T "Depósito a plazo digital" | label/l | Open Sans SemiBold 15/20px | color/text/primary | align:LEFT/TOP | auto:HEIGHT | 144×40 @93,587 | sz:F/H
+          T "Crece a tasa fija" | body/s | Open Sans Regular 13/18px | color/text/secondary | align:LEFT/TOP | auto:HEIGHT | 144×18 @93,631 | sz:F/H
+        INSTANCE "Botón · Activar" | 104×44 @249,596 | ⟨Button / Variant=Secundario⟩ | H pad[0,0,0,0] gap0 main:CENTER cross:CENTER strokesInLayout | fill:color/action/secondary-bg | stroke:color/action/secondary-border 1.5 inside | r999 | sz:F/F | tok{topLeftRadius=radius/full topRightRadius=radius/full bottomLeftRadius=radius/full bottomRightRadius=radius/full}
+          T "ACTIVAR" | overline | Open Sans Bold 11/16px ls8% | color/action/secondary-fg | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 52×16 @275,610 | sz:H/H
+  FRAME "FAB · Asesor bancario" | 117×52 @257,742 | H pad[0,20,0,16] gap8 main:MIN cross:CENTER strokesInLayout | fill:color/bg/inverse | r999 | fx:elevation/2 | sz:H/F | ABS | tok{itemSpacing=space/2 paddingLeft=space/4 paddingTop=space/0 paddingRight=space/5 paddingBottom=space/0 topLeftRadius=radius/full topRightRadius=radius/full bottomLeftRadius=radius/full bottomRightRadius=radius/full} | → OVERLAY:230:4029 DISSOLVE 250ms
+    FRAME "Icono · conversación" | 24×24 @273,756 | clip | sz:F/F
+      RECTANGLE "globo" | 20×15 @275,759 | fill:color/text/inverse | r4 | sz:F/F | tok{topLeftRadius=radius/xs topRightRadius=radius/xs bottomLeftRadius=radius/xs bottomRightRadius=radius/xs}
+      VECTOR "cola" | 7×6 @278,773 | fill:color/text/inverse | sz:F/F
+      ELLIPSE "punto" | 3×3 @279,765 | fill:color/bg/inverse | sz:F/F
+      ELLIPSE "punto" | 3×3 @284,765 | fill:color/bg/inverse | sz:F/F
+      ELLIPSE "punto" | 3×3 @289,765 | fill:color/bg/inverse | sz:F/F
+    T "Asesor" | label/l | Open Sans SemiBold 15/20px | color/text/inverse | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 49×20 @305,758 | sz:H/H

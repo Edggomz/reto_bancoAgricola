@@ -1,0 +1,290 @@
+{
+ "id": "3:177",
+ "name": "Campo",
+ "type": "COMPONENT_SET",
+ "x": 0,
+ "y": 0,
+ "w": 700,
+ "h": 114,
+ "layout": {
+  "mode": "HORIZONTAL",
+  "main": "MIN",
+  "cross": "CENTER",
+  "pad": [
+   28,
+   28,
+   28,
+   28
+  ],
+  "gap": 24,
+  "strokesInLayout": true
+ },
+ "sizing": [
+  "HUG",
+  "HUG"
+ ],
+ "clip": true,
+ "radius": 5,
+ "children": [
+  {
+   "id": "3:169",
+   "name": "Variant=Vacío",
+   "type": "COMPONENT",
+   "x": 28,
+   "y": 28,
+   "w": 310,
+   "h": 58,
+   "layout": {
+    "mode": "VERTICAL",
+    "main": "MIN",
+    "cross": "MIN",
+    "pad": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "gap": 6,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "FIXED",
+    "HUG"
+   ],
+   "children": [
+    {
+     "id": "3:170",
+     "name": "Etiqueta",
+     "type": "TEXT",
+     "x": 28,
+     "y": 28,
+     "w": 48,
+     "h": 18,
+     "sizing": [
+      "HUG",
+      "HUG"
+     ],
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#5B5B5B",
+       "token": "color/text/secondary"
+      }
+     ],
+     "text": "Usuario",
+     "textStyle": "body/s",
+     "font": "Open Sans Regular",
+     "fontSize": 13,
+     "lineHeight": "18px",
+     "align": [
+      "LEFT",
+      "TOP"
+     ],
+     "autoResize": "WIDTH_AND_HEIGHT"
+    },
+    {
+     "id": "3:171",
+     "name": "Línea",
+     "type": "FRAME",
+     "x": 28,
+     "y": 52,
+     "w": 310,
+     "h": 34,
+     "layout": {
+      "mode": "VERTICAL",
+      "main": "CENTER",
+      "cross": "MIN",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "FIXED"
+     ],
+     "strokes": [
+      {
+       "type": "SOLID",
+       "hex": "#2C2A29",
+       "token": "color/border/strong"
+      }
+     ],
+     "strokeWeight": [
+      0,
+      0,
+      1.5,
+      0
+     ],
+     "strokeAlign": "INSIDE",
+     "children": [
+      {
+       "id": "3:172",
+       "name": "Valor",
+       "type": "TEXT",
+       "x": 28,
+       "y": 56.25,
+       "w": 0,
+       "h": 24,
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#6D6E72",
+         "token": "color/text/tertiary"
+        }
+       ],
+       "text": "",
+       "textStyle": "body/l",
+       "font": "Open Sans Regular",
+       "fontSize": 16,
+       "lineHeight": "24px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "WIDTH_AND_HEIGHT"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "3:173",
+   "name": "Variant=Lleno",
+   "type": "COMPONENT",
+   "x": 362,
+   "y": 28,
+   "w": 310,
+   "h": 58,
+   "layout": {
+    "mode": "VERTICAL",
+    "main": "MIN",
+    "cross": "MIN",
+    "pad": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "gap": 6,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "FIXED",
+    "HUG"
+   ],
+   "children": [
+    {
+     "id": "3:174",
+     "name": "Etiqueta",
+     "type": "TEXT",
+     "x": 362,
+     "y": 28,
+     "w": 48,
+     "h": 18,
+     "sizing": [
+      "HUG",
+      "HUG"
+     ],
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#5B5B5B",
+       "token": "color/text/secondary"
+      }
+     ],
+     "text": "Usuario",
+     "textStyle": "body/s",
+     "font": "Open Sans Regular",
+     "fontSize": 13,
+     "lineHeight": "18px",
+     "align": [
+      "LEFT",
+      "TOP"
+     ],
+     "autoResize": "WIDTH_AND_HEIGHT"
+    },
+    {
+     "id": "3:175",
+     "name": "Línea",
+     "type": "FRAME",
+     "x": 362,
+     "y": 52,
+     "w": 310,
+     "h": 34,
+     "layout": {
+      "mode": "VERTICAL",
+      "main": "CENTER",
+      "cross": "MIN",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "FIXED"
+     ],
+     "strokes": [
+      {
+       "type": "SOLID",
+       "hex": "#2C2A29",
+       "token": "color/border/strong"
+      }
+     ],
+     "strokeWeight": [
+      0,
+      0,
+      1.5,
+      0
+     ],
+     "strokeAlign": "INSIDE",
+     "children": [
+      {
+       "id": "3:176",
+       "name": "Valor",
+       "type": "TEXT",
+       "x": 362,
+       "y": 56.25,
+       "w": 97,
+       "h": 24,
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#1A1B1A",
+         "token": "color/text/primary"
+        }
+       ],
+       "text": "edgar.gomez",
+       "textStyle": "body/l",
+       "font": "Open Sans Regular",
+       "fontSize": 16,
+       "lineHeight": "24px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "WIDTH_AND_HEIGHT"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

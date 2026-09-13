@@ -1,0 +1,46 @@
+FRAME "04 · Elige tu fecha" | 390×844 @0,0 | V pad[0,0,0,0] gap0 main:MIN cross:MIN strokesInLayout | fill:color/bg/canvas | r24 | fx:elevation/2 | clip | sz:F/F | tok{topLeftRadius=radius/xl topRightRadius=radius/xl bottomLeftRadius=radius/xl bottomRightRadius=radius/xl}
+  FRAME "Status bar" | 390×54 @0,0 | (barra de estado del sistema; hijos omitidos) | sz:F/F | tok{paddingLeft=space/5 paddingRight=space/5}
+  FRAME "App bar" | 390×52 @0,54 | H pad[0,8,0,8] gap0 main:SPACE_BETWEEN cross:CENTER strokesInLayout | stroke:color/border/subtle 0,0,1,0 inside | sz:F/F | tok{paddingLeft=space/2 paddingTop=space/0 paddingRight=space/2 paddingBottom=space/0}
+    FRAME "Atrás" | 44×44 @8,57.5 | H pad[0,0,0,0] gap0 main:CENTER cross:CENTER strokesInLayout | sz:F/F | → BACK
+      T "‹" | heading/l | Open Sans Bold 20/26px ls-0.5% | color/text/secondary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 8×26 @26,66.5 | sz:H/H
+    FRAME "Título" | 196×24 @97,67.5 | V pad[0,0,0,0] gap0 main:MIN cross:CENTER strokesInLayout | sz:H/H
+      T "Cambiar fecha de cobro" | heading/m | Open Sans SemiBold 17/24px | color/text/primary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 196×24 @97,67.5 | sz:H/H
+    FRAME "Cerrar" | 44×44 @338,57.5 | H pad[0,0,0,0] gap0 main:CENTER cross:CENTER strokesInLayout | sz:F/F | → NAVIGATE:184:964 DISSOLVE 250ms
+      T "×" | heading/l | Open Sans Bold 20/26px ls-0.5% | color/text/secondary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 12×26 @354,66.5 | sz:H/H
+  FRAME "Contenido" | 390×636 @0,106 | V pad[20,20,0,20] gap20 main:MIN cross:MIN strokesInLayout | sz:F/F | tok{itemSpacing=space/5 paddingLeft=space/5 paddingTop=space/5 paddingRight=space/5 paddingBottom=space/0}
+    FRAME "Pasos · 2 de 2" | 350×4 @20,126 | H pad[0,0,0,0] gap4 main:MIN cross:MIN strokesInLayout | sz:F/H | tok{itemSpacing=space/1}
+      RECTANGLE "hecho" | 173×4 @20,126 | fill:color/bg/inverse | r999 | sz:F/F | tok{topLeftRadius=radius/full topRightRadius=radius/full bottomLeftRadius=radius/full bottomRightRadius=radius/full}
+      RECTANGLE "hecho" | 173×4 @197,126 | fill:color/bg/inverse | r999 | sz:F/F | tok{topLeftRadius=radius/full topRightRadius=radius/full bottomLeftRadius=radius/full bottomRightRadius=radius/full}
+    FRAME "Encabezado" | 350×60 @20,150 | V pad[0,0,0,0] gap8 main:MIN cross:MIN strokesInLayout | sz:F/H | tok{itemSpacing=space/2}
+      T "¿Qué día te queda mejor?" | heading/xl | Open Sans Bold 24/30px ls-1% | color/text/primary | align:LEFT/TOP | auto:HEIGHT | 350×30 @20,150 | sz:F/H
+      T "Solo te mostramos días en los que ya te pagaron." | body/m | Open Sans Regular 15/22px | color/text/secondary | align:LEFT/TOP | auto:HEIGHT | 350×22 @20,188 | sz:F/H
+    FRAME "Después de tu quincena del 15" | 350×68 @20,230 | V pad[0,0,0,0] gap8 main:MIN cross:MIN strokesInLayout | sz:F/H | tok{itemSpacing=space/2}
+      T "DESPUÉS DE TU QUINCENA DEL 15" | overline | Open Sans Bold 11/16px ls8% | color/text/tertiary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 209×16 @20,230 | sz:H/H
+      FRAME "Días" | 350×44 @20,254 | H pad[0,0,0,0] gap8 main:MIN cross:MIN wrap crossGap8 strokesInLayout | sz:F/H | tok{itemSpacing=space/2 counterAxisSpacing=space/2}
+        INSTANCE "Chip · Día 18" | 77×44 @20,254 | ⟨Chip / Variant=Normal⟩ | H pad[12,16,12,16] gap0 main:CENTER cross:CENTER | fill:color/action/secondary-bg | stroke:color/border/default 1.5 inside | r999 | sz:H/H | tok{paddingLeft=space/4 paddingTop=space/3 paddingRight=space/4 paddingBottom=space/3 topLeftRadius=radius/full topRightRadius=radius/full bottomLeftRadius=radius/full bottomRightRadius=radius/full} | → CHANGE_TO:3:153 SMART_ANIMATE 150ms
+          T "Día 18" | label/l | Open Sans SemiBold 15/20px | color/text/secondary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 45×20 @36,266 | sz:H/H
+        INSTANCE "Chip · Día 19" | 77×44 @105,254 | ⟨Chip / Variant=Normal⟩ | H pad[12,16,12,16] gap0 main:CENTER cross:CENTER | fill:color/action/secondary-bg | stroke:color/border/default 1.5 inside | r999 | sz:H/H | tok{paddingLeft=space/4 paddingTop=space/3 paddingRight=space/4 paddingBottom=space/3 topLeftRadius=radius/full topRightRadius=radius/full bottomLeftRadius=radius/full bottomRightRadius=radius/full} | → CHANGE_TO:3:153 SMART_ANIMATE 150ms
+          T "Día 19" | label/l | Open Sans SemiBold 15/20px | color/text/secondary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 45×20 @121,266 | sz:H/H
+    FRAME "Después de tu pago de fin de mes" | 350×68 @20,318 | V pad[0,0,0,0] gap8 main:MIN cross:MIN strokesInLayout | sz:F/H | tok{itemSpacing=space/2}
+      T "DESPUÉS DE TU PAGO DE FIN DE MES" | overline | Open Sans Bold 11/16px ls8% | color/text/tertiary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 226×16 @20,318 | sz:H/H
+      FRAME "Días" | 350×44 @20,342 | H pad[0,0,0,0] gap8 main:MIN cross:MIN wrap crossGap8 strokesInLayout | sz:F/H | tok{itemSpacing=space/2 counterAxisSpacing=space/2}
+        INSTANCE "Chip · Día 3" | 69×44 @20,342 | ⟨Chip / Variant=Normal⟩ | H pad[12,16,12,16] gap0 main:CENTER cross:CENTER | fill:color/action/secondary-bg | stroke:color/border/default 1.5 inside | r999 | sz:H/H | tok{paddingLeft=space/4 paddingTop=space/3 paddingRight=space/4 paddingBottom=space/3 topLeftRadius=radius/full topRightRadius=radius/full bottomLeftRadius=radius/full bottomRightRadius=radius/full} | → CHANGE_TO:3:153 SMART_ANIMATE 150ms
+          T "Día 3" | label/l | Open Sans SemiBold 15/20px | color/text/secondary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 37×20 @36,354 | sz:H/H
+        INSTANCE "Chip · Día 4" | 69×44 @97,342 | ⟨Chip / Variant=Normal⟩ | H pad[12,16,12,16] gap0 main:CENTER cross:CENTER | fill:color/action/secondary-bg | stroke:color/border/default 1.5 inside | r999 | sz:H/H | tok{paddingLeft=space/4 paddingTop=space/3 paddingRight=space/4 paddingBottom=space/3 topLeftRadius=radius/full topRightRadius=radius/full bottomLeftRadius=radius/full bottomRightRadius=radius/full} | → CHANGE_TO:3:153 SMART_ANIMATE 150ms
+          T "Día 4" | label/l | Open Sans SemiBold 15/20px | color/text/secondary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 37×20 @113,354 | sz:H/H
+    FRAME "Antes y después" | 350×125 @20,406 | V pad[16,16,16,16] gap12 main:MIN cross:MIN strokesInLayout | fill:color/bg/surface | stroke:color/border/subtle 1 inside | r12 | fx:elevation/1 | sz:F/H | tok{itemSpacing=space/3 paddingLeft=space/4 paddingTop=space/4 paddingRight=space/4 paddingBottom=space/4 topLeftRadius=radius/md topRightRadius=radius/md bottomLeftRadius=radius/md bottomRightRadius=radius/md}
+      FRAME "Cambio" | 316×48 @37,423 | H pad[0,0,0,0] gap12 main:SPACE_BETWEEN cross:CENTER strokesInLayout | sz:F/H | tok{itemSpacing=space/3}
+        FRAME "Hoy" | 61×48 @37,423 | V pad[0,0,0,0] gap4 main:MIN cross:MIN strokesInLayout | sz:H/H | tok{itemSpacing=space/1}
+          T "Hoy" | body/s | Open Sans Regular 13/18px | color/text/tertiary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 24×18 @37,423 | sz:H/H
+          T "Día 28" | heading/l | Open Sans Bold 20/26px ls-0.5% | color/text/primary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 61×26 @37,445 | sz:H/H
+        T "→" | heading/l | Open Sans Bold 20/26px ls-0.5% | color/text/tertiary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 20×26 @180.5,434 | sz:H/H
+        FRAME "Desde" | 70×48 @283,423 | V pad[0,0,0,0] gap4 main:MIN cross:MAX strokesInLayout | sz:H/H | tok{itemSpacing=space/1}
+          T "Elige un día" | body/s | Open Sans Regular 13/18px | color/text/tertiary | align:RIGHT/TOP | auto:WIDTH_AND_HEIGHT | 70×18 @283,423 | sz:H/H
+          T "Día —" | heading/l | Open Sans Bold 20/26px ls-0.5% | color/text/tertiary | align:RIGHT/TOP | auto:WIDTH_AND_HEIGHT | 58×26 @295,445 | sz:H/H
+      RECTANGLE "Divisor" | 316×1 @37,483 | fill:color/border/subtle | sz:F/F
+      T "Al elegir, te mostramos desde cuándo aplica." | body/s | Open Sans Regular 13/18px | color/text/secondary | align:LEFT/TOP | auto:HEIGHT | 316×18 @37,496 | sz:F/H
+    FRAME "Nota" | 350×60 @20,551 | H pad[12,16,12,16] gap0 main:MIN cross:MIN strokesInLayout | fill:color/estado/al-dia-bg | r8 | sz:F/H | tok{paddingLeft=space/4 paddingTop=space/3 paddingRight=space/4 paddingBottom=space/3 topLeftRadius=radius/sm topRightRadius=radius/sm bottomLeftRadius=radius/sm bottomRightRadius=radius/sm}
+      T "No cambia el monto ni el plazo de tu crédito. Solo el día. Sin costo y sin firmar nada." | body/s | Open Sans Regular 13/18px | color/estado/al-dia-fg | align:LEFT/TOP | auto:HEIGHT | 318×36 @36,563 | sz:F/H
+  FRAME "Pie" | 390×102 @0,742 | V pad[16,20,34,20] gap12 main:MIN cross:CENTER strokesInLayout | sz:F/H | tok{itemSpacing=space/3 paddingLeft=space/5 paddingTop=space/4 paddingRight=space/5 paddingBottom=size/safe-bottom}
+    INSTANCE "Botón · Confirmar" | 350×52 @20,758 | ⟨Button / Variant=Inactivo⟩ | H pad[0,0,0,0] gap0 main:CENTER cross:CENTER strokesInLayout | fill:color/action/disabled-bg | r999 | sz:F/F | tok{topLeftRadius=radius/full topRightRadius=radius/full bottomLeftRadius=radius/full bottomRightRadius=radius/full} | → NAVIGATE:184:584 DISSOLVE 250ms
+      T "CONFIRMAR" | overline | Open Sans Bold 11/16px ls8% | color/action/disabled-fg | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 74×16 @158,776 | sz:H/H

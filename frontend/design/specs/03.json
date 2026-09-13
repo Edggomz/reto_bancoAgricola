@@ -1,0 +1,1134 @@
+{
+ "id": "184:472",
+ "name": "03 · ¿Qué día te pagan?",
+ "type": "FRAME",
+ "x": 0,
+ "y": 0,
+ "w": 390,
+ "h": 844,
+ "layout": {
+  "mode": "VERTICAL",
+  "main": "MIN",
+  "cross": "MIN",
+  "pad": [
+   0,
+   0,
+   0,
+   0
+  ],
+  "gap": 0,
+  "strokesInLayout": true
+ },
+ "sizing": [
+  "FIXED",
+  "FIXED"
+ ],
+ "clip": true,
+ "radius": 24,
+ "fills": [
+  {
+   "type": "SOLID",
+   "hex": "#FFFFFF",
+   "token": "color/bg/canvas"
+  }
+ ],
+ "effect": "elevation/2",
+ "tok": {
+  "topLeftRadius": "radius/xl",
+  "topRightRadius": "radius/xl",
+  "bottomLeftRadius": "radius/xl",
+  "bottomRightRadius": "radius/xl"
+ },
+ "children": [
+  {
+   "id": "184:473",
+   "name": "Status bar",
+   "type": "FRAME",
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 54,
+   "sizing": [
+    "FILL",
+    "FIXED"
+   ],
+   "tok": {
+    "paddingLeft": "space/5",
+    "paddingRight": "space/5"
+   },
+   "note": "barra de estado del sistema; hijos omitidos"
+  },
+  {
+   "id": "184:489",
+   "name": "App bar",
+   "type": "FRAME",
+   "x": 0,
+   "y": 54,
+   "w": 390,
+   "h": 52,
+   "layout": {
+    "mode": "HORIZONTAL",
+    "main": "SPACE_BETWEEN",
+    "cross": "CENTER",
+    "pad": [
+     0,
+     8,
+     0,
+     8
+    ],
+    "gap": 0,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "FILL",
+    "FIXED"
+   ],
+   "strokes": [
+    {
+     "type": "SOLID",
+     "hex": "#E6E7E8",
+     "token": "color/border/subtle"
+    }
+   ],
+   "strokeWeight": [
+    0,
+    0,
+    1,
+    0
+   ],
+   "strokeAlign": "INSIDE",
+   "tok": {
+    "paddingLeft": "space/2",
+    "paddingTop": "space/0",
+    "paddingRight": "space/2",
+    "paddingBottom": "space/0"
+   },
+   "children": [
+    {
+     "id": "184:490",
+     "name": "Atrás",
+     "type": "FRAME",
+     "x": 8,
+     "y": 57.5,
+     "w": 44,
+     "h": 44,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "CENTER",
+      "cross": "CENTER",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FIXED",
+      "FIXED"
+     ],
+     "reactions": [
+      {
+       "trigger": "ON_CLICK",
+       "nav": "BACK"
+      }
+     ],
+     "children": [
+      {
+       "id": "184:491",
+       "name": "‹",
+       "type": "TEXT",
+       "x": 26,
+       "y": 66.5,
+       "w": 8,
+       "h": 26,
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#5B5B5B",
+         "token": "color/text/secondary"
+        }
+       ],
+       "text": "‹",
+       "textStyle": "heading/l",
+       "font": "Open Sans Bold",
+       "fontSize": 20,
+       "lineHeight": "26px",
+       "letterSpacing": "-0.5%",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "WIDTH_AND_HEIGHT"
+      }
+     ]
+    },
+    {
+     "id": "184:492",
+     "name": "Título",
+     "type": "FRAME",
+     "x": 97,
+     "y": 67.5,
+     "w": 196,
+     "h": 24,
+     "layout": {
+      "mode": "VERTICAL",
+      "main": "MIN",
+      "cross": "CENTER",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "HUG",
+      "HUG"
+     ],
+     "children": [
+      {
+       "id": "184:493",
+       "name": "Cambiar fecha de cobro",
+       "type": "TEXT",
+       "x": 97,
+       "y": 67.5,
+       "w": 196,
+       "h": 24,
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#1A1B1A",
+         "token": "color/text/primary"
+        }
+       ],
+       "text": "Cambiar fecha de cobro",
+       "textStyle": "heading/m",
+       "font": "Open Sans SemiBold",
+       "fontSize": 17,
+       "lineHeight": "24px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "WIDTH_AND_HEIGHT"
+      }
+     ]
+    },
+    {
+     "id": "184:494",
+     "name": "Cerrar",
+     "type": "FRAME",
+     "x": 338,
+     "y": 57.5,
+     "w": 44,
+     "h": 44,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "CENTER",
+      "cross": "CENTER",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FIXED",
+      "FIXED"
+     ],
+     "reactions": [
+      {
+       "trigger": "ON_CLICK",
+       "nav": "NAVIGATE",
+       "dest": "184:964",
+       "transition": {
+        "type": "DISSOLVE",
+        "ms": 250,
+        "easing": "EASE_OUT"
+       }
+      }
+     ],
+     "children": [
+      {
+       "id": "184:495",
+       "name": "×",
+       "type": "TEXT",
+       "x": 354,
+       "y": 66.5,
+       "w": 12,
+       "h": 26,
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#5B5B5B",
+         "token": "color/text/secondary"
+        }
+       ],
+       "text": "×",
+       "textStyle": "heading/l",
+       "font": "Open Sans Bold",
+       "fontSize": 20,
+       "lineHeight": "26px",
+       "letterSpacing": "-0.5%",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "WIDTH_AND_HEIGHT"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "184:496",
+   "name": "Contenido",
+   "type": "FRAME",
+   "x": 0,
+   "y": 106,
+   "w": 390,
+   "h": 636,
+   "layout": {
+    "mode": "VERTICAL",
+    "main": "MIN",
+    "cross": "MIN",
+    "pad": [
+     20,
+     20,
+     0,
+     20
+    ],
+    "gap": 20,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "FILL",
+    "FILL"
+   ],
+   "tok": {
+    "itemSpacing": "space/5",
+    "paddingLeft": "space/5",
+    "paddingTop": "space/5",
+    "paddingRight": "space/5",
+    "paddingBottom": "space/0"
+   },
+   "children": [
+    {
+     "id": "184:497",
+     "name": "Pasos · 1 de 2",
+     "type": "FRAME",
+     "x": 20,
+     "y": 126,
+     "w": 350,
+     "h": 4,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "MIN",
+      "cross": "MIN",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 4,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "tok": {
+      "itemSpacing": "space/1"
+     },
+     "children": [
+      {
+       "id": "184:498",
+       "name": "hecho",
+       "type": "RECTANGLE",
+       "x": 20,
+       "y": 126,
+       "w": 173,
+       "h": 4,
+       "sizing": [
+        "FILL",
+        "FIXED"
+       ],
+       "radius": 999,
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#2C2A29",
+         "token": "color/bg/inverse"
+        }
+       ],
+       "tok": {
+        "topLeftRadius": "radius/full",
+        "topRightRadius": "radius/full",
+        "bottomLeftRadius": "radius/full",
+        "bottomRightRadius": "radius/full"
+       }
+      },
+      {
+       "id": "184:499",
+       "name": "pendiente",
+       "type": "RECTANGLE",
+       "x": 197,
+       "y": 126,
+       "w": 173,
+       "h": 4,
+       "sizing": [
+        "FILL",
+        "FIXED"
+       ],
+       "radius": 999,
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#E6E7E8",
+         "token": "color/border/subtle"
+        }
+       ],
+       "tok": {
+        "topLeftRadius": "radius/full",
+        "topRightRadius": "radius/full",
+        "bottomLeftRadius": "radius/full",
+        "bottomRightRadius": "radius/full"
+       }
+      }
+     ]
+    },
+    {
+     "id": "184:500",
+     "name": "Encabezado",
+     "type": "FRAME",
+     "x": 20,
+     "y": 150,
+     "w": 350,
+     "h": 82,
+     "layout": {
+      "mode": "VERTICAL",
+      "main": "MIN",
+      "cross": "MIN",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 8,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "tok": {
+      "itemSpacing": "space/2"
+     },
+     "children": [
+      {
+       "id": "184:501",
+       "name": "¿Qué día te pagan?",
+       "type": "TEXT",
+       "x": 20,
+       "y": 150,
+       "w": 350,
+       "h": 30,
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#1A1B1A",
+         "token": "color/text/primary"
+        }
+       ],
+       "text": "¿Qué día te pagan?",
+       "textStyle": "heading/xl",
+       "font": "Open Sans Bold",
+       "fontSize": 24,
+       "lineHeight": "30px",
+       "letterSpacing": "-1%",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "HEIGHT"
+      },
+      {
+       "id": "184:502",
+       "name": "Así movemos tu cobro para qu…",
+       "type": "TEXT",
+       "x": 20,
+       "y": 188,
+       "w": 350,
+       "h": 44,
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#5B5B5B",
+         "token": "color/text/secondary"
+        }
+       ],
+       "text": "Así movemos tu cobro para que caiga cuando ya tienes el dinero, no antes.",
+       "textStyle": "body/m",
+       "font": "Open Sans Regular",
+       "fontSize": 15,
+       "lineHeight": "22px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "HEIGHT"
+      }
+     ]
+    },
+    {
+     "id": "184:503",
+     "name": "Opciones",
+     "type": "FRAME",
+     "x": 20,
+     "y": 252,
+     "w": 350,
+     "h": 212,
+     "layout": {
+      "mode": "VERTICAL",
+      "main": "MIN",
+      "cross": "MIN",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 12,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "tok": {
+      "itemSpacing": "space/3"
+     },
+     "children": [
+      {
+       "id": "184:504",
+       "name": "Chip · Quincena y fin de mes",
+       "type": "INSTANCE",
+       "x": 20,
+       "y": 252,
+       "w": 350,
+       "h": 44,
+       "layout": {
+        "mode": "HORIZONTAL",
+        "main": "CENTER",
+        "cross": "CENTER",
+        "pad": [
+         12,
+         16,
+         12,
+         16
+        ],
+        "gap": 0
+       },
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "radius": 999,
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#FFFFFF",
+         "token": "color/action/secondary-bg"
+        }
+       ],
+       "strokes": [
+        {
+         "type": "SOLID",
+         "hex": "#C4C4C4",
+         "token": "color/border/default"
+        }
+       ],
+       "strokeWeight": 1.5,
+       "strokeAlign": "INSIDE",
+       "tok": {
+        "paddingLeft": "space/4",
+        "paddingTop": "space/3",
+        "paddingRight": "space/4",
+        "paddingBottom": "space/3",
+        "topLeftRadius": "radius/full",
+        "topRightRadius": "radius/full",
+        "bottomLeftRadius": "radius/full",
+        "bottomRightRadius": "radius/full"
+       },
+       "component": "Chip / Variant=Normal",
+       "reactions": [
+        {
+         "trigger": "ON_CLICK",
+         "nav": "CHANGE_TO",
+         "dest": "3:153",
+         "transition": {
+          "type": "SMART_ANIMATE",
+          "ms": 150,
+          "easing": "EASE_OUT"
+         }
+        }
+       ],
+       "children": [
+        {
+         "id": "I184:504;3:152",
+         "name": "Label",
+         "type": "TEXT",
+         "x": 114.5,
+         "y": 264,
+         "w": 161,
+         "h": 20,
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#5B5B5B",
+           "token": "color/text/secondary"
+          }
+         ],
+         "text": "Quincena y fin de mes",
+         "textStyle": "label/l",
+         "font": "Open Sans SemiBold",
+         "fontSize": 15,
+         "lineHeight": "20px",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        }
+       ]
+      },
+      {
+       "id": "184:506",
+       "name": "Chip · Solo fin de mes",
+       "type": "INSTANCE",
+       "x": 20,
+       "y": 308,
+       "w": 350,
+       "h": 44,
+       "layout": {
+        "mode": "HORIZONTAL",
+        "main": "CENTER",
+        "cross": "CENTER",
+        "pad": [
+         12,
+         16,
+         12,
+         16
+        ],
+        "gap": 0
+       },
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "radius": 999,
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#FFFFFF",
+         "token": "color/action/secondary-bg"
+        }
+       ],
+       "strokes": [
+        {
+         "type": "SOLID",
+         "hex": "#C4C4C4",
+         "token": "color/border/default"
+        }
+       ],
+       "strokeWeight": 1.5,
+       "strokeAlign": "INSIDE",
+       "tok": {
+        "paddingLeft": "space/4",
+        "paddingTop": "space/3",
+        "paddingRight": "space/4",
+        "paddingBottom": "space/3",
+        "topLeftRadius": "radius/full",
+        "topRightRadius": "radius/full",
+        "bottomLeftRadius": "radius/full",
+        "bottomRightRadius": "radius/full"
+       },
+       "component": "Chip / Variant=Normal",
+       "reactions": [
+        {
+         "trigger": "ON_CLICK",
+         "nav": "CHANGE_TO",
+         "dest": "3:153",
+         "transition": {
+          "type": "SMART_ANIMATE",
+          "ms": 150,
+          "easing": "EASE_OUT"
+         }
+        }
+       ],
+       "children": [
+        {
+         "id": "I184:506;3:152",
+         "name": "Label",
+         "type": "TEXT",
+         "x": 140,
+         "y": 320,
+         "w": 110,
+         "h": 20,
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#5B5B5B",
+           "token": "color/text/secondary"
+          }
+         ],
+         "text": "Solo fin de mes",
+         "textStyle": "label/l",
+         "font": "Open Sans SemiBold",
+         "fontSize": 15,
+         "lineHeight": "20px",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        }
+       ]
+      },
+      {
+       "id": "184:508",
+       "name": "Chip · Cada semana",
+       "type": "INSTANCE",
+       "x": 20,
+       "y": 364,
+       "w": 350,
+       "h": 44,
+       "layout": {
+        "mode": "HORIZONTAL",
+        "main": "CENTER",
+        "cross": "CENTER",
+        "pad": [
+         12,
+         16,
+         12,
+         16
+        ],
+        "gap": 0
+       },
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "radius": 999,
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#FFFFFF",
+         "token": "color/action/secondary-bg"
+        }
+       ],
+       "strokes": [
+        {
+         "type": "SOLID",
+         "hex": "#C4C4C4",
+         "token": "color/border/default"
+        }
+       ],
+       "strokeWeight": 1.5,
+       "strokeAlign": "INSIDE",
+       "tok": {
+        "paddingLeft": "space/4",
+        "paddingTop": "space/3",
+        "paddingRight": "space/4",
+        "paddingBottom": "space/3",
+        "topLeftRadius": "radius/full",
+        "topRightRadius": "radius/full",
+        "bottomLeftRadius": "radius/full",
+        "bottomRightRadius": "radius/full"
+       },
+       "component": "Chip / Variant=Normal",
+       "reactions": [
+        {
+         "trigger": "ON_CLICK",
+         "nav": "CHANGE_TO",
+         "dest": "3:153",
+         "transition": {
+          "type": "SMART_ANIMATE",
+          "ms": 150,
+          "easing": "EASE_OUT"
+         }
+        }
+       ],
+       "children": [
+        {
+         "id": "I184:508;3:152",
+         "name": "Label",
+         "type": "TEXT",
+         "x": 146,
+         "y": 376,
+         "w": 98,
+         "h": 20,
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#5B5B5B",
+           "token": "color/text/secondary"
+          }
+         ],
+         "text": "Cada semana",
+         "textStyle": "label/l",
+         "font": "Open Sans SemiBold",
+         "fontSize": 15,
+         "lineHeight": "20px",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        }
+       ]
+      },
+      {
+       "id": "184:510",
+       "name": "Chip · Es variable",
+       "type": "INSTANCE",
+       "x": 20,
+       "y": 420,
+       "w": 350,
+       "h": 44,
+       "layout": {
+        "mode": "HORIZONTAL",
+        "main": "CENTER",
+        "cross": "CENTER",
+        "pad": [
+         12,
+         16,
+         12,
+         16
+        ],
+        "gap": 0
+       },
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "radius": 999,
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#FFFFFF",
+         "token": "color/action/secondary-bg"
+        }
+       ],
+       "strokes": [
+        {
+         "type": "SOLID",
+         "hex": "#C4C4C4",
+         "token": "color/border/default"
+        }
+       ],
+       "strokeWeight": 1.5,
+       "strokeAlign": "INSIDE",
+       "tok": {
+        "paddingLeft": "space/4",
+        "paddingTop": "space/3",
+        "paddingRight": "space/4",
+        "paddingBottom": "space/3",
+        "topLeftRadius": "radius/full",
+        "topRightRadius": "radius/full",
+        "bottomLeftRadius": "radius/full",
+        "bottomRightRadius": "radius/full"
+       },
+       "component": "Chip / Variant=Normal",
+       "reactions": [
+        {
+         "trigger": "ON_CLICK",
+         "nav": "CHANGE_TO",
+         "dest": "3:153",
+         "transition": {
+          "type": "SMART_ANIMATE",
+          "ms": 150,
+          "easing": "EASE_OUT"
+         }
+        }
+       ],
+       "children": [
+        {
+         "id": "I184:510;3:152",
+         "name": "Label",
+         "type": "TEXT",
+         "x": 156,
+         "y": 432,
+         "w": 78,
+         "h": 20,
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#5B5B5B",
+           "token": "color/text/secondary"
+          }
+         ],
+         "text": "Es variable",
+         "textStyle": "label/l",
+         "font": "Open Sans SemiBold",
+         "fontSize": 15,
+         "lineHeight": "20px",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "184:512",
+     "name": "Nota",
+     "type": "FRAME",
+     "x": 20,
+     "y": 484,
+     "w": 350,
+     "h": 78,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "MIN",
+      "cross": "MIN",
+      "pad": [
+       12,
+       16,
+       12,
+       16
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "radius": 8,
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#E4F6FC",
+       "token": "color/estado/plan-bg"
+      }
+     ],
+     "tok": {
+      "paddingLeft": "space/4",
+      "paddingTop": "space/3",
+      "paddingRight": "space/4",
+      "paddingBottom": "space/3",
+      "topLeftRadius": "radius/sm",
+      "topRightRadius": "radius/sm",
+      "bottomLeftRadius": "radius/sm",
+      "bottomRightRadius": "radius/sm"
+     },
+     "children": [
+      {
+       "id": "184:513",
+       "name": "Si es variable, usamos el pr…",
+       "type": "TEXT",
+       "x": 36,
+       "y": 496,
+       "w": 318,
+       "h": 54,
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#00448C",
+         "token": "color/estado/plan-fg"
+        }
+       ],
+       "text": "Si es variable, usamos el promedio de lo que te llegó en los últimos tres meses y te avisamos antes de cobrar.",
+       "textStyle": "body/s",
+       "font": "Open Sans Regular",
+       "fontSize": 13,
+       "lineHeight": "18px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "HEIGHT"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "184:514",
+   "name": "Pie",
+   "type": "FRAME",
+   "x": 0,
+   "y": 742,
+   "w": 390,
+   "h": 102,
+   "layout": {
+    "mode": "VERTICAL",
+    "main": "MIN",
+    "cross": "CENTER",
+    "pad": [
+     16,
+     20,
+     34,
+     20
+    ],
+    "gap": 12,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "FILL",
+    "HUG"
+   ],
+   "tok": {
+    "itemSpacing": "space/3",
+    "paddingLeft": "space/5",
+    "paddingTop": "space/4",
+    "paddingRight": "space/5",
+    "paddingBottom": "size/safe-bottom"
+   },
+   "children": [
+    {
+     "id": "184:515",
+     "name": "Botón · Continuar",
+     "type": "INSTANCE",
+     "x": 20,
+     "y": 758,
+     "w": 350,
+     "h": 52,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "CENTER",
+      "cross": "CENTER",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "FIXED"
+     ],
+     "radius": 999,
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#E6E7E8",
+       "token": "color/action/disabled-bg"
+      }
+     ],
+     "tok": {
+      "topLeftRadius": "radius/full",
+      "topRightRadius": "radius/full",
+      "bottomLeftRadius": "radius/full",
+      "bottomRightRadius": "radius/full"
+     },
+     "component": "Button / Variant=Inactivo",
+     "reactions": [
+      {
+       "trigger": "ON_CLICK",
+       "nav": "NAVIGATE",
+       "dest": "184:520",
+       "transition": {
+        "type": "SLIDE_IN",
+        "dir": "LEFT",
+        "ms": 300,
+        "easing": "EASE_OUT"
+       }
+      }
+     ],
+     "children": [
+      {
+       "id": "I184:515;3:149",
+       "name": "Label",
+       "type": "TEXT",
+       "x": 158,
+       "y": 776,
+       "w": 74,
+       "h": 16,
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#6D6E72",
+         "token": "color/action/disabled-fg"
+        }
+       ],
+       "text": "CONTINUAR",
+       "textStyle": "overline",
+       "font": "Open Sans Bold",
+       "fontSize": 11,
+       "lineHeight": "16px",
+       "letterSpacing": "8%",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "WIDTH_AND_HEIGHT"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "section": "1 · Inicio y fecha de cobro"
+}

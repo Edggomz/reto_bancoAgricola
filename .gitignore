@@ -1,0 +1,34 @@
+# ---- Dependencias y compilados ----
+node_modules/
+target/
+*.class
+dist/
+web-build/
+
+# ---- Entorno local. NUNCA subir llaves ni contraseñas ----
+.env
+.env*.local
+*.p8
+*.p12
+*.jks
+*.key
+*-service-account*.json
+
+# ---- Expo / React Native ----
+.expo/
+.metro-health-check*
+expo-env.d.ts
+/frontend/android/
+/frontend/ios/
+frontend/visual-qa/
+
+# ---- IDE ----
+.idea/
+*.iml
+.vscode/
+
+# ---- Sistema ----
+.DS_Store
+Thumbs.db
+npm-debug.*
+yarn-error.*

@@ -1,0 +1,1803 @@
+{
+ "id": "184:719",
+ "name": "07 · ¿En cuántas partes?",
+ "type": "FRAME",
+ "x": 0,
+ "y": 0,
+ "w": 390,
+ "h": 844,
+ "layout": {
+  "mode": "VERTICAL",
+  "main": "MIN",
+  "cross": "MIN",
+  "pad": [
+   0,
+   0,
+   0,
+   0
+  ],
+  "gap": 0,
+  "strokesInLayout": true
+ },
+ "sizing": [
+  "FIXED",
+  "FIXED"
+ ],
+ "clip": true,
+ "radius": 24,
+ "fills": [
+  {
+   "type": "SOLID",
+   "hex": "#FFFFFF",
+   "token": "color/bg/canvas"
+  }
+ ],
+ "effect": "elevation/2",
+ "tok": {
+  "topLeftRadius": "radius/xl",
+  "topRightRadius": "radius/xl",
+  "bottomLeftRadius": "radius/xl",
+  "bottomRightRadius": "radius/xl"
+ },
+ "children": [
+  {
+   "id": "184:720",
+   "name": "Status bar",
+   "type": "FRAME",
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 54,
+   "sizing": [
+    "FILL",
+    "FIXED"
+   ],
+   "tok": {
+    "paddingLeft": "space/5",
+    "paddingRight": "space/5"
+   },
+   "note": "barra de estado del sistema; hijos omitidos"
+  },
+  {
+   "id": "184:736",
+   "name": "App bar",
+   "type": "FRAME",
+   "x": 0,
+   "y": 54,
+   "w": 390,
+   "h": 52,
+   "layout": {
+    "mode": "HORIZONTAL",
+    "main": "SPACE_BETWEEN",
+    "cross": "CENTER",
+    "pad": [
+     0,
+     8,
+     0,
+     8
+    ],
+    "gap": 0,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "FILL",
+    "FIXED"
+   ],
+   "strokes": [
+    {
+     "type": "SOLID",
+     "hex": "#E6E7E8",
+     "token": "color/border/subtle"
+    }
+   ],
+   "strokeWeight": [
+    0,
+    0,
+    1,
+    0
+   ],
+   "strokeAlign": "INSIDE",
+   "tok": {
+    "paddingLeft": "space/2",
+    "paddingTop": "space/0",
+    "paddingRight": "space/2",
+    "paddingBottom": "space/0"
+   },
+   "children": [
+    {
+     "id": "184:737",
+     "name": "Atrás",
+     "type": "FRAME",
+     "x": 8,
+     "y": 57.5,
+     "w": 44,
+     "h": 44,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "CENTER",
+      "cross": "CENTER",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FIXED",
+      "FIXED"
+     ],
+     "reactions": [
+      {
+       "trigger": "ON_CLICK",
+       "nav": "BACK"
+      }
+     ],
+     "children": [
+      {
+       "id": "184:738",
+       "name": "‹",
+       "type": "TEXT",
+       "x": 26,
+       "y": 66.5,
+       "w": 8,
+       "h": 26,
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#5B5B5B",
+         "token": "color/text/secondary"
+        }
+       ],
+       "text": "‹",
+       "textStyle": "heading/l",
+       "font": "Open Sans Bold",
+       "fontSize": 20,
+       "lineHeight": "26px",
+       "letterSpacing": "-0.5%",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "WIDTH_AND_HEIGHT"
+      }
+     ]
+    },
+    {
+     "id": "184:739",
+     "name": "Título",
+     "type": "FRAME",
+     "x": 125.5,
+     "y": 67.5,
+     "w": 139,
+     "h": 24,
+     "layout": {
+      "mode": "VERTICAL",
+      "main": "MIN",
+      "cross": "CENTER",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "HUG",
+      "HUG"
+     ],
+     "children": [
+      {
+       "id": "184:740",
+       "name": "Apartar mi cuota",
+       "type": "TEXT",
+       "x": 125.5,
+       "y": 67.5,
+       "w": 139,
+       "h": 24,
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#1A1B1A",
+         "token": "color/text/primary"
+        }
+       ],
+       "text": "Apartar mi cuota",
+       "textStyle": "heading/m",
+       "font": "Open Sans SemiBold",
+       "fontSize": 17,
+       "lineHeight": "24px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "WIDTH_AND_HEIGHT"
+      }
+     ]
+    },
+    {
+     "id": "184:741",
+     "name": "Cerrar",
+     "type": "FRAME",
+     "x": 338,
+     "y": 57.5,
+     "w": 44,
+     "h": 44,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "CENTER",
+      "cross": "CENTER",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FIXED",
+      "FIXED"
+     ],
+     "reactions": [
+      {
+       "trigger": "ON_CLICK",
+       "nav": "NAVIGATE",
+       "dest": "184:1103",
+       "transition": {
+        "type": "DISSOLVE",
+        "ms": 250,
+        "easing": "EASE_OUT"
+       }
+      }
+     ],
+     "children": [
+      {
+       "id": "184:742",
+       "name": "×",
+       "type": "TEXT",
+       "x": 354,
+       "y": 66.5,
+       "w": 12,
+       "h": 26,
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#5B5B5B",
+         "token": "color/text/secondary"
+        }
+       ],
+       "text": "×",
+       "textStyle": "heading/l",
+       "font": "Open Sans Bold",
+       "fontSize": 20,
+       "lineHeight": "26px",
+       "letterSpacing": "-0.5%",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "WIDTH_AND_HEIGHT"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "184:743",
+   "name": "Contenido",
+   "type": "FRAME",
+   "x": 0,
+   "y": 106,
+   "w": 390,
+   "h": 636,
+   "layout": {
+    "mode": "VERTICAL",
+    "main": "MIN",
+    "cross": "MIN",
+    "pad": [
+     20,
+     20,
+     0,
+     20
+    ],
+    "gap": 20,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "FILL",
+    "FILL"
+   ],
+   "tok": {
+    "itemSpacing": "space/5",
+    "paddingLeft": "space/5",
+    "paddingTop": "space/5",
+    "paddingRight": "space/5",
+    "paddingBottom": "space/0"
+   },
+   "children": [
+    {
+     "id": "184:744",
+     "name": "Pasos · 2 de 3",
+     "type": "FRAME",
+     "x": 20,
+     "y": 126,
+     "w": 350,
+     "h": 4,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "MIN",
+      "cross": "MIN",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 4,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "tok": {
+      "itemSpacing": "space/1"
+     },
+     "children": [
+      {
+       "id": "184:745",
+       "name": "hecho",
+       "type": "RECTANGLE",
+       "x": 20,
+       "y": 126,
+       "w": 114,
+       "h": 4,
+       "sizing": [
+        "FILL",
+        "FIXED"
+       ],
+       "radius": 999,
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#2C2A29",
+         "token": "color/bg/inverse"
+        }
+       ],
+       "tok": {
+        "topLeftRadius": "radius/full",
+        "topRightRadius": "radius/full",
+        "bottomLeftRadius": "radius/full",
+        "bottomRightRadius": "radius/full"
+       }
+      },
+      {
+       "id": "184:746",
+       "name": "hecho",
+       "type": "RECTANGLE",
+       "x": 138,
+       "y": 126,
+       "w": 114,
+       "h": 4,
+       "sizing": [
+        "FILL",
+        "FIXED"
+       ],
+       "radius": 999,
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#2C2A29",
+         "token": "color/bg/inverse"
+        }
+       ],
+       "tok": {
+        "topLeftRadius": "radius/full",
+        "topRightRadius": "radius/full",
+        "bottomLeftRadius": "radius/full",
+        "bottomRightRadius": "radius/full"
+       }
+      },
+      {
+       "id": "184:747",
+       "name": "pendiente",
+       "type": "RECTANGLE",
+       "x": 256,
+       "y": 126,
+       "w": 114,
+       "h": 4,
+       "sizing": [
+        "FILL",
+        "FIXED"
+       ],
+       "radius": 999,
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#E6E7E8",
+         "token": "color/border/subtle"
+        }
+       ],
+       "tok": {
+        "topLeftRadius": "radius/full",
+        "topRightRadius": "radius/full",
+        "bottomLeftRadius": "radius/full",
+        "bottomRightRadius": "radius/full"
+       }
+      }
+     ]
+    },
+    {
+     "id": "184:748",
+     "name": "Encabezado",
+     "type": "FRAME",
+     "x": 20,
+     "y": 150,
+     "w": 350,
+     "h": 84,
+     "layout": {
+      "mode": "VERTICAL",
+      "main": "MIN",
+      "cross": "MIN",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 8,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "tok": {
+      "itemSpacing": "space/2"
+     },
+     "children": [
+      {
+       "id": "184:749",
+       "name": "Crédito personal · cuota de …",
+       "type": "TEXT",
+       "x": 20,
+       "y": 150,
+       "w": 350,
+       "h": 16,
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#5B5B5B",
+         "token": "color/text/secondary"
+        }
+       ],
+       "text": "Crédito personal · cuota de $248.50",
+       "textStyle": "label/m",
+       "font": "Open Sans SemiBold",
+       "fontSize": 13,
+       "lineHeight": "16px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "HEIGHT"
+      },
+      {
+       "id": "184:750",
+       "name": "¿En cuántas partes la aparta…",
+       "type": "TEXT",
+       "x": 20,
+       "y": 174,
+       "w": 350,
+       "h": 60,
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#1A1B1A",
+         "token": "color/text/primary"
+        }
+       ],
+       "text": "¿En cuántas partes la apartamos?",
+       "textStyle": "heading/xl",
+       "font": "Open Sans Bold",
+       "fontSize": 24,
+       "lineHeight": "30px",
+       "letterSpacing": "-1%",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "HEIGHT"
+      }
+     ]
+    },
+    {
+     "id": "184:751",
+     "name": "Partes",
+     "type": "FRAME",
+     "x": 20,
+     "y": 254,
+     "w": 350,
+     "h": 70,
+     "layout": {
+      "mode": "VERTICAL",
+      "main": "MIN",
+      "cross": "MIN",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 8,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "tok": {
+      "itemSpacing": "space/2"
+     },
+     "children": [
+      {
+       "id": "184:752",
+       "name": "Opciones",
+       "type": "FRAME",
+       "x": 20,
+       "y": 254,
+       "w": 350,
+       "h": 44,
+       "layout": {
+        "mode": "HORIZONTAL",
+        "main": "MIN",
+        "cross": "MIN",
+        "pad": [
+         0,
+         0,
+         0,
+         0
+        ],
+        "gap": 8,
+        "wrap": true,
+        "crossGap": 8,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "tok": {
+        "itemSpacing": "space/2",
+        "counterAxisSpacing": "space/2"
+       },
+       "children": [
+        {
+         "id": "184:753",
+         "name": "Chip · 2 partes",
+         "type": "INSTANCE",
+         "x": 20,
+         "y": 254,
+         "w": 91,
+         "h": 44,
+         "layout": {
+          "mode": "HORIZONTAL",
+          "main": "CENTER",
+          "cross": "CENTER",
+          "pad": [
+           12,
+           16,
+           12,
+           16
+          ],
+          "gap": 0
+         },
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "radius": 999,
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#FFFFFF",
+           "token": "color/action/secondary-bg"
+          }
+         ],
+         "strokes": [
+          {
+           "type": "SOLID",
+           "hex": "#C4C4C4",
+           "token": "color/border/default"
+          }
+         ],
+         "strokeWeight": 1.5,
+         "strokeAlign": "INSIDE",
+         "tok": {
+          "paddingLeft": "space/4",
+          "paddingTop": "space/3",
+          "paddingRight": "space/4",
+          "paddingBottom": "space/3",
+          "topLeftRadius": "radius/full",
+          "topRightRadius": "radius/full",
+          "bottomLeftRadius": "radius/full",
+          "bottomRightRadius": "radius/full"
+         },
+         "component": "Chip / Variant=Normal",
+         "reactions": [
+          {
+           "trigger": "ON_CLICK",
+           "nav": "CHANGE_TO",
+           "dest": "3:153",
+           "transition": {
+            "type": "SMART_ANIMATE",
+            "ms": 150,
+            "easing": "EASE_OUT"
+           }
+          }
+         ],
+         "children": [
+          {
+           "id": "I184:753;3:152",
+           "name": "Label",
+           "type": "TEXT",
+           "x": 36,
+           "y": 266,
+           "w": 59,
+           "h": 20,
+           "sizing": [
+            "HUG",
+            "HUG"
+           ],
+           "fills": [
+            {
+             "type": "SOLID",
+             "hex": "#5B5B5B",
+             "token": "color/text/secondary"
+            }
+           ],
+           "text": "2 partes",
+           "textStyle": "label/l",
+           "font": "Open Sans SemiBold",
+           "fontSize": 15,
+           "lineHeight": "20px",
+           "align": [
+            "LEFT",
+            "TOP"
+           ],
+           "autoResize": "WIDTH_AND_HEIGHT"
+          }
+         ]
+        },
+        {
+         "id": "184:755",
+         "name": "Chip · 3 partes",
+         "type": "INSTANCE",
+         "x": 119,
+         "y": 254,
+         "w": 91,
+         "h": 44,
+         "layout": {
+          "mode": "HORIZONTAL",
+          "main": "CENTER",
+          "cross": "CENTER",
+          "pad": [
+           12,
+           16,
+           12,
+           16
+          ],
+          "gap": 0
+         },
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "radius": 999,
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#FFFFFF",
+           "token": "color/action/secondary-bg"
+          }
+         ],
+         "strokes": [
+          {
+           "type": "SOLID",
+           "hex": "#C4C4C4",
+           "token": "color/border/default"
+          }
+         ],
+         "strokeWeight": 1.5,
+         "strokeAlign": "INSIDE",
+         "tok": {
+          "paddingLeft": "space/4",
+          "paddingTop": "space/3",
+          "paddingRight": "space/4",
+          "paddingBottom": "space/3",
+          "topLeftRadius": "radius/full",
+          "topRightRadius": "radius/full",
+          "bottomLeftRadius": "radius/full",
+          "bottomRightRadius": "radius/full"
+         },
+         "component": "Chip / Variant=Normal",
+         "reactions": [
+          {
+           "trigger": "ON_CLICK",
+           "nav": "CHANGE_TO",
+           "dest": "3:153",
+           "transition": {
+            "type": "SMART_ANIMATE",
+            "ms": 150,
+            "easing": "EASE_OUT"
+           }
+          }
+         ],
+         "children": [
+          {
+           "id": "I184:755;3:152",
+           "name": "Label",
+           "type": "TEXT",
+           "x": 135,
+           "y": 266,
+           "w": 59,
+           "h": 20,
+           "sizing": [
+            "HUG",
+            "HUG"
+           ],
+           "fills": [
+            {
+             "type": "SOLID",
+             "hex": "#5B5B5B",
+             "token": "color/text/secondary"
+            }
+           ],
+           "text": "3 partes",
+           "textStyle": "label/l",
+           "font": "Open Sans SemiBold",
+           "fontSize": 15,
+           "lineHeight": "20px",
+           "align": [
+            "LEFT",
+            "TOP"
+           ],
+           "autoResize": "WIDTH_AND_HEIGHT"
+          }
+         ]
+        },
+        {
+         "id": "184:757",
+         "name": "Chip · 4 partes",
+         "type": "INSTANCE",
+         "x": 218,
+         "y": 254,
+         "w": 91,
+         "h": 44,
+         "layout": {
+          "mode": "HORIZONTAL",
+          "main": "CENTER",
+          "cross": "CENTER",
+          "pad": [
+           12,
+           16,
+           12,
+           16
+          ],
+          "gap": 0
+         },
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "radius": 999,
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#FFFFFF",
+           "token": "color/action/secondary-bg"
+          }
+         ],
+         "strokes": [
+          {
+           "type": "SOLID",
+           "hex": "#C4C4C4",
+           "token": "color/border/default"
+          }
+         ],
+         "strokeWeight": 1.5,
+         "strokeAlign": "INSIDE",
+         "tok": {
+          "paddingLeft": "space/4",
+          "paddingTop": "space/3",
+          "paddingRight": "space/4",
+          "paddingBottom": "space/3",
+          "topLeftRadius": "radius/full",
+          "topRightRadius": "radius/full",
+          "bottomLeftRadius": "radius/full",
+          "bottomRightRadius": "radius/full"
+         },
+         "component": "Chip / Variant=Normal",
+         "reactions": [
+          {
+           "trigger": "ON_CLICK",
+           "nav": "CHANGE_TO",
+           "dest": "3:153",
+           "transition": {
+            "type": "SMART_ANIMATE",
+            "ms": 150,
+            "easing": "EASE_OUT"
+           }
+          }
+         ],
+         "children": [
+          {
+           "id": "I184:757;3:152",
+           "name": "Label",
+           "type": "TEXT",
+           "x": 234,
+           "y": 266,
+           "w": 59,
+           "h": 20,
+           "sizing": [
+            "HUG",
+            "HUG"
+           ],
+           "fills": [
+            {
+             "type": "SOLID",
+             "hex": "#5B5B5B",
+             "token": "color/text/secondary"
+            }
+           ],
+           "text": "4 partes",
+           "textStyle": "label/l",
+           "font": "Open Sans SemiBold",
+           "fontSize": 15,
+           "lineHeight": "20px",
+           "align": [
+            "LEFT",
+            "TOP"
+           ],
+           "autoResize": "WIDTH_AND_HEIGHT"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "184:759",
+       "name": "Dos partes coinciden con tu …",
+       "type": "TEXT",
+       "x": 20,
+       "y": 306,
+       "w": 350,
+       "h": 18,
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#6D6E72",
+         "token": "color/text/tertiary"
+        }
+       ],
+       "text": "Dos partes coinciden con tu quincena y tu fin de mes.",
+       "textStyle": "body/s",
+       "font": "Open Sans Regular",
+       "fontSize": 13,
+       "lineHeight": "18px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "HEIGHT"
+      }
+     ]
+    },
+    {
+     "id": "184:760",
+     "name": "Así se aparta",
+     "type": "FRAME",
+     "x": 20,
+     "y": 344,
+     "w": 350,
+     "h": 60,
+     "layout": {
+      "mode": "VERTICAL",
+      "main": "MIN",
+      "cross": "MIN",
+      "pad": [
+       8,
+       16,
+       8,
+       16
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "radius": 12,
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#FFFFFF",
+       "token": "color/bg/surface"
+      }
+     ],
+     "strokes": [
+      {
+       "type": "SOLID",
+       "hex": "#E6E7E8",
+       "token": "color/border/subtle"
+      }
+     ],
+     "strokeWeight": 1,
+     "strokeAlign": "INSIDE",
+     "effect": "elevation/1",
+     "tok": {
+      "itemSpacing": "space/0",
+      "paddingLeft": "space/4",
+      "paddingTop": "space/2",
+      "paddingRight": "space/4",
+      "paddingBottom": "space/2",
+      "topLeftRadius": "radius/md",
+      "topRightRadius": "radius/md",
+      "bottomLeftRadius": "radius/md",
+      "bottomRightRadius": "radius/md"
+     },
+     "children": [
+      {
+       "id": "184:761",
+       "name": "30 de septiembre",
+       "type": "FRAME",
+       "hidden": true,
+       "x": 37,
+       "y": 353,
+       "w": 316,
+       "h": 63,
+       "layout": {
+        "mode": "HORIZONTAL",
+        "main": "MIN",
+        "cross": "CENTER",
+        "pad": [
+         12,
+         0,
+         12,
+         0
+        ],
+        "gap": 12,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "FIXED",
+        "HUG"
+       ],
+       "strokes": [
+        {
+         "type": "SOLID",
+         "hex": "#E6E7E8",
+         "token": "color/border/subtle"
+        }
+       ],
+       "strokeWeight": [
+        0,
+        0,
+        1,
+        0
+       ],
+       "strokeAlign": "INSIDE",
+       "tok": {
+        "itemSpacing": "space/3",
+        "paddingLeft": "space/0",
+        "paddingTop": "space/3",
+        "paddingRight": "space/0",
+        "paddingBottom": "space/3"
+       },
+       "children": [
+        {
+         "id": "184:762",
+         "name": "Punto",
+         "type": "ELLIPSE",
+         "x": 37,
+         "y": 379,
+         "w": 10,
+         "h": 10,
+         "sizing": [
+          "FIXED",
+          "FIXED"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#00448C",
+           "token": "color/estado/plan-fg"
+          }
+         ]
+        },
+        {
+         "id": "184:763",
+         "name": "Texto",
+         "type": "FRAME",
+         "x": 59,
+         "y": 365,
+         "w": 226,
+         "h": 38,
+         "layout": {
+          "mode": "VERTICAL",
+          "main": "MIN",
+          "cross": "MIN",
+          "pad": [
+           0,
+           0,
+           0,
+           0
+          ],
+          "gap": 0,
+          "strokesInLayout": true
+         },
+         "sizing": [
+          "FILL",
+          "HUG"
+         ],
+         "tok": {
+          "itemSpacing": "space/0"
+         },
+         "children": [
+          {
+           "id": "184:764",
+           "name": "30 de septiembre",
+           "type": "TEXT",
+           "x": 59,
+           "y": 365,
+           "w": 226,
+           "h": 20,
+           "sizing": [
+            "FILL",
+            "HUG"
+           ],
+           "fills": [
+            {
+             "type": "SOLID",
+             "hex": "#1A1B1A",
+             "token": "color/text/primary"
+            }
+           ],
+           "text": "30 de septiembre",
+           "textStyle": "label/l",
+           "font": "Open Sans SemiBold",
+           "fontSize": 15,
+           "lineHeight": "20px",
+           "align": [
+            "LEFT",
+            "TOP"
+           ],
+           "autoResize": "HEIGHT"
+          },
+          {
+           "id": "184:765",
+           "name": "Apartamos la primera parte",
+           "type": "TEXT",
+           "x": 59,
+           "y": 385,
+           "w": 226,
+           "h": 18,
+           "sizing": [
+            "FILL",
+            "HUG"
+           ],
+           "fills": [
+            {
+             "type": "SOLID",
+             "hex": "#5B5B5B",
+             "token": "color/text/secondary"
+            }
+           ],
+           "text": "Apartamos la primera parte",
+           "textStyle": "body/s",
+           "font": "Open Sans Regular",
+           "fontSize": 13,
+           "lineHeight": "18px",
+           "align": [
+            "LEFT",
+            "TOP"
+           ],
+           "autoResize": "HEIGHT"
+          }
+         ]
+        },
+        {
+         "id": "184:766",
+         "name": "$124.25",
+         "type": "TEXT",
+         "x": 297,
+         "y": 374,
+         "w": 56,
+         "h": 20,
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#1A1B1A",
+           "token": "color/text/primary"
+          }
+         ],
+         "text": "$124.25",
+         "textStyle": "label/l",
+         "font": "Open Sans SemiBold",
+         "fontSize": 15,
+         "lineHeight": "20px",
+         "align": [
+          "RIGHT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        }
+       ]
+      },
+      {
+       "id": "184:767",
+       "name": "15 de octubre",
+       "type": "FRAME",
+       "hidden": true,
+       "x": 37,
+       "y": 353,
+       "w": 316,
+       "h": 63,
+       "layout": {
+        "mode": "HORIZONTAL",
+        "main": "MIN",
+        "cross": "CENTER",
+        "pad": [
+         12,
+         0,
+         12,
+         0
+        ],
+        "gap": 12,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "FIXED",
+        "HUG"
+       ],
+       "strokes": [
+        {
+         "type": "SOLID",
+         "hex": "#E6E7E8",
+         "token": "color/border/subtle"
+        }
+       ],
+       "strokeWeight": [
+        0,
+        0,
+        1,
+        0
+       ],
+       "strokeAlign": "INSIDE",
+       "tok": {
+        "itemSpacing": "space/3",
+        "paddingLeft": "space/0",
+        "paddingTop": "space/3",
+        "paddingRight": "space/0",
+        "paddingBottom": "space/3"
+       },
+       "children": [
+        {
+         "id": "184:768",
+         "name": "Punto",
+         "type": "ELLIPSE",
+         "x": 37,
+         "y": 379,
+         "w": 10,
+         "h": 10,
+         "sizing": [
+          "FIXED",
+          "FIXED"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#00448C",
+           "token": "color/estado/plan-fg"
+          }
+         ]
+        },
+        {
+         "id": "184:769",
+         "name": "Texto",
+         "type": "FRAME",
+         "x": 59,
+         "y": 365,
+         "w": 226,
+         "h": 38,
+         "layout": {
+          "mode": "VERTICAL",
+          "main": "MIN",
+          "cross": "MIN",
+          "pad": [
+           0,
+           0,
+           0,
+           0
+          ],
+          "gap": 0,
+          "strokesInLayout": true
+         },
+         "sizing": [
+          "FILL",
+          "HUG"
+         ],
+         "tok": {
+          "itemSpacing": "space/0"
+         },
+         "children": [
+          {
+           "id": "184:770",
+           "name": "15 de octubre",
+           "type": "TEXT",
+           "x": 59,
+           "y": 365,
+           "w": 226,
+           "h": 20,
+           "sizing": [
+            "FILL",
+            "HUG"
+           ],
+           "fills": [
+            {
+             "type": "SOLID",
+             "hex": "#1A1B1A",
+             "token": "color/text/primary"
+            }
+           ],
+           "text": "15 de octubre",
+           "textStyle": "label/l",
+           "font": "Open Sans SemiBold",
+           "fontSize": 15,
+           "lineHeight": "20px",
+           "align": [
+            "LEFT",
+            "TOP"
+           ],
+           "autoResize": "HEIGHT"
+          },
+          {
+           "id": "184:771",
+           "name": "Apartamos la segunda parte",
+           "type": "TEXT",
+           "x": 59,
+           "y": 385,
+           "w": 226,
+           "h": 18,
+           "sizing": [
+            "FILL",
+            "HUG"
+           ],
+           "fills": [
+            {
+             "type": "SOLID",
+             "hex": "#5B5B5B",
+             "token": "color/text/secondary"
+            }
+           ],
+           "text": "Apartamos la segunda parte",
+           "textStyle": "body/s",
+           "font": "Open Sans Regular",
+           "fontSize": 13,
+           "lineHeight": "18px",
+           "align": [
+            "LEFT",
+            "TOP"
+           ],
+           "autoResize": "HEIGHT"
+          }
+         ]
+        },
+        {
+         "id": "184:772",
+         "name": "$124.25",
+         "type": "TEXT",
+         "x": 297,
+         "y": 374,
+         "w": 56,
+         "h": 20,
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#1A1B1A",
+           "token": "color/text/primary"
+          }
+         ],
+         "text": "$124.25",
+         "textStyle": "label/l",
+         "font": "Open Sans SemiBold",
+         "fontSize": 15,
+         "lineHeight": "20px",
+         "align": [
+          "RIGHT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        }
+       ]
+      },
+      {
+       "id": "184:773",
+       "name": "18 de octubre",
+       "type": "FRAME",
+       "hidden": true,
+       "x": 37,
+       "y": 353,
+       "w": 316,
+       "h": 62,
+       "layout": {
+        "mode": "HORIZONTAL",
+        "main": "MIN",
+        "cross": "CENTER",
+        "pad": [
+         12,
+         0,
+         12,
+         0
+        ],
+        "gap": 12,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "FIXED",
+        "HUG"
+       ],
+       "tok": {
+        "itemSpacing": "space/3",
+        "paddingLeft": "space/0",
+        "paddingTop": "space/3",
+        "paddingRight": "space/0",
+        "paddingBottom": "space/3"
+       },
+       "children": [
+        {
+         "id": "184:774",
+         "name": "Punto",
+         "type": "ELLIPSE",
+         "x": 37,
+         "y": 379,
+         "w": 10,
+         "h": 10,
+         "sizing": [
+          "FIXED",
+          "FIXED"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#00714E",
+           "token": "color/estado/al-dia-fg"
+          }
+         ]
+        },
+        {
+         "id": "184:775",
+         "name": "Texto",
+         "type": "FRAME",
+         "x": 59,
+         "y": 365,
+         "w": 207,
+         "h": 38,
+         "layout": {
+          "mode": "VERTICAL",
+          "main": "MIN",
+          "cross": "MIN",
+          "pad": [
+           0,
+           0,
+           0,
+           0
+          ],
+          "gap": 0,
+          "strokesInLayout": true
+         },
+         "sizing": [
+          "FILL",
+          "HUG"
+         ],
+         "tok": {
+          "itemSpacing": "space/0"
+         },
+         "children": [
+          {
+           "id": "184:776",
+           "name": "18 de octubre",
+           "type": "TEXT",
+           "x": 59,
+           "y": 365,
+           "w": 207,
+           "h": 20,
+           "sizing": [
+            "FILL",
+            "HUG"
+           ],
+           "fills": [
+            {
+             "type": "SOLID",
+             "hex": "#1A1B1A",
+             "token": "color/text/primary"
+            }
+           ],
+           "text": "18 de octubre",
+           "textStyle": "label/l",
+           "font": "Open Sans SemiBold",
+           "fontSize": 15,
+           "lineHeight": "20px",
+           "align": [
+            "LEFT",
+            "TOP"
+           ],
+           "autoResize": "HEIGHT"
+          },
+          {
+           "id": "184:777",
+           "name": "Se paga tu cuota completa",
+           "type": "TEXT",
+           "x": 59,
+           "y": 385,
+           "w": 207,
+           "h": 18,
+           "sizing": [
+            "FILL",
+            "HUG"
+           ],
+           "fills": [
+            {
+             "type": "SOLID",
+             "hex": "#5B5B5B",
+             "token": "color/text/secondary"
+            }
+           ],
+           "text": "Se paga tu cuota completa",
+           "textStyle": "body/s",
+           "font": "Open Sans Regular",
+           "fontSize": 13,
+           "lineHeight": "18px",
+           "align": [
+            "LEFT",
+            "TOP"
+           ],
+           "autoResize": "HEIGHT"
+          }
+         ]
+        },
+        {
+         "id": "184:778",
+         "name": "$248.50",
+         "type": "TEXT",
+         "x": 278,
+         "y": 371,
+         "w": 75,
+         "h": 26,
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#1A1B1A",
+           "token": "color/text/primary"
+          }
+         ],
+         "text": "$248.50",
+         "textStyle": "numeral/m",
+         "font": "Open Sans SemiBold",
+         "fontSize": 20,
+         "lineHeight": "26px",
+         "align": [
+          "RIGHT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        }
+       ]
+      },
+      {
+       "id": "228:3965",
+       "name": "Sin elegir",
+       "type": "FRAME",
+       "x": 37,
+       "y": 353,
+       "w": 316,
+       "h": 42,
+       "layout": {
+        "mode": "VERTICAL",
+        "main": "MIN",
+        "cross": "MIN",
+        "pad": [
+         12,
+         0,
+         12,
+         0
+        ],
+        "gap": 0,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "clip": true,
+       "children": [
+        {
+         "id": "228:3966",
+         "name": "Elige en cuántas partes y te mostramos las fechas.",
+         "type": "TEXT",
+         "x": 37,
+         "y": 365,
+         "w": 316,
+         "h": 18,
+         "sizing": [
+          "FILL",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#5B5B5B",
+           "token": "color/text/secondary"
+          }
+         ],
+         "text": "Elige en cuántas partes y te mostramos las fechas.",
+         "textStyle": "body/s",
+         "font": "Open Sans Regular",
+         "fontSize": 13,
+         "lineHeight": "18px",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "HEIGHT"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "184:779",
+     "name": "Nota",
+     "type": "FRAME",
+     "x": 20,
+     "y": 424,
+     "w": 350,
+     "h": 78,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "MIN",
+      "cross": "MIN",
+      "pad": [
+       12,
+       16,
+       12,
+       16
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "radius": 8,
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#F5F7F9",
+       "token": "color/bg/surface-sunken"
+      }
+     ],
+     "tok": {
+      "paddingLeft": "space/4",
+      "paddingTop": "space/3",
+      "paddingRight": "space/4",
+      "paddingBottom": "space/3",
+      "topLeftRadius": "radius/sm",
+      "topRightRadius": "radius/sm",
+      "bottomLeftRadius": "radius/sm",
+      "bottomRightRadius": "radius/sm"
+     },
+     "children": [
+      {
+       "id": "184:780",
+       "name": "Apartar no es pagar antes: e…",
+       "type": "TEXT",
+       "x": 36,
+       "y": 436,
+       "w": 318,
+       "h": 54,
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#5B5B5B",
+         "token": "color/text/secondary"
+        }
+       ],
+       "text": "Apartar no es pagar antes. El dinero se congela en tu cuenta, sigue siendo tuyo y el día 18 se paga completo.",
+       "textStyle": "body/s",
+       "font": "Open Sans Regular",
+       "fontSize": 13,
+       "lineHeight": "18px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "HEIGHT"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "184:781",
+   "name": "Pie",
+   "type": "FRAME",
+   "x": 0,
+   "y": 742,
+   "w": 390,
+   "h": 102,
+   "layout": {
+    "mode": "VERTICAL",
+    "main": "MIN",
+    "cross": "CENTER",
+    "pad": [
+     16,
+     20,
+     34,
+     20
+    ],
+    "gap": 12,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "FILL",
+    "HUG"
+   ],
+   "tok": {
+    "itemSpacing": "space/3",
+    "paddingLeft": "space/5",
+    "paddingTop": "space/4",
+    "paddingRight": "space/5",
+    "paddingBottom": "size/safe-bottom"
+   },
+   "children": [
+    {
+     "id": "184:782",
+     "name": "Botón · Continuar",
+     "type": "INSTANCE",
+     "x": 20,
+     "y": 758,
+     "w": 350,
+     "h": 52,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "CENTER",
+      "cross": "CENTER",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "FIXED"
+     ],
+     "radius": 999,
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#E6E7E8",
+       "token": "color/action/disabled-bg"
+      }
+     ],
+     "tok": {
+      "topLeftRadius": "radius/full",
+      "topRightRadius": "radius/full",
+      "bottomLeftRadius": "radius/full",
+      "bottomRightRadius": "radius/full"
+     },
+     "component": "Button / Variant=Inactivo",
+     "reactions": [
+      {
+       "trigger": "ON_CLICK",
+       "nav": "NAVIGATE",
+       "dest": "184:787",
+       "transition": {
+        "type": "SLIDE_IN",
+        "dir": "LEFT",
+        "ms": 300,
+        "easing": "EASE_OUT"
+       }
+      }
+     ],
+     "children": [
+      {
+       "id": "I184:782;3:149",
+       "name": "Label",
+       "type": "TEXT",
+       "x": 158,
+       "y": 776,
+       "w": 74,
+       "h": 16,
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#6D6E72",
+         "token": "color/action/disabled-fg"
+        }
+       ],
+       "text": "CONTINUAR",
+       "textStyle": "overline",
+       "font": "Open Sans Bold",
+       "fontSize": 11,
+       "lineHeight": "16px",
+       "letterSpacing": "8%",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "WIDTH_AND_HEIGHT"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "section": "2 · Apartar la cuota"
+}

@@ -1,0 +1,1425 @@
+{
+ "id": "186:1174",
+ "name": "11 · Avisos",
+ "type": "FRAME",
+ "x": 0,
+ "y": 0,
+ "w": 390,
+ "h": 844,
+ "layout": {
+  "mode": "VERTICAL",
+  "main": "MIN",
+  "cross": "MIN",
+  "pad": [
+   0,
+   0,
+   0,
+   0
+  ],
+  "gap": 0,
+  "strokesInLayout": true
+ },
+ "sizing": [
+  "FIXED",
+  "FIXED"
+ ],
+ "clip": true,
+ "radius": 24,
+ "fills": [
+  {
+   "type": "SOLID",
+   "hex": "#2C2A29",
+   "token": "color/bg/inverse"
+  }
+ ],
+ "effect": "elevation/2",
+ "tok": {
+  "topLeftRadius": "radius/xl",
+  "topRightRadius": "radius/xl",
+  "bottomLeftRadius": "radius/xl",
+  "bottomRightRadius": "radius/xl"
+ },
+ "children": [
+  {
+   "id": "186:1175",
+   "name": "Status bar",
+   "type": "FRAME",
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 54,
+   "sizing": [
+    "FILL",
+    "FIXED"
+   ],
+   "tok": {
+    "paddingLeft": "space/5",
+    "paddingRight": "space/5"
+   },
+   "note": "barra de estado del sistema; hijos omitidos"
+  },
+  {
+   "id": "186:1191",
+   "name": "Contenido",
+   "type": "FRAME",
+   "x": 0,
+   "y": 54,
+   "w": 390,
+   "h": 790,
+   "layout": {
+    "mode": "VERTICAL",
+    "main": "MIN",
+    "cross": "MIN",
+    "pad": [
+     24,
+     12,
+     0,
+     12
+    ],
+    "gap": 12,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "FILL",
+    "FILL"
+   ],
+   "tok": {
+    "itemSpacing": "space/3",
+    "paddingLeft": "space/3",
+    "paddingTop": "space/6",
+    "paddingRight": "space/3",
+    "paddingBottom": "space/0"
+   },
+   "children": [
+    {
+     "id": "186:1192",
+     "name": "Reloj",
+     "type": "FRAME",
+     "x": 12,
+     "y": 78,
+     "w": 366,
+     "h": 64,
+     "layout": {
+      "mode": "VERTICAL",
+      "main": "MIN",
+      "cross": "CENTER",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "children": [
+      {
+       "id": "186:1193",
+       "name": "viernes 30 de octubre",
+       "type": "TEXT",
+       "x": 112.5,
+       "y": 78,
+       "w": 165,
+       "h": 20,
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#FFFFFF",
+         "token": "color/text/inverse"
+        }
+       ],
+       "text": "lunes 16 de noviembre",
+       "textStyle": "label/l",
+       "font": "Open Sans SemiBold",
+       "fontSize": 15,
+       "lineHeight": "20px",
+       "align": [
+        "CENTER",
+        "TOP"
+       ],
+       "autoResize": "WIDTH_AND_HEIGHT"
+      },
+      {
+       "id": "186:1194",
+       "name": "8:05",
+       "type": "TEXT",
+       "x": 156.5,
+       "y": 98,
+       "w": 77,
+       "h": 44,
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#FFFFFF",
+         "token": "color/text/inverse"
+        }
+       ],
+       "text": "8:05",
+       "textStyle": "numeral/xl",
+       "font": "Open Sans Light",
+       "fontSize": 40,
+       "lineHeight": "44px",
+       "letterSpacing": "-1%",
+       "align": [
+        "CENTER",
+        "TOP"
+       ],
+       "autoResize": "WIDTH_AND_HEIGHT"
+      }
+     ]
+    },
+    {
+     "id": "186:1195",
+     "name": "HOY",
+     "type": "TEXT",
+     "x": 12,
+     "y": 154,
+     "w": 26,
+     "h": 16,
+     "sizing": [
+      "HUG",
+      "HUG"
+     ],
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#FFFFFF",
+       "token": "color/text/inverse"
+      }
+     ],
+     "text": "HOY",
+     "textStyle": "overline",
+     "font": "Open Sans Bold",
+     "fontSize": 11,
+     "lineHeight": "16px",
+     "letterSpacing": "8%",
+     "align": [
+      "LEFT",
+      "TOP"
+     ],
+     "autoResize": "WIDTH_AND_HEIGHT"
+    },
+    {
+     "id": "186:1196",
+     "name": "Aviso · Este mes vino distinto, y está bien",
+     "type": "FRAME",
+     "x": 12,
+     "y": 182,
+     "w": 366,
+     "h": 108,
+     "layout": {
+      "mode": "VERTICAL",
+      "main": "MIN",
+      "cross": "MIN",
+      "pad": [
+       12,
+       16,
+       12,
+       16
+      ],
+      "gap": 4,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "radius": 16,
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#FFFFFF",
+       "token": "color/bg/surface"
+      }
+     ],
+     "tok": {
+      "itemSpacing": "space/1",
+      "paddingLeft": "space/4",
+      "paddingTop": "space/3",
+      "paddingRight": "space/4",
+      "paddingBottom": "space/3",
+      "topLeftRadius": "radius/lg",
+      "topRightRadius": "radius/lg",
+      "bottomLeftRadius": "radius/lg",
+      "bottomRightRadius": "radius/lg"
+     },
+     "reactions": [
+      {
+       "trigger": "ON_CLICK",
+       "nav": "OVERLAY",
+       "dest": "230:4159",
+       "transition": {
+        "type": "DISSOLVE",
+        "ms": 250,
+        "easing": "EASE_OUT"
+       }
+      }
+     ],
+     "children": [
+      {
+       "id": "186:1197",
+       "name": "Cabecera",
+       "type": "FRAME",
+       "x": 28,
+       "y": 194,
+       "w": 334,
+       "h": 20,
+       "layout": {
+        "mode": "HORIZONTAL",
+        "main": "SPACE_BETWEEN",
+        "cross": "CENTER",
+        "pad": [
+         0,
+         0,
+         0,
+         0
+        ],
+        "gap": 8,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "tok": {
+        "itemSpacing": "space/2"
+       },
+       "children": [
+        {
+         "id": "186:1198",
+         "name": "App",
+         "type": "FRAME",
+         "x": 28,
+         "y": 194,
+         "w": 199,
+         "h": 20,
+         "layout": {
+          "mode": "HORIZONTAL",
+          "main": "MIN",
+          "cross": "CENTER",
+          "pad": [
+           0,
+           0,
+           0,
+           0
+          ],
+          "gap": 8,
+          "strokesInLayout": true
+         },
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "tok": {
+          "itemSpacing": "space/2"
+         },
+         "children": [
+          {
+           "id": "186:1199",
+           "name": "Ícono de la app",
+           "type": "FRAME",
+           "x": 28,
+           "y": 194,
+           "w": 20,
+           "h": 20,
+           "layout": {
+            "mode": "HORIZONTAL",
+            "main": "MIN",
+            "cross": "MIN",
+            "pad": [
+             0,
+             0,
+             0,
+             0
+            ],
+            "gap": 0,
+            "strokesInLayout": true
+           },
+           "sizing": [
+            "FIXED",
+            "FIXED"
+           ],
+           "radius": 4,
+           "fills": [
+            {
+             "type": "SOLID",
+             "hex": "#FDDA24",
+             "token": "color/bg/brand"
+            }
+           ],
+           "tok": {
+            "topLeftRadius": "radius/xs",
+            "topRightRadius": "radius/xs",
+            "bottomLeftRadius": "radius/xs",
+            "bottomRightRadius": "radius/xs"
+           },
+           "children": []
+          },
+          {
+           "id": "186:1200",
+           "name": "BANCOAGRÍCOLA · MI RUTA",
+           "type": "TEXT",
+           "x": 56,
+           "y": 196,
+           "w": 171,
+           "h": 16,
+           "sizing": [
+            "HUG",
+            "HUG"
+           ],
+           "fills": [
+            {
+             "type": "SOLID",
+             "hex": "#6D6E72",
+             "token": "color/text/tertiary"
+            }
+           ],
+           "text": "BANCOAGRÍCOLA · MI RUTA",
+           "textStyle": "overline",
+           "font": "Open Sans Bold",
+           "fontSize": 11,
+           "lineHeight": "16px",
+           "letterSpacing": "8%",
+           "align": [
+            "LEFT",
+            "TOP"
+           ],
+           "autoResize": "WIDTH_AND_HEIGHT"
+          }
+         ]
+        },
+        {
+         "id": "186:1201",
+         "name": "8:05",
+         "type": "TEXT",
+         "x": 338,
+         "y": 196,
+         "w": 24,
+         "h": 16,
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#6D6E72",
+           "token": "color/text/tertiary"
+          }
+         ],
+         "text": "8:05",
+         "textStyle": "caption",
+         "font": "Open Sans Regular",
+         "fontSize": 12,
+         "lineHeight": "16px",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        }
+       ]
+      },
+      {
+       "id": "186:1202",
+       "name": "Este mes vino distinto, y es…",
+       "type": "TEXT",
+       "x": 28,
+       "y": 218,
+       "w": 334,
+       "h": 20,
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#1A1B1A",
+         "token": "color/text/primary"
+        }
+       ],
+       "text": "Este mes vino distinto, y está bien",
+       "textStyle": "label/l",
+       "font": "Open Sans SemiBold",
+       "fontSize": 15,
+       "lineHeight": "20px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "HEIGHT"
+      },
+      {
+       "id": "186:1203",
+       "name": "No alcanzó para apartar los …",
+       "type": "TEXT",
+       "x": 28,
+       "y": 242,
+       "w": 334,
+       "h": 36,
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#5B5B5B",
+         "token": "color/text/secondary"
+        }
+       ],
+       "text": "No alcanzó para apartar los $124.25 de tu quincena. Toca aquí y tu asesor te ayuda a ajustarlo. Sin costo.",
+       "textStyle": "body/s",
+       "font": "Open Sans Regular",
+       "fontSize": 13,
+       "lineHeight": "18px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "HEIGHT"
+      }
+     ]
+    },
+    {
+     "id": "186:1204",
+     "name": "ANTES",
+     "type": "TEXT",
+     "x": 12,
+     "y": 302,
+     "w": 39,
+     "h": 16,
+     "sizing": [
+      "HUG",
+      "HUG"
+     ],
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#FFFFFF",
+       "token": "color/text/inverse"
+      }
+     ],
+     "text": "ANTES",
+     "textStyle": "overline",
+     "font": "Open Sans Bold",
+     "fontSize": 11,
+     "lineHeight": "16px",
+     "letterSpacing": "8%",
+     "align": [
+      "LEFT",
+      "TOP"
+     ],
+     "autoResize": "WIDTH_AND_HEIGHT"
+    },
+    {
+     "id": "186:1221",
+     "name": "Aviso · Ya va la mitad",
+     "type": "FRAME",
+     "x": 12,
+     "y": 330,
+     "w": 366,
+     "h": 108,
+     "layout": {
+      "mode": "VERTICAL",
+      "main": "MIN",
+      "cross": "MIN",
+      "pad": [
+       12,
+       16,
+       12,
+       16
+      ],
+      "gap": 4,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "radius": 16,
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#FFFFFF",
+       "token": "color/bg/surface"
+      }
+     ],
+     "tok": {
+      "itemSpacing": "space/1",
+      "paddingLeft": "space/4",
+      "paddingTop": "space/3",
+      "paddingRight": "space/4",
+      "paddingBottom": "space/3",
+      "topLeftRadius": "radius/lg",
+      "topRightRadius": "radius/lg",
+      "bottomLeftRadius": "radius/lg",
+      "bottomRightRadius": "radius/lg"
+     },
+     "children": [
+      {
+       "id": "186:1222",
+       "name": "Cabecera",
+       "type": "FRAME",
+       "x": 28,
+       "y": 342,
+       "w": 334,
+       "h": 20,
+       "layout": {
+        "mode": "HORIZONTAL",
+        "main": "SPACE_BETWEEN",
+        "cross": "CENTER",
+        "pad": [
+         0,
+         0,
+         0,
+         0
+        ],
+        "gap": 8,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "tok": {
+        "itemSpacing": "space/2"
+       },
+       "children": [
+        {
+         "id": "186:1223",
+         "name": "App",
+         "type": "FRAME",
+         "x": 28,
+         "y": 342,
+         "w": 199,
+         "h": 20,
+         "layout": {
+          "mode": "HORIZONTAL",
+          "main": "MIN",
+          "cross": "CENTER",
+          "pad": [
+           0,
+           0,
+           0,
+           0
+          ],
+          "gap": 8,
+          "strokesInLayout": true
+         },
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "tok": {
+          "itemSpacing": "space/2"
+         },
+         "children": [
+          {
+           "id": "186:1224",
+           "name": "Ícono de la app",
+           "type": "FRAME",
+           "x": 28,
+           "y": 342,
+           "w": 20,
+           "h": 20,
+           "layout": {
+            "mode": "HORIZONTAL",
+            "main": "MIN",
+            "cross": "MIN",
+            "pad": [
+             0,
+             0,
+             0,
+             0
+            ],
+            "gap": 0,
+            "strokesInLayout": true
+           },
+           "sizing": [
+            "FIXED",
+            "FIXED"
+           ],
+           "radius": 4,
+           "fills": [
+            {
+             "type": "SOLID",
+             "hex": "#FDDA24",
+             "token": "color/bg/brand"
+            }
+           ],
+           "tok": {
+            "topLeftRadius": "radius/xs",
+            "topRightRadius": "radius/xs",
+            "bottomLeftRadius": "radius/xs",
+            "bottomRightRadius": "radius/xs"
+           },
+           "children": []
+          },
+          {
+           "id": "186:1225",
+           "name": "BANCOAGRÍCOLA · MI RUTA",
+           "type": "TEXT",
+           "x": 56,
+           "y": 344,
+           "w": 171,
+           "h": 16,
+           "sizing": [
+            "HUG",
+            "HUG"
+           ],
+           "fills": [
+            {
+             "type": "SOLID",
+             "hex": "#6D6E72",
+             "token": "color/text/tertiary"
+            }
+           ],
+           "text": "BANCOAGRÍCOLA · MI RUTA",
+           "textStyle": "overline",
+           "font": "Open Sans Bold",
+           "fontSize": 11,
+           "lineHeight": "16px",
+           "letterSpacing": "8%",
+           "align": [
+            "LEFT",
+            "TOP"
+           ],
+           "autoResize": "WIDTH_AND_HEIGHT"
+          }
+         ]
+        },
+        {
+         "id": "186:1226",
+         "name": "30 sep",
+         "type": "TEXT",
+         "x": 327,
+         "y": 344,
+         "w": 35,
+         "h": 16,
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#6D6E72",
+           "token": "color/text/tertiary"
+          }
+         ],
+         "text": "30 oct",
+         "textStyle": "caption",
+         "font": "Open Sans Regular",
+         "fontSize": 12,
+         "lineHeight": "16px",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        }
+       ]
+      },
+      {
+       "id": "186:1227",
+       "name": "Ya va la mitad",
+       "type": "TEXT",
+       "x": 28,
+       "y": 366,
+       "w": 334,
+       "h": 20,
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#1A1B1A",
+         "token": "color/text/primary"
+        }
+       ],
+       "text": "Ya va la mitad",
+       "textStyle": "label/l",
+       "font": "Open Sans SemiBold",
+       "fontSize": 15,
+       "lineHeight": "20px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "HEIGHT"
+      },
+      {
+       "id": "186:1228",
+       "name": "Apartamos $124.25 de tu pago…",
+       "type": "TEXT",
+       "x": 28,
+       "y": 390,
+       "w": 334,
+       "h": 36,
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#5B5B5B",
+         "token": "color/text/secondary"
+        }
+       ],
+       "text": "Apartamos $124.25 de tu pago. Tu cuota del 18 de noviembre va a la mitad.",
+       "textStyle": "body/s",
+       "font": "Open Sans Regular",
+       "fontSize": 13,
+       "lineHeight": "18px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "HEIGHT"
+      }
+     ]
+    },
+    {
+     "id": "186:1205",
+     "name": "Aviso · Pagado, y a tiempo",
+     "type": "FRAME",
+     "x": 12,
+     "y": 450,
+     "w": 366,
+     "h": 108,
+     "layout": {
+      "mode": "VERTICAL",
+      "main": "MIN",
+      "cross": "MIN",
+      "pad": [
+       12,
+       16,
+       12,
+       16
+      ],
+      "gap": 4,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "radius": 16,
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#FFFFFF",
+       "token": "color/bg/surface"
+      }
+     ],
+     "tok": {
+      "itemSpacing": "space/1",
+      "paddingLeft": "space/4",
+      "paddingTop": "space/3",
+      "paddingRight": "space/4",
+      "paddingBottom": "space/3",
+      "topLeftRadius": "radius/lg",
+      "topRightRadius": "radius/lg",
+      "bottomLeftRadius": "radius/lg",
+      "bottomRightRadius": "radius/lg"
+     },
+     "reactions": [
+      {
+       "trigger": "ON_CLICK",
+       "nav": "NAVIGATE",
+       "dest": "186:1232",
+       "transition": {
+        "type": "SLIDE_IN",
+        "dir": "LEFT",
+        "ms": 300,
+        "easing": "EASE_OUT"
+       }
+      }
+     ],
+     "children": [
+      {
+       "id": "186:1206",
+       "name": "Cabecera",
+       "type": "FRAME",
+       "x": 28,
+       "y": 462,
+       "w": 334,
+       "h": 20,
+       "layout": {
+        "mode": "HORIZONTAL",
+        "main": "SPACE_BETWEEN",
+        "cross": "CENTER",
+        "pad": [
+         0,
+         0,
+         0,
+         0
+        ],
+        "gap": 8,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "tok": {
+        "itemSpacing": "space/2"
+       },
+       "children": [
+        {
+         "id": "186:1207",
+         "name": "App",
+         "type": "FRAME",
+         "x": 28,
+         "y": 462,
+         "w": 199,
+         "h": 20,
+         "layout": {
+          "mode": "HORIZONTAL",
+          "main": "MIN",
+          "cross": "CENTER",
+          "pad": [
+           0,
+           0,
+           0,
+           0
+          ],
+          "gap": 8,
+          "strokesInLayout": true
+         },
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "tok": {
+          "itemSpacing": "space/2"
+         },
+         "children": [
+          {
+           "id": "186:1208",
+           "name": "Ícono de la app",
+           "type": "FRAME",
+           "x": 28,
+           "y": 462,
+           "w": 20,
+           "h": 20,
+           "layout": {
+            "mode": "HORIZONTAL",
+            "main": "MIN",
+            "cross": "MIN",
+            "pad": [
+             0,
+             0,
+             0,
+             0
+            ],
+            "gap": 0,
+            "strokesInLayout": true
+           },
+           "sizing": [
+            "FIXED",
+            "FIXED"
+           ],
+           "radius": 4,
+           "fills": [
+            {
+             "type": "SOLID",
+             "hex": "#FDDA24",
+             "token": "color/bg/brand"
+            }
+           ],
+           "tok": {
+            "topLeftRadius": "radius/xs",
+            "topRightRadius": "radius/xs",
+            "bottomLeftRadius": "radius/xs",
+            "bottomRightRadius": "radius/xs"
+           },
+           "children": []
+          },
+          {
+           "id": "186:1209",
+           "name": "BANCOAGRÍCOLA · MI RUTA",
+           "type": "TEXT",
+           "x": 56,
+           "y": 464,
+           "w": 171,
+           "h": 16,
+           "sizing": [
+            "HUG",
+            "HUG"
+           ],
+           "fills": [
+            {
+             "type": "SOLID",
+             "hex": "#6D6E72",
+             "token": "color/text/tertiary"
+            }
+           ],
+           "text": "BANCOAGRÍCOLA · MI RUTA",
+           "textStyle": "overline",
+           "font": "Open Sans Bold",
+           "fontSize": 11,
+           "lineHeight": "16px",
+           "letterSpacing": "8%",
+           "align": [
+            "LEFT",
+            "TOP"
+           ],
+           "autoResize": "WIDTH_AND_HEIGHT"
+          }
+         ]
+        },
+        {
+         "id": "186:1210",
+         "name": "18 oct",
+         "type": "TEXT",
+         "x": 327,
+         "y": 464,
+         "w": 35,
+         "h": 16,
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#6D6E72",
+           "token": "color/text/tertiary"
+          }
+         ],
+         "text": "18 oct",
+         "textStyle": "caption",
+         "font": "Open Sans Regular",
+         "fontSize": 12,
+         "lineHeight": "16px",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        }
+       ]
+      },
+      {
+       "id": "186:1211",
+       "name": "Pagado, y a tiempo",
+       "type": "TEXT",
+       "x": 28,
+       "y": 486,
+       "w": 334,
+       "h": 20,
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#1A1B1A",
+         "token": "color/text/primary"
+        }
+       ],
+       "text": "Pagado, y a tiempo",
+       "textStyle": "label/l",
+       "font": "Open Sans SemiBold",
+       "fontSize": 15,
+       "lineHeight": "20px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "HEIGHT"
+      },
+      {
+       "id": "186:1212",
+       "name": "Tu cuota de $248.50 se pagó …",
+       "type": "TEXT",
+       "x": 28,
+       "y": 510,
+       "w": 334,
+       "h": 36,
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#5B5B5B",
+         "token": "color/text/secondary"
+        }
+       ],
+       "text": "Tu cuota de $248.50 se pagó sola. Ya son 19 meses seguidos: mira tu récord.",
+       "textStyle": "body/s",
+       "font": "Open Sans Regular",
+       "fontSize": 13,
+       "lineHeight": "18px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "HEIGHT"
+      }
+     ]
+    },
+    {
+     "id": "186:1213",
+     "name": "Aviso · Tu cuota ya está completa",
+     "type": "FRAME",
+     "x": 12,
+     "y": 570,
+     "w": 366,
+     "h": 108,
+     "layout": {
+      "mode": "VERTICAL",
+      "main": "MIN",
+      "cross": "MIN",
+      "pad": [
+       12,
+       16,
+       12,
+       16
+      ],
+      "gap": 4,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "radius": 16,
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#FFFFFF",
+       "token": "color/bg/surface"
+      }
+     ],
+     "tok": {
+      "itemSpacing": "space/1",
+      "paddingLeft": "space/4",
+      "paddingTop": "space/3",
+      "paddingRight": "space/4",
+      "paddingBottom": "space/3",
+      "topLeftRadius": "radius/lg",
+      "topRightRadius": "radius/lg",
+      "bottomLeftRadius": "radius/lg",
+      "bottomRightRadius": "radius/lg"
+     },
+     "children": [
+      {
+       "id": "186:1214",
+       "name": "Cabecera",
+       "type": "FRAME",
+       "x": 28,
+       "y": 582,
+       "w": 334,
+       "h": 20,
+       "layout": {
+        "mode": "HORIZONTAL",
+        "main": "SPACE_BETWEEN",
+        "cross": "CENTER",
+        "pad": [
+         0,
+         0,
+         0,
+         0
+        ],
+        "gap": 8,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "tok": {
+        "itemSpacing": "space/2"
+       },
+       "children": [
+        {
+         "id": "186:1215",
+         "name": "App",
+         "type": "FRAME",
+         "x": 28,
+         "y": 582,
+         "w": 199,
+         "h": 20,
+         "layout": {
+          "mode": "HORIZONTAL",
+          "main": "MIN",
+          "cross": "CENTER",
+          "pad": [
+           0,
+           0,
+           0,
+           0
+          ],
+          "gap": 8,
+          "strokesInLayout": true
+         },
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "tok": {
+          "itemSpacing": "space/2"
+         },
+         "children": [
+          {
+           "id": "186:1216",
+           "name": "Ícono de la app",
+           "type": "FRAME",
+           "x": 28,
+           "y": 582,
+           "w": 20,
+           "h": 20,
+           "layout": {
+            "mode": "HORIZONTAL",
+            "main": "MIN",
+            "cross": "MIN",
+            "pad": [
+             0,
+             0,
+             0,
+             0
+            ],
+            "gap": 0,
+            "strokesInLayout": true
+           },
+           "sizing": [
+            "FIXED",
+            "FIXED"
+           ],
+           "radius": 4,
+           "fills": [
+            {
+             "type": "SOLID",
+             "hex": "#FDDA24",
+             "token": "color/bg/brand"
+            }
+           ],
+           "tok": {
+            "topLeftRadius": "radius/xs",
+            "topRightRadius": "radius/xs",
+            "bottomLeftRadius": "radius/xs",
+            "bottomRightRadius": "radius/xs"
+           },
+           "children": []
+          },
+          {
+           "id": "186:1217",
+           "name": "BANCOAGRÍCOLA · MI RUTA",
+           "type": "TEXT",
+           "x": 56,
+           "y": 584,
+           "w": 171,
+           "h": 16,
+           "sizing": [
+            "HUG",
+            "HUG"
+           ],
+           "fills": [
+            {
+             "type": "SOLID",
+             "hex": "#6D6E72",
+             "token": "color/text/tertiary"
+            }
+           ],
+           "text": "BANCOAGRÍCOLA · MI RUTA",
+           "textStyle": "overline",
+           "font": "Open Sans Bold",
+           "fontSize": 11,
+           "lineHeight": "16px",
+           "letterSpacing": "8%",
+           "align": [
+            "LEFT",
+            "TOP"
+           ],
+           "autoResize": "WIDTH_AND_HEIGHT"
+          }
+         ]
+        },
+        {
+         "id": "186:1218",
+         "name": "15 oct",
+         "type": "TEXT",
+         "x": 327,
+         "y": 584,
+         "w": 35,
+         "h": 16,
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#6D6E72",
+           "token": "color/text/tertiary"
+          }
+         ],
+         "text": "15 oct",
+         "textStyle": "caption",
+         "font": "Open Sans Regular",
+         "fontSize": 12,
+         "lineHeight": "16px",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        }
+       ]
+      },
+      {
+       "id": "186:1219",
+       "name": "Tu cuota ya está completa",
+       "type": "TEXT",
+       "x": 28,
+       "y": 606,
+       "w": 334,
+       "h": 20,
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#1A1B1A",
+         "token": "color/text/primary"
+        }
+       ],
+       "text": "Tu cuota ya está completa",
+       "textStyle": "label/l",
+       "font": "Open Sans SemiBold",
+       "fontSize": 15,
+       "lineHeight": "20px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "HEIGHT"
+      },
+      {
+       "id": "186:1220",
+       "name": "Apartamos los últimos $124.2…",
+       "type": "TEXT",
+       "x": 28,
+       "y": 630,
+       "w": 334,
+       "h": 36,
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#5B5B5B",
+         "token": "color/text/secondary"
+        }
+       ],
+       "text": "Apartamos los últimos $124.25. El 18 se paga sola; tú no tienes que hacer nada.",
+       "textStyle": "body/s",
+       "font": "Open Sans Regular",
+       "fontSize": 13,
+       "lineHeight": "18px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "HEIGHT"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "228:3967",
+   "name": "Atrás",
+   "type": "FRAME",
+   "x": 8,
+   "y": 57.5,
+   "w": 44,
+   "h": 44,
+   "layout": {
+    "mode": "HORIZONTAL",
+    "main": "CENTER",
+    "cross": "CENTER",
+    "pad": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "gap": 0,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "FIXED",
+    "FIXED"
+   ],
+   "absolute": true,
+   "clip": true,
+   "reactions": [
+    {
+     "trigger": "ON_CLICK",
+     "nav": "BACK"
+    }
+   ],
+   "children": [
+    {
+     "id": "228:3968",
+     "name": "‹",
+     "type": "TEXT",
+     "x": 26,
+     "y": 66.5,
+     "w": 8,
+     "h": 26,
+     "sizing": [
+      "HUG",
+      "HUG"
+     ],
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#FFFFFF",
+       "token": "color/text/inverse"
+      }
+     ],
+     "text": "‹",
+     "textStyle": "heading/l",
+     "font": "Open Sans Bold",
+     "fontSize": 20,
+     "lineHeight": "26px",
+     "letterSpacing": "-0.5%",
+     "align": [
+      "LEFT",
+      "TOP"
+     ],
+     "autoResize": "WIDTH_AND_HEIGHT"
+    }
+   ]
+  }
+ ],
+ "section": "3 · Seguimiento"
+}

@@ -1,0 +1,50 @@
+[
+ {
+  "name": "elevation/1",
+  "effects": [
+   {
+    "type": "DROP_SHADOW",
+    "radius": 3,
+    "spread": 0,
+    "offset": {
+     "x": 0,
+     "y": 1
+    },
+    "color": "#1A1B1A",
+    "a": 0.08
+   }
+  ]
+ },
+ {
+  "name": "elevation/2",
+  "effects": [
+   {
+    "type": "DROP_SHADOW",
+    "radius": 12,
+    "spread": 0,
+    "offset": {
+     "x": 0,
+     "y": 4
+    },
+    "color": "#1A1B1A",
+    "a": 0.1
+   }
+  ]
+ },
+ {
+  "name": "elevation/3",
+  "effects": [
+   {
+    "type": "DROP_SHADOW",
+    "radius": 24,
+    "spread": 0,
+    "offset": {
+     "x": 0,
+     "y": -4
+    },
+    "color": "#1A1B1A",
+    "a": 0.14
+   }
+  ]
+ }
+]

@@ -1,0 +1,86 @@
+server:
+  port: ${PORT:8080}
+  servlet:
+    context-path: /api   # el frontend usa http://host:8080/api
+
+spring:
+  application:
+    name: ruta-api
+  # Variables locales (credenciales, llaves). El archivo está en .gitignore.
+  config:
+    import: optional:file:.env[.properties]
+  # Sin perfil explícito corre en H2 con el dataset sembrado. Oracle: perfil 'oracle'.
+  profiles:
+    default: h2
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none   # el esquema lo crean db/oracle-schema.sql y db/h2/schema-h2.sql
+    properties:
+      hibernate.type.preferred_boolean_jdbc_type: INTEGER
+  sql:
+    init:
+      encoding: UTF-8
+  jackson:
+    default-property-inclusion: always
+
+ruta:
+  admin-key: ${ADMIN_KEY:}
+  push:
+    dias-aviso: ${PUSH_DIAS_AVISO:5}
+    cron: ${PUSH_CRON:0 0 9 * * *}
+    zona: ${PUSH_ZONA:America/El_Salvador}
+    expo-url: https://exp.host/--/api/v2/push/send
+  firebase:
+    credentials-b64: ${FIREBASE_CREDENTIALS_B64:}
+    credentials-path: ${GOOGLE_APPLICATION_CREDENTIALS:}
+
+# --- IA (Plan B: Gemini Flash primario + Groq secundario, con fallback) ---
+ai:
+  primary: ${AI_PRIMARY:gemini}
+  secondary: ${AI_SECONDARY:groq}
+  gemini:
+    api-key: ${GEMINI_API_KEY:}
+    # gemini-3.8-flash razona siempre (2-5 s por llamada); el flash-lite responde
+    # en menos de 1 s y se usa para clasificar intención y sugerir opciones.
+    model: ${GEMINI_MODEL:gemini-3.8-flash}
+    model-fast: ${GEMINI_MODEL_FAST:gemini-3.5-flash-lite}
+    base-url: https://generativelanguage.googleapis.com/v1beta
+    timeout-ms: ${GEMINI_TIMEOUT_MS:9000}
+    thinking-level: ${GEMINI_THINKING_LEVEL:low}
+    max-output-tokens: 2048
+  groq:
+    api-key: ${GROQ_API_KEY:}
+    model: ${GROQ_MODEL:openai/gpt-oss-120b}
+    base-url: https://api.groq.com/openai/v1
+    timeout-ms: ${GROQ_TIMEOUT_MS:9000}
+    reasoning-effort: low
+  openai:
+    api-key: ${OPENAI_API_KEY:}
+    model: ${OPENAI_MODEL:gpt-4o-mini}
+    base-url: https://api.openai.com/v1
+    timeout-ms: 10000
+  guard:
+    enabled: ${AI_GUARD_ENABLED:true}
+    model: meta-llama/llama-prompt-guard-2-86m
+    threshold: 0.8
+    timeout-ms: 3000
+
+logging:
+  level:
+    com.bancoagricola.ruta: INFO
+
+---
+spring:
+  config:
+    activate:
+      on-profile: h2
+  datasource:
+    url: jdbc:h2:mem:ruta;MODE=Oracle;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:db/h2/schema-h2.sql
+      data-locations: classpath:db/h2/data-h2.sql

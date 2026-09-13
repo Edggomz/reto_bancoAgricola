@@ -1,0 +1,47 @@
+{
+  "name": "movil-bancoagricola",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "dependencies": {
+    "@expo-google-fonts/open-sans": "^0.4.2",
+    "@expo/metro-runtime": "~57.0.15",
+    "@react-navigation/native": "^7.3.18",
+    "@react-navigation/native-stack": "^7.18.10",
+    "expo": "~57.0.22",
+    "expo-constants": "~57.0.18",
+    "expo-device": "~57.0.2",
+    "expo-font": "~57.0.4",
+    "expo-linking": "~57.0.10",
+    "expo-notifications": "~57.0.18",
+    "expo-status-bar": "~57.0.1",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-native": "0.86.3",
+    "react-native-safe-area-context": "~5.7.0",
+    "react-native-screens": "~4.26.0",
+    "react-native-svg": "15.15.4",
+    "react-native-web": "^0.21.2"
+  },
+  "devDependencies": {
+    "@expo/ngrok": "^4.1.3",
+    "@types/react": "~19.2.2",
+    "pixelmatch": "^7.2.0",
+    "pngjs": "^7.0.0",
+    "puppeteer-core": "^25.10.0",
+    "typescript": "~6.0.3"
+  },
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "figma:recibir": "node scripts/figma-receiver.mjs",
+    "figma:esquemas": "node scripts/spec-outline.mjs",
+    "tokens": "node scripts/gen-tokens.mjs",
+    "qa:web": "node scripts/shoot.mjs && node scripts/compare.mjs",
+    "qa:android": "node scripts/shoot-android.mjs && node scripts/android-side.mjs && node scripts/resumen.mjs",
+    "qa:pruebas": "node scripts/pruebas-android.mjs",
+    "api:ejemplo": "node scripts/api-ejemplo/servidor.mjs"
+  },
+  "private": true
+}

@@ -1,0 +1,258 @@
+{
+ "id": "3:150",
+ "name": "Button",
+ "type": "COMPONENT_SET",
+ "x": 0,
+ "y": 0,
+ "w": 1004,
+ "h": 108,
+ "layout": {
+  "mode": "HORIZONTAL",
+  "main": "MIN",
+  "cross": "CENTER",
+  "pad": [
+   28,
+   28,
+   28,
+   28
+  ],
+  "gap": 24,
+  "strokesInLayout": true
+ },
+ "sizing": [
+  "HUG",
+  "HUG"
+ ],
+ "clip": true,
+ "radius": 5,
+ "children": [
+  {
+   "id": "3:144",
+   "name": "Variant=Primario",
+   "type": "COMPONENT",
+   "x": 28,
+   "y": 28,
+   "w": 300,
+   "h": 52,
+   "layout": {
+    "mode": "HORIZONTAL",
+    "main": "CENTER",
+    "cross": "CENTER",
+    "pad": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "gap": 0,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "FIXED",
+    "FIXED"
+   ],
+   "radius": 999,
+   "fills": [
+    {
+     "type": "SOLID",
+     "hex": "#FDDA24",
+     "token": "color/action/primary-bg"
+    }
+   ],
+   "tok": {
+    "topLeftRadius": "radius/full",
+    "topRightRadius": "radius/full",
+    "bottomLeftRadius": "radius/full",
+    "bottomRightRadius": "radius/full"
+   },
+   "children": [
+    {
+     "id": "3:145",
+     "name": "Label",
+     "type": "TEXT",
+     "x": 141,
+     "y": 46,
+     "w": 74,
+     "h": 16,
+     "sizing": [
+      "HUG",
+      "HUG"
+     ],
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#2C2A29",
+       "token": "color/action/primary-fg"
+      }
+     ],
+     "text": "CONTINUAR",
+     "textStyle": "overline",
+     "font": "Open Sans Bold",
+     "fontSize": 11,
+     "lineHeight": "16px",
+     "letterSpacing": "8%",
+     "align": [
+      "LEFT",
+      "TOP"
+     ],
+     "autoResize": "WIDTH_AND_HEIGHT"
+    }
+   ]
+  },
+  {
+   "id": "3:146",
+   "name": "Variant=Secundario",
+   "type": "COMPONENT",
+   "x": 352,
+   "y": 28,
+   "w": 300,
+   "h": 52,
+   "layout": {
+    "mode": "HORIZONTAL",
+    "main": "CENTER",
+    "cross": "CENTER",
+    "pad": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "gap": 0,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "FIXED",
+    "FIXED"
+   ],
+   "radius": 999,
+   "fills": [
+    {
+     "type": "SOLID",
+     "hex": "#FFFFFF",
+     "token": "color/action/secondary-bg"
+    }
+   ],
+   "strokes": [
+    {
+     "type": "SOLID",
+     "hex": "#2C2A29",
+     "token": "color/action/secondary-border"
+    }
+   ],
+   "strokeWeight": 1.5,
+   "strokeAlign": "INSIDE",
+   "tok": {
+    "topLeftRadius": "radius/full",
+    "topRightRadius": "radius/full",
+    "bottomLeftRadius": "radius/full",
+    "bottomRightRadius": "radius/full"
+   },
+   "children": [
+    {
+     "id": "3:147",
+     "name": "Label",
+     "type": "TEXT",
+     "x": 465,
+     "y": 46,
+     "w": 74,
+     "h": 16,
+     "sizing": [
+      "HUG",
+      "HUG"
+     ],
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#1A1B1A",
+       "token": "color/action/secondary-fg"
+      }
+     ],
+     "text": "CONTINUAR",
+     "textStyle": "overline",
+     "font": "Open Sans Bold",
+     "fontSize": 11,
+     "lineHeight": "16px",
+     "letterSpacing": "8%",
+     "align": [
+      "LEFT",
+      "TOP"
+     ],
+     "autoResize": "WIDTH_AND_HEIGHT"
+    }
+   ]
+  },
+  {
+   "id": "3:148",
+   "name": "Variant=Inactivo",
+   "type": "COMPONENT",
+   "x": 676,
+   "y": 28,
+   "w": 300,
+   "h": 52,
+   "layout": {
+    "mode": "HORIZONTAL",
+    "main": "CENTER",
+    "cross": "CENTER",
+    "pad": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "gap": 0,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "FIXED",
+    "FIXED"
+   ],
+   "radius": 999,
+   "fills": [
+    {
+     "type": "SOLID",
+     "hex": "#E6E7E8",
+     "token": "color/action/disabled-bg"
+    }
+   ],
+   "tok": {
+    "topLeftRadius": "radius/full",
+    "topRightRadius": "radius/full",
+    "bottomLeftRadius": "radius/full",
+    "bottomRightRadius": "radius/full"
+   },
+   "children": [
+    {
+     "id": "3:149",
+     "name": "Label",
+     "type": "TEXT",
+     "x": 789,
+     "y": 46,
+     "w": 74,
+     "h": 16,
+     "sizing": [
+      "HUG",
+      "HUG"
+     ],
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#6D6E72",
+       "token": "color/action/disabled-fg"
+      }
+     ],
+     "text": "CONTINUAR",
+     "textStyle": "overline",
+     "font": "Open Sans Bold",
+     "fontSize": 11,
+     "lineHeight": "16px",
+     "letterSpacing": "8%",
+     "align": [
+      "LEFT",
+      "TOP"
+     ],
+     "autoResize": "WIDTH_AND_HEIGHT"
+    }
+   ]
+  }
+ ]
+}

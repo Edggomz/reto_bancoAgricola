@@ -1,0 +1,46 @@
+FRAME "08b · Revisa y firma" | 390×844 @0,0 | V pad[0,0,0,0] gap0 main:MIN cross:MIN strokesInLayout | fill:color/bg/canvas | r24 | fx:elevation/2 | clip | sz:F/F | tok{topLeftRadius=radius/xl topRightRadius=radius/xl bottomLeftRadius=radius/xl bottomRightRadius=radius/xl}
+  FRAME "Status bar" | 390×54 @0,0 | (barra de estado del sistema; hijos omitidos) | sz:F/F | tok{paddingLeft=space/5 paddingRight=space/5}
+  FRAME "App bar" | 390×52 @0,54 | H pad[0,8,0,8] gap0 main:SPACE_BETWEEN cross:CENTER strokesInLayout | stroke:color/border/subtle 0,0,1,0 inside | sz:F/F | tok{paddingLeft=space/2 paddingTop=space/0 paddingRight=space/2 paddingBottom=space/0}
+    FRAME "Atrás" | 44×44 @8,57.5 | H pad[0,0,0,0] gap0 main:CENTER cross:CENTER strokesInLayout | sz:F/F | → BACK
+      T "‹" | heading/l | Open Sans Bold 20/26px ls-0.5% | color/text/secondary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 8×26 @26,66.5 | sz:H/H
+    FRAME "Título" | 128×24 @131,67.5 | V pad[0,0,0,0] gap0 main:MIN cross:CENTER strokesInLayout | sz:H/H
+      T "Abrir mi cuenta" | heading/m | Open Sans SemiBold 17/24px | color/text/primary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 128×24 @131,67.5 | sz:H/H
+    FRAME "Cerrar" | 44×44 @338,57.5 | H pad[0,0,0,0] gap0 main:CENTER cross:CENTER strokesInLayout | sz:F/F | → NAVIGATE:184:1103 DISSOLVE 250ms
+      T "×" | heading/l | Open Sans Bold 20/26px ls-0.5% | color/text/secondary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 12×26 @354,66.5 | sz:H/H
+  FRAME "Contenido" | 390×636 @0,106 | V pad[20,20,0,20] gap20 main:MIN cross:MIN strokesInLayout | sz:F/F | tok{itemSpacing=space/5 paddingLeft=space/5 paddingTop=space/5 paddingRight=space/5 paddingBottom=space/0}
+    FRAME "Encabezado" | 350×82 @20,126 | V pad[0,0,0,0] gap8 main:MIN cross:MIN strokesInLayout | sz:F/H | tok{itemSpacing=space/2}
+      T "Revisa y firma" | heading/xl | Open Sans Bold 24/30px ls-1% | color/text/primary | align:LEFT/TOP | auto:HEIGHT | 350×30 @20,126 | sz:F/H
+      T "Esto es lo que vas a firmar. Te enviamos una copia a tu correo." | body/m | Open Sans Regular 15/22px | color/text/secondary | align:LEFT/TOP | auto:HEIGHT | 350×44 @20,164 | sz:F/H
+    FRAME "Resumen" | 350×205 @20,228 | V pad[16,16,16,16] gap12 main:MIN cross:MIN strokesInLayout | fill:color/bg/surface | stroke:color/border/subtle 1 inside | r12 | fx:elevation/1 | sz:F/H | tok{itemSpacing=space/3 paddingLeft=space/4 paddingTop=space/4 paddingRight=space/4 paddingBottom=space/4 topLeftRadius=radius/md topRightRadius=radius/md bottomLeftRadius=radius/md bottomRightRadius=radius/md}
+      FRAME "Titular" | 316×22 @37,245 | H pad[0,0,0,0] gap12 main:SPACE_BETWEEN cross:CENTER strokesInLayout | sz:F/H | tok{itemSpacing=space/3}
+        T "Titular" | body/m | Open Sans Regular 15/22px | color/text/secondary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 45×22 @37,245 | sz:H/H
+        T "Edgar Gómez" | label/l | Open Sans SemiBold 15/20px | color/text/primary | align:RIGHT/TOP | auto:WIDTH_AND_HEIGHT | 96×20 @257,246 | sz:H/H
+      FRAME "Cuenta" | 316×22 @37,279 | H pad[0,0,0,0] gap12 main:SPACE_BETWEEN cross:CENTER strokesInLayout | sz:F/H | tok{itemSpacing=space/3}
+        T "Cuenta" | body/m | Open Sans Regular 15/22px | color/text/secondary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 50×22 @37,279 | sz:H/H
+        T "Ahorro digital" | label/l | Open Sans SemiBold 15/20px | color/text/primary | align:RIGHT/TOP | auto:WIDTH_AND_HEIGHT | 100×20 @253,280 | sz:H/H
+      FRAME "Costo de apertura" | 316×22 @37,313 | H pad[0,0,0,0] gap12 main:SPACE_BETWEEN cross:CENTER strokesInLayout | sz:F/H | tok{itemSpacing=space/3}
+        T "Costo de apertura" | body/m | Open Sans Regular 15/22px | color/text/secondary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 127×22 @37,313 | sz:H/H
+        T "$0.00" | label/l | Open Sans SemiBold 15/20px | color/text/primary | align:RIGHT/TOP | auto:WIDTH_AND_HEIGHT | 39×20 @314,314 | sz:H/H
+      FRAME "Costo mensual" | 316×22 @37,347 | H pad[0,0,0,0] gap12 main:SPACE_BETWEEN cross:CENTER strokesInLayout | sz:F/H | tok{itemSpacing=space/3}
+        T "Costo mensual" | body/m | Open Sans Regular 15/22px | color/text/secondary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 104×22 @37,347 | sz:H/H
+        T "$0.00" | label/l | Open Sans SemiBold 15/20px | color/text/primary | align:RIGHT/TOP | auto:WIDTH_AND_HEIGHT | 39×20 @314,348 | sz:H/H
+      RECTANGLE "Divisor" | 316×1 @37,381 | fill:color/border/subtle | sz:F/F
+      FRAME "Para qué" | 316×22 @37,394 | H pad[0,0,0,0] gap12 main:SPACE_BETWEEN cross:CENTER strokesInLayout | sz:F/H | tok{itemSpacing=space/3}
+        T "Para qué" | body/m | Open Sans Regular 15/22px | color/text/secondary | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 63×22 @37,394 | sz:H/H
+        T "Apartar tu cuota" | label/l | Open Sans SemiBold 15/20px | color/text/primary | align:RIGHT/TOP | auto:WIDTH_AND_HEIGHT | 120×20 @233,395 | sz:H/H
+    FRAME "Documentos" | 350×104 @20,453 | V pad[0,0,0,0] gap0 main:MIN cross:MIN strokesInLayout | sz:F/H
+      FRAME "Contrato de cuenta de ahorro" | 350×52 @20,453 | H pad[0,0,0,0] gap12 main:MIN cross:CENTER strokesInLayout | stroke:color/border/subtle 0,0,1,0 inside | sz:F/F | tok{itemSpacing=space/3}
+        T "Contrato de cuenta de ahorro" | body/m | Open Sans Regular 15/22px | color/text/primary | align:LEFT/TOP | auto:HEIGHT | 294×22 @20,467.5 | sz:F/H
+        FRAME "Enlace · Ver" | 44×44 @326,456.5 | H pad[0,0,0,0] gap0 main:CENTER cross:CENTER strokesInLayout | sz:F/F
+          T "Ver" | label/l | Open Sans SemiBold 15/20px | UNDERLINE | color/text/link | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 25×20 @335.5,468.5 | sz:H/H
+      FRAME "Autorización para apartar en automático" | 350×52 @20,505 | H pad[0,0,0,0] gap12 main:MIN cross:CENTER strokesInLayout | sz:F/F | tok{itemSpacing=space/3}
+        T "Autorización para apartar en automático" | body/m | Open Sans Regular 15/22px | color/text/primary | align:LEFT/TOP | auto:HEIGHT | 294×22 @20,520 | sz:F/H
+        FRAME "Enlace · Ver" | 44×44 @326,509 | H pad[0,0,0,0] gap0 main:CENTER cross:CENTER strokesInLayout | sz:F/F
+          T "Ver" | label/l | Open Sans SemiBold 15/20px | UNDERLINE | color/text/link | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 25×20 @335.5,521 | sz:H/H
+    FRAME "Acepto" | 350×44 @20,577 | H pad[0,0,0,0] gap12 main:MIN cross:CENTER strokesInLayout | sz:F/F | tok{itemSpacing=space/3}
+      FRAME "Casilla vacía" | 24×24 @20,587 | H pad[0,0,0,0] gap0 main:CENTER cross:CENTER strokesInLayout | fill:color/bg/surface | stroke:color/border/strong 1.5 inside | r4 | sz:F/F | tok{topLeftRadius=radius/xs topRightRadius=radius/xs bottomLeftRadius=radius/xs bottomRightRadius=radius/xs}
+        T "✓" | label/m | Open Sans SemiBold 13/16px | color/text/inverse | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 11×16 @26.5,591 | sz:F/F | HIDDEN
+      T "Leí y acepto el contrato y la autorización" | body/m | Open Sans Regular 15/22px | color/text/primary | align:LEFT/TOP | auto:HEIGHT | 314×22 @56,588 | sz:F/H
+  FRAME "Pie" | 390×102 @0,742 | V pad[16,20,34,20] gap12 main:MIN cross:CENTER strokesInLayout | sz:F/H | tok{itemSpacing=space/3 paddingLeft=space/5 paddingTop=space/4 paddingRight=space/5 paddingBottom=size/safe-bottom}
+    INSTANCE "Botón · Firmar con Face ID" | 350×52 @20,758 | ⟨Button / Variant=Inactivo⟩ | H pad[0,0,0,0] gap0 main:CENTER cross:CENTER strokesInLayout | fill:color/action/disabled-bg | r999 | sz:F/F | tok{topLeftRadius=radius/full topRightRadius=radius/full bottomLeftRadius=radius/full bottomRightRadius=radius/full} | → NAVIGATE:184:787 SLIDE_IN-LEFT 300ms
+      T "FIRMAR CON FACE ID" | overline | Open Sans Bold 11/16px ls8% | color/action/disabled-fg | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 130×16 @130,776 | sz:H/H

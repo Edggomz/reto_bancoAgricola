@@ -1,0 +1,727 @@
+{
+ "id": "4:452",
+ "name": "01 · Ingreso",
+ "type": "FRAME",
+ "x": 0,
+ "y": 0,
+ "w": 390,
+ "h": 844,
+ "layout": {
+  "mode": "VERTICAL",
+  "main": "MIN",
+  "cross": "MIN",
+  "pad": [
+   0,
+   0,
+   0,
+   0
+  ],
+  "gap": 0,
+  "strokesInLayout": true
+ },
+ "sizing": [
+  "FIXED",
+  "FIXED"
+ ],
+ "clip": true,
+ "radius": 24,
+ "fills": [
+  {
+   "type": "SOLID",
+   "hex": "#FFFFFF",
+   "token": "color/bg/canvas"
+  }
+ ],
+ "effect": "elevation/2",
+ "tok": {
+  "topLeftRadius": "radius/xl",
+  "topRightRadius": "radius/xl",
+  "bottomLeftRadius": "radius/xl",
+  "bottomRightRadius": "radius/xl"
+ },
+ "children": [
+  {
+   "id": "4:453",
+   "name": "Status bar",
+   "type": "FRAME",
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 54,
+   "sizing": [
+    "FILL",
+    "FIXED"
+   ],
+   "tok": {
+    "paddingLeft": "space/5",
+    "paddingRight": "space/5"
+   },
+   "note": "barra de estado del sistema; hijos omitidos"
+  },
+  {
+   "id": "4:456",
+   "name": "App bar",
+   "type": "FRAME",
+   "x": 0,
+   "y": 54,
+   "w": 390,
+   "h": 52,
+   "layout": {
+    "mode": "HORIZONTAL",
+    "main": "SPACE_BETWEEN",
+    "cross": "CENTER",
+    "pad": [
+     0,
+     20,
+     0,
+     20
+    ],
+    "gap": 0,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "FILL",
+    "FIXED"
+   ],
+   "strokes": [
+    {
+     "type": "SOLID",
+     "hex": "#E6E7E8",
+     "token": "color/border/subtle"
+    }
+   ],
+   "strokeWeight": [
+    0,
+    0,
+    1,
+    0
+   ],
+   "strokeAlign": "INSIDE",
+   "tok": {
+    "paddingLeft": "space/5",
+    "paddingRight": "space/5"
+   },
+   "children": [
+    {
+     "id": "4:457",
+     "name": "izq",
+     "type": "TEXT",
+     "x": 20,
+     "y": 67.5,
+     "w": 0,
+     "h": 24,
+     "sizing": [
+      "HUG",
+      "HUG"
+     ],
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#5B5B5B",
+       "token": "color/text/secondary"
+      }
+     ],
+     "text": " ",
+     "textStyle": "heading/m",
+     "font": "Open Sans SemiBold",
+     "fontSize": 17,
+     "lineHeight": "24px",
+     "align": [
+      "LEFT",
+      "TOP"
+     ],
+     "autoResize": "WIDTH_AND_HEIGHT"
+    },
+    {
+     "id": "4:458",
+     "name": "Marca",
+     "type": "FRAME",
+     "x": 128,
+     "y": 68.5,
+     "w": 126,
+     "h": 22,
+     "sizing": [
+      "FIXED",
+      "FIXED"
+     ],
+     "children": [
+      {
+       "id": "60:316",
+       "name": "Logo Bancoagrícola",
+       "type": "RECTANGLE",
+       "x": 128,
+       "y": 68.5,
+       "w": 126,
+       "h": 22,
+       "sizing": [
+        "FIXED",
+        "FIXED"
+       ],
+       "fills": [
+        {
+         "type": "IMAGE",
+         "imageHash": "f3dad90e03e5a8c337c41d1779cebcbab86cbabb",
+         "scaleMode": "CROP"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4:461",
+     "name": "der",
+     "type": "TEXT",
+     "x": 362,
+     "y": 67.5,
+     "w": 8,
+     "h": 24,
+     "sizing": [
+      "HUG",
+      "HUG"
+     ],
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#5B5B5B",
+       "token": "color/text/secondary"
+      }
+     ],
+     "text": "?",
+     "textStyle": "heading/m",
+     "font": "Open Sans SemiBold",
+     "fontSize": 17,
+     "lineHeight": "24px",
+     "align": [
+      "LEFT",
+      "TOP"
+     ],
+     "autoResize": "WIDTH_AND_HEIGHT"
+    }
+   ]
+  },
+  {
+   "id": "4:462",
+   "name": "Contenido",
+   "type": "FRAME",
+   "x": 0,
+   "y": 106,
+   "w": 390,
+   "h": 604,
+   "layout": {
+    "mode": "VERTICAL",
+    "main": "MIN",
+    "cross": "MIN",
+    "pad": [
+     20,
+     20,
+     0,
+     20
+    ],
+    "gap": 24,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "FILL",
+    "FILL"
+   ],
+   "tok": {
+    "itemSpacing": "space/6",
+    "paddingLeft": "space/5",
+    "paddingTop": "space/5",
+    "paddingRight": "space/5",
+    "paddingBottom": "space/0"
+   },
+   "children": [
+    {
+     "id": "4:463",
+     "name": "Bienvenida",
+     "type": "TEXT",
+     "x": 20,
+     "y": 126,
+     "w": 350,
+     "h": 48,
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#1A1B1A",
+       "token": "color/text/primary"
+      }
+     ],
+     "text": "Bienvenido a la aplicación\nde Banco Agrícola",
+     "textStyle": "heading/m",
+     "font": "Open Sans SemiBold",
+     "fontSize": 17,
+     "lineHeight": "24px",
+     "align": [
+      "CENTER",
+      "TOP"
+     ],
+     "autoResize": "HEIGHT"
+    },
+    {
+     "id": "4:464",
+     "name": "Campo",
+     "type": "INSTANCE",
+     "x": 20,
+     "y": 198,
+     "w": 350,
+     "h": 58,
+     "layout": {
+      "mode": "VERTICAL",
+      "main": "MIN",
+      "cross": "MIN",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 6,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "component": "Campo / Variant=Lleno",
+     "children": [
+      {
+       "id": "I4:464;3:174",
+       "name": "Etiqueta",
+       "type": "TEXT",
+       "x": 20,
+       "y": 198,
+       "w": 48,
+       "h": 18,
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#5B5B5B",
+         "token": "color/text/secondary"
+        }
+       ],
+       "text": "Usuario",
+       "textStyle": "body/s",
+       "font": "Open Sans Regular",
+       "fontSize": 13,
+       "lineHeight": "18px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "WIDTH_AND_HEIGHT"
+      },
+      {
+       "id": "I4:464;3:175",
+       "name": "Línea",
+       "type": "FRAME",
+       "x": 20,
+       "y": 222,
+       "w": 350,
+       "h": 34,
+       "layout": {
+        "mode": "VERTICAL",
+        "main": "CENTER",
+        "cross": "MIN",
+        "pad": [
+         0,
+         0,
+         0,
+         0
+        ],
+        "gap": 0,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "FILL",
+        "FIXED"
+       ],
+       "strokes": [
+        {
+         "type": "SOLID",
+         "hex": "#2C2A29",
+         "token": "color/border/strong"
+        }
+       ],
+       "strokeWeight": [
+        0,
+        0,
+        1.5,
+        0
+       ],
+       "strokeAlign": "INSIDE",
+       "children": [
+        {
+         "id": "I4:464;3:176",
+         "name": "Valor",
+         "type": "TEXT",
+         "x": 20,
+         "y": 226.25,
+         "w": 97,
+         "h": 24,
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#1A1B1A",
+           "token": "color/text/primary"
+          }
+         ],
+         "text": "edgar.gomez",
+         "textStyle": "body/l",
+         "font": "Open Sans Regular",
+         "fontSize": 16,
+         "lineHeight": "24px",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4:468",
+     "name": "Campo",
+     "type": "INSTANCE",
+     "x": 20,
+     "y": 280,
+     "w": 350,
+     "h": 58,
+     "layout": {
+      "mode": "VERTICAL",
+      "main": "MIN",
+      "cross": "MIN",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 6,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "component": "Campo / Variant=Lleno",
+     "children": [
+      {
+       "id": "I4:468;3:174",
+       "name": "Etiqueta",
+       "type": "TEXT",
+       "x": 20,
+       "y": 280,
+       "w": 33,
+       "h": 18,
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#5B5B5B",
+         "token": "color/text/secondary"
+        }
+       ],
+       "text": "Clave",
+       "textStyle": "body/s",
+       "font": "Open Sans Regular",
+       "fontSize": 13,
+       "lineHeight": "18px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "WIDTH_AND_HEIGHT"
+      },
+      {
+       "id": "I4:468;3:175",
+       "name": "Línea",
+       "type": "FRAME",
+       "x": 20,
+       "y": 304,
+       "w": 350,
+       "h": 34,
+       "layout": {
+        "mode": "VERTICAL",
+        "main": "CENTER",
+        "cross": "MIN",
+        "pad": [
+         0,
+         0,
+         0,
+         0
+        ],
+        "gap": 0,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "FILL",
+        "FIXED"
+       ],
+       "strokes": [
+        {
+         "type": "SOLID",
+         "hex": "#2C2A29",
+         "token": "color/border/strong"
+        }
+       ],
+       "strokeWeight": [
+        0,
+        0,
+        1.5,
+        0
+       ],
+       "strokeAlign": "INSIDE",
+       "children": [
+        {
+         "id": "I4:468;3:176",
+         "name": "Valor",
+         "type": "TEXT",
+         "x": 20,
+         "y": 308.25,
+         "w": 49,
+         "h": 24,
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#1A1B1A",
+           "token": "color/text/primary"
+          }
+         ],
+         "text": "••••••••",
+         "textStyle": "body/l",
+         "font": "Open Sans Regular",
+         "fontSize": 16,
+         "lineHeight": "24px",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "4:472",
+     "name": "␣",
+     "type": "RECTANGLE",
+     "x": 20,
+     "y": 362,
+     "w": 1,
+     "h": 20,
+     "sizing": [
+      "FIXED",
+      "FIXED"
+     ]
+    },
+    {
+     "id": "4:473",
+     "name": "¿Olvidaste o bloqueaste tu…",
+     "type": "TEXT",
+     "x": 20,
+     "y": 406,
+     "w": 350,
+     "h": 20,
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#1A1B1A",
+       "token": "color/text/link"
+      }
+     ],
+     "text": "¿Olvidaste o bloqueaste tu usuario o clave?",
+     "textStyle": "label/l",
+     "font": "Open Sans SemiBold",
+     "fontSize": 15,
+     "lineHeight": "20px",
+     "decoration": "UNDERLINE",
+     "align": [
+      "CENTER",
+      "TOP"
+     ],
+     "autoResize": "HEIGHT"
+    }
+   ]
+  },
+  {
+   "id": "4:474",
+   "name": "Pie",
+   "type": "FRAME",
+   "x": 0,
+   "y": 710,
+   "w": 390,
+   "h": 134,
+   "layout": {
+    "mode": "VERTICAL",
+    "main": "MIN",
+    "cross": "MIN",
+    "pad": [
+     16,
+     20,
+     30,
+     20
+    ],
+    "gap": 16,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "FILL",
+    "HUG"
+   ],
+   "tok": {
+    "itemSpacing": "space/4",
+    "paddingLeft": "space/5",
+    "paddingTop": "space/4",
+    "paddingRight": "space/5"
+   },
+   "children": [
+    {
+     "id": "4:475",
+     "name": "Ingresar con huella o Face…",
+     "type": "TEXT",
+     "x": 20,
+     "y": 726,
+     "w": 350,
+     "h": 20,
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#1A1B1A",
+       "token": "color/text/link"
+      }
+     ],
+     "text": "Ingresar con huella o Face ID",
+     "textStyle": "label/l",
+     "font": "Open Sans SemiBold",
+     "fontSize": 15,
+     "lineHeight": "20px",
+     "decoration": "UNDERLINE",
+     "align": [
+      "CENTER",
+      "TOP"
+     ],
+     "autoResize": "HEIGHT"
+    },
+    {
+     "id": "4:476",
+     "name": "Button",
+     "type": "INSTANCE",
+     "x": 20,
+     "y": 762,
+     "w": 350,
+     "h": 52,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "CENTER",
+      "cross": "CENTER",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "FIXED"
+     ],
+     "radius": 999,
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#FDDA24",
+       "token": "color/action/primary-bg"
+      }
+     ],
+     "tok": {
+      "topLeftRadius": "radius/full",
+      "topRightRadius": "radius/full",
+      "bottomLeftRadius": "radius/full",
+      "bottomRightRadius": "radius/full"
+     },
+     "component": "Button / Variant=Primario",
+     "reactions": [
+      {
+       "trigger": "ON_CLICK",
+       "nav": "NAVIGATE",
+       "dest": "184:964",
+       "transition": {
+        "type": "SLIDE_IN",
+        "dir": "LEFT",
+        "ms": 300,
+        "easing": "EASE_OUT"
+       }
+      }
+     ],
+     "children": [
+      {
+       "id": "I4:476;3:145",
+       "name": "Label",
+       "type": "TEXT",
+       "x": 158,
+       "y": 780,
+       "w": 74,
+       "h": 16,
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#2C2A29",
+         "token": "color/action/primary-fg"
+        }
+       ],
+       "text": "CONTINUAR",
+       "textStyle": "overline",
+       "font": "Open Sans Bold",
+       "fontSize": 11,
+       "lineHeight": "16px",
+       "letterSpacing": "8%",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "WIDTH_AND_HEIGHT"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "section": "1 · Inicio y fecha de cobro"
+}

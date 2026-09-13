@@ -1,0 +1,7 @@
+COMPONENT_SET "Button" | 1004×108 @0,0 | H pad[28,28,28,28] gap24 main:MIN cross:CENTER strokesInLayout | r5 | clip | sz:H/H
+  COMPONENT "Variant=Primario" | 300×52 @28,28 | H pad[0,0,0,0] gap0 main:CENTER cross:CENTER strokesInLayout | fill:color/action/primary-bg | r999 | sz:F/F | tok{topLeftRadius=radius/full topRightRadius=radius/full bottomLeftRadius=radius/full bottomRightRadius=radius/full}
+    T "CONTINUAR" | overline | Open Sans Bold 11/16px ls8% | color/action/primary-fg | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 74×16 @141,46 | sz:H/H
+  COMPONENT "Variant=Secundario" | 300×52 @352,28 | H pad[0,0,0,0] gap0 main:CENTER cross:CENTER strokesInLayout | fill:color/action/secondary-bg | stroke:color/action/secondary-border 1.5 inside | r999 | sz:F/F | tok{topLeftRadius=radius/full topRightRadius=radius/full bottomLeftRadius=radius/full bottomRightRadius=radius/full}
+    T "CONTINUAR" | overline | Open Sans Bold 11/16px ls8% | color/action/secondary-fg | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 74×16 @465,46 | sz:H/H
+  COMPONENT "Variant=Inactivo" | 300×52 @676,28 | H pad[0,0,0,0] gap0 main:CENTER cross:CENTER strokesInLayout | fill:color/action/disabled-bg | r999 | sz:F/F | tok{topLeftRadius=radius/full topRightRadius=radius/full bottomLeftRadius=radius/full bottomRightRadius=radius/full}
+    T "CONTINUAR" | overline | Open Sans Bold 11/16px ls8% | color/action/disabled-fg | align:LEFT/TOP | auto:WIDTH_AND_HEIGHT | 74×16 @789,46 | sz:H/H

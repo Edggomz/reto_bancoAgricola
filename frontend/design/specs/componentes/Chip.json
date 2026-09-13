@@ -1,0 +1,198 @@
+{
+ "id": "3:155",
+ "name": "Chip",
+ "type": "COMPONENT_SET",
+ "x": 0,
+ "y": 0,
+ "w": 466,
+ "h": 100,
+ "layout": {
+  "mode": "HORIZONTAL",
+  "main": "MIN",
+  "cross": "CENTER",
+  "pad": [
+   28,
+   28,
+   28,
+   28
+  ],
+  "gap": 24,
+  "strokesInLayout": true
+ },
+ "sizing": [
+  "HUG",
+  "HUG"
+ ],
+ "clip": true,
+ "radius": 5,
+ "children": [
+  {
+   "id": "3:151",
+   "name": "Variant=Normal",
+   "type": "COMPONENT",
+   "x": 28,
+   "y": 28,
+   "w": 193,
+   "h": 44,
+   "layout": {
+    "mode": "HORIZONTAL",
+    "main": "CENTER",
+    "cross": "CENTER",
+    "pad": [
+     12,
+     16,
+     12,
+     16
+    ],
+    "gap": 0
+   },
+   "sizing": [
+    "HUG",
+    "HUG"
+   ],
+   "radius": 999,
+   "fills": [
+    {
+     "type": "SOLID",
+     "hex": "#FFFFFF",
+     "token": "color/action/secondary-bg"
+    }
+   ],
+   "strokes": [
+    {
+     "type": "SOLID",
+     "hex": "#C4C4C4",
+     "token": "color/border/default"
+    }
+   ],
+   "strokeWeight": 1.5,
+   "strokeAlign": "INSIDE",
+   "tok": {
+    "paddingLeft": "space/4",
+    "paddingTop": "space/3",
+    "paddingRight": "space/4",
+    "paddingBottom": "space/3",
+    "topLeftRadius": "radius/full",
+    "topRightRadius": "radius/full",
+    "bottomLeftRadius": "radius/full",
+    "bottomRightRadius": "radius/full"
+   },
+   "children": [
+    {
+     "id": "3:152",
+     "name": "Label",
+     "type": "TEXT",
+     "x": 44,
+     "y": 40,
+     "w": 161,
+     "h": 20,
+     "sizing": [
+      "HUG",
+      "HUG"
+     ],
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#5B5B5B",
+       "token": "color/text/secondary"
+      }
+     ],
+     "text": "Quincena y fin de mes",
+     "textStyle": "label/l",
+     "font": "Open Sans SemiBold",
+     "fontSize": 15,
+     "lineHeight": "20px",
+     "align": [
+      "LEFT",
+      "TOP"
+     ],
+     "autoResize": "WIDTH_AND_HEIGHT"
+    }
+   ]
+  },
+  {
+   "id": "3:153",
+   "name": "Variant=Elegido",
+   "type": "COMPONENT",
+   "x": 245,
+   "y": 28,
+   "w": 193,
+   "h": 44,
+   "layout": {
+    "mode": "HORIZONTAL",
+    "main": "CENTER",
+    "cross": "CENTER",
+    "pad": [
+     12,
+     16,
+     12,
+     16
+    ],
+    "gap": 0
+   },
+   "sizing": [
+    "HUG",
+    "HUG"
+   ],
+   "radius": 999,
+   "fills": [
+    {
+     "type": "SOLID",
+     "hex": "#FDDA24",
+     "token": "color/bg/brand"
+    }
+   ],
+   "strokes": [
+    {
+     "type": "SOLID",
+     "hex": "#2C2A29",
+     "token": "color/border/strong"
+    }
+   ],
+   "strokeWeight": 1.5,
+   "strokeAlign": "INSIDE",
+   "tok": {
+    "paddingLeft": "space/4",
+    "paddingTop": "space/3",
+    "paddingRight": "space/4",
+    "paddingBottom": "space/3",
+    "topLeftRadius": "radius/full",
+    "topRightRadius": "radius/full",
+    "bottomLeftRadius": "radius/full",
+    "bottomRightRadius": "radius/full"
+   },
+   "children": [
+    {
+     "id": "3:154",
+     "name": "Label",
+     "type": "TEXT",
+     "x": 261,
+     "y": 40,
+     "w": 161,
+     "h": 20,
+     "sizing": [
+      "HUG",
+      "HUG"
+     ],
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#2C2A29",
+       "token": "color/text/on-brand"
+      }
+     ],
+     "text": "Quincena y fin de mes",
+     "textStyle": "label/l",
+     "font": "Open Sans SemiBold",
+     "fontSize": 15,
+     "lineHeight": "20px",
+     "align": [
+      "LEFT",
+      "TOP"
+     ],
+     "autoResize": "WIDTH_AND_HEIGHT"
+    }
+   ]
+  }
+ ]
+}

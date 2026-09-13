@@ -1,0 +1,1166 @@
+{
+ "id": "230:4159",
+ "name": "14b · Asesor · Desde el aviso",
+ "type": "FRAME",
+ "x": 0,
+ "y": 0,
+ "w": 390,
+ "h": 844,
+ "layout": {
+  "mode": "VERTICAL",
+  "main": "MIN",
+  "cross": "MIN",
+  "pad": [
+   0,
+   0,
+   0,
+   0
+  ],
+  "gap": 0,
+  "strokesInLayout": true
+ },
+ "sizing": [
+  "FIXED",
+  "FIXED"
+ ],
+ "clip": true,
+ "radius": 24,
+ "fills": [
+  {
+   "type": "SOLID",
+   "hex": "#FFFFFF",
+   "token": "color/bg/canvas"
+  }
+ ],
+ "effect": "elevation/2",
+ "tok": {
+  "topLeftRadius": "radius/xl",
+  "topRightRadius": "radius/xl",
+  "bottomLeftRadius": "radius/xl",
+  "bottomRightRadius": "radius/xl"
+ },
+ "children": [
+  {
+   "id": "230:4160",
+   "name": "Status bar",
+   "type": "FRAME",
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 54,
+   "sizing": [
+    "FILL",
+    "FIXED"
+   ],
+   "tok": {
+    "paddingLeft": "space/5",
+    "paddingRight": "space/5"
+   },
+   "note": "barra de estado del sistema; hijos omitidos"
+  },
+  {
+   "id": "230:4176",
+   "name": "App bar",
+   "type": "FRAME",
+   "x": 0,
+   "y": 54,
+   "w": 390,
+   "h": 52,
+   "layout": {
+    "mode": "HORIZONTAL",
+    "main": "SPACE_BETWEEN",
+    "cross": "CENTER",
+    "pad": [
+     0,
+     8,
+     0,
+     8
+    ],
+    "gap": 0,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "FILL",
+    "FIXED"
+   ],
+   "strokes": [
+    {
+     "type": "SOLID",
+     "hex": "#E6E7E8",
+     "token": "color/border/subtle"
+    }
+   ],
+   "strokeWeight": [
+    0,
+    0,
+    1,
+    0
+   ],
+   "strokeAlign": "INSIDE",
+   "tok": {
+    "paddingLeft": "space/2",
+    "paddingTop": "space/0",
+    "paddingRight": "space/2",
+    "paddingBottom": "space/0"
+   },
+   "children": [
+    {
+     "id": "230:4177",
+     "name": "Atrás",
+     "type": "FRAME",
+     "x": 8,
+     "y": 57.5,
+     "w": 44,
+     "h": 44,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "CENTER",
+      "cross": "CENTER",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FIXED",
+      "FIXED"
+     ],
+     "reactions": [
+      {
+       "trigger": "ON_CLICK",
+       "nav": "CLOSE"
+      }
+     ],
+     "children": [
+      {
+       "id": "230:4178",
+       "name": "‹",
+       "type": "TEXT",
+       "x": 26,
+       "y": 66.5,
+       "w": 8,
+       "h": 26,
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#5B5B5B",
+         "token": "color/text/secondary"
+        }
+       ],
+       "text": "‹",
+       "textStyle": "heading/l",
+       "font": "Open Sans Bold",
+       "fontSize": 20,
+       "lineHeight": "26px",
+       "letterSpacing": "-0.5%",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "WIDTH_AND_HEIGHT"
+      }
+     ]
+    },
+    {
+     "id": "230:4179",
+     "name": "Título",
+     "type": "FRAME",
+     "x": 129,
+     "y": 59.5,
+     "w": 132,
+     "h": 40,
+     "layout": {
+      "mode": "VERTICAL",
+      "main": "MIN",
+      "cross": "CENTER",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "HUG",
+      "HUG"
+     ],
+     "children": [
+      {
+       "id": "230:4180",
+       "name": "Asesoría bancaria",
+       "type": "TEXT",
+       "x": 129,
+       "y": 59.5,
+       "w": 132,
+       "h": 24,
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#1A1B1A",
+         "token": "color/text/primary"
+        }
+       ],
+       "text": "Asesor bancario",
+       "textStyle": "heading/m",
+       "font": "Open Sans SemiBold",
+       "fontSize": 17,
+       "lineHeight": "24px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "WIDTH_AND_HEIGHT"
+      },
+      {
+       "id": "230:4181",
+       "name": "Asistente con IA",
+       "type": "TEXT",
+       "x": 150.5,
+       "y": 83.5,
+       "w": 89,
+       "h": 16,
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#6D6E72",
+         "token": "color/text/tertiary"
+        }
+       ],
+       "text": "Asistente con IA",
+       "textStyle": "caption",
+       "font": "Open Sans Regular",
+       "fontSize": 12,
+       "lineHeight": "16px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "WIDTH_AND_HEIGHT"
+      }
+     ]
+    },
+    {
+     "id": "230:4182",
+     "name": "Cerrar",
+     "type": "FRAME",
+     "x": 338,
+     "y": 57.5,
+     "w": 44,
+     "h": 44,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "CENTER",
+      "cross": "CENTER",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FIXED",
+      "FIXED"
+     ],
+     "reactions": [
+      {
+       "trigger": "ON_CLICK",
+       "nav": "CLOSE"
+      }
+     ],
+     "children": [
+      {
+       "id": "230:4183",
+       "name": "×",
+       "type": "TEXT",
+       "x": 354,
+       "y": 66.5,
+       "w": 12,
+       "h": 26,
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#5B5B5B",
+         "token": "color/text/secondary"
+        }
+       ],
+       "text": "×",
+       "textStyle": "heading/l",
+       "font": "Open Sans Bold",
+       "fontSize": 20,
+       "lineHeight": "26px",
+       "letterSpacing": "-0.5%",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "WIDTH_AND_HEIGHT"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "230:4184",
+   "name": "Contenido",
+   "type": "FRAME",
+   "x": 0,
+   "y": 106,
+   "w": 390,
+   "h": 647,
+   "layout": {
+    "mode": "VERTICAL",
+    "main": "MAX",
+    "cross": "MIN",
+    "pad": [
+     16,
+     16,
+     16,
+     16
+    ],
+    "gap": 12,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "FILL",
+    "FILL"
+   ],
+   "fills": [
+    {
+     "type": "SOLID",
+     "hex": "#F5F7F9",
+     "token": "color/bg/surface-sunken"
+    }
+   ],
+   "tok": {
+    "itemSpacing": "space/3",
+    "paddingLeft": "space/4",
+    "paddingTop": "space/4",
+    "paddingRight": "space/4",
+    "paddingBottom": "space/4"
+   },
+   "children": [
+    {
+     "id": "230:4202",
+     "name": "Hoy · 9:41",
+     "type": "TEXT",
+     "x": 16,
+     "y": 397,
+     "w": 358,
+     "h": 16,
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#6D6E72",
+       "token": "color/text/tertiary"
+      }
+     ],
+     "text": "Hoy · 9:41",
+     "textStyle": "caption",
+     "font": "Open Sans Regular",
+     "fontSize": 12,
+     "lineHeight": "16px",
+     "align": [
+      "CENTER",
+      "TOP"
+     ],
+     "autoResize": "HEIGHT"
+    },
+    {
+     "id": "230:4203",
+     "name": "Aviso de IA",
+     "type": "FRAME",
+     "x": 16,
+     "y": 425,
+     "w": 358,
+     "h": 48,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "MIN",
+      "cross": "MIN",
+      "pad": [
+       8,
+       12,
+       8,
+       12
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "radius": 8,
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#FFFFFF",
+       "token": "color/bg/surface"
+      }
+     ],
+     "tok": {
+      "paddingLeft": "space/3",
+      "paddingTop": "space/2",
+      "paddingRight": "space/3",
+      "paddingBottom": "space/2",
+      "topLeftRadius": "radius/sm",
+      "topRightRadius": "radius/sm",
+      "bottomLeftRadius": "radius/sm",
+      "bottomRightRadius": "radius/sm"
+     },
+     "children": [
+      {
+       "id": "230:4204",
+       "name": "Te atiende un asistente con …",
+       "type": "TEXT",
+       "x": 28,
+       "y": 433,
+       "w": 334,
+       "h": 32,
+       "sizing": [
+        "FILL",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#5B5B5B",
+         "token": "color/text/secondary"
+        }
+       ],
+       "text": "Te atiende un asesor con IA. Responde con los datos de tus productos.",
+       "textStyle": "caption",
+       "font": "Open Sans Regular",
+       "fontSize": 12,
+       "lineHeight": "16px",
+       "align": [
+        "CENTER",
+        "TOP"
+       ],
+       "autoResize": "HEIGHT"
+      }
+     ]
+    },
+    {
+     "id": "230:4205",
+     "name": "Mensaje IA",
+     "type": "FRAME",
+     "x": 16,
+     "y": 485,
+     "w": 358,
+     "h": 114,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "MIN",
+      "cross": "MIN",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "children": [
+      {
+       "id": "230:4206",
+       "name": "Burbuja IA",
+       "type": "FRAME",
+       "x": 16,
+       "y": 485,
+       "w": 296,
+       "h": 114,
+       "layout": {
+        "mode": "VERTICAL",
+        "main": "MIN",
+        "cross": "MIN",
+        "pad": [
+         12,
+         16,
+         12,
+         16
+        ],
+        "gap": 0,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "radius": [
+        16,
+        16,
+        16,
+        4
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#FFFFFF",
+         "token": "color/bg/surface"
+        }
+       ],
+       "strokes": [
+        {
+         "type": "SOLID",
+         "hex": "#E6E7E8",
+         "token": "color/border/subtle"
+        }
+       ],
+       "strokeWeight": 1,
+       "strokeAlign": "INSIDE",
+       "tok": {
+        "paddingLeft": "space/4",
+        "paddingTop": "space/3",
+        "paddingRight": "space/4",
+        "paddingBottom": "space/3",
+        "topLeftRadius": "radius/lg",
+        "topRightRadius": "radius/lg",
+        "bottomLeftRadius": "radius/xs",
+        "bottomRightRadius": "radius/lg"
+       },
+       "children": [
+        {
+         "id": "230:4207",
+         "name": "Hola, Edgar. ¿Sobre cuál de …",
+         "type": "TEXT",
+         "x": 33,
+         "y": 498,
+         "w": 262,
+         "h": 88,
+         "sizing": [
+          "FIXED",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#1A1B1A",
+           "token": "color/text/primary"
+          }
+         ],
+         "text": "Hola, Edgar. Vi que este mes no alcanzó para apartar los $124.25 de tu quincena. Le pasa a cualquiera, y tiene arreglo.",
+         "textStyle": "body/m",
+         "font": "Open Sans Regular",
+         "fontSize": 15,
+         "lineHeight": "22px",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "HEIGHT"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "230:4208",
+     "name": "Mensaje IA",
+     "type": "FRAME",
+     "x": 16,
+     "y": 611,
+     "w": 358,
+     "h": 70,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "MIN",
+      "cross": "MIN",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "children": [
+      {
+       "id": "230:4209",
+       "name": "Burbuja IA",
+       "type": "FRAME",
+       "x": 16,
+       "y": 611,
+       "w": 296,
+       "h": 70,
+       "layout": {
+        "mode": "VERTICAL",
+        "main": "MIN",
+        "cross": "MIN",
+        "pad": [
+         12,
+         16,
+         12,
+         16
+        ],
+        "gap": 0,
+        "strokesInLayout": true
+       },
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "radius": [
+        16,
+        16,
+        16,
+        4
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#FFFFFF",
+         "token": "color/bg/surface"
+        }
+       ],
+       "strokes": [
+        {
+         "type": "SOLID",
+         "hex": "#E6E7E8",
+         "token": "color/border/subtle"
+        }
+       ],
+       "strokeWeight": 1,
+       "strokeAlign": "INSIDE",
+       "tok": {
+        "paddingLeft": "space/4",
+        "paddingTop": "space/3",
+        "paddingRight": "space/4",
+        "paddingBottom": "space/3",
+        "topLeftRadius": "radius/lg",
+        "topRightRadius": "radius/lg",
+        "bottomLeftRadius": "radius/xs",
+        "bottomRightRadius": "radius/lg"
+       },
+       "children": [
+        {
+         "id": "230:4210",
+         "name": "Hola, Edgar. ¿Sobre cuál de …",
+         "type": "TEXT",
+         "x": 33,
+         "y": 624,
+         "w": 262,
+         "h": 44,
+         "sizing": [
+          "FIXED",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#1A1B1A",
+           "token": "color/text/primary"
+          }
+         ],
+         "text": "¿Lo ajustamos juntos? Puedo mover tu fecha o repartir lo que falta.",
+         "textStyle": "body/m",
+         "font": "Open Sans Regular",
+         "fontSize": 15,
+         "lineHeight": "22px",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "HEIGHT"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "230:4211",
+     "name": "Respuestas sugeridas",
+     "type": "FRAME",
+     "x": 16,
+     "y": 693,
+     "w": 358,
+     "h": 44,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "MIN",
+      "cross": "MIN",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 8,
+      "wrap": true,
+      "crossGap": 8,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "HUG"
+     ],
+     "tok": {
+      "itemSpacing": "space/2",
+      "counterAxisSpacing": "space/2"
+     },
+     "children": [
+      {
+       "id": "230:4212",
+       "name": "Chip · Mover la fecha",
+       "type": "INSTANCE",
+       "x": 16,
+       "y": 693,
+       "w": 139,
+       "h": 44,
+       "layout": {
+        "mode": "HORIZONTAL",
+        "main": "CENTER",
+        "cross": "CENTER",
+        "pad": [
+         12,
+         16,
+         12,
+         16
+        ],
+        "gap": 0
+       },
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "radius": 999,
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#FFFFFF",
+         "token": "color/action/secondary-bg"
+        }
+       ],
+       "strokes": [
+        {
+         "type": "SOLID",
+         "hex": "#C4C4C4",
+         "token": "color/border/default"
+        }
+       ],
+       "strokeWeight": 1.5,
+       "strokeAlign": "INSIDE",
+       "tok": {
+        "paddingLeft": "space/4",
+        "paddingTop": "space/3",
+        "paddingRight": "space/4",
+        "paddingBottom": "space/3",
+        "topLeftRadius": "radius/full",
+        "topRightRadius": "radius/full",
+        "bottomLeftRadius": "radius/full",
+        "bottomRightRadius": "radius/full"
+       },
+       "component": "Chip / Variant=Normal",
+       "reactions": [
+        {
+         "trigger": "ON_CLICK",
+         "nav": "SWAP",
+         "dest": "230:4090",
+         "transition": {
+          "type": "DISSOLVE",
+          "ms": 250,
+          "easing": "EASE_OUT"
+         }
+        }
+       ],
+       "children": [
+        {
+         "id": "I230:4212;3:152",
+         "name": "Label",
+         "type": "TEXT",
+         "x": 32,
+         "y": 705,
+         "w": 107,
+         "h": 20,
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#5B5B5B",
+           "token": "color/text/secondary"
+          }
+         ],
+         "text": "Mover la fecha",
+         "textStyle": "label/l",
+         "font": "Open Sans SemiBold",
+         "fontSize": 15,
+         "lineHeight": "20px",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        }
+       ]
+      },
+      {
+       "id": "230:4220",
+       "name": "Chip · Repartir lo que falta",
+       "type": "INSTANCE",
+       "x": 163,
+       "y": 693,
+       "w": 177,
+       "h": 44,
+       "layout": {
+        "mode": "HORIZONTAL",
+        "main": "CENTER",
+        "cross": "CENTER",
+        "pad": [
+         12,
+         16,
+         12,
+         16
+        ],
+        "gap": 0
+       },
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "radius": 999,
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#FFFFFF",
+         "token": "color/action/secondary-bg"
+        }
+       ],
+       "strokes": [
+        {
+         "type": "SOLID",
+         "hex": "#C4C4C4",
+         "token": "color/border/default"
+        }
+       ],
+       "strokeWeight": 1.5,
+       "strokeAlign": "INSIDE",
+       "tok": {
+        "paddingLeft": "space/4",
+        "paddingTop": "space/3",
+        "paddingRight": "space/4",
+        "paddingBottom": "space/3",
+        "topLeftRadius": "radius/full",
+        "topRightRadius": "radius/full",
+        "bottomLeftRadius": "radius/full",
+        "bottomRightRadius": "radius/full"
+       },
+       "component": "Chip / Variant=Normal",
+       "reactions": [
+        {
+         "trigger": "ON_CLICK",
+         "nav": "SWAP",
+         "dest": "230:4090",
+         "transition": {
+          "type": "DISSOLVE",
+          "ms": 250,
+          "easing": "EASE_OUT"
+         }
+        }
+       ],
+       "children": [
+        {
+         "id": "I230:4220;3:152",
+         "name": "Label",
+         "type": "TEXT",
+         "x": 179,
+         "y": 705,
+         "w": 145,
+         "h": 20,
+         "sizing": [
+          "HUG",
+          "HUG"
+         ],
+         "fills": [
+          {
+           "type": "SOLID",
+           "hex": "#5B5B5B",
+           "token": "color/text/secondary"
+          }
+         ],
+         "text": "Repartir lo que falta",
+         "textStyle": "label/l",
+         "font": "Open Sans SemiBold",
+         "fontSize": 15,
+         "lineHeight": "20px",
+         "align": [
+          "LEFT",
+          "TOP"
+         ],
+         "autoResize": "WIDTH_AND_HEIGHT"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "230:4197",
+   "name": "Escribir",
+   "type": "FRAME",
+   "x": 0,
+   "y": 753,
+   "w": 390,
+   "h": 91,
+   "layout": {
+    "mode": "HORIZONTAL",
+    "main": "MIN",
+    "cross": "CENTER",
+    "pad": [
+     12,
+     16,
+     34,
+     16
+    ],
+    "gap": 8,
+    "strokesInLayout": true
+   },
+   "sizing": [
+    "FILL",
+    "HUG"
+   ],
+   "fills": [
+    {
+     "type": "SOLID",
+     "hex": "#FFFFFF",
+     "token": "color/bg/surface"
+    }
+   ],
+   "strokes": [
+    {
+     "type": "SOLID",
+     "hex": "#E6E7E8",
+     "token": "color/border/subtle"
+    }
+   ],
+   "strokeWeight": [
+    1,
+    0,
+    0,
+    0
+   ],
+   "strokeAlign": "INSIDE",
+   "tok": {
+    "itemSpacing": "space/2",
+    "paddingLeft": "space/4",
+    "paddingTop": "space/3",
+    "paddingRight": "space/4",
+    "paddingBottom": "size/safe-bottom"
+   },
+   "children": [
+    {
+     "id": "230:4198",
+     "name": "Campo de texto",
+     "type": "FRAME",
+     "x": 16,
+     "y": 766,
+     "w": 306,
+     "h": 44,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "MIN",
+      "cross": "CENTER",
+      "pad": [
+       0,
+       16,
+       0,
+       16
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FILL",
+      "FIXED"
+     ],
+     "radius": 999,
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#F5F7F9",
+       "token": "color/bg/surface-sunken"
+      }
+     ],
+     "strokes": [
+      {
+       "type": "SOLID",
+       "hex": "#C4C4C4",
+       "token": "color/border/default"
+      }
+     ],
+     "strokeWeight": 1,
+     "strokeAlign": "INSIDE",
+     "tok": {
+      "paddingLeft": "space/4",
+      "paddingTop": "space/0",
+      "paddingRight": "space/4",
+      "paddingBottom": "space/0",
+      "topLeftRadius": "radius/full",
+      "topRightRadius": "radius/full",
+      "bottomLeftRadius": "radius/full",
+      "bottomRightRadius": "radius/full"
+     },
+     "children": [
+      {
+       "id": "230:4199",
+       "name": "Escribe tu pregunta",
+       "type": "TEXT",
+       "x": 33,
+       "y": 777,
+       "w": 137,
+       "h": 22,
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#6D6E72",
+         "token": "color/text/tertiary"
+        }
+       ],
+       "text": "Escribe tu pregunta",
+       "textStyle": "body/m",
+       "font": "Open Sans Regular",
+       "fontSize": 15,
+       "lineHeight": "22px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "WIDTH_AND_HEIGHT"
+      }
+     ]
+    },
+    {
+     "id": "230:4200",
+     "name": "Enviar",
+     "type": "FRAME",
+     "x": 330,
+     "y": 766,
+     "w": 44,
+     "h": 44,
+     "layout": {
+      "mode": "HORIZONTAL",
+      "main": "CENTER",
+      "cross": "CENTER",
+      "pad": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "gap": 0,
+      "strokesInLayout": true
+     },
+     "sizing": [
+      "FIXED",
+      "FIXED"
+     ],
+     "radius": 999,
+     "fills": [
+      {
+       "type": "SOLID",
+       "hex": "#2C2A29",
+       "token": "color/bg/inverse"
+      }
+     ],
+     "tok": {
+      "topLeftRadius": "radius/full",
+      "topRightRadius": "radius/full",
+      "bottomLeftRadius": "radius/full",
+      "bottomRightRadius": "radius/full"
+     },
+     "reactions": [
+      {
+       "trigger": "ON_CLICK",
+       "nav": "SWAP",
+       "dest": "230:4090",
+       "transition": {
+        "type": "DISSOLVE",
+        "ms": 250,
+        "easing": "EASE_OUT"
+       }
+      }
+     ],
+     "children": [
+      {
+       "id": "230:4201",
+       "name": "↑",
+       "type": "TEXT",
+       "x": 347.5,
+       "y": 776,
+       "w": 9,
+       "h": 24,
+       "sizing": [
+        "HUG",
+        "HUG"
+       ],
+       "fills": [
+        {
+         "type": "SOLID",
+         "hex": "#FFFFFF",
+         "token": "color/text/inverse"
+        }
+       ],
+       "text": "↑",
+       "textStyle": "heading/m",
+       "font": "Open Sans SemiBold",
+       "fontSize": 17,
+       "lineHeight": "24px",
+       "align": [
+        "LEFT",
+        "TOP"
+       ],
+       "autoResize": "WIDTH_AND_HEIGHT"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "section": "4 · Asesor bancario"
+}
