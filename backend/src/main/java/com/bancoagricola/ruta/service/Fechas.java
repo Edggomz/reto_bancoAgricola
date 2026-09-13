@@ -42,6 +42,17 @@ public final class Fechas {
     return MESES[fecha.getMonthValue() - 1];
   }
 
+  /** «4 dólares con 12 centavos»: el agente de voz no debe leer «punto». */
+  public static String montoHablado(BigDecimal valor) {
+    BigDecimal v = valor.setScale(2, RoundingMode.HALF_UP).abs();
+    long dolares = v.longValue();
+    int centavos = v.subtract(BigDecimal.valueOf(dolares)).movePointRight(2).intValue();
+    String d = dolares == 1 ? "1 dólar" : dolares + " dólares";
+    String c = centavos == 1 ? "1 centavo" : centavos + " centavos";
+    if (centavos == 0) return d;
+    return dolares == 0 ? c : d + " con " + c;
+  }
+
   public static String monto(BigDecimal valor) {
     return String.format(Locale.US, "$%,.2f", valor.setScale(2, RoundingMode.HALF_UP));
   }

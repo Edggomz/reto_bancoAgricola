@@ -44,9 +44,10 @@ export type OpcionesFecha = {
   hoy: number;
   grupos: { titulo: string; dias: DiaOpcion[] }[];
 };
-export type DiaOpcion = { dia: number; desde: string; nota: string };
+/** costo: qué pasa con el interés si elige ese día, ya redactado. interes > 0 solo si la cuota se corre. */
+export type DiaOpcion = { dia: number; desde: string; nota: string; costo: string; interes: number; diasExtra: number };
 
-export type FechaConfirmada = { dia: number; desde: string; operacion: string };
+export type FechaConfirmada = { dia: number; desde: string; operacion: string; costo: string; interes: number; diasExtra: number };
 
 export type CreditoApartable = { id: string; nombre: string; detalle: string; monto: number; nota: string; ilustracion: Ilustracion };
 

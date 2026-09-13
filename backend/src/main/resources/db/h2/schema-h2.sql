@@ -195,6 +195,9 @@ CREATE TABLE CLIENTE (
   categoria           VARCHAR2(4)   NOT NULL,
   asesor_id           VARCHAR2(64)  NOT NULL,
   frecuencia_pago     VARCHAR2(64),
+  telefono            VARCHAR2(20),
+  municipio           VARCHAR2(64),
+  departamento        VARCHAR2(64),
   fecha_alta          DATE          DEFAULT TRUNC(SYSDATE) NOT NULL,
   activo              NUMBER(1)     DEFAULT 1 NOT NULL,
   CONSTRAINT pk_cliente        PRIMARY KEY (id),
@@ -208,6 +211,7 @@ CREATE TABLE CLIENTE (
   CONSTRAINT ck_cliente_cat    CHECK (categoria IN ('A1', 'A2', 'B', 'C', 'D', 'E')),
   CONSTRAINT ck_cliente_risk   CHECK (first_time_at_risk IN (0, 1)),
   CONSTRAINT ck_cliente_act    CHECK (activo IN (0, 1)),
+  CONSTRAINT ck_cliente_tel    CHECK (telefono IS NULL OR REGEXP_LIKE(telefono, '^\+[0-9]{8,15}$')),
   CONSTRAINT ck_cliente_coher  CHECK (
        (perfil_crediticio = 'impecable' AND categoria IN ('A1', 'A2'))
     OR (perfil_crediticio = 'mejorable' AND categoria IN ('B', 'C'))
@@ -266,6 +270,8 @@ CREATE TABLE CREDITO (
   installment_amount NUMBER(14,2),
   current_due_day    NUMBER(2),
   operation_number   VARCHAR2(32),
+  saldo_capital      NUMBER(14,2),
+  tasa_anual         NUMBER(7,4),
   dia_corte          NUMBER(2)     NOT NULL,
   fecha_apertura     DATE          DEFAULT TRUNC(SYSDATE) NOT NULL,
   estado_pago        VARCHAR2(20)  DEFAULT 'al_dia' NOT NULL,
@@ -279,6 +285,7 @@ CREATE TABLE CREDITO (
   CONSTRAINT ck_credito_estado CHECK (estado_pago IN ('al_dia', 'parte_pendiente')),
   CONSTRAINT ck_credito_dueday CHECK (current_due_day IS NULL OR current_due_day BETWEEN 1 AND 31),
   CONSTRAINT ck_credito_pct    CHECK (used_pct IS NULL OR used_pct BETWEEN 0 AND 100),
+  CONSTRAINT ck_credito_tasa   CHECK (tasa_anual IS NULL OR tasa_anual BETWEEN 0 AND 1),
   CONSTRAINT ck_credito_disp   CHECK (available IS NULL OR available BETWEEN 0 AND credit_limit),
   CONSTRAINT ck_credito_forma  CHECK (
     (kind = 'card'
@@ -316,6 +323,11 @@ CREATE TABLE PLAN_FECHA_COBRO (
   term_unchanged        NUMBER(1)    DEFAULT 1 NOT NULL,
   frecuencia_id         VARCHAR2(64) NOT NULL,
   opcion_id             VARCHAR2(64) NOT NULL,
+  dias_extra            NUMBER(3)     DEFAULT 0 NOT NULL,
+  interes_extra         NUMBER(14,2)  DEFAULT 0 NOT NULL,
+  acepto_interes        NUMBER(1)     DEFAULT 0 NOT NULL,
+  canal                 VARCHAR2(8)   DEFAULT 'app' NOT NULL,
+  bloqueado_hasta       DATE,
   created_at            TIMESTAMP    DEFAULT SYSTIMESTAMP NOT NULL,
   CONSTRAINT pk_plan_fecha      PRIMARY KEY (credito_id),
   CONSTRAINT fk_plan_fecha_cred FOREIGN KEY (credito_id)
@@ -323,7 +335,10 @@ CREATE TABLE PLAN_FECHA_COBRO (
   CONSTRAINT fk_plan_fecha_frec FOREIGN KEY (frecuencia_id)
     REFERENCES CATALOGO_FRECUENCIA (id),
   CONSTRAINT ck_plan_fecha_day  CHECK (new_day BETWEEN 0 AND 27),
-  CONSTRAINT ck_plan_fecha_inv  CHECK (amount_unchanged = 1 AND term_unchanged = 1)
+  CONSTRAINT ck_plan_fecha_inv  CHECK (amount_unchanged = 1 AND term_unchanged = 1),
+  CONSTRAINT ck_plan_fecha_int  CHECK (interes_extra = 0 OR acepto_interes = 1),
+  CONSTRAINT ck_plan_fecha_acep CHECK (acepto_interes IN (0, 1)),
+  CONSTRAINT ck_plan_fecha_can  CHECK (canal IN ('app', 'voz'))
 );
 
 CREATE TABLE APARTADO (
@@ -614,6 +629,79 @@ CREATE TABLE IA_LLAMADA (
   CONSTRAINT ck_ia_fallback      CHECK (fallback IN (0, 1))
 );
 
+CREATE TABLE PERFIL_INGRESO (
+  cliente_id         VARCHAR2(64)  NOT NULL,
+  tipo_ingreso       VARCHAR2(16)  NOT NULL,
+  ingreso_constante  NUMBER(1),
+  dias_ingreso       VARCHAR2(32),
+  canal_pago         VARCHAR2(16),
+  usa_banca_linea    NUMBER(1),
+  fuente             VARCHAR2(8)   DEFAULT 'voz' NOT NULL,
+  updated_at         TIMESTAMP     DEFAULT SYSTIMESTAMP NOT NULL,
+  CONSTRAINT pk_perfil_ingreso    PRIMARY KEY (cliente_id),
+  CONSTRAINT fk_perfil_ing_cli    FOREIGN KEY (cliente_id) REFERENCES CLIENTE (id) ON DELETE CASCADE,
+  CONSTRAINT ck_perfil_ing_tipo   CHECK (tipo_ingreso IN ('salario', 'pension', 'remesa', 'negocio', 'otro')),
+  CONSTRAINT ck_perfil_ing_const  CHECK (ingreso_constante IS NULL OR ingreso_constante IN (0, 1)),
+  CONSTRAINT ck_perfil_ing_canal  CHECK (canal_pago IS NULL OR canal_pago IN ('app', 'agencia', 'otro')),
+  CONSTRAINT ck_perfil_ing_banca  CHECK (usa_banca_linea IS NULL OR usa_banca_linea IN (0, 1)),
+  CONSTRAINT ck_perfil_ing_fuente CHECK (fuente IN ('voz', 'app'))
+);
+
+CREATE TABLE SUCURSAL (
+  id            VARCHAR2(64)  NOT NULL,
+  nombre        VARCHAR2(96)  NOT NULL,
+  direccion     VARCHAR2(256) NOT NULL,
+  municipio     VARCHAR2(64)  NOT NULL,
+  departamento  VARCHAR2(64)  NOT NULL,
+  horario       VARCHAR2(160) NOT NULL,
+  activo        NUMBER(1)     DEFAULT 1 NOT NULL,
+  CONSTRAINT pk_sucursal     PRIMARY KEY (id),
+  CONSTRAINT ck_sucursal_act CHECK (activo IN (0, 1))
+);
+
+CREATE TABLE LLAMADA_VOZ (
+  id              VARCHAR2(64)   NOT NULL,
+  cliente_id      VARCHAR2(64)   NOT NULL,
+  credito_id      VARCHAR2(64),
+  telefono        VARCHAR2(20)   NOT NULL,
+  proveedor       VARCHAR2(16)   DEFAULT 'vapi' NOT NULL,
+  proveedor_id    VARCHAR2(64),
+  intento         NUMBER(2)      DEFAULT 1 NOT NULL,
+  estado          VARCHAR2(16)   DEFAULT 'programada' NOT NULL,
+  resultado       VARCHAR2(20),
+  motivo_fin      VARCHAR2(64),
+  dia_nuevo       NUMBER(2),
+  dias_extra      NUMBER(3),
+  interes_extra   NUMBER(14,2),
+  resumen         VARCHAR2(1000),
+  transcripcion   CLOB,
+  duracion_seg    NUMBER(6),
+  created_at      TIMESTAMP      DEFAULT SYSTIMESTAMP NOT NULL,
+  ended_at        TIMESTAMP,
+  CONSTRAINT pk_llamada_voz        PRIMARY KEY (id),
+  CONSTRAINT fk_llamada_voz_cli    FOREIGN KEY (cliente_id) REFERENCES CLIENTE (id) ON DELETE CASCADE,
+  CONSTRAINT ck_llamada_voz_estado CHECK (estado IN ('programada', 'terminada', 'fallida')),
+  CONSTRAINT ck_llamada_voz_res    CHECK (resultado IS NULL OR resultado IN ('fecha_cambiada', 'sin_cambio', 'bloqueado',
+    'no_contesto', 'buzon', 'tercero', 'volver_a_llamar', 'no_llamar')),
+  CONSTRAINT ck_llamada_voz_dia    CHECK (resultado IS NULL OR resultado <> 'fecha_cambiada' OR dia_nuevo IS NOT NULL)
+);
+
+CREATE TABLE EVENTO_AUDITORIA (
+  id           VARCHAR2(64)   NOT NULL,
+  created_at   TIMESTAMP      NOT NULL,
+  canal        VARCHAR2(16)   NOT NULL,
+  tipo         VARCHAR2(48)   NOT NULL,
+  nivel        VARCHAR2(8)    DEFAULT 'info' NOT NULL,
+  cliente_id   VARCHAR2(64),
+  referencia   VARCHAR2(64),
+  resumen      VARCHAR2(400)  NOT NULL,
+  detalle      CLOB,
+  duracion_ms  NUMBER(8),
+  CONSTRAINT pk_evento_auditoria PRIMARY KEY (id),
+  CONSTRAINT ck_evento_canal     CHECK (canal IN ('app', 'chat', 'voz', 'n8n', 'sistema', 'admin')),
+  CONSTRAINT ck_evento_nivel     CHECK (nivel IN ('info', 'aviso', 'error'))
+);
+
 CREATE INDEX ix_cliente_asesor      ON CLIENTE (asesor_id);
 
 CREATE INDEX ix_cliente_perfil      ON CLIENTE (perfil_crediticio, categoria);
@@ -653,3 +741,9 @@ CREATE INDEX ix_disp_cliente        ON DISPOSITIVO (cliente_id, activo);
 CREATE INDEX ix_notif_cli_fecha     ON NOTIFICACION_ENVIADA (cliente_id, fecha_envio);
 
 CREATE INDEX ix_ia_llamada_fecha    ON IA_LLAMADA (servicio, created_at);
+
+CREATE INDEX ix_cliente_telefono    ON CLIENTE (telefono);
+
+CREATE INDEX ix_llamada_voz_cli     ON LLAMADA_VOZ (cliente_id, created_at);
+
+CREATE INDEX ix_evento_fecha        ON EVENTO_AUDITORIA (created_at);

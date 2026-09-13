@@ -53,12 +53,13 @@ public class RutaMotor {
   private final AvisoService avisos;
   private final RecordService record;
   private final RutaProperties props;
+  private final AuditoriaService auditoria;
 
   public RutaMotor(Repositorios.Clientes clientes, Repositorios.Creditos creditos, Repositorios.Cuentas cuentas,
                    Repositorios.Transacciones transacciones, Repositorios.Apartados apartados,
                    Repositorios.ApartadoCuotas cuotas, Repositorios.Notificaciones notificaciones,
                    Repositorios.Choques choques, CopyService copy, AvisoService avisos, RecordService record,
-                   RutaProperties props) {
+                   RutaProperties props, AuditoriaService auditoria) {
     this.clientes = clientes;
     this.creditos = creditos;
     this.cuentas = cuentas;
@@ -71,6 +72,7 @@ public class RutaMotor {
     this.avisos = avisos;
     this.record = record;
     this.props = props;
+    this.auditoria = auditoria;
   }
 
   @Scheduled(cron = "${ruta.push.cron}", zone = "${ruta.push.zona}")
@@ -91,6 +93,9 @@ public class RutaMotor {
     resumen.put("partesSinSaldo", partes.get("sinSaldo"));
     resumen.put("cuotasPagadas", pagarCuotas(hoy));
     log.info("Motor de la ruta {}: {}", hoy, resumen);
+    auditoria.info(AuditoriaService.SISTEMA, "motor.diario", null, hoy.toString(),
+        "Motor diario del " + hoy + ": " + resumen.get("corteCercano") + " avisos de corte, " + resumen.get("partesApartadas")
+            + " partes apartadas, " + resumen.get("cuotasPagadas") + " cuotas pagadas", resumen);
     return resumen;
   }
 

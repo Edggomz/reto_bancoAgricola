@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ruta · Auditoría</title>
+  <style>
+    :root { --ink: #1A1B1A; --muted: #5B5B5B; --line: #E6E7E8; --brand: #FDDA24; --brand-ink: #2C2A29; --ok: #00714E; --okbg: #E0F7EF; --plan: #00448C; --planbg: #E4F6FC; --error: #D4351C; --errorbg: #FBE9E6; --bg: #F5F7F9; --surface: #FFFFFF; }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    body { margin: 0; font-family: "Open Sans", system-ui, sans-serif; color: var(--ink); background: var(--bg); }
+    header { background: var(--surface); border-bottom: 1px solid var(--line); padding: 16px 24px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    header h1 { font-size: 18px; margin: 0; }
+    header nav { margin-left: auto; display: flex; gap: 16px; font-size: 13px; flex-wrap: wrap; }
+    header a { color: var(--plan); }
+    .tag { font-size: 11px; letter-spacing: .08em; font-weight: 700; color: var(--muted); }
+    main { max-width: 1180px; margin: 0 auto; padding: 24px; display: grid; gap: 16px; }
+    .dos { display: grid; gap: 16px; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: start; }
+    @media (max-width: 900px) { .dos { grid-template-columns: minmax(0, 1fr); } }
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+    h2 { font-size: 11px; letter-spacing: .08em; color: var(--muted); margin: 0 0 10px; }
+    .intro { margin: 0; font-size: 14px; line-height: 1.55; color: var(--muted); max-width: 820px; }
+    .salud { display: flex; flex-wrap: wrap; gap: 8px; }
+    .pieza { display: flex; align-items: baseline; gap: 6px; border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; font-size: 13px; }
+    .pieza b { font-weight: 700; }
+    .pieza small { color: var(--muted); }
+    .pieza.ok .marca { color: var(--ok); }
+    .pieza.aviso .marca { color: var(--muted); }
+    .pieza.falla { background: var(--errorbg); border-color: var(--errorbg); }
+    .pieza.falla .marca { color: var(--error); }
+    .numeros { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+    .numero span { display: block; font-size: 12px; color: var(--muted); }
+    .numero b { font-size: 30px; font-weight: 300; font-variant-numeric: tabular-nums; }
+    .canales { margin-top: 10px; font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+    .check { display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; gap: 8px; padding: 9px 0; border-bottom: 1px solid var(--line); align-items: start; }
+    .check:last-child { border-bottom: 0; }
+    .check .marca { font-weight: 800; font-size: 15px; line-height: 20px; text-align: center; }
+    .check.si .marca { color: var(--ok); }
+    .check.no .marca { color: var(--muted); }
+    .check b { font-size: 14px; font-weight: 600; display: block; }
+    .check small { color: var(--muted); font-size: 12px; line-height: 1.45; display: block; }
+    .check .cuanto { font-size: 12px; color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .check .cuanto strong { display: block; color: var(--ink); font-size: 14px; }
+    .leyenda { display: grid; gap: 8px; font-size: 13px; line-height: 1.45; }
+    .leyenda div { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 8px; align-items: baseline; }
+    .leyenda p { margin: 6px 0 0; color: var(--muted); font-size: 12px; }
+    .filtros { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 8px; }
+    select, input[type=search], input[type=password] { min-height: 44px; border: 1px solid #C4C4C4; border-radius: 8px; padding: 8px 10px; font: inherit; font-size: 14px; background: var(--surface); color: var(--ink); }
+    input[type=search] { flex: 1; min-width: 200px; }
+    label.vivo { display: flex; align-items: center; gap: 8px; min-height: 44px; font-size: 14px; }
+    label.vivo input { width: 18px; height: 18px; }
+    button { min-height: 44px; border-radius: 999px; font: inherit; font-weight: 700; letter-spacing: .06em; font-size: 12px; padding: 0 16px; cursor: pointer; background: var(--surface); color: var(--brand-ink); border: 1.5px solid var(--brand-ink); }
+    .tabla { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th { text-align: left; font-size: 11px; letter-spacing: .06em; color: var(--muted); font-weight: 700; padding: 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+    td { padding: 9px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    tr.evento { cursor: pointer; }
+    tr.evento:hover td { background: var(--bg); }
+    tr.nuevo td { animation: nuevo 2.5s ease-out; }
+    @keyframes nuevo { from { background: var(--planbg); } to { background: transparent; } }
+    @media (prefers-reduced-motion: reduce) { tr.nuevo td { animation: none; } }
+    .hora, .ms { font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--muted); }
+    .pill { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .04em; border-radius: 999px; padding: 2px 8px; border: 1px solid var(--line); white-space: nowrap; }
+    .nivel-aviso { background: var(--bg); color: var(--ink); }
+    .nivel-error { background: var(--errorbg); color: var(--error); border-color: var(--errorbg); }
+    .tipo { display: block; font-size: 11px; color: var(--muted); margin-top: 2px; }
+    pre { margin: 0; white-space: pre-wrap; word-break: break-word; font-size: 12px; background: var(--bg); border-radius: 8px; padding: 10px; }
+    .vacio { color: var(--muted); text-align: center; padding: 32px 8px; }
+    .error-carga { color: var(--error); font-size: 13px; }
+  </style>
+</head>
+<body>
+<header>
+  <span class="tag">BANCOAGRÍCOLA · RUTA</span>
+  <h1>Auditoría y registro</h1>
+  <nav>
+    <a href="llamada-emulada.html">Llamada emulada</a>
+    <a href="simulador-llamada.html">Llamada con Vapi</a>
+    <a href="dashboard.html">Dashboard de gestión</a>
+  </nav>
+</header>
+<main>
+  <p class="intro">Cada cosa que cambia un dato o cruza de un sistema a otro deja una línea aquí: quien entra a la app, una fecha que se mueve, lo que dijo la llamada, lo que respondió n8n y cada error que vio un cliente. Sirve para entender qué pasó y comprobar que funciona. Se actualiza solo cada 3 segundos.</p>
+
+  <section class="card" aria-label="Salud">
+    <h2>¿ESTÁ TODO ARRIBA?</h2>
+    <div class="salud" id="salud"><span class="pieza">Cargando…</span></div>
+  </section>
+
+  <div class="dos">
+    <section class="card" aria-label="Verificación">
+      <h2>¿FUNCIONA? · ÚLTIMAS 24 HORAS</h2>
+      <div id="verificaciones"><p class="vacio">Cargando…</p></div>
+    </section>
+
+    <div style="display:grid;gap:16px">
+      <section class="card" aria-label="Últimas 24 horas">
+        <h2>CUÁNTO PASÓ · ÚLTIMAS 24 HORAS</h2>
+        <div class="numeros">
+          <div class="numero"><span>Eventos</span><b id="nEventos">—</b></div>
+          <div class="numero"><span>Fechas cambiadas</span><b id="nFechas">—</b></div>
+          <div class="numero"><span>Llamadas</span><b id="nLlamadas">—</b></div>
+          <div class="numero"><span>Rechazos</span><b id="nAvisos">—</b></div>
+          <div class="numero"><span>Errores</span><b id="nErrores">—</b></div>
+        </div>
+        <div class="canales" id="canales"></div>
+      </section>
+
+      <section class="card" aria-label="Cómo leer">
+        <h2>CÓMO LEER EL REGISTRO</h2>
+        <div class="leyenda">
+          <div><span class="pill">app</span><span>Lo que hizo la persona en la app móvil.</span></div>
+          <div><span class="pill">chat</span><span>La conversación con el asesor de IA.</span></div>
+          <div><span class="pill">voz</span><span>La llamada: qué propuso, qué se acordó y el formulario.</span></div>
+          <div><span class="pill">n8n</span><span>Cada mensaje de la llamada que pasó por n8n, con su tiempo en ms.</span></div>
+          <div><span class="pill">sistema</span><span>Lo que hizo el banco solo: avisos, push y el motor diario.</span></div>
+          <div><span class="pill nivel-aviso">AVISO</span><span>Un rechazo a propósito: una regla del banco, una clave mala. Se cuenta en «Rechazos».</span></div>
+          <div><span class="pill nivel-error">ERROR</span><span>Algo que falló y hay que revisar.</span></div>
+          <p>Toca una línea para ver el detalle en JSON. Nunca se guardan claves ni tokens.</p>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <section class="card" aria-label="Registro">
+    <h2>REGISTRO</h2>
+    <div class="filtros">
+      <select id="canal" aria-label="Canal">
+        <option value="">Todos los canales</option>
+        <option value="app">App</option>
+        <option value="chat">Chat</option>
+        <option value="voz">Voz</option>
+        <option value="n8n">n8n</option>
+        <option value="sistema">Sistema</option>
+        <option value="admin">Admin</option>
+      </select>
+      <select id="nivel" aria-label="Nivel">
+        <option value="">Todos los niveles</option>
+        <option value="info">Info</option>
+        <option value="aviso">Avisos</option>
+        <option value="error">Errores</option>
+      </select>
+      <input type="search" id="q" placeholder="Buscar: cliente, fecha, llamada, error…" aria-label="Buscar">
+      <label class="vivo"><input type="checkbox" id="vivo" checked> En vivo</label>
+      <input type="password" id="admin" placeholder="X-Admin-Key (si aplica)" aria-label="X-Admin-Key">
+      <button id="vaciar" type="button">VACIAR REGISTRO</button>
+    </div>
+    <p class="error-carga" id="errorCarga" hidden></p>
+    <div class="tabla">
+      <table>
+        <thead>
+          <tr><th>HORA</th><th>CANAL</th><th>QUÉ PASÓ</th><th>CLIENTE</th><th>NIVEL</th><th>MS</th></tr>
+        </thead>
+        <tbody id="eventos"><tr><td colspan="6" class="vacio">Cargando…</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<script>
+  const $ = (id) => document.getElementById(id);
+  const vistos = new Set();
+  const abiertos = new Set();
+  let primeraCarga = true;
+
+  const TIPOS = {
+    'sesion.ingreso': 'Ingreso a la app',
+    'dispositivo.registrado': 'Teléfono registrado para push',
+    'fecha.cambiada': 'Fecha de cobro cambiada',
+    'apartado.activado': 'Apartado activado',
+    'cuenta.abierta': 'Cuenta abierta',
+    'producto.activado': 'Producto activado',
+    'aviso.emitido': 'Aviso emitido',
+    'motor.diario': 'Motor diario',
+    'chat.iniciado': 'Asesor abierto',
+    'chat.pregunta_interes': 'El asesor dijo el interés',
+    'chat.acuerdo': 'Acuerdo en el chat',
+    'chat.escalado': 'Chat escalado',
+    'voz.llamada.web': 'Llamada lista',
+    'voz.llamada.programada': 'Llamada programada',
+    'voz.propuesta': 'La llamada propuso fechas',
+    'voz.formulario': 'Formulario de la llamada',
+    'voz.llamada.terminada': 'Llamada terminada',
+    'n8n.mensaje': 'Mensaje por n8n',
+    'n8n.sin_respuesta': 'n8n no respondió',
+    'push.enviado': 'Push enviado',
+    'push.simulado': 'Push simulado',
+    'push.error': 'Push con error',
+    'auditoria.vaciada': 'Registro vaciado',
+  };
+  const nombreTipo = (t) => TIPOS[t] || (t.startsWith('http.') ? `Respuesta HTTP ${t.slice(5)}` : t);
+
+  try { $('admin').value = sessionStorage.getItem('ruta.adminKey') || ''; } catch { /* sin almacenamiento */ }
+  $('admin').addEventListener('change', () => { try { sessionStorage.setItem('ruta.adminKey', $('admin').value); } catch { /* nada */ } cargar(); });
+
+  async function api(ruta, opciones = {}) {
+    const headers = {};
+    if ($('admin').value) headers['X-Admin-Key'] = $('admin').value;
+    const r = await fetch('/api' + ruta, { ...opciones, headers });
+    const texto = await r.text();
+    let cuerpo = null;
+    try { cuerpo = texto ? JSON.parse(texto) : null; } catch { cuerpo = { message: texto }; }
+    if (!r.ok) throw new Error((cuerpo && cuerpo.message) || `HTTP ${r.status}`);
+    return cuerpo;
+  }
+
+  const el = (tag, props = {}, hijos = []) => {
+    const e = document.createElement(tag);
+    Object.assign(e, props);
+    for (const h of [].concat(hijos)) if (h != null) e.append(h);
+    return e;
+  };
+
+  function hace(iso) {
+    if (!iso) return 'Todavía no';
+    const s = Math.max(0, Math.round((Date.now() - new Date(iso).getTime()) / 1000));
+    if (s < 60) return `hace ${s} s`;
+    if (s < 3600) return `hace ${Math.round(s / 60)} min`;
+    return `hace ${Math.round(s / 3600)} h`;
+  }
+
+  function pintarResumen(r) {
+    $('nEventos').textContent = r.eventos;
+    $('nFechas').textContent = r.fechasCambiadas;
+    $('nLlamadas').textContent = r.llamadasTerminadas;
+    $('nAvisos').textContent = r.avisos;
+    $('nErrores').textContent = r.errores;
+    const partes = Object.entries(r.porCanal || {}).map(([c, n]) => `${c} ${n}`);
+    $('canales').textContent = partes.length ? `Por canal: ${partes.join(' · ')}` : 'Todavía no hay eventos.';
+    const marcas = { ok: '✓', aviso: '!', falla: '✗' };
+    $('salud').replaceChildren(...(r.salud || []).map((p) =>
+      el('span', { className: `pieza ${p.estado}` }, [
+        el('span', { className: 'marca', textContent: marcas[p.estado] || '?' }),
+        el('b', { textContent: p.nombre }),
+        el('small', { textContent: p.detalle }),
+      ])));
+    $('verificaciones').replaceChildren(...(r.verificaciones || []).map((c) => {
+      const si = c.veces > 0;
+      return el('div', { className: `check ${si ? 'si' : 'no'}` }, [
+        el('span', { className: 'marca', textContent: si ? '✓' : '○', title: si ? 'Funcionó' : 'Sin probar' }),
+        el('div', {}, [
+          el('b', { textContent: c.nombre }),
+          el('small', { textContent: si ? `Última vez ${hace(c.ultima)}${c.promedioMs != null ? ` · ${c.promedioMs} ms en promedio` : ''}` : `Sin probar en 24 h. ${c.comoProbar}` }),
+        ]),
+        el('div', { className: 'cuanto' }, [el('strong', { textContent: c.veces }), c.veces === 1 ? 'vez' : 'veces']),
+      ]);
+    }));
+  }
+
+  function pintarEventos(lista) {
+    const cuerpo = $('eventos');
+    if (!lista.length) {
+      cuerpo.replaceChildren(el('tr', {}, el('td', { colSpan: 6, className: 'vacio', textContent: 'Todavía no hay eventos. Entra a la app o haz una llamada emulada.' })));
+      return;
+    }
+    const filas = [];
+    for (const e of lista) {
+      const nuevo = !primeraCarga && !vistos.has(e.id);
+      vistos.add(e.id);
+      const que = el('td', {}, [
+        el('b', { textContent: nombreTipo(e.tipo), style: 'font-weight:600' }),
+        el('span', { className: 'tipo', textContent: e.resumen }),
+      ]);
+      const nivel = e.nivel === 'info' ? '' : el('span', { className: `pill nivel-${e.nivel}`, textContent: e.nivel.toUpperCase() });
+      const fila = el('tr', { className: `evento${nuevo ? ' nuevo' : ''}` }, [
+        el('td', { className: 'hora', textContent: e.hora }),
+        el('td', {}, el('span', { className: 'pill', textContent: e.canal })),
+        que,
+        el('td', { textContent: e.cliente || '—' }),
+        el('td', {}, nivel),
+        el('td', { className: 'ms', textContent: e.duracionMs == null ? '' : e.duracionMs }),
+      ]);
+      fila.addEventListener('click', () => {
+        if (abiertos.has(e.id)) abiertos.delete(e.id); else abiertos.add(e.id);
+        pintarEventos(lista);
+      });
+      filas.push(fila);
+      if (abiertos.has(e.id)) {
+        const datos = { id: e.id, fecha: e.fecha, tipo: e.tipo, clienteId: e.clienteId, referencia: e.referencia, detalle: e.detalle };
+        filas.push(el('tr', {}, el('td', { colSpan: 6 }, el('pre', { textContent: JSON.stringify(datos, null, 2) }))));
+      }
+    }
+    cuerpo.replaceChildren(...filas);
+    primeraCarga = false;
+  }
+
+  async function cargar() {
+    const p = new URLSearchParams();
+    if ($('canal').value) p.set('canal', $('canal').value);
+    if ($('nivel').value) p.set('nivel', $('nivel').value);
+    if ($('q').value.trim()) p.set('q', $('q').value.trim());
+    try {
+      const [lista, resumen] = await Promise.all([api(`/admin/auditoria?${p}`), api('/admin/auditoria/resumen')]);
+      $('errorCarga').hidden = true;
+      pintarResumen(resumen);
+      pintarEventos(lista);
+    } catch (e) {
+      $('errorCarga').hidden = false;
+      $('errorCarga').textContent = `No pude leer el registro: ${e.message}`;
+    }
+  }
+
+  for (const id of ['canal', 'nivel']) $(id).addEventListener('change', cargar);
+  let espera = null;
+  $('q').addEventListener('input', () => { clearTimeout(espera); espera = setTimeout(cargar, 250); });
+  $('vaciar').addEventListener('click', async () => {
+    if (!confirm('¿Vaciar todo el registro de auditoría? Esto no toca los datos de clientes.')) return;
+    try { await api('/admin/auditoria', { method: 'DELETE' }); vistos.clear(); abiertos.clear(); primeraCarga = true; cargar(); }
+    catch (e) { alert(e.message); }
+  });
+  setInterval(() => { if ($('vivo').checked && !document.hidden) cargar(); }, 3000);
+  cargar();
+</script>
+</body>
+</html>

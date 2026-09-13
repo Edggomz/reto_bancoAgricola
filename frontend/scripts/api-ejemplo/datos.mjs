@@ -15,7 +15,29 @@ export const productos = {
   deposito: { id: 'deposito-plazo', titulo: 'Depósito a plazo digital', detalle: 'Crece a tasa fija', ilustracion: 'monedas' },
 };
 
-const dia = (d, desde, nota) => ({ dia: d, desde: `Desde el ${desde}`, nota });
+// Interés de los días que se corre la primera cuota: saldo $9,443 al 16 % y base 365, igual que el backend
+// para Edgar (hoy día 28). Los días de noviembre corren la cuota; los de octubre la adelantan.
+const INTERES_POR_DIA = (9443 * 0.16) / 365;
+const diasExtra = (d) => (d < 18 ? d + 3 : 0);
+const interesDe = (d) => Math.round(INTERES_POR_DIA * diasExtra(d) * 100) / 100;
+const costoOpcion = (d) =>
+  diasExtra(d)
+    ? `Con este día tu cuota se corre ${diasExtra(d)} días y lleva $${interesDe(d).toFixed(2)} de interés, una sola vez.`
+    : 'Con este día no hay interés extra.';
+const dia = (d, desde, nota) => ({ dia: d, desde: `Desde el ${desde}`, nota, costo: costoOpcion(d), interes: interesDe(d), diasExtra: diasExtra(d) });
+export const confirmacionFecha = (d) => {
+  const desde = `${d} de ${d < 18 ? 'noviembre' : 'octubre'}`;
+  return {
+    dia: d,
+    desde: `${desde} de 2026`,
+    operacion: '3242785',
+    costo: diasExtra(d)
+      ? `Se cobra una sola vez, con tu cuota del ${desde}, por los ${diasExtra(d)} días que se corre tu cobro. Después tu cuota vuelve a ser la de siempre.`
+      : 'Este cambio no lleva interés. Tu cuota y tu plazo no cambian.',
+    interes: interesDe(d),
+    diasExtra: diasExtra(d),
+  };
+};
 export const opcionesFecha = {
   'quincena-fin-de-mes': {
     hoy: 28,

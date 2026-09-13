@@ -1,0 +1,31 @@
+# n8n local para construir y probar los flujos de voz sin gastar ejecuciones
+# del trial de n8n Cloud (exit0). Lo que funciona aquí se sube a la nube al final.
+#
+#   docker compose -f infra/n8n/docker-compose.yml up -d
+#   http://localhost:5678
+#
+# Desde el contenedor, el backend de Ruta se alcanza en
+# http://host.docker.internal:8080/api (no en localhost).
+services:
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:2.38.7
+    container_name: ruta-n8n
+    restart: unless-stopped
+    ports:
+      - "5678:5678"
+    environment:
+      - GENERIC_TIMEZONE=America/El_Salvador
+      - TZ=America/El_Salvador
+      - N8N_SECURE_COOKIE=false
+      - N8N_DIAGNOSTICS_ENABLED=false
+      - N8N_PERSONALIZATION_ENABLED=false
+      # Vapi necesita una URL pública para llamar a los webhooks; con un túnel
+      # (cloudflared/ngrok) se pone aquí para que n8n muestre la URL correcta.
+      - N8N_WEBHOOK_URL=${N8N_WEBHOOK_URL:-http://localhost:5678/}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - n8n_data:/home/node/.n8n
+
+volumes:
+  n8n_data:

@@ -32,7 +32,7 @@ const rutas = {
   'GET /fecha-cobro/opciones': (q) => D.opcionesFecha[q.get('frecuencia')] ?? D.opcionesFecha['quincena-fin-de-mes'],
   'POST /fecha-cobro': (_q, body) => {
     estado.fecha = true;
-    return { dia: body.dia, desde: `${body.dia} de octubre de 2026`, operacion: '3242785' };
+    return D.confirmacionFecha(body.dia);
   },
   'GET /apartado/creditos': () => D.creditos,
   'GET /apartado/partes': () => D.partes,

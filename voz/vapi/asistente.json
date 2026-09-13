@@ -1,0 +1,116 @@
+{
+  "name": "Ruta · Fecha de cobro",
+  "firstMessageMode": "assistant-speaks-first",
+  "firstMessage": "Hola, {{saludo}}. ¿Hablo con {{nombre}}?",
+  "model": {
+    "provider": "openai",
+    "model": "gpt-4o-mini",
+    "temperature": 0.2,
+    "maxTokens": 250,
+    "messages": [
+      { "role": "system", "content": "__PROMPT__" }
+    ],
+    "tools": [
+      { "type": "endCall" },
+      {
+        "type": "function",
+        "async": false,
+        "function": {
+          "name": "proponer_fecha",
+          "description": "Calcula la nueva fecha de cobro a partir de cuándo le llega el dinero a la persona. No cambia nada. Devuelve `decir` (texto exacto para leer), `bloqueado` y las opciones de día.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "tipo_ingreso": { "type": "string", "enum": ["salario", "pension", "remesa", "negocio", "otro"], "description": "Cómo le llega su dinero." },
+              "dias_ingreso": { "type": "array", "items": { "type": "integer", "minimum": 1, "maximum": 31 }, "description": "Días del mes en que le llega. Fin de mes es 31. Si no es fijo: inicio 5, mediados 15, fin 31." },
+              "semanal": { "type": "boolean", "description": "Verdadero si le pagan cada semana." },
+              "constante": { "type": "boolean", "description": "Falso si el día cambia de un mes a otro." }
+            },
+            "required": ["tipo_ingreso"]
+          }
+        },
+        "messages": [
+          { "type": "request-start", "content": "Déjame ver…", "blocking": false },
+          { "type": "request-response-delayed", "content": "Ya casi lo tengo.", "timingMilliseconds": 2500 },
+          { "type": "request-failed", "content": "Perdón, no pude revisarlo en este momento." }
+        ],
+        "server": { "url": "__N8N_WEBHOOK_URL__", "timeoutSeconds": 10, "credentialId": "__VAPI_CREDENTIAL_ID__" }
+      },
+      {
+        "type": "function",
+        "async": false,
+        "function": {
+          "name": "confirmar_fecha",
+          "description": "Cambia la fecha de cobro. Úsala solo después de un sí claro y de que la persona oyó el interés, si lo hay. Devuelve `decir`.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "tipo_ingreso": { "type": "string", "enum": ["salario", "pension", "remesa", "negocio", "otro"] },
+              "dias_ingreso": { "type": "array", "items": { "type": "integer", "minimum": 1, "maximum": 31 } },
+              "semanal": { "type": "boolean" },
+              "constante": { "type": "boolean" },
+              "dia": { "type": "integer", "description": "Día elegido. Tiene que ser uno de los que devolvió proponer_fecha." },
+              "acepta_interes": { "type": "boolean", "description": "Verdadero solo si la persona escuchó el interés y dijo que sí." }
+            },
+            "required": ["tipo_ingreso", "dia", "acepta_interes"]
+          }
+        },
+        "messages": [
+          { "type": "request-start", "content": "Perfecto, lo dejo listo.", "blocking": false },
+          { "type": "request-failed", "content": "Perdón, no pude dejarlo listo en este momento." }
+        ],
+        "server": { "url": "__N8N_WEBHOOK_URL__", "timeoutSeconds": 10, "credentialId": "__VAPI_CREDENTIAL_ID__" }
+      },
+      {
+        "type": "function",
+        "async": true,
+        "function": {
+          "name": "guardar_formulario",
+          "description": "Guarda lo que contó la persona. Llámala una sola vez, justo antes de despedirte, en cualquier final de la llamada. No esperes respuesta.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "resultado": { "type": "string", "enum": ["sin_cambio", "bloqueado", "tercero", "volver_a_llamar", "no_llamar"], "description": "Cómo terminó, si no se cambió la fecha. Si se cambió, sin_cambio: el banco ya lo sabe." },
+              "tipo_ingreso": { "type": "string", "enum": ["salario", "pension", "remesa", "negocio", "otro"] },
+              "dias_ingreso": { "type": "array", "items": { "type": "integer", "minimum": 1, "maximum": 31 } },
+              "constante": { "type": "boolean" },
+              "canal_pago": { "type": "string", "enum": ["app", "agencia", "otro"], "description": "Cómo prefiere pagar." },
+              "usa_banca_linea": { "type": "boolean", "description": "Verdadero si dijo que sabe usar la app o la banca en línea." }
+            },
+            "required": ["resultado"]
+          }
+        },
+        "server": { "url": "__N8N_WEBHOOK_URL__", "timeoutSeconds": 10, "credentialId": "__VAPI_CREDENTIAL_ID__" }
+      }
+    ]
+  },
+  "voice": {
+    "provider": "azure",
+    "voiceId": "es-SV-LorenaNeural"
+  },
+  "transcriber": {
+    "provider": "deepgram",
+    "model": "nova-3",
+    "language": "es"
+  },
+  "startSpeakingPlan": {
+    "waitSeconds": 0.6,
+    "smartEndpointingPlan": { "provider": "vapi" },
+    "transcriptionEndpointingPlan": {
+      "onPunctuationSeconds": 0.3,
+      "onNoPunctuationSeconds": 1.5,
+      "onNumberSeconds": 1.0
+    }
+  },
+  "stopSpeakingPlan": {
+    "numWords": 2,
+    "voiceSeconds": 0.3,
+    "backoffSeconds": 1.2,
+    "acknowledgementPhrases": ["ajá", "aja", "sí", "si", "ok", "mhm", "ya", "claro", "bueno", "va"]
+  },
+  "silenceTimeoutSeconds": 30,
+  "maxDurationSeconds": 300,
+  "endCallMessage": "Gracias. Que tengas un buen día.",
+  "serverMessages": ["tool-calls", "end-of-call-report"],
+  "server": { "url": "__N8N_WEBHOOK_URL__", "timeoutSeconds": 10, "credentialId": "__VAPI_CREDENTIAL_ID__" }
+}

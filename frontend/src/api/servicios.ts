@@ -33,7 +33,8 @@ export const api = {
   /** 03: lo que respondió la persona se guarda apenas lo elige (es dato suyo, no del plan). */
   guardarFrecuencia: (frecuencia: Frecuencia) => pedir<void>('/fecha-cobro/frecuencia', { metodo: 'POST', cuerpo: { frecuencia } }),
   opcionesFecha: (frecuencia: Frecuencia) => pedir<OpcionesFecha>(`/fecha-cobro/opciones?frecuencia=${q(frecuencia)}`),
-  confirmarFecha: (frecuencia: Frecuencia, dia: number) => pedir<FechaConfirmada>('/fecha-cobro', { metodo: 'POST', cuerpo: { frecuencia, dia } }),
+  confirmarFecha: (frecuencia: Frecuencia, dia: number, aceptaInteres: boolean) =>
+    pedir<FechaConfirmada>('/fecha-cobro', { metodo: 'POST', cuerpo: { frecuencia, dia, aceptaInteres } }),
 
   creditosApartables: () => pedir<CreditoApartable[]>('/apartado/creditos'),
   opcionesPartes: (credito: string) => pedir<OpcionesPartes>(`/apartado/partes?credito=${q(credito)}`),

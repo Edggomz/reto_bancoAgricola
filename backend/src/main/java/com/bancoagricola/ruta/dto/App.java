@@ -37,9 +37,10 @@ public final class App {
   // ---- Cambiar fecha de cobro (03 · 04 · 05) ----
   public record OpcionesFecha(int hoy, List<GrupoFecha> grupos) {}
   public record GrupoFecha(String titulo, List<DiaOpcion> dias) {}
-  public record DiaOpcion(int dia, String desde, String nota) {}
-  public record ConfirmarFecha(String frecuencia, Integer dia, String credito) {}
-  public record FechaConfirmada(int dia, String desde, String operacion) {}
+  /** costo: qué pasa con el interés si elige ese día, ya redactado. interes > 0 solo si la cuota se corre. */
+  public record DiaOpcion(int dia, String desde, String nota, String costo, double interes, int diasExtra) {}
+  public record ConfirmarFecha(String frecuencia, Integer dia, String credito, Boolean aceptaInteres) {}
+  public record FechaConfirmada(int dia, String desde, String operacion, String costo, double interes, int diasExtra) {}
   public record GuardarFrecuencia(String frecuencia) {}
 
   // ---- Apartar la cuota (06 · 07 · 08 · 09) ----

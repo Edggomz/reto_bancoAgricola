@@ -26,11 +26,13 @@ public class AuthService {
   private final Repositorios.Clientes clientes;
   private final Repositorios.Tokens tokens;
   private final CopyService copy;
+  private final AuditoriaService auditoria;
 
-  public AuthService(Repositorios.Clientes clientes, Repositorios.Tokens tokens, CopyService copy) {
+  public AuthService(Repositorios.Clientes clientes, Repositorios.Tokens tokens, CopyService copy, AuditoriaService auditoria) {
     this.clientes = clientes;
     this.tokens = tokens;
     this.copy = copy;
+    this.auditoria = auditoria;
   }
 
   public record Sesion(String token, String clienteId) {}
@@ -51,6 +53,7 @@ public class AuthService {
     token.setClienteId(cliente.getId());
     token.setExpiresAt(LocalDateTime.now().plusHours(copy.entero("sesion.horas")));
     tokens.save(token);
+    auditoria.info(AuditoriaService.APP, "sesion.ingreso", cliente.getId(), null, "Ingresó a la app como " + u, null);
     return new Sesion(token.getToken(), cliente.getId());
   }
 

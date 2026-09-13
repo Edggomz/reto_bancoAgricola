@@ -1,0 +1,352 @@
+{
+  "id": "RutaVozHerram001",
+  "name": "Ruta · Voz · Herramientas (Vapi)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ruta-voz",
+        "authentication": "headerAuth",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "000005a1-7a11-4e0c-9b0d-000000000001",
+      "name": "Vapi",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        300
+      ],
+      "webhookId": "b3c1e0d4-2f6a-4c5e-9d7b-5a1000000001",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "RutaVapiSecret01",
+          "name": "Vapi → n8n (X-Vapi-Secret)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "manual",
+        "includeOtherFields": true,
+        "options": {},
+        "assignments": {
+          "assignments": [
+            {
+              "id": "api",
+              "name": "api",
+              "value": "http://host.docker.internal:8080/api",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "id": "000005a1-7a11-4e0c-9b0d-000000000002",
+      "name": "Config",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Traduce el mensaje de Vapi al contrato /api/voz del backend.\n// El cliente y la llamada salen de los metadatos que puso el banco al programar la llamada,\n// nunca de lo que se dice en la llamada.\nconst entrada = $input.first().json;\nconst api = entrada.api;\nconst m = entrada.body?.message ?? {};\nconst call = m.call ?? {};\nconst vars = call.assistantOverrides?.variableValues ?? {};\nconst meta = call.metadata ?? {};\nconst llamadaId = meta.llamadaId ?? vars.llamadaId ?? null;\nconst clienteId = meta.clienteId ?? vars.clienteId ?? null;\n\nconst dias = (v) => (Array.isArray(v) ? v.map(Number).filter((n) => Number.isInteger(n)) : []);\nconst argumentos = (tc) => {\n  let a = tc.arguments ?? tc.parameters ?? tc.function?.arguments ?? {};\n  if (typeof a === 'string') {\n    try { a = JSON.parse(a); } catch { a = {}; }\n  }\n  return a;\n};\nconst ingreso = (a) => ({ tipoIngreso: a.tipo_ingreso ?? null, diasIngreso: dias(a.dias_ingreso), semanal: a.semanal ?? null, constante: a.constante ?? null });\n\nif (m.type === 'tool-calls') {\n  const pedidas = m.toolCallList ?? (m.toolWithToolCallList ?? []).map((t) => ({ name: t.name, ...t.toolCall }));\n  return pedidas.map((tc) => {\n    const nombre = tc.name ?? tc.function?.name;\n    const a = argumentos(tc);\n    const base = { nombre, toolCallId: tc.id };\n    if (nombre === 'proponer_fecha') {\n      return { json: { ...base, tipo: 'calculo', url: `${api}/voz/fecha/propuesta`, cuerpo: { llamadaId, clienteId, ...ingreso(a) } } };\n    }\n    if (nombre === 'confirmar_fecha') {\n      return { json: { ...base, tipo: 'calculo', url: `${api}/voz/fecha/confirmar`,\n        cuerpo: { llamadaId, clienteId, ...ingreso(a), dia: a.dia ?? null, aceptaInteres: a.acepta_interes === true } } };\n    }\n    if (nombre === 'guardar_formulario') {\n      return { json: { ...base, tipo: 'guardar', url: `${api}/voz/llamadas/resultado`,\n        cuerpo: { llamadaId, clienteId, resultado: a.resultado ?? null, tipoIngreso: a.tipo_ingreso ?? null, constante: a.constante ?? null,\n          diasIngreso: dias(a.dias_ingreso), canalPago: a.canal_pago ?? null, usaBancaLinea: a.usa_banca_linea ?? null } } };\n    }\n    return { json: { ...base, tipo: 'ignorar' } };\n  });\n}\n\nif (m.type === 'end-of-call-report') {\n  const analisis = m.analysis ?? call.analysis ?? {};\n  const datos = analisis.structuredData ?? {};\n  const duracion = Number.isFinite(m.durationSeconds) ? m.durationSeconds\n    : (Date.parse(call.endedAt) - Date.parse(call.startedAt)) / 1000;\n  return [{ json: { tipo: 'guardar', url: `${api}/voz/llamadas/resultado`, cuerpo: {\n    llamadaId, clienteId, proveedorId: call.id ?? null, motivoFin: m.endedReason ?? call.endedReason ?? null,\n    resultado: datos.resultado ?? null, tipoIngreso: datos.tipo_ingreso ?? null, constante: datos.constante ?? null,\n    diasIngreso: dias(datos.dias_ingreso), canalPago: datos.canal_pago ?? null, usaBancaLinea: datos.usa_banca_linea ?? null,\n    resumen: analisis.summary ?? null,\n    transcripcion: m.artifact?.transcript ?? m.transcript ?? null,\n    duracionSeg: Number.isFinite(duracion) ? Math.round(duracion) : null,\n  } } }];\n}\n\nreturn [{ json: { tipo: 'ignorar', mensaje: m.type ?? null } }];\n"
+      },
+      "id": "000005a1-7a11-4e0c-9b0d-000000000003",
+      "name": "Leer mensaje de Vapi",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        440,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c000005a1-7a11-4e0c-9b0d-000000000004",
+              "leftValue": "={{ $json.tipo }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              },
+              "rightValue": "calculo"
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "000005a1-7a11-4e0c-9b0d-000000000004",
+      "name": "¿Pide un cálculo?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        660,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $json.url }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {
+          "timeout": 8000,
+          "response": {
+            "response": {
+              "fullResponse": true,
+              "neverError": true
+            }
+          }
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.cuerpo) }}"
+      },
+      "id": "000005a1-7a11-4e0c-9b0d-000000000005",
+      "name": "Backend: fecha de cobro",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        880,
+        180
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "RutaVozKeyApi001",
+          "name": "Ruta API (X-Voz-Key)"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Vapi espera { results: [{ toolCallId, result }] }. El result va corto: menos tokens, menos latencia.\nconst results = $input.all().map((item, i) => {\n  const pedido = $('Leer mensaje de Vapi').itemMatching(i).json;\n  const r = item.json;\n  const b = r.body ?? {};\n  const ok = r.statusCode >= 200 && r.statusCode < 300;\n  let result;\n  if (!ok) {\n    result = { error: b.message ?? 'No se pudo revisar en este momento.' };\n  } else if (pedido.nombre === 'confirmar_fecha') {\n    result = { decir: b.decir, dia: b.dia, desde: b.desde };\n  } else {\n    result = { decir: b.decir, bloqueado: b.bloqueado, opciones: (b.opciones ?? []).map((o) => ({ dia: o.dia, desde: o.desde })) };\n  }\n  return { toolCallId: pedido.toolCallId, result: JSON.stringify(result) };\n});\nreturn [{ json: { results } }];\n"
+      },
+      "id": "000005a1-7a11-4e0c-9b0d-000000000006",
+      "name": "Armar respuesta para Vapi",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1100,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "firstIncomingItem",
+        "options": {}
+      },
+      "id": "000005a1-7a11-4e0c-9b0d-000000000007",
+      "name": "Responder a Vapi",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1320,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"ok\": true\n}",
+        "options": {}
+      },
+      "id": "000005a1-7a11-4e0c-9b0d-000000000008",
+      "name": "Recibido",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        880,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c000005a1-7a11-4e0c-9b0d-000000000009",
+              "leftValue": "={{ $json.tipo }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              },
+              "rightValue": "guardar"
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "000005a1-7a11-4e0c-9b0d-000000000009",
+      "name": "¿Hay algo que guardar?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1100,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $json.url }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {
+          "timeout": 8000,
+          "response": {
+            "response": {
+              "fullResponse": true,
+              "neverError": true
+            }
+          }
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.cuerpo) }}"
+      },
+      "id": "000005a1-7a11-4e0c-9b0d-00000000000a",
+      "name": "Backend: guardar llamada",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1320,
+        420
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "RutaVozKeyApi001",
+          "name": "Ruta API (X-Voz-Key)"
+        }
+      },
+      "onError": "continueRegularOutput"
+    }
+  ],
+  "connections": {
+    "Vapi": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config": {
+      "main": [
+        [
+          {
+            "node": "Leer mensaje de Vapi",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Leer mensaje de Vapi": {
+      "main": [
+        [
+          {
+            "node": "¿Pide un cálculo?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "¿Pide un cálculo?": {
+      "main": [
+        [
+          {
+            "node": "Backend: fecha de cobro",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Recibido",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Backend: fecha de cobro": {
+      "main": [
+        [
+          {
+            "node": "Armar respuesta para Vapi",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Armar respuesta para Vapi": {
+      "main": [
+        [
+          {
+            "node": "Responder a Vapi",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recibido": {
+      "main": [
+        [
+          {
+            "node": "¿Hay algo que guardar?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "¿Hay algo que guardar?": {
+      "main": [
+        [
+          {
+            "node": "Backend: guardar llamada",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataSuccessExecution": "none",
+    "saveDataErrorExecution": "all",
+    "saveManualExecutions": true
+  },
+  "pinData": {},
+  "active": false
+}

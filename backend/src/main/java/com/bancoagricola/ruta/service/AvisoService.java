@@ -28,10 +28,12 @@ public class AvisoService {
 
   private final Repositorios.Avisos avisos;
   private final PushService push;
+  private final AuditoriaService auditoria;
 
-  public AvisoService(Repositorios.Avisos avisos, PushService push) {
+  public AvisoService(Repositorios.Avisos avisos, PushService push, AuditoriaService auditoria) {
     this.avisos = avisos;
     this.push = push;
+    this.auditoria = auditoria;
   }
 
   /** Crea el aviso, lo deja en la bandeja de la app y lo manda por push. */
@@ -51,6 +53,7 @@ public class AvisoService {
     a.setTarget(target);
     a.setOrden(0);
     a = avisos.saveAndFlush(a);
+    auditoria.info(AuditoriaService.SISTEMA, "aviso.emitido", clienteId, a.getId(), "Aviso en la app: " + titulo, null);
     push.enviar(a, creditoId, tipoPush, corteFecha, diasAntes);
     return a;
   }

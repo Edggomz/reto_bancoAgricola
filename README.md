@@ -6,13 +6,22 @@ evitar que un cliente sano llegue a atrasarse. Toda la experiencia ocurre
 **antes** del vencimiento, en el único tramo donde todavía no hay costo para el
 banco ni para la persona.
 
-El sistema hace cuatro cosas:
+El sistema hace cinco cosas, y deja constancia de todas:
 
 1. **Mueve la fecha de cobro** al día en que la persona ya tiene el dinero.
 2. **Aparta la cuota en partes** que se congelan en su cuenta y se pagan solas.
 3. **Avisa** de lo que va pasando, y nunca recuerda pagar.
 4. **Conversa** con un asesor de IA que resuelve en el mismo turno y solo escala
    a una persona cuando el caso se sale de sus manos.
+5. **Llama** a quien no usa la app: una asistente de voz hace dos preguntas, mueve
+   la fecha de cobro y guarda el formulario. Ver [`voz/README.md`](voz/README.md) y, para
+   probarlo sin cuentas ni número, [`voz/PROBAR.md`](voz/PROBAR.md).
+
+Cada paso queda en un **registro de auditoría** con tablero propio, para entender
+qué pasó y comprobar que funciona.
+
+> **¿Vas a presentar o probar la demo?** Empieza por [`DEMO.md`](DEMO.md): un comando
+> levanta todo y ahí está el recorrido de cinco minutos.
 
 ---
 
@@ -35,7 +44,7 @@ El sistema hace cuatro cosas:
 └───────────────────────────────┬────────────────────────────────────────────────┘
                                 ▼
                      Oracle XE 21c (XEPDB1)  ·  o H2 en memoria
-                     36 tablas · dataset de 42 clientes
+                     40 tablas · dataset de 42 clientes
 ```
 
 **Principio de diseño:** el backend no contiene ni un dato de negocio en el
@@ -70,8 +79,11 @@ El cliente nunca decide solo. Cada regla se vuelve a comprobar en el backend.
 **Fecha de cobro.** Solo se ofrecen días posteriores a un pago de la persona, con
 un margen de 3 o 4 días. Nunca del 28 al 31, para no romper en febrero. Además el
 primer cobro con la fecha nueva cae al menos 14 días después del cobro actual,
-para que no le lleguen dos cobros seguidos. Cambiar la fecha no toca el monto ni
-el plazo del crédito. Un día fuera del conjunto devuelve 400.
+para que no le lleguen dos cobros seguidos. Cambiar la fecha no toca la cuota ni
+el plazo. Si la primera cuota se corre unos días, esos días llevan interés una sola
+vez: la vista 04 lo muestra en cada día antes de confirmar, la 05 lo deja escrito, y
+el chat y la voz lo preguntan. Sin aceptarlo, el servidor devuelve 400. Un día fuera
+del conjunto también devuelve 400, y después de un cambio la fecha queda fija 6 meses.
 
 **Cuántas partes.** Depende de cuántas veces recibe dinero, no de lo que el
 cliente escriba:
@@ -153,7 +165,7 @@ resto por Firebase. Sin credenciales de Firebase el envío queda registrado como
 
 ## 6. Base de datos
 
-Oracle XE 21c sobre el PDB `XEPDB1`, 36 tablas. Los scripts están en
+Oracle XE 21c sobre el PDB `XEPDB1`, 40 tablas. Los scripts están en
 `backend/src/main/resources/db/`:
 
 | Archivo | Para qué |
@@ -184,6 +196,17 @@ Clave de todos los usuarios de prueba: **`ruta2026`**.
 `GET /api/admin/clientes` lista los 42 con perfil, arquetipo y si tienen cuenta.
 
 ## 7. Cómo correrlo
+
+### Todo de una vez (macOS)
+
+```bash
+./scripts/levantar-demo.sh
+```
+
+Levanta n8n en Docker, compila y arranca el backend con H2, abre el emulador de
+Android y la app. `--sin-app` deja solo n8n y backend; `--reiniciar` vuelve los datos
+al dataset original. `./scripts/detener-demo.sh` apaga lo que levantó. En Windows,
+sigue los pasos de abajo uno por uno.
 
 ### Base de datos
 
@@ -226,12 +249,15 @@ reinicia el emulador. Con Metro corriendo, la tecla `w` abre la versión web. Pa
 un celular físico hay que poner la IP de la PC en el `.env`, estar en la misma
 Wi-Fi y abrir el puerto 8080.
 
-### Tablero de gestión
+### Tableros
 
-Con el backend arriba: <http://localhost:8080/api/dashboard.html>. Muestra
-clientes por perfil y categoría, cuántos están a cinco días del corte, apartados
-activos, citas, resultados de las conversaciones con su porcentaje de resolución
-sin escalar, envíos de push y métricas de IA con latencias y fallbacks.
+Con el backend arriba:
+
+| Página | Para qué |
+|---|---|
+| <http://localhost:8080/api/dashboard.html> | Gestión: clientes por perfil y categoría, cuántos están a cinco días del corte, apartados activos, citas, resultados de las conversaciones con su porcentaje de resolución sin escalar, envíos de push y métricas de IA |
+| <http://localhost:8080/api/auditoria.html> | Auditoría: cada evento de la app, el chat, la voz, n8n y el sistema, con una lista de «¿funciona?» que dice qué se probó en las últimas 24 horas y cómo probar lo que falta |
+| <http://localhost:8080/api/llamada-emulada.html> | La llamada de voz sin cuentas ni número: suena, se contesta y pasa por n8n y el backend reales |
 
 ## 8. Contrato de la API
 
@@ -255,7 +281,9 @@ Todo cuelga de `/api` y, salvo el ingreso, pide `Authorization: Bearer`.
 | 13–15 | `POST /asesor/sesiones` · `POST /asesor/sesiones/{id}/mensajes` · `POST /asesor/sesiones/{id}/fin` |
 | push | `POST /dispositivos` |
 | IA | `GET /ai/sugerencias/frecuencia` · `/fecha` · `/partes` · `GET /ai/metrics` |
-| admin | `POST /admin/ruta/procesar` · `GET /admin/metrics` · `GET /admin/notificaciones` · `GET /admin/clientes` |
+| admin | `POST /admin/ruta/procesar` · `GET /admin/metrics` · `GET /admin/notificaciones` · `GET /admin/clientes` · `GET /admin/voz/llamadas` · `POST /admin/demo/telefono` |
+| auditoría | `GET /admin/auditoria?canal=&nivel=&q=&cliente=&desde=` · `GET /admin/auditoria/resumen` · `DELETE /admin/auditoria` |
+| voz (n8n, `X-Voz-Key`) | `GET /voz/llamadas/pendientes` · `POST /voz/llamadas` · `POST /voz/fecha/propuesta` · `POST /voz/fecha/confirmar` · `POST /voz/llamadas/resultado` |
 
 El detalle de cada respuesta está en `frontend/src/api/tipos.ts`, que es la fuente
 de verdad del contrato, y en `backend/README.md`.
@@ -292,6 +320,13 @@ miedo muestran que, sin una ruta de acción concreta, el mensaje empeora el
 resultado. De ahí que el asesor no termine en «¿agendamos?» sino en algo que se
 resuelve en el mismo turno.
 
+**La llamada sí inicia el contacto, y por eso no recuerda pagar.** Es la única
+excepción a la regla anterior, y se sostiene porque no es un mensaje: cambia la
+fecha. Con asignación aleatoria, un solo día de desfase entre el ingreso y el
+vencimiento sube 10 puntos el pago tardío (Dahan, 2022), así que alinear la fecha
+ataca una causa y no un síntoma. La evidencia viene de otros productos y países:
+por eso la llamada se mide contra un grupo sin llamada antes de escalarla.
+
 **Norma social en vez de urgencia.** En el mismo ensayo, el ángulo de urgencia no
 fue significativo. El nombre propio, del cliente y del asesor, sí movió resultados
 en varios estudios. El copy del sistema sigue esas dos filas.
@@ -303,7 +338,7 @@ backend/     Spring Boot, la API, la IA, el motor diario y los scripts de base d
   src/main/java/com/bancoagricola/ruta/
     config/ domain/ repository/ dto/ service/ ai/ web/
   src/main/resources/
-    application.yml  db/  static/dashboard.html
+    application.yml  db/  static/ (dashboard, auditoría, llamada emulada)
   tools/seed/        generador del dataset en Oracle y H2
 frontend/    App React Native con Expo
   src/api/           contrato y cliente HTTP
@@ -311,16 +346,23 @@ frontend/    App React Native con Expo
   src/components/    biblioteca de interfaz
   src/theme/         tokens extraídos de Figma
   design/            referencias y especificaciones del diseño
+voz/         guion de la asistente, flujos de n8n y asistente de Vapi
+infra/n8n/   n8n local en Docker
+scripts/     levantar-demo.sh y detener-demo.sh
+presentacion/ deck v3 (pptx con el video y pdf de respaldo) y guion de defensa
+DEMO.md      cómo presentar y probar la demo
 ```
 
 ## 12. Estado y pendientes
 
 Funciona de punta a punta: app, backend, Oracle, IA con llaves reales, motor
-diario, avisos y tablero. Queda pendiente lo siguiente.
+diario, avisos, llamada emulada, auditoría y tableros. Queda pendiente lo siguiente.
 
 - **Push reales en el dispositivo.** Falta una build de desarrollo con
   credenciales de Firebase o el identificador de proyecto de EAS. Mientras tanto
   los envíos quedan como `SIMULADO` y los avisos se ven dentro de la app.
-- **Voz.** El canal de voz no está implementado. El enganche natural es un webhook
-  contra el mismo servicio del asesor.
+- **Voz.** Implementado en `voz/` y `/api/voz`, con n8n y Vapi, y probado de punta a
+  punta con la llamada emulada. Falta la llamada real: un número de Twilio, Vonage o
+  Telnyx importado en Vapi, un túnel público al backend y los flujos publicados en
+  n8n Cloud. Decisiones abiertas en `voz/README.md` §7.
 - **WhatsApp.** Mismo caso que la voz.

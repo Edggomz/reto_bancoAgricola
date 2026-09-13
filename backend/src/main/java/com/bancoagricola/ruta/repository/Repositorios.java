@@ -81,6 +81,8 @@ public final class Repositorios {
   public interface Clientes extends JpaRepository<Cliente, String> {
     Optional<Cliente> findByUsername(String username);
 
+    Optional<Cliente> findByTelefono(String telefono);
+
     List<Cliente> findByActivoTrue();
   }
 
@@ -201,5 +203,41 @@ public final class Repositorios {
 
     @Query("select coalesce(avg(l.latenciaMs), 0) from IaLlamada l where l.exito = true")
     Double latenciaPromedio();
+  }
+
+  public interface PerfilesIngreso extends JpaRepository<PerfilIngreso, String> {}
+
+  public interface Sucursales extends JpaRepository<Sucursal, String> {
+    List<Sucursal> findByActivoTrueOrderByNombreAsc();
+  }
+
+  public interface LlamadasVoz extends JpaRepository<LlamadaVoz, String> {
+    List<LlamadaVoz> findByClienteIdOrderByCreatedAtDesc(String clienteId);
+
+    List<LlamadaVoz> findTop20ByOrderByCreatedAtDesc();
+
+    long countByResultado(String resultado);
+  }
+
+  public interface EventosAuditoria extends JpaRepository<EventoAuditoria, String> {
+    List<EventoAuditoria> findTop300ByOrderByCreatedAtDesc();
+
+    Optional<EventoAuditoria> findTopByOrderByCreatedAtDesc();
+
+    long countByCreatedAtAfter(LocalDateTime desde);
+
+    long countByNivelAndCreatedAtAfter(String nivel, LocalDateTime desde);
+
+    long countByTipoAndCreatedAtAfter(String tipo, LocalDateTime desde);
+
+    long countByTipoStartingWithAndCreatedAtAfter(String prefijo, LocalDateTime desde);
+
+    Optional<EventoAuditoria> findTopByTipoStartingWithOrderByCreatedAtDesc(String prefijo);
+
+    @Query("select avg(e.duracionMs) from EventoAuditoria e where e.tipo = ?1 and e.createdAt > ?2 and e.duracionMs is not null")
+    Double promedioMs(String tipo, LocalDateTime desde);
+
+    @Query("select e.canal, count(e) from EventoAuditoria e where e.createdAt > ?1 group by e.canal")
+    List<Object[]> contarPorCanal(LocalDateTime desde);
   }
 }

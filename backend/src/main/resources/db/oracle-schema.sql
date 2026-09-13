@@ -46,6 +46,7 @@ DECLARE
   );
 
   v_tables t_names := t_names(
+    'EVENTO_AUDITORIA', 'LLAMADA_VOZ', 'PERFIL_INGRESO', 'SUCURSAL',
     'IA_LLAMADA', 'NOTIFICACION_ENVIADA', 'DISPOSITIVO', 'TRANSACCION',
     'CHAT_QUICK_REPLY', 'CHAT_MENSAJE', 'CHAT_SESION', 'CITA', 'SHOCK_CONTEXT',
     'RECORD_SUMANDO', 'RECORD_HITO', 'RECORD_PAGO', 'AVISO',
@@ -321,6 +322,11 @@ CREATE TABLE CLIENTE (
   -- «¿Qué día te pagan?»: lo que respondió la persona (03). Alimenta las
   -- fechas de cobro y cuántas partes se le ofrecen. NULL = aún no respondió.
   frecuencia_pago     VARCHAR2(64),
+  -- Canal de voz: número al que puede llamar el agente (E.164, +503…) y dónde
+  -- vive, para decirle la agencia más cercana. Sin teléfono no se le llama.
+  telefono            VARCHAR2(20),
+  municipio           VARCHAR2(64),
+  departamento        VARCHAR2(64),
   fecha_alta          DATE          DEFAULT TRUNC(SYSDATE) NOT NULL,
   activo              NUMBER(1)     DEFAULT 1 NOT NULL,
   CONSTRAINT pk_cliente        PRIMARY KEY (id),
@@ -334,6 +340,7 @@ CREATE TABLE CLIENTE (
   CONSTRAINT ck_cliente_cat    CHECK (categoria IN ('A1', 'A2', 'B', 'C', 'D', 'E')),
   CONSTRAINT ck_cliente_risk   CHECK (first_time_at_risk IN (0, 1)),
   CONSTRAINT ck_cliente_act    CHECK (activo IN (0, 1)),
+  CONSTRAINT ck_cliente_tel    CHECK (telefono IS NULL OR REGEXP_LIKE(telefono, '^\+[0-9]{8,15}$')),
   -- El perfil legible y la categoría no pueden contradecirse.
   CONSTRAINT ck_cliente_coher  CHECK (
        (perfil_crediticio = 'impecable' AND categoria IN ('A1', 'A2'))
@@ -404,6 +411,9 @@ CREATE TABLE CREDITO (
   installment_amount NUMBER(14,2),
   current_due_day    NUMBER(2),
   operation_number   VARCHAR2(32),
+  -- Base del interés de los días que se corre la cuota al cambiar la fecha.
+  saldo_capital      NUMBER(14,2),
+  tasa_anual         NUMBER(7,4),
   -- ciclo de corte y estado (base del push y del resumen de asesoría)
   dia_corte          NUMBER(2)     NOT NULL,
   fecha_apertura     DATE          DEFAULT TRUNC(SYSDATE) NOT NULL,
@@ -418,6 +428,7 @@ CREATE TABLE CREDITO (
   CONSTRAINT ck_credito_estado CHECK (estado_pago IN ('al_dia', 'parte_pendiente')),
   CONSTRAINT ck_credito_dueday CHECK (current_due_day IS NULL OR current_due_day BETWEEN 1 AND 31),
   CONSTRAINT ck_credito_pct    CHECK (used_pct IS NULL OR used_pct BETWEEN 0 AND 100),
+  CONSTRAINT ck_credito_tasa   CHECK (tasa_anual IS NULL OR tasa_anual BETWEEN 0 AND 1),
   CONSTRAINT ck_credito_disp   CHECK (available IS NULL OR available BETWEEN 0 AND credit_limit),
   CONSTRAINT ck_credito_forma  CHECK (
     (kind = 'card'
@@ -463,6 +474,14 @@ CREATE TABLE PLAN_FECHA_COBRO (
   term_unchanged        NUMBER(1)    DEFAULT 1 NOT NULL,
   frecuencia_id         VARCHAR2(64) NOT NULL,
   opcion_id             VARCHAR2(64) NOT NULL,
+  -- Días que se corre la primera cuota con la fecha nueva y su interés, que se
+  -- cobra UNA sola vez; después la cuota vuelve a ser la de siempre.
+  dias_extra            NUMBER(3)     DEFAULT 0 NOT NULL,
+  interes_extra         NUMBER(14,2)  DEFAULT 0 NOT NULL,
+  acepto_interes        NUMBER(1)     DEFAULT 0 NOT NULL,
+  canal                 VARCHAR2(8)   DEFAULT 'app' NOT NULL,
+  -- Hasta cuándo no se puede volver a cambiar (fecha.meses_bloqueo).
+  bloqueado_hasta       DATE,
   created_at            TIMESTAMP    DEFAULT SYSTIMESTAMP NOT NULL,
   CONSTRAINT pk_plan_fecha      PRIMARY KEY (credito_id),
   CONSTRAINT fk_plan_fecha_cred FOREIGN KEY (credito_id)
@@ -471,8 +490,13 @@ CREATE TABLE PLAN_FECHA_COBRO (
     REFERENCES CATALOGO_FRECUENCIA (id),
   -- «Nunca el 28» (0 = frecuencia semanal, sin día fijo del mes).
   CONSTRAINT ck_plan_fecha_day  CHECK (new_day BETWEEN 0 AND 27),
-  -- El producto promete que cambiar la fecha no cambia monto ni plazo.
-  CONSTRAINT ck_plan_fecha_inv  CHECK (amount_unchanged = 1 AND term_unchanged = 1)
+  -- Cambiar la fecha no cambia la cuota mensual ni el plazo. Lo único aparte es
+  -- el interés de los días que se corre la primera cuota, y se cobra una vez.
+  CONSTRAINT ck_plan_fecha_inv  CHECK (amount_unchanged = 1 AND term_unchanged = 1),
+  -- Ese interés no existe si la persona no lo oyó y lo aceptó.
+  CONSTRAINT ck_plan_fecha_int  CHECK (interes_extra = 0 OR acepto_interes = 1),
+  CONSTRAINT ck_plan_fecha_acep CHECK (acepto_interes IN (0, 1)),
+  CONSTRAINT ck_plan_fecha_can  CHECK (canal IN ('app', 'voz'))
 );
 
 -- Apartar la cuota (06 -> 07 -> 08/08a/08b -> 09) -> DTO ApartadoPlan.
@@ -827,6 +851,98 @@ CREATE TABLE IA_LLAMADA (
 );
 
 -- ============================================================================
+-- 6B. CANAL DE VOZ: PERFIL DE INGRESO, AGENCIAS Y LLAMADAS
+-- ============================================================================
+
+-- Lo que la persona contó sobre cómo recibe su dinero y cómo prefiere pagar.
+-- Es dato del cliente, no del plan: una fila por cliente.
+CREATE TABLE PERFIL_INGRESO (
+  cliente_id         VARCHAR2(64)  NOT NULL,
+  tipo_ingreso       VARCHAR2(16)  NOT NULL,
+  ingreso_constante  NUMBER(1),
+  -- Días del mes separados por coma; 31 = fin de mes.
+  dias_ingreso       VARCHAR2(32),
+  canal_pago         VARCHAR2(16),
+  usa_banca_linea    NUMBER(1),
+  fuente             VARCHAR2(8)   DEFAULT 'voz' NOT NULL,
+  updated_at         TIMESTAMP     DEFAULT SYSTIMESTAMP NOT NULL,
+  CONSTRAINT pk_perfil_ingreso    PRIMARY KEY (cliente_id),
+  CONSTRAINT fk_perfil_ing_cli    FOREIGN KEY (cliente_id) REFERENCES CLIENTE (id) ON DELETE CASCADE,
+  CONSTRAINT ck_perfil_ing_tipo   CHECK (tipo_ingreso IN ('salario', 'pension', 'remesa', 'negocio', 'otro')),
+  CONSTRAINT ck_perfil_ing_const  CHECK (ingreso_constante IS NULL OR ingreso_constante IN (0, 1)),
+  CONSTRAINT ck_perfil_ing_canal  CHECK (canal_pago IS NULL OR canal_pago IN ('app', 'agencia', 'otro')),
+  CONSTRAINT ck_perfil_ing_banca  CHECK (usa_banca_linea IS NULL OR usa_banca_linea IN (0, 1)),
+  CONSTRAINT ck_perfil_ing_fuente CHECK (fuente IN ('voz', 'app'))
+);
+
+-- Agencias a las que el agente manda a quien prefiere pagar en persona.
+CREATE TABLE SUCURSAL (
+  id            VARCHAR2(64)  NOT NULL,
+  nombre        VARCHAR2(96)  NOT NULL,
+  direccion     VARCHAR2(256) NOT NULL,
+  municipio     VARCHAR2(64)  NOT NULL,
+  departamento  VARCHAR2(64)  NOT NULL,
+  horario       VARCHAR2(160) NOT NULL,
+  activo        NUMBER(1)     DEFAULT 1 NOT NULL,
+  CONSTRAINT pk_sucursal     PRIMARY KEY (id),
+  CONSTRAINT ck_sucursal_act CHECK (activo IN (0, 1))
+);
+
+-- Cada llamada del agente de voz. El proveedor guarda el audio; aquí queda lo que
+-- el banco audita. «fecha_cambiada» lo pone el servidor al confirmar, no el modelo.
+CREATE TABLE LLAMADA_VOZ (
+  id              VARCHAR2(64)   NOT NULL,
+  cliente_id      VARCHAR2(64)   NOT NULL,
+  credito_id      VARCHAR2(64),
+  telefono        VARCHAR2(20)   NOT NULL,
+  proveedor       VARCHAR2(16)   DEFAULT 'vapi' NOT NULL,
+  proveedor_id    VARCHAR2(64),
+  intento         NUMBER(2)      DEFAULT 1 NOT NULL,
+  estado          VARCHAR2(16)   DEFAULT 'programada' NOT NULL,
+  resultado       VARCHAR2(20),
+  motivo_fin      VARCHAR2(64),
+  dia_nuevo       NUMBER(2),
+  dias_extra      NUMBER(3),
+  interes_extra   NUMBER(14,2),
+  resumen         VARCHAR2(1000),
+  transcripcion   CLOB,
+  duracion_seg    NUMBER(6),
+  created_at      TIMESTAMP      DEFAULT SYSTIMESTAMP NOT NULL,
+  ended_at        TIMESTAMP,
+  CONSTRAINT pk_llamada_voz        PRIMARY KEY (id),
+  CONSTRAINT fk_llamada_voz_cli    FOREIGN KEY (cliente_id) REFERENCES CLIENTE (id) ON DELETE CASCADE,
+  CONSTRAINT ck_llamada_voz_estado CHECK (estado IN ('programada', 'terminada', 'fallida')),
+  CONSTRAINT ck_llamada_voz_res    CHECK (resultado IS NULL OR resultado IN ('fecha_cambiada', 'sin_cambio', 'bloqueado',
+    'no_contesto', 'buzon', 'tercero', 'volver_a_llamar', 'no_llamar')),
+  -- Un cambio de fecha sin día no existe.
+  CONSTRAINT ck_llamada_voz_dia    CHECK (resultado IS NULL OR resultado <> 'fecha_cambiada' OR dia_nuevo IS NOT NULL)
+);
+
+-- ============================================================================
+-- 6C. AUDITORÍA: QUÉ PASÓ, CUÁNDO Y POR QUÉ CANAL
+-- ============================================================================
+
+-- Registro sencillo de lo que cambia datos o cruza sistemas (app, chat, voz, n8n)
+-- y de cada error que ve un cliente. Sirve para entender y verificar el flujo en el
+-- tablero /api/auditoria.html. Sin FK a CLIENTE: el rastro sobrevive al dato.
+-- Nunca guarda claves, tokens ni el cuerpo de un ingreso.
+CREATE TABLE EVENTO_AUDITORIA (
+  id           VARCHAR2(64)   NOT NULL,
+  created_at   TIMESTAMP      NOT NULL,
+  canal        VARCHAR2(16)   NOT NULL,
+  tipo         VARCHAR2(48)   NOT NULL,
+  nivel        VARCHAR2(8)    DEFAULT 'info' NOT NULL,
+  cliente_id   VARCHAR2(64),
+  referencia   VARCHAR2(64),
+  resumen      VARCHAR2(400)  NOT NULL,
+  detalle      CLOB,
+  duracion_ms  NUMBER(8),
+  CONSTRAINT pk_evento_auditoria PRIMARY KEY (id),
+  CONSTRAINT ck_evento_canal     CHECK (canal IN ('app', 'chat', 'voz', 'n8n', 'sistema', 'admin')),
+  CONSTRAINT ck_evento_nivel     CHECK (nivel IN ('info', 'aviso', 'error'))
+);
+
+-- ============================================================================
 -- 7. FUNCIONES DE CICLO (lógica del esquema anterior) Y VISTAS
 -- ============================================================================
 
@@ -1005,6 +1121,9 @@ CREATE INDEX ix_transaccion_cred    ON TRANSACCION (credito_id, fecha);
 CREATE INDEX ix_disp_cliente        ON DISPOSITIVO (cliente_id, activo);
 CREATE INDEX ix_notif_cli_fecha     ON NOTIFICACION_ENVIADA (cliente_id, fecha_envio);
 CREATE INDEX ix_ia_llamada_fecha    ON IA_LLAMADA (servicio, created_at);
+CREATE INDEX ix_cliente_telefono    ON CLIENTE (telefono);
+CREATE INDEX ix_llamada_voz_cli     ON LLAMADA_VOZ (cliente_id, created_at);
+CREATE INDEX ix_evento_fecha        ON EVENTO_AUDITORIA (created_at);
 
 -- ============================================================================
 -- 9. VERIFICACIÓN

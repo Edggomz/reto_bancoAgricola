@@ -37,6 +37,10 @@ function prng(seed) {
 const azar = prng(20260913);
 const entre = (min, max) => min + Math.floor(azar() * (max - min + 1));
 const elegir = (lista) => lista[Math.floor(azar() * lista.length)];
+// Canal de voz: generador aparte para no mover la secuencia del dataset existente.
+const azarVoz = prng(20260914);
+const entreVoz = (min, max) => min + Math.floor(azarVoz() * (max - min + 1));
+const elegirVoz = (lista) => lista[Math.floor(azarVoz() * lista.length)];
 const dinero = (v) => Math.round(v * 100) / 100;
 const sha256 = (s) => createHash('sha256').update(s, 'utf8').digest('hex');
 const slug = (s) =>
@@ -90,6 +94,59 @@ const agregar = (tabla, fila) => {
 const PARAMETROS = [
   ['moneda.default', 'USD', 'Moneda de los montos del producto.'],
   ['sesion.horas', '12', 'Horas de vigencia de un token de sesión.'],
+  ['fecha.meses_bloqueo', '6', 'Meses en que la fecha de cobro no se puede volver a cambiar después de un cambio.'],
+  ['fecha.interes_base_dias', '365', 'Días del año para el interés de los días que se corre la cuota. Confirmar con la metodología del banco.'],
+  ['fecha.bloqueada', 'Tu fecha de cobro se cambió hace poco. Se puede volver a cambiar desde el {fecha}.', 'Error al cambiar la fecha antes de que termine el bloqueo.'],
+  ['fecha.interes_sin_aceptar', 'Antes de cambiarla necesitamos que aceptes el interés de los días que se corre tu cuota.', 'Error si se confirma por voz sin aceptar el interés.'],
+  ['fecha.interes_sin_datos', 'No tenemos a mano el interés de ese cambio. En Telebanca te lo confirman antes de moverla.', 'Error si el crédito no trae saldo o tasa.'],
+  ['fecha.costo.opcion_interes', 'Con este día tu cuota se corre {dias} días y lleva {monto} de interés, una sola vez.', 'Vista 04 y chat: interés del día elegido, antes de confirmar.'],
+  ['fecha.costo.opcion_sin_interes', 'Con este día no hay interés extra.', 'Vista 04 y chat: el día no corre la cuota.'],
+  ['fecha.costo.opcion_sin_datos', 'Con este día tu cuota se corre {dias} días. El interés te lo confirman en Telebanca.', 'Vista 04: el crédito no trae saldo o tasa.'],
+  ['fecha.costo.listo_interes', 'Se cobra una sola vez, con tu cuota del {fecha}, por los {dias} días que se corre tu cobro. Después tu cuota vuelve a ser la de siempre.', 'Vista 05: interés aceptado.'],
+  ['fecha.costo.listo_sin_interes', 'Este cambio no lleva interés. Tu cuota y tu plazo no cambian.', 'Vista 05: sin interés.'],
+  ['fecha.costo.listo_sin_datos', 'Tu cuota se corre {dias} días. El interés te lo confirman en Telebanca.', 'Vista 05: sin saldo o tasa.'],
+  ['fecha.pago_del_dia', '{pago} del {dia}', 'Cómo se nombra un pago con día fijo (voz).'],
+  ['fecha.pago_fin_de_mes', '{pago} de fin de mes', 'Cómo se nombra un pago de fin de mes (voz).'],
+  ['fecha.titulo_por_dias', 'DESPUÉS DE TU {pago}', 'Título del grupo de días calculados desde lo que dijo la persona.'],
+  ['voz.banco', 'Bancoagrícola', 'Nombre del banco en la llamada.'],
+  ['voz.saludo_manana', 'buenos días', 'Saludo antes del mediodía.'],
+  ['voz.saludo_tarde', 'buenas tardes', 'Saludo desde el mediodía.'],
+  ['voz.asistente', 'Lucía', 'Nombre de la asistente virtual. Siempre se presenta como asistente virtual.'],
+  ['voz.proveedor', 'vapi', 'Proveedor de voz que hace las llamadas.'],
+  ['voz.telebanca_hablado', '2 2 1 0, 0 0 0 0', 'Telebanca 2210-0000, 24 horas (bancoagricola.com/atencion-al-cliente), escrito para leerse cifra por cifra.'],
+  ['voz.ventana_dias', 'lunes,martes,miercoles,jueves,viernes', 'LPC art. 18 lit. n: gestiones solo de lunes a viernes.'],
+  ['voz.ventana_inicio', '08:00', 'LPC art. 18 lit. n: desde las 8:00.'],
+  ['voz.ventana_fin', '18:00', 'LPC art. 18 lit. n: hasta las 18:00. La última llamada empieza voz.duracion_max_seg antes.'],
+  ['voz.ventana_descripcion', 'Lunes a viernes, de 8:00 a 18:00 (LPC art. 18 lit. n).', 'Ventana de llamadas, para el tablero y n8n.'],
+  ['voz.duracion_max_seg', '300', 'Duración máxima de la llamada. Igual a maxDurationSeconds del asistente.'],
+  ['voz.categorias', 'A1', 'NCB-022: solo el tramo al día, el único con 0 % de reserva.'],
+  ['voz.dias_min_antes_cobro', '15', 'La llamada alinea la fecha antes del día −15, fuera del tramo en que actúa la ruta.'],
+  ['voz.max_intentos', '3', 'Intentos por cliente en voz.dias_ventana_intentos días. Debajo del tope de 7 en 7 de la Regulation F (informe 03).'],
+  ['voz.dias_ventana_intentos', '7', 'Ventana en que se cuentan los intentos.'],
+  ['voz.dias_entre_intentos', '1', 'Como mucho un intento por día.'],
+  ['voz.max_opciones', '2', 'Fechas que se ofrecen por voz: más de dos no se retienen al oído.'],
+  ['voz.fuera_de_ventana', 'Fuera del horario permitido para llamar: lunes a viernes de 8:00 a 18:00.', 'Error al programar fuera de la ventana legal.'],
+  ['voz.no_llamable', 'A este cliente no se le llama ahora: {motivo}.', 'Error al programar a alguien que no entra.'],
+  ['voz.ingreso.salario', 'salario', 'Cómo se nombra el ingreso en voz.'],
+  ['voz.ingreso.pension', 'pensión', 'Cómo se nombra el ingreso en voz.'],
+  ['voz.ingreso.remesa', 'remesa', 'Cómo se nombra el ingreso en voz.'],
+  ['voz.ingreso.negocio', 'ingreso del negocio', 'Cómo se nombra el ingreso en voz.'],
+  ['voz.ingreso.otro', 'pago', 'Cómo se nombra el ingreso en voz.'],
+  ['voz.opcion', 'el día {dia} de cada mes, {margen} días después de tu {pago}. El primer cobro con esa fecha sería el {desde}.', 'Una fecha ofrecida por voz.'],
+  ['voz.opcion_semanal', 'el día {dia} de cada mes, cuando ya recibiste tu pago de la semana. El primer cobro con esa fecha sería el {desde}.', 'Una fecha ofrecida por voz a quien cobra cada semana.'],
+  ['voz.opcion_variable', 'el día {dia} de cada mes, que es cuando más te suele llegar dinero según los últimos tres meses. El primer cobro con esa fecha sería el {desde}.', 'Una fecha ofrecida por voz con ingreso variable, sin días dichos.'],
+  ['voz.opcion_sin_interes', 'Tu cuota no cambia.', 'Cuando el cambio no corre la cuota.'],
+  ['voz.opcion_interes', 'Como esa cuota se corre {dias} días, solo esa cuota lleva {monto} de interés. Después vuelve a ser la de siempre.', 'Interés de los días corridos, una sola vez.'],
+  ['voz.opcion_interes_sin_datos', 'Esa cuota se corre {dias} días y lleva un interés que te confirman en Telebanca.', 'Cuando el crédito no trae saldo o tasa.'],
+  ['voz.propuesta_una', 'Tu cobro quedaría {opcion}', 'Propuesta con una fecha.'],
+  ['voz.propuesta_dos', 'Tengo dos opciones. La primera, {a} La segunda, {b}', 'Propuesta con dos fechas.'],
+  ['voz.sin_opciones', 'Con esos días no encuentro una fecha que te deje margen. En Telebanca, al {telebanca}, lo revisan contigo.', 'Sin fechas posibles.'],
+  ['voz.bloqueado', 'Tu fecha de cobro se cambió hace poco, así que se puede volver a cambiar desde el {hasta}. Si lo necesitas antes, tu asesor o Telebanca, al {telebanca}, te ayudan.', 'Cambio bloqueado.'],
+  ['voz.confirmado', 'Listo, tu cobro queda el día {dia} de cada mes, desde el {desde}.', 'Confirmación por voz.'],
+  ['voz.confirmado_interes', 'Esa primera cuota lleva {monto} de interés, una sola vez.', 'Confirmación del interés.'],
+  ['voz.confirmado_bloqueo', 'Esta fecha se puede volver a cambiar dentro de {meses} meses. Antes de eso, con tu asesor o en Telebanca, al {telebanca}.', 'Aviso del bloqueo al confirmar.'],
+  ['voz.agencia', 'la agencia {nombre}, en {direccion}. Atiende {horario}', 'Agencia más cercana, para leer en voz.'],
+  ['voz.sin_agencia', 'Telebanca, al {telebanca}, que atiende las 24 horas, te dice qué agencia te queda más cerca', 'Cuando no hay agencia registrada cerca.'],
   ['fecha.frecuencia_default', 'freq-quincena-finmes', 'Frecuencia de pago asumida si el cliente no eligió una.'],
   ['fecha.dias_excluidos', '28,29,30,31', 'Días que nunca se ofrecen como nueva fecha de cobro.'],
   ['fecha.label_dia', 'Día {dia}', 'Etiqueta de una opción de fecha.'],
@@ -151,6 +208,7 @@ const PARAMETROS = [
   ['producto.deposito.detalle', 'Crece a tasa fija', 'Detalle del producto en el inicio.'],
   ['producto.deposito.condiciones', 'Desde $100 · Tasa fija del 5.25 % anual · Plazo de 6 a 12 meses · Sin comisiones', 'Lo que se muestra antes de activar el depósito.'],
   ['aviso.fecha.titulo', 'Tu cobro ahora es el día {dia}', 'Aviso al cambiar la fecha.'],
+  ['aviso.fecha.cuerpo_interes', 'Aplica desde el {fecha}. Tu cuota y tu plazo no cambian. Esa primera cuota lleva {monto} de interés por {dias} días, una sola vez.', 'Aviso al cambiar la fecha con interés aceptado.'],
   ['aviso.fecha.cuerpo', 'Aplica desde el {fecha}. El monto y el plazo de tu crédito no cambian.', 'Aviso al cambiar la fecha.'],
   ['aviso.ruta.titulo', 'Tu ruta quedó lista', 'Aviso al activar el apartado.'],
   ['aviso.ruta.cuerpo', 'Apartamos {monto} el {dias} y el {dia} tu cuota se paga sola.', 'Aviso al activar el apartado.'],
@@ -213,11 +271,14 @@ const PARAMETROS = [
   ['chat.apertura.shock.resistente', '{nombre}, vi que {evento}. Tengo dos formas de resolverlo ahora mismo: apartar la cuota en partes o mover la fecha de cobro.', 'Apertura tras un choque.'],
   ['chat.apertura.shock.despreocupado', '{nombre}, vi que {evento}. Resolverlo ahora te sigue sumando en tu récord, y tiene arreglo fácil. ¿Movemos la fecha o apartamos en partes?', 'Apertura tras un choque.'],
   ['chat.ofertas', 'La mayoría de clientes como tú lo resuelve con alguna de estas opciones, {nombre}. ¿Cuál te acomoda?', 'Ofertas concretas.'],
-  ['chat.acuerdo.fecha', 'Listo, {nombre}. Tu cobro ahora es el día {dia}, desde el {fecha}. El monto y el plazo no cambian, y ya quedó guardado en tu inicio.', 'Acuerdo: cambiar fecha (ejecutado en el mismo turno).'],
+  ['chat.pregunta.interes', '{costo} ¿La cambio al día {dia}, {nombre}?', 'Chat: el día elegido corre la cuota. Se pregunta antes de mover la fecha.'],
+  ['chat.costo.interes', 'Esa primera cuota lleva {monto} de interés, una sola vez.', 'Chat: interés aceptado.'],
+  ['chat.costo.sin_interes', 'Tu cuota y tu plazo no cambian.', 'Chat: sin interés.'],
+  ['chat.acuerdo.fecha', 'Listo, {nombre}. Tu cobro ahora es el día {dia}, desde el {fecha}. {costo} Ya quedó guardado en tu inicio.', 'Acuerdo: cambiar fecha (ejecutado en el mismo turno).'],
   ['chat.acuerdo.apartar', 'Perfecto, {nombre}. Apartamos {monto} en {partes} y se paga completo el {fecha}. Apartar no es pagar antes: el dinero sigue siendo tuyo. Tu ruta ya quedó activa.', 'Acuerdo: apartar (ejecutado en el mismo turno).'],
   ['chat.acuerdo.automatico', 'Hecho, {nombre}. Lo dejamos en automático desde tu cuenta {cuenta}: de ahí se aparta y de ahí se paga el {fecha}. Puedes quitarlo cuando quieras.', 'Acuerdo: automático.'],
   ['chat.pregunta.frecuencia', 'Para acomodarlo a tus pagos, {nombre}: ¿qué día te pagan?', 'El chat pregunta la frecuencia de pago antes de mover la fecha o apartar.'],
-  ['chat.pregunta.dia', 'Estos días caen después de que te pagan, {nombre}, y el monto no cambia. ¿Cuál te queda mejor?', 'El chat ofrece los días válidos.'],
+  ['chat.pregunta.dia', 'Estos días caen después de que te pagan, {nombre}. Si alguno corre tu cuota, te digo el interés antes de cambiarla. ¿Cuál te queda mejor?', 'El chat ofrece los días válidos.'],
   ['chat.pregunta.partes', '¿En cuántas partes la apartamos, {nombre}? {nota}', 'El chat ofrece las partes permitidas.'],
   ['chat.sin_cuenta', 'Para apartar necesitamos una cuenta tuya con nosotros, {nombre}: de ahí se congela y de ahí se paga. La abres en dos minutos desde «Apartar mi cuota» en tu inicio, sin costo.', 'Apartar sin cuenta propia.'],
   ['chat.sin_credito', 'No veo un crédito con cuota en tus productos, {nombre}. Si quieres, lo revisamos con {asesora}.', 'Sin crédito apartable.'],
@@ -381,6 +442,25 @@ const CANDIDATOS_PUSH = new Set(['edgar.gomez', 'valeria.castillo', 'andres.moli
 const SIN_DISPOSITIVO = new Set(['andres.molina', 'mariana.lopez', 'kevin.alas', 'mauricio.sosa', 'nelson.batres', 'fatima.argueta', 'samuel.quijada']);
 const COLORES = ['#7E4FBC', '#00714E', '#1F5FA8', '#B35C00', '#A3316F', '#007A87', '#5A6B7B', '#8A3FFC', '#3E7D1F', '#C2410C'];
 const PRODUCTOS_CUENTA = ['Max Electrónico', 'Cuenta Digital', 'Ahorro Programado'];
+// Dónde viven (ilustrativo). Nadie trae teléfono: el de la demo se pone con POST /admin/demo/telefono.
+const UBICACIONES = [
+  ['San Salvador', 'San Salvador'], ['San Salvador', 'San Salvador'], ['Mejicanos', 'San Salvador'], ['Soyapango', 'San Salvador'],
+  ['Santa Tecla', 'La Libertad'], ['Antiguo Cuscatlán', 'La Libertad'], ['San Miguel', 'San Miguel'], ['Santa Ana', 'Santa Ana'],
+];
+
+// Agencias verificadas en bancoagricola.com/centros-atencion-preferencial (13 sep 2026), con el municipio que
+// da esa página.
+// El listado completo lo sirve el mapa del banco con JavaScript: cargarlo desde ahí antes de producción.
+const HORARIO_830 = 'de lunes a viernes de 8 y media de la mañana a 4 y media de la tarde, y los sábados de 8 y media a 12 del mediodía';
+[
+  ['suc-merliot', 'Merliot', 'bulevar Merliot y calle L-4, Jardines de la Hacienda, Ciudad Merliot', 'Ciudad Merliot', 'La Libertad', HORARIO_830],
+  ['suc-la-mascota', 'La Mascota', 'calle La Mascota, final pasaje A y pasaje número 3', 'San Salvador', 'San Salvador', HORARIO_830],
+  ['suc-santa-elena', 'Santa Elena', 'urbanización Santa Elena, final bulevar Santa Elena y bulevar Orden de Malta', 'San Salvador', 'San Salvador', HORARIO_830],
+  ['suc-masferrer', 'Masferrer', 'final Paseo General Escalón número 5148', 'San Salvador', 'San Salvador', 'de lunes a viernes de 9 de la mañana a 5 de la tarde, y los sábados de 8 y media a 12 del mediodía'],
+  ['suc-clinicas-medicas', 'Clínicas Médicas', '25 avenida norte y 21 calle poniente, frente a la fuente luminosa', 'San Salvador', 'San Salvador', HORARIO_830],
+  ['suc-millennium-plaza', 'Millennium Plaza', 'Millennium Plaza, nivel 1, Paseo General Escalón', 'San Salvador', 'San Salvador', 'de lunes a viernes de 9 de la mañana a 5 de la tarde, y los sábados de 9 a 12 del mediodía'],
+].forEach(([id, nombre, direccion, municipio, departamento, horario]) =>
+  agregar('SUCURSAL', { id, nombre, direccion, municipio, departamento, horario, activo: true }));
 
 const sufijosUsados = new Set(['0110', '4821', '0452', '1001', '1002', '2001', '3001', '3002']);
 const nuevoSufijo = () => { let s; do { s = String(entre(1000, 9999)); } while (sufijosUsados.has(s)); sufijosUsados.add(s); return s; };
@@ -418,9 +498,16 @@ const clientes = CLIENTES.map((c, i) => {
     asesor_id: cliente.asesorDatos.id,
     // Edgar y un tercio de los demás aún no han respondido «¿Qué día te pagan?».
     frecuencia_pago: c.edgar || i % 3 === 2 ? null : FRECUENCIA_POR_ARQUETIPO[c.arq],
+    telefono: null,
+    municipio: c.edgar ? 'San Salvador' : null,
+    departamento: c.edgar ? 'San Salvador' : null,
     fecha_alta: sumarMeses(HOY, -antiguedad),
     activo: true,
   });
+  if (!c.edgar) {
+    const [municipio, departamento] = elegirVoz(UBICACIONES);
+    Object.assign(filas.get('CLIENTE').at(-1), { municipio, departamento });
+  }
   return cliente;
 });
 
@@ -445,7 +532,7 @@ function crearCredito(cliente, datos) {
     id: datos.id, cliente_id: cliente.id, kind: datos.kind, name: datos.name,
     number_masked: `····${datos.sufijo}`, currency: 'USD', apartable: datos.apartable,
     credit_limit: null, available: null, used_pct: null, pay_contado: null,
-    installment_amount: null, current_due_day: null, operation_number: null,
+    installment_amount: null, current_due_day: null, operation_number: null, saldo_capital: null, tasa_anual: null,
     dia_corte: candidato ? DIA_CORTE_CANDIDATO : datos.dia_corte,
     fecha_apertura: datos.fecha_apertura,
     estado_pago: datos.estado_pago ?? 'al_dia',
@@ -455,6 +542,9 @@ function crearCredito(cliente, datos) {
     credito.base = datos.contado;
   } else {
     Object.assign(fila, { installment_amount: datos.cuota, current_due_day: datos.dia_pago, operation_number: datos.operacion });
+    // Saldo y tasa ilustrativos hasta confirmarlos con la cartera real: base del interés al cambiar la fecha.
+    const tasas = { personal: [14, 22], hipotecario: [8, 10], bancario: [11, 16] }[datos.kind];
+    Object.assign(fila, { saldo_capital: dinero(datos.cuota * entreVoz(12, 48)), tasa_anual: entreVoz(tasas[0], tasas[1]) / 100 });
     credito.base = datos.cuota;
   }
   credito.candidato = candidato;
@@ -603,9 +693,13 @@ for (const cliente of otros) {
   const effective = new_day === 0
     ? COPY['fecha.semanal_desde']
     : render(COPY['fecha.desde'], { fecha: etiquetaLarga(desde) });
+  const hace = entre(20, 120);
+  const meses = Number(COPY['fecha.meses_bloqueo']);
   agregar('PLAN_FECHA_COBRO', {
     credito_id: credito.id, new_day, effective_from_label: effective, effective_from: desde, amount_unchanged: true, term_unchanged: true,
-    frecuencia_id, opcion_id, created_at: momentoRelativo(-entre(20, 120)),
+    frecuencia_id, opcion_id, dias_extra: 0, interes_extra: 0, acepto_interes: false, canal: 'app',
+    bloqueado_hasta: expr(`ADD_MONTHS(TRUNC(SYSDATE) - ${hace}, ${meses})`, `DATEADD(MONTH, ${meses}, DATEADD(DAY, -${hace}, CURRENT_DATE))`),
+    created_at: momentoRelativo(-hace),
   });
   planes.set(cliente.id, { frecuencia_id, new_day });
   cuposPlan[cliente.perfil]--;
@@ -837,7 +931,7 @@ const ESCENARIOS = {
       ['user', '¿Puedo mover mi cuota para después de mi quincena?'],
       ['assistant', `Claro, ${v.nombre}. La mayoría de clientes como tú mueve su fecha de cobro a un día después de que le pagan, y el monto y el plazo no cambian. ¿Lo vemos ahora?`, 'modelo', ofertasPara(cliente), 'gemini'],
       ['user', ETIQUETA_OPCION['qr-fecha']],
-      ['assistant', render(COPY['chat.acuerdo.fecha'], v), 'guion'],
+      ['assistant', render(COPY['chat.acuerdo.fecha'], { ...v, costo: COPY['chat.costo.sin_interes'] }), 'guion'],
     ],
     resultado: 'acuerdo', oferta: 'qr-fecha',
   }),
@@ -994,11 +1088,11 @@ for (const cliente of clientes) {
 const ORDEN = [
   'PARAMETRO_APP', 'PARAMETRO_CORTE', 'CATALOGO_FRECUENCIA', 'CATALOGO_FRECUENCIA_DIA', 'CATALOGO_PARTES',
   'CATALOGO_DIA_ASESORIA', 'CATALOGO_HORA_ASESORIA', 'CATALOGO_CHAT_OPCION', 'OFERTA', 'OFERTA_APERTURA',
-  'OFERTA_APERTURA_CONDICION', 'OFERTA_APERTURA_DOCUMENTO', 'ASESOR', 'ASESORIA_TEMA', 'CLIENTE', 'CUENTA', 'CREDITO', 'PRODUCTO_ACTIVADO',
+  'OFERTA_APERTURA_CONDICION', 'OFERTA_APERTURA_DOCUMENTO', 'ASESOR', 'ASESORIA_TEMA', 'SUCURSAL', 'CLIENTE', 'CUENTA', 'CREDITO', 'PRODUCTO_ACTIVADO',
   'PLAN_FECHA_COBRO', 'APARTADO', 'APARTADO_CUOTA', 'AUTOPAGO', 'AVISO', 'RECORD_PAGO', 'RECORD_HITO', 'RECORD_SUMANDO',
   'SHOCK_CONTEXT', 'CITA', 'CHAT_SESION', 'CHAT_MENSAJE', 'CHAT_QUICK_REPLY', 'TRANSACCION', 'DISPOSITIVO', 'NOTIFICACION_ENVIADA',
 ];
-const SOLO_EJECUCION = ['IA_LLAMADA', 'SESION_TOKEN'];
+const SOLO_EJECUCION = ['EVENTO_AUDITORIA', 'LLAMADA_VOZ', 'PERFIL_INGRESO', 'IA_LLAMADA', 'SESION_TOKEN'];
 
 function literal(v, dialecto) {
   if (v === null || v === undefined) return 'NULL';

@@ -26,10 +26,11 @@ public class CuentaDigitalService {
   private final Repositorios.Cuentas cuentas;
   private final CopyService copy;
   private final AvisoService avisos;
+  private final AuditoriaService auditoria;
 
   public CuentaDigitalService(Contexto contexto, Repositorios.OfertasApertura ofertas,
                               Repositorios.CondicionesApertura condiciones, Repositorios.DocumentosApertura documentos,
-                              Repositorios.Cuentas cuentas, CopyService copy, AvisoService avisos) {
+                              Repositorios.Cuentas cuentas, CopyService copy, AvisoService avisos, AuditoriaService auditoria) {
     this.contexto = contexto;
     this.ofertas = ofertas;
     this.condiciones = condiciones;
@@ -37,6 +38,7 @@ public class CuentaDigitalService {
     this.cuentas = cuentas;
     this.copy = copy;
     this.avisos = avisos;
+    this.auditoria = auditoria;
   }
 
   private OfertaApertura oferta() {
@@ -90,6 +92,7 @@ public class CuentaDigitalService {
     avisos.emitir(clienteId, AvisoService.CONFIRM, copy.texto("aviso.cuenta.titulo"),
         copy.render("aviso.cuenta.cuerpo", Map.of("producto", c.getProductName(), "numero", c.getNumberMasked())),
         null, null, "cuenta-abierta");
+    auditoria.info(AuditoriaService.APP, "cuenta.abierta", clienteId, c.getId(), "Abrió su " + c.getProductName() + " " + c.getNumberMasked(), null);
     return c;
   }
 }

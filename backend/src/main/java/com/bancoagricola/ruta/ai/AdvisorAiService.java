@@ -10,8 +10,10 @@ import com.bancoagricola.ruta.domain.Cita;
 import com.bancoagricola.ruta.domain.Credito;
 import com.bancoagricola.ruta.domain.ShockContext;
 import com.bancoagricola.ruta.dto.App;
+import com.bancoagricola.ruta.error.ConflictException;
 import com.bancoagricola.ruta.error.NotFoundException;
 import com.bancoagricola.ruta.repository.Repositorios;
+import com.bancoagricola.ruta.service.AuditoriaService;
 import com.bancoagricola.ruta.service.ApartadoService;
 import com.bancoagricola.ruta.service.AvisoService;
 import com.bancoagricola.ruta.service.CalendarioPagos;
@@ -66,6 +68,8 @@ public class AdvisorAiService {
   private static final Pattern FECHA = Pattern.compile("\\b(fecha|mover|cambiar el dia|cambiar mi dia|cambiar la fecha|me pagan|cobro|cobran|dia de pago|dia de cobro|quincena|fin de mes)\\b");
   private static final Pattern APARTAR = Pattern.compile("\\b(apartar|aparta|apartamos|partes|repartir|dividir|fraccionar|en dos|en tres|en cuatro|congelar)\\b");
   private static final Pattern RECHAZO = Pattern.compile("^(no me interesa|ninguna|no me sirve|no quiero|no me convence|nada de eso|ninguna opcion)");
+  /** Paso del guion mientras la persona decide si acepta el interés de ese día: «interes:3». */
+  private static final String PASO_INTERES = "interes:";
   private static final Pattern PENSAR = Pattern.compile("lo pienso|despues|luego|mas tarde|otro dia|lo veo|ahorita no|ahora no|lo pienso y lo veo despues");
   private static final Pattern GRACIAS = Pattern.compile("^(gracias|listo|perfecto|eso es todo|ya esta|muchas gracias|listo, gracias|listo gracias|ok gracias)\\b");
   private static final Pattern SALUDO = Pattern.compile("^(hola|buenos dias|buenas|buen dia|hey|que tal|buenas tardes|buenas noches)\\b");
@@ -84,11 +88,12 @@ public class AdvisorAiService {
   private final ApartadoService apartado;
   private final CitaService citas;
   private final CalendarioPagos calendario;
+  private final AuditoriaService auditoria;
 
   public AdvisorAiService(Repositorios.Sesiones sesiones, Repositorios.Mensajes mensajes, Repositorios.QuickReplies quickReplies,
                           Repositorios.OpcionesChat opcionesChat, Repositorios.Avisos avisosRepo, Repositorios.Choques choques,
                           Contexto contexto, CopyService copy, LlmRouter router, Guardrails guardrails,
-                          FechaCobroService fechaCobro, ApartadoService apartado, CitaService citas, CalendarioPagos calendario) {
+                          FechaCobroService fechaCobro, ApartadoService apartado, CitaService citas, CalendarioPagos calendario, AuditoriaService auditoria) {
     this.sesiones = sesiones;
     this.mensajes = mensajes;
     this.quickReplies = quickReplies;
@@ -103,6 +108,7 @@ public class AdvisorAiService {
     this.apartado = apartado;
     this.citas = citas;
     this.calendario = calendario;
+    this.auditoria = auditoria;
   }
 
   /** Intención detectada en un turno (etiqueta, heurística o modelo) y datos que trae. */
@@ -134,6 +140,7 @@ public class AdvisorAiService {
     s.setTurnos(0);
     s.setRechazos(0);
     sesiones.save(s);
+    auditoria.info(AuditoriaService.CHAT, "chat.iniciado", clienteId, s.getId(), avisoId == null ? "Abrió el asesor" : "Abrió el asesor desde un aviso", null);
 
     Optional<Aviso> aviso = avisoId == null ? Optional.empty()
         : avisosRepo.findById(avisoId).filter(a -> a.getClienteId().equals(clienteId));
@@ -209,9 +216,10 @@ public class AdvisorAiService {
   private Intencion clasificar(String texto, ChatSesion s, Contexto.Datos datos, Map<String, Object> vars) {
     String n = Guardrails.normalizar(texto);
     String paso = s.getPaso();
-    if ("escalar".equals(paso)) {
+    // Preguntas de sí o no: escalar a una persona o aceptar el interés del día elegido.
+    if ("escalar".equals(paso) || (paso != null && paso.startsWith(PASO_INTERES))) {
       if (SI.matcher(n).find()) return Intencion.de("si");
-      if (NO.matcher(n).find()) return Intencion.de("no");
+      if (NO.matcher(n).find() || n.startsWith("elegir otro")) return Intencion.de("no");
     }
     for (CatalogoChatOpcion o : opcionesChat.findByActivoTrueOrderByOrdenAsc()) {
       if (Guardrails.normalizar(o.getLabel()).equals(n)) return Intencion.de(porAccion(o.getAccion()));
@@ -358,9 +366,11 @@ public class AdvisorAiService {
         return escalar(s, datos, vars, "");
       case "si":
         if ("escalar".equals(paso)) return confirmarEscalamiento(s, datos, vars);
+        if (paso != null && paso.startsWith(PASO_INTERES)) return ejecutarFecha(s, datos, vars, Integer.parseInt(paso.substring(PASO_INTERES.length())));
         return Turno.guion(copy.render("chat.ofertas", vars), ofertas(datos));
       case "no":
         if ("escalar".equals(paso)) return negativa(s, vars);
+        if (paso != null && paso.startsWith(PASO_INTERES)) return preguntarDia(s, datos, vars);
         return rechazo(s, datos, vars);
       case "rechazo":
         return rechazo(s, datos, vars);
@@ -471,7 +481,25 @@ public class AdvisorAiService {
     Optional<CatalogoFrecuencia> f = calendario.delCliente(datos);
     if (f.isEmpty()) return preguntarFrecuencia(s, vars, "fecha");
     try {
-      FechaCobroService.Confirmacion conf = fechaCobro.confirmar(datos.cliente().getId(), f.get().getSlug(), dia, s.getCreditoId());
+      // Si ese día corre la cuota, primero se dice el interés; la fecha cambia con el «sí».
+      boolean aceptoInteres = (PASO_INTERES + dia).equals(s.getPaso());
+      if (!aceptoInteres) {
+        FechaCobroService.Opciones o = fechaCobro.calcular(datos, f.get().getSlug());
+        Optional<FechaCobroService.Opcion> opcion = o.buscar(dia);
+        if (opcion.isPresent()) {
+          FechaCobroService.Costo costo = fechaCobro.costo(o.credito(), o.hoy(), opcion.get().desde());
+          if (costo.diasExtra() > 0 && (costo.interes() == null || costo.interes().signum() > 0)) {
+            s.setPaso(PASO_INTERES + dia);
+            Map<String, Object> v = new HashMap<>(vars);
+            v.put("dia", dia);
+            v.put("costo", fechaCobro.textoCosto(costo, "fecha.costo.opcion", opcion.get().desde()));
+            auditoria.info(AuditoriaService.CHAT, "chat.pregunta_interes", datos.cliente().getId(), s.getId(),
+                "El asesor dijo el interés antes de mover al día " + dia + ": " + v.get("costo"), null);
+            return Turno.guion(copy.render("chat.pregunta.interes", v), List.of("Sí, cambiar al día " + dia, "Elegir otro día"));
+          }
+        }
+      }
+      FechaCobroService.Confirmacion conf = fechaCobro.confirmar(datos.cliente().getId(), f.get().getSlug(), dia, s.getCreditoId(), aceptoInteres);
       s.setResultado(ChatSesion.ACUERDO);
       s.setOfertaAceptada("qr-fecha");
       s.setFechaAcordada(conf.plan().getEffectiveFrom());
@@ -479,6 +507,10 @@ public class AdvisorAiService {
       Map<String, Object> v = new HashMap<>(vars);
       v.put("dia", dia);
       v.put("fecha", Fechas.etiqueta(conf.plan().getEffectiveFrom()));
+      v.put("costo", conf.plan().isAceptoInteres()
+          ? copy.render("chat.costo.interes", Map.of("monto", Fechas.monto(conf.plan().getInteresExtra())))
+          : copy.texto("chat.costo.sin_interes"));
+      auditoria.info(AuditoriaService.CHAT, "chat.acuerdo", datos.cliente().getId(), s.getId(), "Acuerdo en el chat: cobro al día " + dia, null);
       List<String> chips = new ArrayList<>();
       if (datos.origen().isPresent() && datos.apartadoActivo().isEmpty()) chips.add(etiqueta("qr-apartar", "Apartar mi cuota en partes"));
       chips.add("Listo, gracias");
@@ -486,6 +518,9 @@ public class AdvisorAiService {
     } catch (IllegalArgumentException e) {
       Turno pregunta = preguntarDia(s, datos, vars);
       return new Turno(List.of(copy.render("chat.fecha_invalida", vars)), pregunta.sugerencias(), "guion", null);
+    } catch (ConflictException e) {
+      s.setPaso(null);
+      return Turno.guion(e.getMessage(), List.of(etiqueta("qr-asesora", "Hablar con una persona"), "Listo, gracias"));
     }
   }
 
@@ -497,6 +532,7 @@ public class AdvisorAiService {
       s.setOfertaAceptada("automatico".equals(s.getIntencion()) ? "qr-automatico" : "qr-apartar");
       s.setFechaAcordada(act.plan().fechaPago());
       s.setPartesElegidas(partes);
+      auditoria.info(AuditoriaService.CHAT, "chat.acuerdo", datos.cliente().getId(), s.getId(), "Acuerdo en el chat: apartar en " + partes + (partes == 1 ? " parte" : " partes"), null);
       s.setPaso(null);
       Map<String, Object> v = new HashMap<>(vars);
       v.put("monto", Fechas.monto(act.plan().total()));
@@ -545,6 +581,7 @@ public class AdvisorAiService {
       texto = copy.render("chat.centro.confirmado", vars);
     }
     s.setResultado(ChatSesion.ESCALADO);
+    auditoria.info(AuditoriaService.CHAT, "chat.escalado", datos.cliente().getId(), s.getId(), asesora ? "Escalado a su asesora, con cita" : "Escalado a Telebanca", null);
     cerrar(s);
     return Turno.guion(texto, List.of());
   }

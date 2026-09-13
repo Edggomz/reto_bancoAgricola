@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ruta · Llamada con Vapi</title>
+  <style>
+    :root { --ink: #1A1B1A; --muted: #5B5B5B; --line: #E6E7E8; --brand: #FDDA24; --brand-ink: #2C2A29; --ok: #00714E; --okbg: #E0F7EF; --plan: #00448C; --planbg: #E4F6FC; --bg: #F5F7F9; --surface: #FFFFFF; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "Open Sans", system-ui, sans-serif; color: var(--ink); background: var(--bg); }
+    header { background: var(--surface); border-bottom: 1px solid var(--line); padding: 16px 24px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    header h1 { font-size: 18px; margin: 0; }
+    .tag { font-size: 11px; letter-spacing: .08em; font-weight: 700; color: var(--muted); }
+    main { max-width: 1040px; margin: 0 auto; padding: 24px; display: grid; gap: 16px; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); align-items: start; }
+    @media (max-width: 780px) { main { grid-template-columns: minmax(0, 1fr); } }
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: grid; gap: 12px; }
+    h2 { font-size: 11px; letter-spacing: .08em; color: var(--muted); margin: 0; }
+    label { font-size: 12px; color: var(--muted); display: grid; gap: 4px; }
+    input, select { min-height: 44px; border: 1px solid #C4C4C4; border-radius: 8px; padding: 8px 10px; font: inherit; font-size: 14px; color: var(--ink); background: var(--surface); width: 100%; }
+    button { min-height: 52px; border-radius: 999px; font: inherit; font-weight: 700; letter-spacing: .08em; font-size: 12px; cursor: pointer; width: 100%; }
+    .primario { background: var(--brand); color: var(--brand-ink); border: 0; }
+    .secundario { background: var(--surface); color: var(--brand-ink); border: 1.5px solid var(--brand-ink); }
+    button:disabled { opacity: .4; cursor: not-allowed; }
+    .nota { background: var(--bg); border-radius: 8px; padding: 10px 12px; font-size: 12px; line-height: 1.5; color: var(--muted); margin: 0; }
+    .estado { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; }
+    .punto { width: 10px; height: 10px; border-radius: 50%; background: #9A9A9A; }
+    .en-llamada .punto { background: var(--ok); box-shadow: 0 0 0 4px var(--okbg); }
+    .metricas { display: flex; gap: 20px; flex-wrap: wrap; font-size: 13px; color: var(--muted); }
+    .metricas b { color: var(--ink); font-variant-numeric: tabular-nums; }
+    .chat { display: flex; flex-direction: column; gap: 8px; min-height: 340px; max-height: 58vh; overflow-y: auto; padding: 4px; }
+    .burbuja { max-width: 82%; padding: 10px 12px; border-radius: 12px; font-size: 14px; line-height: 1.45; }
+    .quien { display: block; font-size: 10px; font-weight: 700; letter-spacing: .08em; color: var(--muted); margin-bottom: 2px; }
+    .asistente { background: var(--planbg); align-self: flex-start; }
+    .cliente { background: var(--surface); border: 1px solid var(--line); align-self: flex-end; }
+    .sistema { align-self: center; font-size: 12px; color: var(--muted); text-align: center; }
+    .vacio { color: var(--muted); font-size: 13px; margin: auto; text-align: center; }
+    .fila { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
+    .fila:last-child { border-bottom: 0; }
+    .fila span { color: var(--muted); }
+    .fila b { font-variant-numeric: tabular-nums; text-align: right; }
+  </style>
+</head>
+<body>
+<header>
+  <span class="tag">BANCOAGRÍCOLA · RUTA</span>
+  <h1>Llamada con Vapi</h1>
+  <a href="llamada-emulada.html" style="margin-left:auto;font-size:13px;color:var(--plan)">← Llamada emulada (sin cuentas)</a>
+</header>
+<main>
+  <section class="card" aria-label="Configuración">
+    <h2>CONFIGURACIÓN</h2>
+    <label>Llave pública de Vapi
+      <input id="publica" autocomplete="off" placeholder="Dashboard de Vapi → API Keys → Public">
+    </label>
+    <label>ID del asistente
+      <input id="asistente" autocomplete="off" placeholder="El que devuelve crear-asistente.sh">
+    </label>
+    <label>X-Admin-Key (si el backend la pide)
+      <input id="admin" type="password" autocomplete="off">
+    </label>
+    <label>Cliente de prueba
+      <select id="usuario"><option>Cargando…</option></select>
+    </label>
+    <button id="llamar" class="primario">LLAMAR</button>
+    <button id="colgar" class="secundario" disabled>COLGAR</button>
+    <p class="nota">Es la misma llamada que por teléfono: mismo asistente, mismas herramientas en n8n y mismas reglas del backend. Solo cambia la línea: micrófono y parlante en vez de un número. Con audífonos se escucha mejor y la asistente no se oye a sí misma.</p>
+  </section>
+
+  <section class="card" aria-label="Llamada">
+    <div class="estado" id="estado"><span class="punto" aria-hidden="true"></span><span id="estadoTexto">Sin llamada</span></div>
+    <div class="metricas">
+      <span>Respuesta tras hablar <b id="latencia">—</b></span>
+      <span>Duración <b id="duracion">—</b></span>
+    </div>
+    <div class="chat" id="chat" aria-live="polite"><p class="vacio">La conversación aparece aquí mientras hablan.</p></div>
+    <div id="resultado"></div>
+  </section>
+</main>
+
+<script type="module">
+  import VapiModulo from 'https://cdn.jsdelivr.net/npm/@vapi-ai/web@2.7.0/+esm';
+
+  // El paquete es CommonJS: jsDelivr lo envuelve y la clase queda en default.default.
+  const Vapi = typeof VapiModulo === 'function' ? VapiModulo : VapiModulo.default;
+
+  const $ = (id) => document.getElementById(id);
+  const leer = (k) => { try { return localStorage.getItem(k) || ''; } catch { return ''; } };
+  const escribir = (k, v) => { try { localStorage.setItem(k, v); } catch { /* sin almacenamiento */ } };
+  $('publica').value = leer('ruta.vapi.publica');
+  $('asistente').value = leer('ruta.vapi.asistente');
+
+  async function api(ruta, opciones = {}) {
+    const headers = { 'Content-Type': 'application/json' };
+    if ($('admin').value) headers['X-Admin-Key'] = $('admin').value;
+    const r = await fetch('/api' + ruta, { ...opciones, headers });
+    const texto = await r.text();
+    const cuerpo = texto ? JSON.parse(texto) : null;
+    if (!r.ok) throw new Error((cuerpo && cuerpo.message) || `HTTP ${r.status}`);
+    return cuerpo;
+  }
+
+  function burbuja(clase, quien, texto) {
+    const chat = $('chat');
+    chat.querySelector('.vacio')?.remove();
+    const div = document.createElement('div');
+    div.className = `burbuja ${clase}`;
+    if (quien) {
+      const q = document.createElement('span');
+      q.className = 'quien';
+      q.textContent = quien;
+      div.append(q);
+    }
+    div.append(document.createTextNode(texto));
+    chat.append(div);
+    chat.scrollTop = chat.scrollHeight;
+  }
+  const sistema = (texto) => burbuja('sistema', null, texto);
+
+  function estado(texto, activa) {
+    $('estadoTexto').textContent = texto;
+    $('estado').classList.toggle('en-llamada', activa);
+    $('llamar').disabled = activa;
+    $('colgar').disabled = !activa;
+  }
+
+  async function cargarClientes() {
+    try {
+      const lista = await api('/admin/clientes');
+      const select = $('usuario');
+      select.innerHTML = '';
+      for (const c of lista) {
+        const o = document.createElement('option');
+        o.value = c.usuario;
+        o.textContent = `${c.nombre} · ${c.categoria}${c.conCuenta ? '' : ' · sin cuenta'}`;
+        select.append(o);
+      }
+      select.value = 'edgar.gomez';
+    } catch (e) {
+      sistema(`No pude cargar los clientes: ${e.message}`);
+    }
+  }
+
+  let vapi = null;
+  let llamada = null;
+  let reloj = null;
+  let finDelCliente = null;
+
+  $('llamar').addEventListener('click', async () => {
+    const publica = $('publica').value.trim();
+    const asistente = $('asistente').value.trim();
+    if (!publica || !asistente) {
+      sistema('Falta la llave pública de Vapi o el ID del asistente.');
+      return;
+    }
+    escribir('ruta.vapi.publica', publica);
+    escribir('ruta.vapi.asistente', asistente);
+    $('chat').innerHTML = '';
+    $('resultado').innerHTML = '';
+    $('latencia').textContent = '—';
+    $('duracion').textContent = '—';
+    estado('Preparando la llamada…', true);
+    try {
+      llamada = await api('/admin/demo/voz/web', { method: 'POST', body: JSON.stringify({ usuario: $('usuario').value }) });
+      const nombreAsistente = (llamada.variables.asistente || 'Asistente').toUpperCase();
+      vapi = new Vapi(publica);
+      vapi.on('call-start', () => {
+        const inicio = Date.now();
+        reloj = setInterval(() => {
+          const s = Math.round((Date.now() - inicio) / 1000);
+          $('duracion').textContent = `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+        }, 500);
+        estado(`En llamada con ${llamada.variables.nombre}`, true);
+      });
+      vapi.on('call-end', () => {
+        clearInterval(reloj);
+        estado('Llamada terminada', false);
+        sistema('Guardando lo que quedó…');
+        setTimeout(verResultado, 5000);
+      });
+      vapi.on('speech-start', () => {
+        if (finDelCliente) {
+          $('latencia').textContent = `${Date.now() - finDelCliente} ms`;
+          finDelCliente = null;
+        }
+      });
+      vapi.on('message', (m) => {
+        if (m.type === 'transcript' && m.transcriptType === 'final') {
+          if (m.role === 'user') {
+            burbuja('cliente', 'CLIENTE', m.transcript);
+            finDelCliente = Date.now();
+          } else {
+            burbuja('asistente', nombreAsistente, m.transcript);
+          }
+        }
+        if (m.type === 'tool-calls') {
+          for (const t of m.toolCallList || []) sistema(`Consultando al banco: ${t.function?.name || t.name}`);
+        }
+      });
+      vapi.on('error', (e) => {
+        sistema(`Vapi: ${e?.error?.message || e?.message || JSON.stringify(e)}`);
+        clearInterval(reloj);
+        estado('Sin llamada', false);
+      });
+      await vapi.start(asistente, { variableValues: llamada.variables });
+    } catch (e) {
+      sistema(e.message);
+      estado('Sin llamada', false);
+    }
+  });
+
+  $('colgar').addEventListener('click', () => vapi?.stop());
+
+  const ETIQUETAS = {
+    fecha_cambiada: 'Fecha cambiada', sin_cambio: 'Sin cambio', bloqueado: 'Bloqueado', tercero: 'Contestó otra persona',
+    volver_a_llamar: 'Volver a llamar', no_llamar: 'No quiere llamadas', no_contesto: 'No contestó', buzon: 'Buzón',
+  };
+
+  async function verResultado() {
+    try {
+      const l = (await api('/admin/voz/llamadas')).find((x) => x.id === llamada?.llamadaId);
+      if (!l) {
+        sistema('El backend todavía no recibe el cierre. Revisa el flujo de n8n.');
+        return;
+      }
+      const filas = [
+        ['Resultado', ETIQUETAS[l.resultado] || l.resultado || 'Sin reporte'],
+        ['Cobro nuevo', l.diaNuevo ? `Día ${l.diaNuevo}` : '—'],
+        ['Días que se corre', l.diasExtra ?? '—'],
+        ['Interés, una sola vez', l.interesExtra != null ? `$${Number(l.interesExtra).toFixed(2)}` : '—'],
+        ['Cómo le llega el dinero', l.perfil?.tipoIngreso || '—'],
+        ['Días de ingreso', l.perfil?.diasIngreso || '—'],
+        ['Prefiere pagar', l.perfil?.canalPago || '—'],
+        ['Duración', l.duracionSeg ? `${l.duracionSeg} s` : '—'],
+      ];
+      const tarjeta = document.createElement('div');
+      const titulo = document.createElement('h2');
+      titulo.textContent = 'LO QUE QUEDÓ EN EL BANCO';
+      tarjeta.append(titulo);
+      for (const [k, v] of filas) {
+        const fila = document.createElement('div');
+        fila.className = 'fila';
+        const a = document.createElement('span');
+        a.textContent = k;
+        const b = document.createElement('b');
+        b.textContent = String(v);
+        fila.append(a, b);
+        tarjeta.append(fila);
+      }
+      $('resultado').replaceChildren(tarjeta);
+    } catch (e) {
+      sistema(`No pude leer el resultado: ${e.message}`);
+    }
+  }
+
+  window.__rutaSimulador = { vapiCargado: typeof Vapi === 'function' };
+  cargarClientes();
+</script>
+</body>
+</html>

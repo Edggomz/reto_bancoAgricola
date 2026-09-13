@@ -15,9 +15,11 @@ public class DispositivoService {
   private static final Set<String> PLATAFORMAS = Set.of("android", "ios", "web");
 
   private final Repositorios.Dispositivos dispositivos;
+  private final AuditoriaService auditoria;
 
-  public DispositivoService(Repositorios.Dispositivos dispositivos) {
+  public DispositivoService(Repositorios.Dispositivos dispositivos, AuditoriaService auditoria) {
     this.dispositivos = dispositivos;
+    this.auditoria = auditoria;
   }
 
   @Transactional
@@ -31,6 +33,9 @@ public class DispositivoService {
     d.setPushToken(token.trim());
     d.setPlatform(p);
     d.setActivo(true);
-    return dispositivos.save(d);
+    Dispositivo guardado = dispositivos.save(d);
+    auditoria.info(AuditoriaService.APP, "dispositivo.registrado", clienteId, guardado.getId(),
+        "Teléfono listo para avisos push (" + p + (token.startsWith("ExponentPushToken") ? ", Expo" : "") + ")", null);
+    return guardado;
   }
 }

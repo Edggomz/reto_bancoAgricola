@@ -54,15 +54,17 @@ public class PushService {
   private final Repositorios.Notificaciones notificaciones;
   private final RutaProperties props;
   private final ObjectMapper mapper;
+  private final AuditoriaService auditoria;
   private final HttpClient http = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(6)).build();
   private FirebaseMessaging firebase;
 
   public PushService(Repositorios.Dispositivos dispositivos, Repositorios.Notificaciones notificaciones,
-                     RutaProperties props, ObjectMapper mapper) {
+                     RutaProperties props, ObjectMapper mapper, AuditoriaService auditoria) {
     this.dispositivos = dispositivos;
     this.notificaciones = notificaciones;
     this.props = props;
     this.mapper = mapper;
+    this.auditoria = auditoria;
     this.firebase = iniciarFirebase();
   }
 
@@ -187,7 +189,13 @@ public class PushService {
     n.setDiasAntesCorte(Math.max(0, diasAntes));
     n.setEstado(estado);
     n.setDetalleError(detalle);
-    return notificaciones.save(n);
+    NotificacionEnviada guardada = notificaciones.save(n);
+    boolean error = NotificacionEnviada.ERROR.equals(estado);
+    auditoria.registrar(AuditoriaService.SISTEMA, "push." + estado.toLowerCase(java.util.Locale.ROOT),
+        error ? AuditoriaService.ERROR : AuditoriaService.INFO, aviso.getClienteId(), guardada.getId(),
+        "Push «" + aviso.getTitle() + "» · " + ("simulado".equals(canal) ? "" : canal + " · ") + estado.toLowerCase(java.util.Locale.ROOT) + (detalle == null ? "" : " · " + detalle),
+        null, null);
+    return guardada;
   }
 
   private static String recortar(String s) {

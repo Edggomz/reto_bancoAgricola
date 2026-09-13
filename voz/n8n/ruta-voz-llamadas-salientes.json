@@ -1,0 +1,549 @@
+{
+  "id": "RutaVozSalient01",
+  "name": "Ruta · Voz · Llamadas salientes",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "000005a2-7a11-4e0c-9b0d-000000000001",
+      "name": "Probar a mano",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 5 8-17 * * 1-5"
+            }
+          ]
+        }
+      },
+      "id": "000005a2-7a11-4e0c-9b0d-000000000002",
+      "name": "Días hábiles, cada hora",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        200
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ruta-voz-llamar",
+        "authentication": "headerAuth",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "000005a2-7a11-4e0c-9b0d-000000000003",
+      "name": "Llamar a un cliente",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        400
+      ],
+      "webhookId": "b3c1e0d4-2f6a-4c5e-9d7b-5a2000000003",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "RutaVozKeyApi001",
+          "name": "Ruta API (X-Voz-Key)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "manual",
+        "includeOtherFields": true,
+        "options": {},
+        "assignments": {
+          "assignments": [
+            {
+              "id": "api",
+              "name": "api",
+              "value": "http://host.docker.internal:8080/api",
+              "type": "string"
+            },
+            {
+              "id": "vapiAssistantId",
+              "name": "vapiAssistantId",
+              "value": "PEGAR_ID_DEL_ASISTENTE",
+              "type": "string"
+            },
+            {
+              "id": "vapiPhoneNumberId",
+              "name": "vapiPhoneNumberId",
+              "value": "PEGAR_ID_DEL_NUMERO",
+              "type": "string"
+            },
+            {
+              "id": "limite",
+              "name": "limite",
+              "value": 5,
+              "type": "number"
+            }
+          ]
+        }
+      },
+      "id": "000005a2-7a11-4e0c-9b0d-000000000004",
+      "name": "Config",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        240,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c000005a2-7a11-4e0c-9b0d-000000000005",
+              "leftValue": "={{ $('Llamar a un cliente').isExecuted }}",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "000005a2-7a11-4e0c-9b0d-000000000005",
+      "name": "¿Pidieron un cliente?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        460,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Demo o reintento manual: POST /webhook/ruta-voz-llamar { \"clienteId\": \"cust-edgar\", \"demo\": true }\nconst b = $('Llamar a un cliente').first().json.body ?? {};\nif (!b.clienteId) throw new Error('Falta clienteId en el cuerpo.');\nreturn [{ json: { clienteId: String(b.clienteId), demo: b.demo === true } }];\n"
+      },
+      "id": "000005a2-7a11-4e0c-9b0d-000000000006",
+      "name": "Cliente pedido",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        680,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $json.api }}/voz/llamadas/pendientes?limite={{ $json.limite }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {
+          "timeout": 8000
+        }
+      },
+      "id": "000005a2-7a11-4e0c-9b0d-000000000007",
+      "name": "Pendientes de hoy",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        680,
+        80
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "RutaVozKeyApi001",
+          "name": "Ruta API (X-Voz-Key)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// LPC art. 18 lit. n: fuera de lunes a viernes, 8:00 a 18:00, no se llama. El backend lo vuelve a validar.\nconst r = $input.first().json;\nif (!r.ventanaAbierta) return [];\nreturn (r.clientes ?? []).map((c) => ({ json: { clienteId: c.clienteId, demo: false } }));\n"
+      },
+      "id": "000005a2-7a11-4e0c-9b0d-000000000008",
+      "name": "Solo en horario legal",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        900,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Config').first().json.api }}/voz/llamadas?demo={{ $json.demo }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {
+          "timeout": 8000,
+          "response": {
+            "response": {
+              "fullResponse": true,
+              "neverError": true
+            }
+          }
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ clienteId: $json.clienteId }) }}"
+      },
+      "id": "000005a2-7a11-4e0c-9b0d-000000000009",
+      "name": "Programar en el backend",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1120,
+        200
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "RutaVozKeyApi001",
+          "name": "Ruta API (X-Voz-Key)"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c000005a2-7a11-4e0c-9b0d-00000000000a",
+              "leftValue": "={{ $json.statusCode }}",
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              },
+              "rightValue": 200
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "000005a2-7a11-4e0c-9b0d-00000000000a",
+      "name": "¿Se puede llamar?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1340,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.vapi.ai/call",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {
+          "timeout": 8000,
+          "response": {
+            "response": {
+              "fullResponse": true,
+              "neverError": true
+            }
+          }
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({\n  assistantId: $('Config').first().json.vapiAssistantId,\n  phoneNumberId: $('Config').first().json.vapiPhoneNumberId,\n  customer: { number: $json.body.telefono, name: $json.body.variables.nombre },\n  assistantOverrides: { variableValues: $json.body.variables },\n  metadata: { llamadaId: $json.body.llamadaId, clienteId: $json.body.variables.clienteId }\n}) }}"
+      },
+      "id": "000005a2-7a11-4e0c-9b0d-00000000000b",
+      "name": "Crear llamada en Vapi",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1560,
+        100
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "RutaVapiApiKey01",
+          "name": "Vapi API (Authorization)"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c000005a2-7a11-4e0c-9b0d-00000000000c",
+              "leftValue": "={{ $json.statusCode >= 200 && $json.statusCode < 300 }}",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "000005a2-7a11-4e0c-9b0d-00000000000c",
+      "name": "¿Vapi la aceptó?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1780,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return $input.all().map((item, i) => ({ json: {\n  estado: 'llamando',\n  llamadaId: $('Programar en el backend').itemMatching(i).json.body.llamadaId,\n  vapiCallId: item.json.body?.id ?? null,\n} }));\n"
+      },
+      "id": "000005a2-7a11-4e0c-9b0d-00000000000d",
+      "name": "Llamando",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2000,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Config').first().json.api }}/voz/llamadas/resultado",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {
+          "timeout": 8000,
+          "response": {
+            "response": {
+              "fullResponse": true,
+              "neverError": true
+            }
+          }
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({\n  llamadaId: $('Programar en el backend').item.json.body.llamadaId,\n  motivoFin: 'vapi-call-create-failed',\n  resumen: String($json.body?.message ?? $json.error?.message ?? 'Vapi no aceptó la llamada').slice(0, 900)\n}) }}"
+      },
+      "id": "000005a2-7a11-4e0c-9b0d-00000000000e",
+      "name": "Marcar como fallida",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2000,
+        200
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "RutaVozKeyApi001",
+          "name": "Ruta API (X-Voz-Key)"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "return $input.all().map((item) => ({ json: { estado: 'omitido', motivo: item.json.body?.message ?? `HTTP ${item.json.statusCode}` } }));\n"
+      },
+      "id": "000005a2-7a11-4e0c-9b0d-00000000000f",
+      "name": "No se llama",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1560,
+        320
+      ]
+    }
+  ],
+  "connections": {
+    "Probar a mano": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Días hábiles, cada hora": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Llamar a un cliente": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config": {
+      "main": [
+        [
+          {
+            "node": "¿Pidieron un cliente?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "¿Pidieron un cliente?": {
+      "main": [
+        [
+          {
+            "node": "Cliente pedido",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Pendientes de hoy",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cliente pedido": {
+      "main": [
+        [
+          {
+            "node": "Programar en el backend",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pendientes de hoy": {
+      "main": [
+        [
+          {
+            "node": "Solo en horario legal",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Solo en horario legal": {
+      "main": [
+        [
+          {
+            "node": "Programar en el backend",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Programar en el backend": {
+      "main": [
+        [
+          {
+            "node": "¿Se puede llamar?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "¿Se puede llamar?": {
+      "main": [
+        [
+          {
+            "node": "Crear llamada en Vapi",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No se llama",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Crear llamada en Vapi": {
+      "main": [
+        [
+          {
+            "node": "¿Vapi la aceptó?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "¿Vapi la aceptó?": {
+      "main": [
+        [
+          {
+            "node": "Llamando",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Marcar como fallida",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataSuccessExecution": "none",
+    "saveDataErrorExecution": "all",
+    "saveManualExecutions": true
+  },
+  "pinData": {},
+  "active": false
+}

@@ -9,6 +9,7 @@ import {
   Divisor,
   Encabezado,
   ErrorCarga,
+  Fila,
   FlowBar,
   Footer,
   Hueco,
@@ -23,11 +24,15 @@ import {
 import { api } from '../../api/servicios';
 import type { FechaConfirmada } from '../../api/tipos';
 import { useDatos } from '../../api/useDatos';
+import { dinero } from '../../formato';
 import { useCerrarAlInicio } from '../../navigation/acciones';
 import type { ScreenProps } from '../../navigation/types';
 import { color, radius, size, space } from '../../theme';
 
-/** 04 y 05: los días salen del backend según cuándo le pagan; la IA sugiere uno y la persona elige. */
+/**
+ * 04 y 05: los días salen del backend según cuándo le pagan; la IA sugiere uno y la persona elige.
+ * Si ese día corre la cuota, el interés se ve en 04 antes de confirmar y queda escrito en 05.
+ */
 export function EligeFecha({ navigation, route }: ScreenProps<'EligeFecha'>) {
   const cerrar = useCerrarAlInicio();
   const { frecuencia } = route.params;
@@ -41,13 +46,14 @@ export function EligeFecha({ navigation, route }: ScreenProps<'EligeFecha'>) {
 
   const opcion = datos?.grupos.flatMap((g) => g.dias).find((d) => d.dia === dia) ?? null;
   const sugerido = sugerencia?.opcion ? Number(sugerencia.opcion) : null;
+  const conInteres = (opcion?.interes ?? 0) > 0;
 
   const confirmar = async () => {
     if (dia === null || enviando) return;
     setEnviando(true);
     setFallo(false);
     try {
-      setListo(await api.confirmarFecha(frecuencia, dia));
+      setListo(await api.confirmarFecha(frecuencia, dia, conInteres));
     } catch {
       setFallo(true);
     } finally {
@@ -109,15 +115,20 @@ export function EligeFecha({ navigation, route }: ScreenProps<'EligeFecha'>) {
           </View>
           <Divisor />
           <Txt v="bodyS" c={color.text.secondary}>
-            {opcion ? opcion.nota : 'Al elegir, te mostramos desde cuándo aplica.'}
+            {opcion ? opcion.nota : 'Al elegir, te mostramos desde cuándo aplica y si lleva interés.'}
           </Txt>
+          {opcion ? (
+            <Txt v="labelL" c={conInteres ? color.text.primary : color.estado.alDiaFg} tabular>
+              {opcion.costo}
+            </Txt>
+          ) : null}
         </Card>
-        <Nota tone="alDia">No cambia el monto ni el plazo de tu crédito. Solo el día. Sin costo y sin firmar nada.</Nota>
+        <Nota tone="sunken">Tu cuota y tu plazo no cambian. Si tu cobro se corre unos días, esos días llevan interés una sola vez, y lo ves aquí antes de confirmar.</Nota>
         {fallo ? <ErrorCarga onReintentar={confirmar} /> : null}
       </Body>
       <Footer>
         <Button
-          label={enviando ? 'CONFIRMANDO…' : dia ? `CONFIRMAR EL DÍA ${dia}` : 'CONFIRMAR'}
+          label={enviando ? 'CONFIRMANDO…' : dia ? `${conInteres ? 'ACEPTAR Y CONFIRMAR' : 'CONFIRMAR'} EL DÍA ${dia}` : 'CONFIRMAR'}
           variant={dia ? 'primario' : 'inactivo'}
           onPressInactivo={sacudir}
           onPress={confirmar}
@@ -134,6 +145,14 @@ export function EligeFecha({ navigation, route }: ScreenProps<'EligeFecha'>) {
             {listo ? `Desde el ${listo.desde} · Operación N.º ${listo.operacion}` : ''}
           </Txt>
         </View>
+        {listo ? (
+          <Card style={styles.interes}>
+            <Fila label="Interés de este cambio" value={dinero(listo.interes)} />
+            <Txt v="bodyS" c={color.text.secondary}>
+              {listo.costo}
+            </Txt>
+          </Card>
+        ) : null}
         <Card sunken style={styles.recomendacion}>
           <View style={styles.etiqueta}>
             <Txt v="overline" c={color.text.inverse}>
@@ -159,6 +178,7 @@ const styles = StyleSheet.create({
   chipVacio: { borderRadius: radius.full },
   cambio: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: space[3] },
   confirmacion: { alignSelf: 'stretch', alignItems: 'center', gap: space[1] },
+  interes: { alignSelf: 'stretch', gap: space[2] },
   recomendacion: { alignSelf: 'stretch', gap: space[2] },
   etiqueta: { alignSelf: 'flex-start', paddingVertical: space[1], paddingHorizontal: space[2], borderRadius: radius.full, backgroundColor: color.bg.inverse },
   acciones: { alignSelf: 'stretch', gap: space[3] },

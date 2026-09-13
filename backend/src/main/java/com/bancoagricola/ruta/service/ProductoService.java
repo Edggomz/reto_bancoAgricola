@@ -29,14 +29,16 @@ public class ProductoService {
   private final Repositorios.ProductosActivados activados;
   private final CopyService copy;
   private final AvisoService avisos;
+  private final AuditoriaService auditoria;
 
   public ProductoService(Contexto contexto, Repositorios.Ofertas ofertas, Repositorios.ProductosActivados activados,
-                         CopyService copy, AvisoService avisos) {
+                         CopyService copy, AvisoService avisos, AuditoriaService auditoria) {
     this.contexto = contexto;
     this.ofertas = ofertas;
     this.activados = activados;
     this.copy = copy;
     this.avisos = avisos;
+    this.auditoria = auditoria;
   }
 
   public List<App.Producto> disponibles(Contexto.Datos datos) {
@@ -71,6 +73,7 @@ public class ProductoService {
       p.setOfertaId(o.getId());
       p.setDetalle(o.getTitle());
       activados.save(p);
+      auditoria.info(AuditoriaService.APP, "producto.activado", clienteId, o.getId(), "Activó " + o.getTitle(), null);
       if ("term-deposit".equals(okey)) {
         avisos.emitir(clienteId, AvisoService.CONFIRM, copy.texto("aviso.deposito.titulo"),
             copy.texto("aviso.deposito.cuerpo"), null, null, "producto-activado");

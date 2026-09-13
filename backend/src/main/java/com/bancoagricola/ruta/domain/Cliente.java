@@ -47,6 +47,10 @@ public class Cliente {
   /** Respuesta a «¿Qué día te pagan?» (id de CATALOGO_FRECUENCIA). NULL = aún no respondió. */
   @Column(name = "frecuencia_pago")
   private String frecuenciaPago;
+  /** Número para el agente de voz (E.164). NULL = no se le llama. */
+  private String telefono;
+  private String municipio;
+  private String departamento;
   @Column(name = "fecha_alta", nullable = false)
   private LocalDate fechaAlta;
   @Column(nullable = false)

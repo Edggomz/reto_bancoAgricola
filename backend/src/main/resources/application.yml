@@ -26,6 +26,13 @@ spring:
 
 ruta:
   admin-key: ${ADMIN_KEY:}
+  # Llave del canal de voz (cabecera X-Voz-Key). Sin ella /voz/* responde 401.
+  voz-key: ${VOZ_KEY:}
+  # Solo demo: permite llamar fuera de la ventana legal y sin reglas de elegibilidad. Nunca en producción.
+  voz-demo: ${VOZ_DEMO:false}
+  # Llamada emulada (demo sin cuentas): el backend le habla a n8n como si fuera Vapi.
+  voz-n8n-webhook: ${VOZ_N8N_WEBHOOK:}
+  voz-n8n-secreto: ${VOZ_N8N_SECRETO:}
   push:
     dias-aviso: ${PUSH_DIAS_AVISO:5}
     cron: ${PUSH_CRON:0 0 9 * * *}

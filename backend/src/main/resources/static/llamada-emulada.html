@@ -1,0 +1,1094 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ruta · Llamada emulada</title>
+  <style>
+    :root { --ink: #1A1B1A; --muted: #5B5B5B; --line: #E6E7E8; --brand: #FDDA24; --brand-ink: #2C2A29; --ok: #00714E; --okbg: #E0F7EF; --plan: #00448C; --planbg: #E4F6FC; --error: #D4351C; --errorbg: #FBE9E6; --bg: #F5F7F9; --surface: #FFFFFF; --inverse: #1A1B1A; --inverse-muted: #B9BBBD; }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    body { margin: 0; font-family: "Open Sans", system-ui, sans-serif; color: var(--ink); background: var(--bg); }
+    header { background: var(--surface); border-bottom: 1px solid var(--line); padding: 16px 24px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    header h1 { font-size: 18px; margin: 0; }
+    header nav { margin-left: auto; display: flex; gap: 16px; font-size: 13px; flex-wrap: wrap; }
+    header a { color: var(--plan); }
+    .tag { font-size: 11px; letter-spacing: .08em; font-weight: 700; color: var(--muted); }
+    main { max-width: 1320px; margin: 0 auto; padding: 24px; display: grid; gap: 20px; grid-template-columns: minmax(0, 300px) minmax(0, 380px) minmax(0, 1fr); align-items: start; }
+    @media (max-width: 1180px) { main { grid-template-columns: minmax(0, 1fr) minmax(0, 380px); } .banco { grid-column: 1 / -1; } }
+    @media (max-width: 760px) { main { grid-template-columns: minmax(0, 1fr); } }
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: grid; gap: 12px; }
+    h2 { font-size: 11px; letter-spacing: .08em; color: var(--muted); margin: 0; }
+    h3 { font-size: 11px; letter-spacing: .08em; color: var(--muted); margin: 4px 0 0; }
+    label { font-size: 12px; color: var(--muted); display: grid; gap: 4px; }
+    label.check { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--ink); min-height: 44px; }
+    label.check input { width: 20px; height: 20px; }
+    input[type=text], input[type=password], select { min-height: 44px; border: 1px solid #C4C4C4; border-radius: 8px; padding: 8px 10px; font: inherit; font-size: 14px; color: var(--ink); background: var(--surface); width: 100%; }
+    button { min-height: 48px; border-radius: 999px; font: inherit; font-weight: 700; letter-spacing: .08em; font-size: 12px; cursor: pointer; padding: 0 18px; }
+    .primario { background: var(--brand); color: var(--brand-ink); border: 1px solid var(--brand-ink); }
+    .secundario { background: var(--surface); color: var(--brand-ink); border: 1.5px solid var(--brand-ink); }
+    button:disabled { opacity: .4; cursor: not-allowed; }
+    .ancho { width: 100%; }
+    .nota { background: var(--bg); border-radius: 8px; padding: 10px 12px; font-size: 12px; line-height: 1.5; color: var(--muted); margin: 0; }
+    .nota ul { margin: 6px 0 0; padding-left: 18px; }
+    details summary { cursor: pointer; font-size: 12px; color: var(--muted); min-height: 32px; display: flex; align-items: center; }
+
+    /* Teléfono */
+    .telefono { width: 100%; max-width: 380px; margin: 0 auto; aspect-ratio: 9 / 18.5; background: #0E0E0E; border-radius: 48px; padding: 12px; box-shadow: 0 24px 48px rgba(0, 0, 0, .18); position: relative; }
+    .telefono.sonando { animation: vibrar .5s linear infinite; }
+    @keyframes vibrar { 0%, 60%, 100% { transform: translateX(0); } 10%, 30%, 50% { transform: translateX(-3px) rotate(-.4deg); } 20%, 40% { transform: translateX(3px) rotate(.4deg); } }
+    @media (prefers-reduced-motion: reduce) { .telefono.sonando { animation: none; } }
+    .pantalla { background: var(--surface); border-radius: 38px; height: 100%; overflow: hidden; display: flex; flex-direction: column; position: relative; }
+    .isla { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 104px; height: 28px; border-radius: 999px; background: #0E0E0E; z-index: 2; }
+    .barra { display: flex; justify-content: space-between; padding: 14px 28px 6px; font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .oscura { background: var(--inverse); color: #fff; }
+    .vista { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+    .reposo { justify-content: center; align-items: center; text-align: center; gap: 6px; padding: 24px; }
+    .reposo .reloj { font-size: 64px; font-weight: 300; font-variant-numeric: tabular-nums; line-height: 1; }
+    .reposo .fecha { font-size: 14px; color: var(--inverse-muted); }
+    .reposo .msg { margin-top: 40px; font-size: 13px; color: var(--inverse-muted); line-height: 1.5; }
+    .entrante { justify-content: space-between; text-align: center; padding: 56px 24px 40px; }
+    .entrante .avatar { width: 88px; height: 88px; border-radius: 50%; background: var(--brand); color: var(--brand-ink); display: grid; place-items: center; font-weight: 800; font-size: 28px; margin: 0 auto 16px; }
+    .entrante .quien { font-size: 28px; font-weight: 600; }
+    .entrante .num { font-size: 15px; color: var(--inverse-muted); margin-top: 4px; font-variant-numeric: tabular-nums; }
+    .entrante .sub { font-size: 13px; color: var(--inverse-muted); margin-top: 18px; }
+    .acciones { display: flex; justify-content: space-around; }
+    .accion { display: grid; justify-items: center; gap: 8px; font-size: 13px; }
+    .redondo { width: 72px; height: 72px; min-height: 72px; border-radius: 50%; padding: 0; font-size: 28px; letter-spacing: 0; }
+    .redondo.contestar { background: var(--brand); border: 1px solid var(--brand); color: var(--brand-ink); }
+    .redondo.rechazar { background: transparent; border: 1.5px solid #fff; color: #fff; }
+    .enllamada .cabeza { display: flex; align-items: center; gap: 10px; padding: 6px 16px 10px; border-bottom: 1px solid var(--line); }
+    .enllamada .mini { width: 36px; height: 36px; border-radius: 50%; background: var(--brand); color: var(--brand-ink); display: grid; place-items: center; font-weight: 800; font-size: 13px; flex: none; }
+    .enllamada .cabeza b { display: block; font-size: 14px; }
+    .enllamada .cabeza small { color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+    .enllamada .cabeza .en-vivo { margin-left: auto; display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; letter-spacing: .06em; color: var(--ok); }
+    .punto { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 3px var(--okbg); }
+    .chat { flex: 1; display: flex; flex-direction: column; gap: 8px; overflow-y: auto; padding: 12px; min-height: 0; }
+    .burbuja { max-width: 88%; padding: 9px 11px; border-radius: 14px; font-size: 13.5px; line-height: 1.45; font-variant-numeric: tabular-nums; }
+    .burbuja .de { display: block; font-size: 10px; font-weight: 700; letter-spacing: .08em; color: var(--muted); margin-bottom: 2px; }
+    .asistente { background: var(--planbg); align-self: flex-start; border-bottom-left-radius: 4px; }
+    .cliente { background: var(--surface); border: 1px solid var(--line); align-self: flex-end; border-bottom-right-radius: 4px; }
+    .sistema { align-self: center; font-size: 11px; color: var(--muted); text-align: center; }
+    .pie { border-top: 1px solid var(--line); padding: 8px 12px 14px; display: grid; gap: 8px; }
+    .parcial { min-height: 16px; margin: 0; font-size: 12px; color: var(--muted); font-style: italic; }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chips button { min-height: 44px; font-weight: 600; letter-spacing: 0; font-size: 13px; background: var(--surface); color: var(--ink); border: 1.5px solid #C4C4C4; padding: 0 12px; }
+    form.responder { display: flex; gap: 6px; }
+    form.responder input { flex: 1; min-width: 0; }
+    form.responder button { min-width: 44px; padding: 0 12px; }
+    .mic { min-width: 44px; padding: 0 12px; background: var(--surface); color: var(--ink); border: 1.5px solid #C4C4C4; letter-spacing: 0; font-size: 12px; }
+    .mic[aria-pressed="true"] { border-color: var(--ok); color: var(--ok); background: var(--okbg); }
+    .colgar { background: var(--surface); color: var(--brand-ink); border: 1.5px solid var(--brand-ink); }
+    .fin { padding: 24px 18px; gap: 10px; overflow-y: auto; }
+    .fin .titulo { font-size: 20px; font-weight: 600; text-align: center; }
+    .fin .dur { text-align: center; color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; margin-top: -6px; }
+
+    /* Lo que ve el banco */
+    .metricas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+    .metrica { border: 1px solid var(--line); border-radius: 10px; padding: 10px; }
+    .metrica span { display: block; font-size: 11px; color: var(--muted); }
+    .metrica b { font-size: 22px; font-weight: 300; font-variant-numeric: tabular-nums; }
+    .pasos { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 0; padding: 0; }
+    .pasos li { font-size: 11px; font-weight: 700; letter-spacing: .04em; border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; color: var(--muted); }
+    .pasos li.hecho { color: var(--ok); border-color: var(--okbg); background: var(--okbg); }
+    .pasos li.hecho::before { content: "✓ "; }
+    .pasos li.actual { color: var(--brand-ink); border-color: var(--brand-ink); background: var(--brand); }
+    .pasos li.actual::before { content: "▸ "; }
+    .fila { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+    .fila:last-child { border-bottom: 0; }
+    .fila span { color: var(--muted); }
+    .fila b { font-variant-numeric: tabular-nums; text-align: right; font-weight: 600; }
+    .eventos { display: grid; gap: 0; max-height: 320px; overflow-y: auto; }
+    .evento { display: grid; grid-template-columns: 64px 56px minmax(0, 1fr) auto; gap: 8px; padding: 7px 0; border-bottom: 1px solid var(--line); font-size: 12.5px; align-items: baseline; }
+    .evento .hora, .evento .ms { color: var(--muted); font-variant-numeric: tabular-nums; }
+    .pill { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: .04em; border-radius: 999px; padding: 2px 7px; border: 1px solid var(--line); white-space: nowrap; }
+    .pill.aviso { background: var(--bg); }
+    .pill.error { background: var(--errorbg); color: var(--error); border-color: var(--errorbg); }
+    .vacio { color: var(--muted); font-size: 13px; margin: 0; }
+  </style>
+</head>
+<body>
+<header>
+  <span class="tag">BANCOAGRÍCOLA · RUTA</span>
+  <h1>Llamada emulada</h1>
+  <nav>
+    <a href="auditoria.html">Auditoría</a>
+    <a href="simulador-llamada.html">Llamada con Vapi (voz real)</a>
+    <a href="dashboard.html">Dashboard de gestión</a>
+  </nav>
+</header>
+<main>
+  <section class="card" aria-label="Preparar la llamada">
+    <h2>1 · PREPARAR</h2>
+    <label>Cliente al que llama el banco
+      <select id="usuario"><option>Cargando…</option></select>
+    </label>
+    <label>Cuándo suena
+      <select id="retraso">
+        <option value="0">Ahora</option>
+        <option value="5">En 5 segundos</option>
+        <option value="10">En 10 segundos</option>
+      </select>
+    </label>
+    <label>Voz de la asistente
+      <select id="vozElegida"><option value="">La mejor en español</option></select>
+    </label>
+    <label class="check"><input type="checkbox" id="voz" checked> La asistente habla en voz alta</label>
+    <label class="check"><input type="checkbox" id="microfono"> Contestar con el micrófono</label>
+    <details>
+      <summary>Llave de administración</summary>
+      <label>X-Admin-Key (solo si el backend la pide)
+        <input id="admin" type="password" autocomplete="off">
+      </label>
+    </details>
+    <button id="llamar" class="primario ancho">LLAMAR AL CLIENTE</button>
+    <div class="nota">
+      <b>Sin cuentas ni número.</b> El navegador hace de teléfono y de Vapi. Manda a n8n los mismos mensajes que mandaría Vapi, y n8n llama al backend con las reglas reales. Lo que se acuerde aparece en la app y en la auditoría.
+      <ul>
+        <li>Recorrido base: «Sí, soy yo» → «Sí, dime» → «Pensión» → «El 25» → «Sí, cámbiala».</li>
+        <li>Pregúntale en cualquier momento: «¿quién habla?», «¿es una estafa?», «¿cuánto es mi cuota?», «¿cobran algo?», «quiero hablar con una persona».</li>
+        <li>Puedes interrumpirla: toca o escribe mientras habla.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section aria-label="Teléfono del cliente">
+    <div class="telefono" id="telefono">
+      <div class="pantalla" id="pantalla">
+        <div class="isla" aria-hidden="true"></div>
+
+        <div class="vista oscura" id="vReposo">
+          <div class="barra"><span id="hora1">9:41</span><span>●●● 5G</span></div>
+          <div class="vista reposo">
+            <div class="reloj" id="relojGrande">9:41</div>
+            <div class="fecha" id="fechaHoy"></div>
+            <p class="msg" id="msgReposo">Elige un cliente y toca «Llamar al cliente».</p>
+          </div>
+        </div>
+
+        <div class="vista oscura" id="vTimbre" hidden>
+          <div class="barra"><span id="hora2">9:41</span><span>●●● 5G</span></div>
+          <div class="vista entrante">
+            <div>
+              <div class="avatar" aria-hidden="true">BA</div>
+              <div class="quien">Bancoagrícola</div>
+              <div class="num">+503 2210-0000</div>
+              <div class="sub" id="timbrePara">Llamada entrante</div>
+            </div>
+            <div class="acciones">
+              <div class="accion"><button id="rechazar" class="redondo rechazar" aria-label="Rechazar">✕</button>Rechazar</div>
+              <div class="accion"><button id="contestar" class="redondo contestar" aria-label="Contestar">✆</button>Contestar</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vista" id="vLlamada" hidden>
+          <div class="barra"><span id="hora3">9:41</span><span>●●● 5G</span></div>
+          <div class="vista enllamada">
+            <div class="cabeza">
+              <span class="mini" aria-hidden="true">BA</span>
+              <div><b id="cabezaNombre">Bancoagrícola</b><small id="duracion">0:00</small></div>
+              <span class="en-vivo"><span class="punto" aria-hidden="true"></span><span id="estadoTexto">EN LLAMADA</span></span>
+            </div>
+            <div class="chat" id="chat" aria-live="polite"></div>
+            <div class="pie">
+              <p class="parcial" id="parcial"></p>
+              <div class="chips" id="chips"></div>
+              <form class="responder" id="responder">
+                <input type="text" id="texto" autocomplete="off" placeholder="Lo que diría el cliente" aria-label="Respuesta del cliente">
+                <button type="button" class="mic" id="micBtn" aria-pressed="false" title="Micrófono">MIC</button>
+                <button class="primario" aria-label="Enviar">➤</button>
+              </form>
+              <button id="colgar" class="colgar ancho">COLGAR</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="vista" id="vFin" hidden>
+          <div class="barra"><span id="hora4">9:41</span><span>●●● 5G</span></div>
+          <div class="vista fin">
+            <div class="titulo">Llamada terminada</div>
+            <div class="dur" id="finDuracion"></div>
+            <div id="finResumen"></div>
+            <button id="otraVez" class="primario ancho">LLAMAR DE NUEVO</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card banco" aria-label="Lo que ve el banco">
+    <h2>3 · LO QUE VE EL BANCO, EN VIVO</h2>
+    <div class="metricas">
+      <div class="metrica"><span>Respuesta de la asistente</span><b id="mResp">—</b></div>
+      <div class="metrica"><span>Promedio de la llamada</span><b id="mProm">—</b></div>
+      <div class="metrica"><span>n8n → backend</span><b id="mN8n">—</b></div>
+    </div>
+    <h3>EN QUÉ PASO VA</h3>
+    <ol class="pasos" id="pasos"></ol>
+    <h3>FORMULARIO</h3>
+    <div id="formulario"></div>
+    <h3>AUDITORÍA DE ESTA LLAMADA</h3>
+    <div class="eventos" id="eventos"><p class="vacio">Aparece aquí en cuanto el banco registre algo.</p></div>
+    <a href="auditoria.html" style="font-size:13px;color:var(--plan)">Ver todo el registro →</a>
+  </section>
+</main>
+
+<script>
+  const $ = (id) => document.getElementById(id);
+  const Reconocimiento = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!Reconocimiento) {
+    $('microfono').disabled = true;
+    $('microfono').parentElement.append(' (usa Chrome)');
+    $('micBtn').hidden = true;
+  }
+
+  async function api(ruta, opciones = {}) {
+    const headers = { 'Content-Type': 'application/json' };
+    if ($('admin').value) headers['X-Admin-Key'] = $('admin').value;
+    const r = await fetch('/api' + ruta, { ...opciones, headers });
+    const texto = await r.text();
+    let cuerpo = null;
+    try { cuerpo = texto ? JSON.parse(texto) : null; } catch { cuerpo = { message: texto }; }
+    if (!r.ok) throw new Error((cuerpo && cuerpo.message) || `HTTP ${r.status}`);
+    return cuerpo;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Guion: el de voz/prompt-sistema.md. Montos y fechas no están aquí: vienen del
+  // backend en «decir» o en las variables de la llamada.
+  // ---------------------------------------------------------------------------
+  const G = {
+    saludo: (v) => `Hola, ${v.saludo}. ¿Hablo con ${v.nombre}?`,
+    proposito: (v) => `Soy ${v.asistente}, asistente virtual de ${v.banco}, y la llamada queda grabada. Te llamo para que tu cuota se cobre cuando ya te llegó tu dinero. Son dos preguntas, ¿tienes un minuto?`,
+    tercero: (v) => `Gracias. Es un tema personal de ${v.nombre}. ¿A qué hora lo encuentro entre semana?`,
+    ocupado: 'Con gusto. ¿A qué hora te llamo entre semana?',
+    noLlamar: 'Entendido, lo dejo anotado. Que estés bien.',
+    ingreso: '¿Cómo te llega tu dinero: salario, pensión, remesa o de un negocio?',
+    dia: '¿Y qué día del mes te llega?',
+    periodo: '¿Suele llegar a inicio, a mediados o a fin de mes?',
+    unaFecha: '¿Te la cambio a esa fecha?',
+    dosFechas: '¿Cuál te queda mejor?',
+    duda: 'Muchas personas lo hacen así, para que el cobro no les llegue antes que su dinero.',
+    seQueda: (v) => `Está bien, tu fecha se queda igual. Si cambias de idea, en Telebanca, al ${v.telebanca}, te ayudan.`,
+    canal: 'Para tu cuota, ¿qué te queda más fácil: la app del banco o ir a una agencia?',
+    agencia: (v) => `La más cercana es ${v.agencia}.`,
+    appSinSaber: (v) => `En la agencia te ayudan a instalarla. La más cercana es ${v.agencia}.`,
+    noPuedePagar: (v) => `Gracias por contarme. En Telebanca, al ${v.telebanca}, o con tu asesor ven opciones para tu caso.`,
+    persona: (v) => `Con gusto. En Telebanca, al ${v.telebanca}, te atiende una persona a cualquier hora.`,
+    molesto: (v) => `Perdón por la molestia. Si lo necesitas, en Telebanca, al ${v.telebanca}, te ayudan. Que estés bien.`,
+    despedida: 'Gracias por tu tiempo. Que estés bien.',
+    anotado: 'Gracias, lo dejo anotado. Que estés bien.',
+    error: (v, e) => `${e} En Telebanca, al ${v.telebanca}, te ayudan.`,
+    cierre: (v) => `Gracias, ${v.nombre}. Que tengas un buen día.`,
+    repetir: 'Perdón, no te escuché bien.',
+    espera: 'Claro, aquí te espero.',
+    soloConElla: (v) => `Primero necesito confirmar que hablo con ${v.nombre}.`,
+    soloConTitular: (v) => `Eso solo lo puedo hablar con ${v.nombre}.`,
+  };
+
+  /** Preguntas sueltas del cliente, en cualquier paso. Antes de confirmar identidad no se habla del préstamo. */
+  const PREGUNTAS = [
+    { re: /robot|grabacion|maquina|eres real|persona de verdad|inteligencia artificial/, conocido: false,
+      decir: (v) => `Soy ${v.asistente}, una asistente virtual de ${v.banco}. Si prefieres hablar con una persona, en Telebanca, al ${v.telebanca}, te atienden.` },
+    { re: /quien (habla|es|llama|me habla)|de donde (llama|me llama|habla|me hablan)|con quien hablo|que banco|de parte de quien|quien eres/, conocido: false,
+      decir: (v) => `Soy ${v.asistente}, asistente virtual de ${v.banco}.` },
+    { re: /estafa|fraude|engan|como se que|como compruebo|como se si|no doy (mis )?datos|no confio|sospech|es seguro|robar|clave|pin\b|contrasena|numero de (mi )?tarjeta|codigo/, conocido: false,
+      decir: (v) => `Haces bien en cuidarte: no te voy a pedir claves, PIN ni números de tarjeta. Si prefieres, cuelga y llama tú a Telebanca, al ${v.telebanca}.` },
+    { re: /cuanto (tiempo|tarda|dura)|es rapido|va a tardar/, conocido: false, decir: () => 'Es menos de un minuto: son dos preguntas.' },
+    { re: /por que me (llama|habla)|para que (me )?(llama|habla)|de que se trata|que (quiere|necesita|es esto|pasa)|cual es el motivo|el motivo/, conocido: false,
+      decir: (v, conocido) => conocido ? 'Es para que tu cuota se cobre cuando ya te llegó tu dinero. No es un cobro.' : `Es un tema personal de ${v.nombre}.` },
+    { re: /cuanto (es|pago|debo|debe|me toca|me sale|le toca)|mi cuota|su cuota|de cuanto es|el monto|cuanto (le )?debe/, conocido: true, decir: (v) => `Tu cuota es de ${v.cuota}.` },
+    { re: /cuando (me )?(cobran|cobra|pago|toca|vence)|que dia (me )?(cobran|pago|toca)|mi fecha (de cobro)?|cuando es mi cobro/, conocido: true,
+      decir: (v) => `Hoy se cobra el día ${v.diaCobro}; el próximo cobro es el ${v.proximoCobro}.` },
+    { re: /por que (hay|me cobran|cobran|lleva) (el )?interes|por que (hay )?interes/, conocido: true,
+      decir: () => 'Porque esa cuota se corre unos días más, y el interés de esos días se cobra una sola vez.' },
+    { re: /cuesta|costo|cobran algo|cobra algo|cobrar algo|cobrar mas|me van a cobrar|interes|comision|cargo|sale mas caro|tiene precio|hay que pagar algo/, conocido: true,
+      decir: () => 'Cambiar la fecha no cambia tu cuota de siempre. Si la primera se corre unos días, el interés de esos días se cobra una sola vez, y te lo digo antes de cambiar nada.' },
+    { re: /cambiar(la)? (despues|otra vez|de nuevo|mas adelante)|volver a cambiar|si me arrepiento/, conocido: true,
+      decir: (v) => `Una vez que la cambias, se puede volver a cambiar en ${v.mesesBloqueo || 'seis'} meses. Antes de eso, en Telebanca te ayudan.` },
+    { re: /\bapp\b|aplicacion|banca en linea|por internet|en el celular/, conocido: true,
+      decir: (v) => v.usaApp === 'si' ? 'Sí, también está en la app, en «Cambiar fecha de cobro». Si quieres, lo dejamos listo ahora mismo.' : 'También se puede en la app del banco, pero lo dejamos listo ahora mismo por teléfono.' },
+    { re: /saldo|reclamo|queja|tarjeta de credito|prestamo nuevo|otro (credito|producto|prestamo)|cuenta de ahorro|transferencia|estado de cuenta|un seguro|el seguro/, conocido: false,
+      decir: (v) => `Eso te lo resuelven en Telebanca, al ${v.telebanca}, a cualquier hora.` },
+  ];
+
+  const RELLENO = /^(ah|aja|eh|em|mm+|este|pues|mire|oiga|ay|ok|okay|bueno|ya|a ver|fijese|oh|ahh)\s+(?=\S)/;
+  /** Minúsculas, sin tildes ni signos, y sin las muletillas del inicio («ah bueno, sí» → «si»). */
+  function normalizar(t) {
+    let n = (t || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+      .replace(/[¿?¡!.,;:«»"]/g, ' ').replace(/\s+/g, ' ').trim();
+    for (let i = 0; i < 3 && RELLENO.test(n); i++) n = n.replace(RELLENO, '');
+    return n;
+  }
+  const SI = /^(si|sip|claro|dale|ok|okay|va|vaya|bueno|correcto|asi es|soy yo|yo soy|el habla|ella habla|con el|con ella|de acuerdo|perfecto|esta bien|por favor|cambiala|cambiela|hazlo|hagalo|aja|simon|sale|listo|me parece|adelante|digame|dime|con gusto|excelente|eso)\b/;
+  const NO = /^(no|nel|nop|nope|mejor no|ahora no|todavia no|dejala|dejalo|dejela|asi esta bien|asi dejala|asi dejalo|ninguna)\b/;
+  const NO_ES_NO = /^no (se|entiend|entendi|escuch|oi|doy|confio|estoy segur|me acuerdo|recuerdo)/;
+  const esNo = (n) => NO.test(n) && !NO_ES_NO.test(n);
+  const REPETIR = /^(como|que|mande|perdon|disculpe|eh)$|no (te |le )?(entendi|entiendo|escuche|oi)|repit|otra vez|mas despacio|puede repetir|me lo repites|no le escuche/;
+  const DUDA = /no se\b|no estoy segur|dejame pensar|lo (voy a )?pens|tal vez|quiza|no se cual/;
+  const TERCERO = /hija|hijo|esposa|esposo|mama|papa|nieta|nieto|hermana|hermano|no esta|no se encuentra|salio|equivocado|numero equivocado|no vive aqui|aqui no vive/;
+  const NO_LLAMAR = /no me (llamen|vuelvan a llamar|llames|llame)|no quiero (que me llamen|llamadas)|dejen de llamar|borren mi numero/;
+  const OCUPADO = /ahora no|ocupad|despues|mas tarde|no puedo hablar|manejando|trabajando|en una reunion|llam(e|a)me luego/;
+  const NO_PUEDE_PAGAR = /no puedo pagar|no voy a poder pagar|perdi (mi )?(trabajo|empleo|ingreso)|sin trabajo|me despidieron|no me alcanza|no tengo (dinero|con que)/;
+  const PERSONA = /(hablar|comunicar|pasar|comuniqueme|paseme).*(persona|humano|asesor|agente|ejecutivo|alguien|operador)|con una persona|con un humano|con un asesor|operador/;
+  const MOLESTO = /molest|fastidi|harto|que pesados|no me interesa|no quiero nada/;
+  const ADIOS = /^(adios|hasta luego|bye|chao|nos vemos|gracias adios)\b/;
+  const ESPERA = /^(espera|esperame|espereme|un momento|un segundo|permitame|deme un|dame un|aguanta)/;
+  const NUMEROS = [['treinta y uno', 31], ['veintinueve', 29], ['veintiocho', 28], ['veintisiete', 27], ['veintiseis', 26],
+    ['veinticinco', 25], ['veinticuatro', 24], ['veintitres', 23], ['veintidos', 22], ['veintiuno', 21], ['diecinueve', 19],
+    ['dieciocho', 18], ['diecisiete', 17], ['dieciseis', 16], ['treinta', 30], ['veinte', 20], ['quince', 15], ['catorce', 14],
+    ['trece', 13], ['doce', 12], ['once', 11], ['diez', 10], ['nueve', 9], ['ocho', 8], ['siete', 7], ['seis', 6],
+    ['cinco', 5], ['cuatro', 4], ['tres', 3], ['dos', 2], ['primero', 1]];
+
+  function tipoIngreso(n) {
+    if (/pension|jubil|inpep|afp|ipsfa|retiro/.test(n)) return 'pension';
+    if (/remesa|me mandan|me envian|del exterior|de estados unidos|mi hijo me manda|mi hija me manda/.test(n)) return 'remesa';
+    if (/negocio|venta|vendo|tienda|comercio|por mi cuenta|chambita|emprendimiento/.test(n)) return 'negocio';
+    if (/salario|sueldo|trabajo|empleo|planilla|me pagan|quincena/.test(n)) return 'salario';
+    if (/varios|de todo|mixto|de varias|otro|otra cosa/.test(n)) return 'otro';
+    return null;
+  }
+
+  /** «el 15 y el 30» → [15, 31]; «fin de mes» → [31]; «cada semana» → semanal; «no es fijo» → variable. */
+  function leerDias(n) {
+    if (/cada semana|semanal|los viernes|cada viernes|por semana|los sabados/.test(n)) return { semanal: true, dias: [] };
+    if (/no es fijo|varia|depende|no tengo fecha|a veces|no se que dia|cuando se puede|cuando hay|no me acuerdo|no recuerdo/.test(n)) return { variable: true, dias: [] };
+    let t = ` ${n} `;
+    const dias = new Set();
+    if (/(dos|2) veces al mes|cada quince|cada 15 dias|quincenal/.test(t)) { dias.add(15); dias.add(31); t = t.replace(/(dos|2) veces al mes|cada quince|cada 15 dias/g, ' '); }
+    if (/fin de mes|ultimo dia|a final|al final/.test(t)) dias.add(31);
+    const quincena = /quincena/.test(t);
+    if (quincena) dias.add(15);
+    if (/inicio de mes|principio de mes|primeros dias/.test(t)) dias.add(5);
+    for (const [palabra, d] of NUMEROS) {
+      const re = new RegExp(`\\b${palabra}\\b`, 'g');
+      if (re.test(t)) { dias.add(d); t = t.replace(re, ' '); }
+    }
+    for (const m of t.matchAll(/\b(\d{1,2})\b/g)) dias.add(Number(m[1]));
+    if (quincena && dias.size === 1) dias.add(31);
+    const lista = [...dias].filter((d) => d >= 1 && d <= 31).map((d) => (d >= 30 ? 31 : d));
+    return { dias: [...new Set(lista)].sort((a, b) => a - b) };
+  }
+
+  // ---------------------------------------------------------------------------
+  // Voz del navegador: frase por frase, y se calla en cuanto el cliente responde.
+  // ---------------------------------------------------------------------------
+  let voces = [];
+  function cargarVoces() {
+    voces = window.speechSynthesis ? speechSynthesis.getVoices().filter((x) => /^es/i.test(x.lang)) : [];
+    const sel = $('vozElegida');
+    const actual = sel.value;
+    sel.replaceChildren(new Option('La mejor en español', ''));
+    for (const x of voces) sel.append(new Option(`${x.name} · ${x.lang}`, x.name));
+    sel.value = actual;
+  }
+  if (window.speechSynthesis) { cargarVoces(); speechSynthesis.onvoiceschanged = cargarVoces; }
+
+  function mejorVoz() {
+    const elegida = voces.find((x) => x.name === $('vozElegida').value);
+    if (elegida) return elegida;
+    const puntaje = (x) => (/(premium|enhanced|mejorada|natural|neural)/i.test(x.name) ? 4 : 0)
+      + (/^es[-_](US|MX|419|SV)/i.test(x.lang) ? 3 : 0)
+      + (/(paulina|marisol|angelica|angélica|soledad|francisca|luciana|sabina|google)/i.test(x.name) ? 2 : 0);
+    return [...voces].sort((a, b) => puntaje(b) - puntaje(a))[0] || null;
+  }
+
+  // Cola: cada texto se dice después del anterior; callar() la vacía cuando el cliente interrumpe.
+  let turnoVoz = 0;
+  let colaVoz = Promise.resolve();
+  function callar() {
+    turnoVoz++;
+    colaVoz = Promise.resolve();
+    if (window.speechSynthesis && (speechSynthesis.speaking || speechSynthesis.pending)) speechSynthesis.cancel();
+  }
+
+  function hablar(texto) {
+    if (!$('voz').checked || !window.speechSynthesis) return colaVoz;
+    const mio = turnoVoz;
+    colaVoz = colaVoz.then(() => decirFrases(texto, mio));
+    return colaVoz;
+  }
+
+  function decirFrases(texto, mio) {
+    const frases = texto.split(/(?<=[.?!…])\s+/).filter(Boolean);
+    const voz = mejorVoz();
+    return frases.reduce((cadena, frase) => cadena.then(() => new Promise((listo) => {
+      if (mio !== turnoVoz || terminada) return listo();
+      const u = new SpeechSynthesisUtterance(frase);
+      u.voice = voz;
+      u.lang = voz ? voz.lang : 'es-US';
+      u.rate = 1.05;
+      let hecho = false;
+      const fin = () => { if (!hecho) { hecho = true; clearInterval(vigia); listo(); } };
+      u.onend = fin;
+      u.onerror = fin;
+      speechSynthesis.speak(u);
+      // Algunos navegadores nunca avisan que terminó o cortan en seco: la llamada no se traba.
+      const tope = Date.now() + 2500 + frase.length * 90;
+      const vigia = setInterval(() => { if (mio !== turnoVoz || Date.now() > tope) fin(); }, 200);
+    })), Promise.resolve());
+  }
+
+  let reconocedor = null;
+  let reintentosMic = 0;
+  const micActivo = () => $('microfono').checked && !!Reconocimiento;
+  function escuchar() {
+    if (!micActivo() || terminada || ocupado) return;
+    detenerEscucha();
+    const r = new Reconocimiento();
+    reconocedor = r;
+    r.lang = 'es-SV';
+    r.interimResults = true;
+    r.maxAlternatives = 1;
+    let final = false;
+    r.onresult = (e) => {
+      const res = e.results[e.results.length - 1];
+      $('parcial').textContent = res[0].transcript;
+      if (res.isFinal) { final = true; $('parcial').textContent = ''; reintentosMic = 0; responder(res[0].transcript); }
+    };
+    r.onerror = (e) => { if (e.error === 'not-allowed') { $('microfono').checked = false; pintarMic(); $('parcial').textContent = 'El navegador no dio permiso al micrófono.'; } };
+    r.onend = () => {
+      if (reconocedor !== r) return;
+      reconocedor = null;
+      if (!final && micActivo() && !terminada && !ocupado && reintentosMic++ < 20) setTimeout(escuchar, 250);
+    };
+    try { r.start(); } catch { /* ya estaba escuchando */ }
+  }
+  function detenerEscucha() {
+    const r = reconocedor;
+    reconocedor = null;
+    if (r) { r.onresult = null; r.onend = null; try { r.abort(); } catch { /* ya paró */ } }
+  }
+  function pintarMic() { $('micBtn').setAttribute('aria-pressed', String(micActivo())); }
+  $('micBtn').addEventListener('click', () => {
+    $('microfono').checked = !$('microfono').checked;
+    pintarMic();
+    if (micActivo()) { callar(); escuchar(); } else detenerEscucha();
+  });
+  $('microfono').addEventListener('change', pintarMic);
+
+  // Timbre: dos tonos cortos cada dos segundos, como un celular.
+  let timbre = null;
+  function sonarTimbre() {
+    try {
+      const ctx = new AudioContext();
+      const nota = (frecuencia, inicio, dura) => {
+        const osc = ctx.createOscillator();
+        const vol = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.value = frecuencia;
+        vol.gain.setValueAtTime(0, inicio);
+        vol.gain.linearRampToValueAtTime(0.18, inicio + 0.02);
+        vol.gain.exponentialRampToValueAtTime(0.001, inicio + dura);
+        osc.connect(vol).connect(ctx.destination);
+        osc.start(inicio);
+        osc.stop(inicio + dura + 0.05);
+      };
+      const tanda = () => {
+        const t = ctx.currentTime + 0.02;
+        [[1318.5, 0], [1046.5, 0.16], [1318.5, 0.32], [1046.5, 0.48], [1318.5, 0.9], [1046.5, 1.06], [1318.5, 1.22], [1046.5, 1.38]]
+          .forEach(([f, d]) => nota(f, t + d, 0.15));
+      };
+      tanda();
+      const intervalo = setInterval(tanda, 2600);
+      if (navigator.vibrate) navigator.vibrate([400, 200, 400]);
+      timbre = () => { clearInterval(intervalo); ctx.close(); };
+    } catch { timbre = null; }
+    $('telefono').classList.add('sonando');
+  }
+  const callarTimbre = () => { if (timbre) timbre(); timbre = null; $('telefono').classList.remove('sonando'); };
+
+  // ---------------------------------------------------------------------------
+  // Pantalla del teléfono
+  // ---------------------------------------------------------------------------
+  function ponerHora() {
+    const ahora = new Date();
+    const hora = `${ahora.getHours() % 12 || 12}:${String(ahora.getMinutes()).padStart(2, '0')}`;
+    for (const id of ['hora1', 'hora2', 'hora3', 'hora4']) $(id).textContent = hora;
+    $('relojGrande').textContent = hora;
+    $('fechaHoy').textContent = ahora.toLocaleDateString('es-SV', { weekday: 'long', day: 'numeric', month: 'long' });
+  }
+  ponerHora();
+  setInterval(ponerHora, 15000);
+
+  function vista(nombre) {
+    $('vReposo').hidden = nombre !== 'reposo';
+    $('vTimbre').hidden = nombre !== 'timbre';
+    $('vLlamada').hidden = nombre !== 'llamada';
+    $('vFin').hidden = nombre !== 'fin';
+  }
+
+  function burbuja(clase, de, texto) {
+    const div = document.createElement('div');
+    div.className = `burbuja ${clase}`;
+    if (de) {
+      const s = document.createElement('span');
+      s.className = 'de';
+      s.textContent = de;
+      div.append(s);
+    }
+    div.append(document.createTextNode(texto.replace(/(\d) (\d) (\d) (\d), (\d) (\d) (\d) (\d)/g, '$1$2$3$4-$5$6$7$8')));
+    $('chat').append(div);
+    $('chat').scrollTop = $('chat').scrollHeight;
+  }
+
+  function mostrarChips(opciones) {
+    $('chips').replaceChildren(...opciones.map((o) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = o;
+      b.addEventListener('click', () => responder(o));
+      return b;
+    }));
+  }
+
+  // ---------------------------------------------------------------------------
+  // Lo que ve el banco
+  // ---------------------------------------------------------------------------
+  const PASOS = [['identidad', 'IDENTIDAD'], ['permiso', 'PERMISO'], ['ingreso', 'PREGUNTA 1'], ['dia', 'PREGUNTA 2'],
+    ['propuesta', 'PROPUESTA'], ['canal', 'CÓMO PAGA'], ['cierre', 'CIERRE']];
+  const GRUPO = { identidad: 'identidad', permiso: 'permiso', ingreso: 'ingreso', dia: 'dia', periodo: 'dia',
+    unaFecha: 'propuesta', dosFechas: 'propuesta', esperando: null, canal: 'canal', despedir: 'cierre', cerrando: 'cierre', fin: 'cierre' };
+  let grupoActual = null;
+
+  function pintarPasos() {
+    const i = PASOS.findIndex(([id]) => id === grupoActual);
+    $('pasos').replaceChildren(...PASOS.map(([id, nombre], k) => {
+      const li = document.createElement('li');
+      li.textContent = nombre;
+      if (k < i || (grupoActual === 'cierre' && terminada)) li.className = 'hecho';
+      else if (k === i) li.className = 'actual';
+      return li;
+    }));
+  }
+
+  const ETIQUETAS = {
+    fecha_cambiada: 'Fecha cambiada', sin_cambio: 'Sin cambio', bloqueado: 'Fecha bloqueada', tercero: 'Contestó otra persona',
+    volver_a_llamar: 'Volver a llamar', no_llamar: 'No quiere llamadas', no_contesto: 'No contestó', buzon: 'Buzón',
+  };
+  const INGRESOS = { salario: 'Salario', pension: 'Pensión', remesa: 'Remesa', negocio: 'Negocio', otro: 'Otro' };
+
+  function filas(pares) {
+    return pares.map(([k, valor]) => {
+      const fila = document.createElement('div');
+      fila.className = 'fila';
+      const a = document.createElement('span');
+      a.textContent = k;
+      const b = document.createElement('b');
+      b.textContent = valor == null || valor === '' ? '—' : String(valor);
+      fila.append(a, b);
+      return fila;
+    });
+  }
+
+  const dinero = (x) => `$${Number(x).toFixed(2)}`;
+  /** Como lo dice el backend en «decir»: «31 dólares con 7 centavos». */
+  function dineroHablado(x) {
+    const centavos = Math.round(Number(x) * 100);
+    const d = Math.floor(centavos / 100);
+    const c = centavos % 100;
+    return `${d} ${d === 1 ? 'dólar' : 'dólares'}${c ? ` con ${c} ${c === 1 ? 'centavo' : 'centavos'}` : ''}`;
+  }
+  function pintarFormulario() {
+    const diasTexto = datos.semanal ? 'Cada semana' : datos.constante === false && !datos.dias?.length ? 'No es fijo'
+      : datos.dias?.length ? datos.dias.map((d) => (d === 31 ? 'fin de mes' : d)).join(', ') + (datos.constante === false ? ' (no fijo)' : '') : null;
+    const opciones = datos.opciones?.length
+      ? datos.opciones.map((o) => `día ${o.dia}${o.interes > 0 ? ` (${dinero(o.interes)})` : ''}`).join(' o ')
+      : datos.bloqueado ? 'Bloqueada' : null;
+    $('formulario').replaceChildren(...filas([
+      ['Contestó', datos.identidad],
+      ['Cuota', v ? v.cuota : null],
+      ['Cobro de hoy', v ? `Día ${v.diaCobro}` : null],
+      ['Cómo le llega el dinero', INGRESOS[datos.tipo]],
+      ['Días de ingreso', diasTexto],
+      ['Fechas que se ofrecieron', opciones],
+      ['Fecha nueva', datos.cambio ? `Día ${datos.cambio.dia}, desde el ${datos.cambio.desde}` : null],
+      ['Interés, una sola vez', datos.cambio && datos.cambio.interes != null ? (datos.cambio.interes > 0 ? dinero(datos.cambio.interes) : 'Sin interés') : null],
+      ['Prefiere pagar', datos.canalPago === 'agencia' ? 'En agencia' : datos.canalPago === 'app' ? (datos.usaBancaLinea === false ? 'App (necesita ayuda)' : 'App') : (v && v.usaApp === 'si' ? 'Ya usa la app' : null)],
+      ['Resultado', ETIQUETAS[datos.resultado] || (datos.cambio ? 'Fecha cambiada' : null)],
+    ]));
+  }
+
+  const tiempos = [];
+  function marcarRespuesta() {
+    if (!marca) return;
+    const ms = Math.round(performance.now() - marca);
+    marca = null;
+    tiempos.push(ms);
+    $('mResp').textContent = `${ms} ms`;
+    $('mProm').textContent = `${Math.round(tiempos.reduce((a, b) => a + b, 0) / tiempos.length)} ms`;
+  }
+
+  const localIso = (d) => new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 19);
+  let sondeo = null;
+  let desdeLlamada = null;
+  async function leerAuditoria() {
+    if (!v) return;
+    try {
+      const lista = await api(`/admin/auditoria?cliente=${encodeURIComponent(v.clienteId)}&desde=${desdeLlamada}&limite=60`);
+      if (!lista.length) return;
+      $('eventos').replaceChildren(...lista.map((e) => {
+        const fila = document.createElement('div');
+        fila.className = 'evento';
+        const hora = document.createElement('span');
+        hora.className = 'hora';
+        hora.textContent = e.hora;
+        const canal = document.createElement('span');
+        canal.className = `pill ${e.nivel === 'info' ? '' : e.nivel}`;
+        canal.textContent = e.canal;
+        const que = document.createElement('span');
+        que.textContent = e.resumen;
+        const ms = document.createElement('span');
+        ms.className = 'ms';
+        ms.textContent = e.duracionMs == null ? '' : `${e.duracionMs} ms`;
+        fila.append(hora, canal, que, ms);
+        return fila;
+      }));
+    } catch { /* el panel es informativo */ }
+  }
+
+  // ---------------------------------------------------------------------------
+  // La llamada
+  // ---------------------------------------------------------------------------
+  let llamada = null;
+  let v = null;
+  let paso = null;
+  let datos = {};
+  let transcripcion = [];
+  let inicio = 0;
+  let reloj = null;
+  let marca = null;
+  let terminada = true;
+  let ocupado = false;
+  let fallos = 0;
+  let ultima = { texto: '', chips: [], corta: '' };
+  let timbreEspera = null;
+
+  function irA(nuevo) {
+    paso = nuevo;
+    if (GRUPO[nuevo]) grupoActual = GRUPO[nuevo];
+    pintarPasos();
+  }
+
+  /** El texto aparece al instante; la voz va en cola. Mientras habla no se escucha el micrófono, para no oírse a sí misma. */
+  function decir(texto) {
+    transcripcion.push(`AI: ${texto}`);
+    burbuja('asistente', (v.asistente || 'ASISTENTE').toUpperCase(), texto);
+    marcarRespuesta();
+    detenerEscucha();
+    return hablar(texto);
+  }
+
+  /** No espera a que termine de hablar: las opciones salen de inmediato y el cliente puede interrumpir. */
+  function preguntar(texto, chips, corta) {
+    ultima = { texto, chips, corta: corta || texto };
+    if (terminada) return;
+    mostrarChips(chips);
+    decir(texto);
+  }
+
+  function mensajeVapi(tipo, extra) {
+    return { message: { type: tipo, call: {
+      id: `emulada-${llamada.llamadaId.slice(-8)}`,
+      metadata: { llamadaId: llamada.llamadaId, clienteId: v.clienteId },
+      assistantOverrides: { variableValues: v },
+    }, ...extra } };
+  }
+
+  const aN8n = (mensaje) => api('/admin/demo/voz/n8n', { method: 'POST', body: JSON.stringify(mensaje) });
+
+  /** Lo mismo que hace Vapi con una herramienta: tool-calls a n8n y espera { results }. */
+  async function herramienta(nombre, args, conRelleno = true) {
+    const id = `call_${Math.random().toString(36).slice(2, 10)}`;
+    const t0 = performance.now();
+    // Si tarda, la asistente llena el silencio como lo haría una persona.
+    const relleno = conRelleno ? setTimeout(() => { if (!terminada) hablar('Déjame ver…'); }, 700) : null;
+    try {
+      const r = await aN8n(mensajeVapi('tool-calls', { toolCallList: [{ id, name: nombre, arguments: args }] }));
+      const res = r && Array.isArray(r.results) ? r.results.find((x) => x.toolCallId === id) : null;
+      return res ? JSON.parse(res.result) : { ok: true };
+    } catch (e) {
+      return { error: e.message };
+    } finally {
+      clearTimeout(relleno);
+      $('mN8n').textContent = `${Math.round(performance.now() - t0)} ms`;
+      leerAuditoria();
+    }
+  }
+
+  const ingresoArgs = () => ({
+    tipo_ingreso: datos.tipo || 'otro',
+    dias_ingreso: datos.dias || [],
+    semanal: datos.semanal === true ? true : undefined,
+    constante: datos.constante === false ? false : undefined,
+  });
+
+  let pendiente = null;
+  async function responder(texto) {
+    if (terminada || !texto.trim()) return;
+    // Si llega mientras se resuelve la respuesta anterior (p. ej. n8n), se atiende justo después.
+    if (ocupado) { pendiente = texto; return; }
+    ocupado = true;
+    callar();
+    detenerEscucha();
+    mostrarChips([]);
+    burbuja('cliente', 'CLIENTE', texto);
+    transcripcion.push(`User: ${texto}`);
+    marca = performance.now();
+    try {
+      await manejar(normalizar(texto));
+    } finally {
+      ocupado = false;
+      if (pendiente && !terminada) {
+        const siguiente = pendiente;
+        pendiente = null;
+        responder(siguiente);
+      } else {
+        const turno = turnoVoz;
+        colaVoz.then(() => { if (turno === turnoVoz && !terminada && !ocupado && !reconocedor) escuchar(); });
+      }
+    }
+  }
+
+  async function manejar(n) {
+    if (paso === 'esperando' || paso === 'cerrando') return;
+    // Con otra persona al teléfono nunca se habla del préstamo.
+    const conocido = paso !== 'identidad' && datos.identidad !== 'Otra persona';
+
+    // 1. Salidas que mandan en cualquier paso
+    if (NO_LLAMAR.test(n)) { datos.resultado = 'no_llamar'; await decir(G.noLlamar); return cerrar(false); }
+    if (PERSONA.test(n)) { await decir(G.persona(v)); return cerrar(false); }
+    if (conocido && NO_PUEDE_PAGAR.test(n)) { await decir(G.noPuedePagar(v)); return cerrar(false); }
+    if (MOLESTO.test(n)) { await decir(G.molesto(v)); return cerrar(false); }
+    if (ADIOS.test(n)) { await decir(G.despedida); return cerrar(false); }
+    if (REPETIR.test(n)) return preguntar(ultima.texto, ultima.chips, ultima.corta);
+    if (ESPERA.test(n)) { decir(G.espera); mostrarChips(ultima.chips); return undefined; }
+
+    // 2. La respuesta que se espera en este paso
+    if (await PASO[paso](n)) { fallos = 0; return undefined; }
+
+    // 3. Una pregunta suelta: se responde y se vuelve a la pregunta en curso
+    const p = PREGUNTAS.find((x) => x.re.test(n));
+    if (p) {
+      const texto = p.conocido && !conocido ? (datos.identidad === 'Otra persona' ? G.soloConTitular(v) : G.soloConElla(v)) : p.decir(v, conocido);
+      return preguntar(`${texto} ${ultima.corta}`, ultima.chips, ultima.corta);
+    }
+
+    // 4. No se entendió
+    fallos++;
+    if (fallos >= 3) { await decir(`Parece que la línea no está bien. ${G.error(v, 'Te dejo el número por si quieres seguir.')}`); return cerrar(false); }
+    return preguntar(`${G.repetir} ${ultima.corta}`, ultima.chips, ultima.corta);
+  }
+
+  const chipsIngreso = ['Pensión', 'Remesa', 'Salario', 'De mi negocio'];
+  const chipsDia = ['El 25', 'El 15 y el 30', 'Cada semana', 'No es fijo'];
+  const chipsFechas = () => [...datos.opciones.map((o) => `El día ${o.dia}`), 'No, déjala igual'];
+
+  /** Cada paso devuelve true si entendió la respuesta. */
+  const PASO = {
+    async identidad(n) {
+      if (TERCERO.test(n)) { datos.identidad = 'Otra persona'; datos.resultado = 'tercero'; pintarFormulario(); irA('despedir'); preguntar(G.tercero(v), ['En la tarde', 'Mañana temprano', 'No sé'], '¿A qué hora lo encuentro entre semana?'); return true; }
+      if (esNo(n)) { datos.identidad = 'Otra persona'; datos.resultado = 'tercero'; pintarFormulario(); irA('despedir'); preguntar(G.tercero(v), ['En la tarde', 'Mañana temprano', 'No sé'], '¿A qué hora lo encuentro entre semana?'); return true; }
+      if (SI.test(n) || new RegExp(`\\b${normalizar(v.nombre)}\\b`).test(n)) {
+        datos.identidad = v.nombre;
+        pintarFormulario();
+        irA('permiso');
+        await preguntar(G.proposito(v), ['Sí, dime', '¿Es una estafa?', 'Ahora no puedo', 'No me llamen'], '¿Tienes un minuto?');
+        return true;
+      }
+      return false;
+    },
+    async permiso(n) {
+      if (OCUPADO.test(n) || esNo(n)) { datos.resultado = 'volver_a_llamar'; irA('despedir'); preguntar(G.ocupado, ['En la tarde', 'Mañana en la mañana', 'El lunes'], G.ocupado); return true; }
+      if (SI.test(n) || tipoIngreso(n)) {
+        irA('ingreso');
+        if (tipoIngreso(n)) return PASO.ingreso(n);
+        await preguntar(G.ingreso, chipsIngreso);
+        return true;
+      }
+      return false;
+    },
+    async ingreso(n) {
+      const tipo = tipoIngreso(n);
+      const d = leerDias(n);
+      if (!tipo && !d.dias.length && !d.semanal) return false;
+      datos.tipo = tipo || 'otro';
+      pintarFormulario();
+      if (d.semanal || d.dias.length) { Object.assign(datos, d, { constante: d.semanal ? undefined : true }); await proponer(); return true; }
+      irA('dia');
+      await preguntar(G.dia, chipsDia);
+      return true;
+    },
+    async dia(n) {
+      const d = leerDias(n);
+      if (d.variable) { datos.constante = false; pintarFormulario(); irA('periodo'); await preguntar(G.periodo, ['A inicio de mes', 'A mediados', 'A fin de mes']); return true; }
+      if (!d.semanal && !d.dias.length) return false;
+      Object.assign(datos, d, { constante: d.semanal ? undefined : true });
+      await proponer();
+      return true;
+    },
+    async periodo(n) {
+      const dia = /inicio|principio|primer/.test(n) ? 5 : /fin|final|ultim/.test(n) ? 31 : /mediados|medio|mitad|quincena/.test(n) ? 15 : null;
+      if (!dia) return false;
+      datos.dias = [dia];
+      await proponer();
+      return true;
+    },
+    async unaFecha(n) {
+      const pedido = leerDias(n).dias;
+      if (SI.test(n) || pedido.includes(datos.opciones[0].dia)) { await confirmar(datos.opciones[0].dia); return true; }
+      if (DUDA.test(n)) { await dudar(); return true; }
+      if (esNo(n)) { await decir(G.seQueda(v)); await canal(); return true; }
+      return false;
+    },
+    async dosFechas(n) {
+      // «la primera» o «la segunda» son la opción, no el día 1 o el 2
+      const ordinal = /^(la |el )?(primer[oa]?|segund[oa]|ultim[oa]|la otra)( opcion)?$/.test(n);
+      const pedidos = ordinal ? [] : leerDias(n).dias;
+      const elegida = datos.opciones.find((o) => pedidos.includes(o.dia))
+        || (/primer/.test(n) ? datos.opciones[0] : /segund|la otra|ultim/.test(n) ? datos.opciones[1] : null);
+      if (elegida) { await confirmar(elegida.dia); return true; }
+      if (DUDA.test(n)) { await dudar(); return true; }
+      if (esNo(n)) { await decir(G.seQueda(v)); await canal(); return true; }
+      return false;
+    },
+    /** Contestó otra persona o no podía hablar: se oye a qué hora, se anota y se despide. */
+    async despedir(n) {
+      if (PREGUNTAS.some((x) => x.re.test(n))) return false;
+      datos.horaSugerida = n;
+      await decir(G.anotado);
+      await cerrar(false);
+      return true;
+    },
+    async canal(n) {
+      if (/no se|no tengo|no la tengo|no puedo usar|dificil|no le entiendo|no se usar/.test(n)) { datos.canalPago = 'app'; datos.usaBancaLinea = false; pintarFormulario(); await decir(G.appSinSaber(v)); await cerrar(true); return true; }
+      if (/agencia|sucursal|en persona|al banco|ventanilla|ir a pagar|segund|la otra|\bir\b/.test(n)) { datos.canalPago = 'agencia'; pintarFormulario(); await decir(G.agencia(v)); await cerrar(true); return true; }
+      if (/app|aplicacion|celular|banca|en linea|internet|telefono|primer/.test(n)) { datos.canalPago = 'app'; datos.usaBancaLinea = true; pintarFormulario(); await decir('Perfecto.'); await cerrar(true); return true; }
+      return false;
+    },
+  };
+
+  async function dudar() {
+    if (datos.dudo) { await decir(G.seQueda(v)); return canal(); }
+    datos.dudo = true;
+    const corta = datos.opciones.length === 1 ? G.unaFecha : G.dosFechas;
+    return preguntar(`${G.duda} ${corta}`, ultima.chips, ultima.corta);
+  }
+
+  async function proponer() {
+    irA('esperando');
+    grupoActual = 'propuesta';
+    pintarPasos();
+    pintarFormulario();
+    const r = await herramienta('proponer_fecha', ingresoArgs());
+    if (terminada) return undefined;
+    if (r.error) { await decir(G.error(v, r.error)); return canal(); }
+    datos.opciones = r.opciones || [];
+    if (r.bloqueado) { datos.resultado = 'bloqueado'; datos.bloqueado = true; pintarFormulario(); await decir(r.decir); return canal(); }
+    pintarFormulario();
+    if (!datos.opciones.length) { await decir(r.decir); return canal(); }
+    if (datos.opciones.length === 1) { irA('unaFecha'); return preguntar(`${r.decir} ${G.unaFecha}`, ['Sí, cámbiala', 'No sé', 'No, déjala igual'], `${G.unaFecha}`); }
+    irA('dosFechas');
+    const corta = `¿Cuál te queda mejor: el día ${datos.opciones[0].dia} o el día ${datos.opciones[1].dia}?`;
+    return preguntar(`${r.decir} ${G.dosFechas}`, chipsFechas(), corta);
+  }
+
+  async function confirmar(dia) {
+    irA('esperando');
+    const r = await herramienta('confirmar_fecha', { ...ingresoArgs(), dia, acepta_interes: true });
+    if (terminada) return undefined;
+    if (r.error) { await decir(G.error(v, r.error)); return canal(); }
+    datos.cambio = { dia: r.dia, desde: r.desde, interes: null };
+    datos.resultado = 'fecha_cambiada';
+    pintarFormulario();
+    // n8n le pasa a la voz solo lo que tiene que decir; el interés guardado se lee del banco.
+    api('/admin/voz/llamadas').then((lista) => {
+      const l = lista.find((x) => x.id === llamada.llamadaId);
+      if (l && datos.cambio) { datos.cambio.interes = l.interesExtra ?? 0; pintarFormulario(); }
+    }).catch(() => {});
+    await decir(r.decir);
+    return canal();
+  }
+
+  async function canal() {
+    if (terminada) return undefined;
+    if (v.usaApp === 'si') return cerrar(true);
+    irA('canal');
+    datos.preguntoCanal = true;
+    return preguntar(G.canal, ['La app', 'No sé usar la app', 'En la agencia']);
+  }
+
+  /** Guarda el formulario (una sola vez) y, si hubo conversación, resume y se despide. */
+  async function cerrar(conResumen) {
+    if (paso === 'cerrando') return;
+    irA('cerrando');
+    mostrarChips([]);
+    await herramienta('guardar_formulario', {
+      resultado: datos.resultado || 'sin_cambio',
+      tipo_ingreso: datos.tipo,
+      dias_ingreso: datos.dias || [],
+      constante: datos.constante,
+      canal_pago: datos.canalPago,
+      usa_banca_linea: datos.usaBancaLinea,
+    }, false);
+    if (conResumen && !terminada) {
+      let resumen = '';
+      // Si la confirmación fue lo último que oyó, no se repite: solo se resume cuando hubo más conversación después.
+      if (datos.cambio && datos.preguntoCanal) {
+        resumen = `Te resumo: tu cobro queda el día ${datos.cambio.dia}, desde el ${datos.cambio.desde}`
+          + (datos.cambio.interes > 0 ? `, y esa primera cuota lleva ${dineroHablado(datos.cambio.interes)} de interés, una sola vez. ` : '. ');
+      }
+      await decir(`${resumen}${G.cierre(v)}`);
+    }
+    return terminar('assistant-ended-call');
+  }
+
+  async function terminar(motivo) {
+    if (terminada) return;
+    terminada = true;
+    clearTimeout(timbreEspera);
+    callarTimbre();
+    detenerEscucha();
+    clearInterval(reloj);
+    mostrarChips([]);
+    const duracion = inicio ? (Date.now() - inicio) / 1000 : 0;
+    grupoActual = 'cierre';
+    pintarPasos();
+    try {
+      await aN8n(mensajeVapi('end-of-call-report', { endedReason: motivo, durationSeconds: duracion, artifact: { transcript: transcripcion.join('\n') } }));
+    } catch (e) {
+      burbuja('sistema', null, `No pude mandar el cierre a n8n: ${e.message}`);
+    }
+    clearInterval(sondeo);
+    const s = Math.round(duracion);
+    $('finDuracion').textContent = motivo === 'customer-did-not-answer' ? 'Rechazada' : `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+    vista('fin');
+    await verResultado();
+    leerAuditoria();
+    setTimeout(leerAuditoria, 1200);
+  }
+
+  async function verResultado() {
+    try {
+      const l = (await api('/admin/voz/llamadas')).find((x) => x.id === llamada.llamadaId);
+      if (!l) return;
+      const pares = [
+        ['Resultado', ETIQUETAS[l.resultado] || l.resultado || 'Sin reporte'],
+        ['Cobro nuevo', l.diaNuevo ? `Día ${l.diaNuevo}` : null],
+        ['Interés, una sola vez', l.interesExtra != null ? dinero(l.interesExtra) : null],
+        ['Cómo le llega el dinero', INGRESOS[l.perfil?.tipoIngreso] || l.perfil?.tipoIngreso],
+        ['Días de ingreso', l.perfil?.diasIngreso],
+        ['Prefiere pagar', l.perfil?.canalPago],
+      ];
+      const nota = document.createElement('p');
+      nota.className = 'nota';
+      nota.textContent = l.diaNuevo
+        ? `Abre la app como ${$('usuario').value}: el inicio ya muestra el día ${l.diaNuevo} y en Avisos está el cambio.`
+        : 'Lo que se habló quedó en el formulario y en la auditoría.';
+      $('finResumen').replaceChildren(...filas(pares), nota);
+    } catch (e) {
+      $('finResumen').textContent = `No pude leer el resultado: ${e.message}`;
+    }
+  }
+
+  function limpiar() {
+    pendiente = null;
+    callar();
+    detenerEscucha();
+    clearTimeout(timbreEspera);
+    clearInterval(reloj);
+    clearInterval(sondeo);
+    callarTimbre();
+    $('chat').replaceChildren();
+    $('finResumen').replaceChildren();
+    $('mResp').textContent = '—';
+    $('mProm').textContent = '—';
+    $('mN8n').textContent = '—';
+    $('duracion').textContent = '0:00';
+    $('eventos').replaceChildren(Object.assign(document.createElement('p'), { className: 'vacio', textContent: 'Aparece aquí en cuanto el banco registre algo.' }));
+    tiempos.length = 0;
+    datos = {};
+    transcripcion = [];
+    inicio = 0;
+    fallos = 0;
+    grupoActual = null;
+    pintarPasos();
+  }
+
+  async function llamar() {
+    limpiar();
+    $('llamar').disabled = true;
+    try {
+      llamada = await api('/admin/demo/voz/web', { method: 'POST', body: JSON.stringify({ usuario: $('usuario').value }) });
+      v = llamada.variables;
+      terminada = false;
+      desdeLlamada = localIso(new Date(Date.now() - 3000));
+      pintarFormulario();
+      sondeo = setInterval(leerAuditoria, 2000);
+      leerAuditoria();
+      const segundos = Number($('retraso').value);
+      $('timbrePara').textContent = `Llamada entrante para ${v.nombre}`;
+      if (segundos > 0) {
+        vista('reposo');
+        $('msgReposo').textContent = `El banco llama a ${v.nombre} en ${segundos} segundos…`;
+      }
+      timbreEspera = setTimeout(() => { if (!terminada) { vista('timbre'); sonarTimbre(); } }, segundos * 1000);
+    } catch (e) {
+      terminada = true;
+      v = null;
+      vista('reposo');
+      $('msgReposo').textContent = e.message;
+    } finally {
+      $('llamar').disabled = false;
+    }
+  }
+
+  $('llamar').addEventListener('click', llamar);
+  $('otraVez').addEventListener('click', llamar);
+
+  $('contestar').addEventListener('click', () => {
+    if (!v || terminada) return;
+    callarTimbre();
+    vista('llamada');
+    inicio = Date.now();
+    reloj = setInterval(() => {
+      const s = Math.round((Date.now() - inicio) / 1000);
+      $('duracion').textContent = `${v.asistente} · ${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+    }, 500);
+    $('cabezaNombre').textContent = 'Bancoagrícola';
+    pintarMic();
+    irA('identidad');
+    preguntar(G.saludo(v), ['Sí, soy yo', '¿Quién habla?', 'No, habla su hija'], `¿Hablo con ${v.nombre}?`);
+    const turno = turnoVoz;
+    colaVoz.then(() => { if (turno === turnoVoz && !terminada && !ocupado) escuchar(); });
+  });
+
+  $('rechazar').addEventListener('click', () => terminar('customer-did-not-answer'));
+
+  $('colgar').addEventListener('click', () => {
+    callar();
+    terminar('customer-ended-call');
+  });
+
+  $('responder').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const t = $('texto').value;
+    $('texto').value = '';
+    responder(t);
+  });
+
+  pintarPasos();
+  (async () => {
+    try {
+      const lista = await api('/admin/clientes');
+      const select = $('usuario');
+      select.replaceChildren(...lista.map((c) => new Option(`${c.nombre} · ${c.categoria}${c.conCuenta ? '' : ' · sin cuenta'}`, c.usuario)));
+      select.value = new URLSearchParams(location.search).get('usuario') || 'edgar.gomez';
+    } catch (e) {
+      $('msgReposo').textContent = `No pude cargar los clientes: ${e.message}`;
+    }
+  })();
+</script>
+</body>
+</html>

@@ -52,6 +52,12 @@ public class Credito {
   private Integer currentDueDay;
   @Column(name = "operation_number")
   private String operationNumber;
+  /** Base del interés de los días que se corre la cuota al cambiar la fecha de cobro. */
+  @Column(name = "saldo_capital")
+  private BigDecimal saldoCapital;
+  /** Tasa nominal anual en fracción (0.18 = 18 %). */
+  @Column(name = "tasa_anual")
+  private BigDecimal tasaAnual;
   @Column(name = "dia_corte", nullable = false)
   private Integer diaCorte;
   @Column(name = "fecha_apertura", nullable = false)

@@ -39,10 +39,11 @@ public class ApartadoService {
   private final CopyService copy;
   private final AvisoService avisos;
   private final RecordService record;
+  private final AuditoriaService auditoria;
 
   public ApartadoService(Contexto contexto, CalendarioPagos calendario, Repositorios.Apartados apartados,
                          Repositorios.ApartadoCuotas cuotas, Repositorios.Autopagos autopagos, CopyService copy,
-                         AvisoService avisos, RecordService record) {
+                         AvisoService avisos, RecordService record, AuditoriaService auditoria) {
     this.contexto = contexto;
     this.calendario = calendario;
     this.apartados = apartados;
@@ -51,6 +52,7 @@ public class ApartadoService {
     this.copy = copy;
     this.avisos = avisos;
     this.record = record;
+    this.auditoria = auditoria;
   }
 
   public record Parte(int idx, LocalDate fecha, BigDecimal monto) {}
@@ -256,6 +258,10 @@ public class ApartadoService {
         copy.render("aviso.ruta.cuerpo", Map.of("monto", montos(plan), "dias", Fechas.enumerarDias(plan.fechas()),
             "dia", plan.fechaPago().getDayOfMonth())),
         null, c.getId(), "ruta-lista");
+    auditoria.info(AuditoriaService.APP, "apartado.activado", clienteId, a.getId(),
+        "Apartado en " + partes + (partes == 1 ? " parte" : " partes") + " · " + Fechas.monto(plan.total()) + " · se paga el "
+            + Fechas.etiqueta(plan.fechaPago()) + (automatico ? " · en automático" : ""),
+        Map.of("credito", c.getId(), "partes", partes, "total", plan.total(), "fechaPago", plan.fechaPago().toString(), "automatico", automatico));
     return new Activacion(resumen(plan, cuenta, automatico), a, plan, cuenta);
   }
 

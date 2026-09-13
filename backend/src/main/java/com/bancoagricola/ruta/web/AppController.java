@@ -64,7 +64,7 @@ public class AppController {
 
   @PostMapping("/fecha-cobro")
   public App.FechaConfirmada confirmarFecha(@CurrentCustomer String clienteId, @RequestBody App.ConfirmarFecha req) {
-    return fechaCobro.confirmar(clienteId, req.frecuencia(), req.dia(), req.credito()).dto();
+    return fechaCobro.confirmar(clienteId, req.frecuencia(), req.dia(), req.credito(), Boolean.TRUE.equals(req.aceptaInteres())).dto();
   }
 
   // --- 06 · 07 · 08 · 09 ---

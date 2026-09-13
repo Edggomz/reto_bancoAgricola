@@ -73,8 +73,8 @@ Todo bajo `/api`; salvo el ingreso, requiere `Authorization: Bearer <token>`.
 | 01 | `POST /auth/ingreso` `{usuario, clave}` | `{token}` |
 | 02 · 10 · 10b | `GET /clientes/yo/inicio` | cliente, `cuenta` (o **null** si no tiene cuenta con nosotros), `creditos` (tarjetas, personales, hipotecarios, bancarios), `credito` principal, `ruta` (activa / solo-fecha / null), `record`, `productos` disponibles, `avisosSinLeer` |
 | 03 | `POST /fecha-cobro/frecuencia` `{frecuencia}` | 204 — guarda «¿qué día te pagan?» en `CLIENTE.frecuencia_pago` |
-| 04 | `GET /fecha-cobro/opciones?frecuencia=` | día actual y grupos de días **que varían por frecuencia** (quincena: 18/19 y 3/4; fin de mes: 3/4; semanal: lunes tras cada viernes; variable: según los abonos del ledger) |
-| 05 | `POST /fecha-cobro` `{frecuencia, dia}` | `{dia, desde, operacion}` · 400 si el día no está en el set |
+| 04 | `GET /fecha-cobro/opciones?frecuencia=` | día actual y grupos de días **que varían por frecuencia**, cada uno con `costo`, `interes` y `diasExtra` (quincena: 18/19 y 3/4; fin de mes: 3/4; semanal: lunes tras cada viernes; variable: según los abonos del ledger) |
+| 05 | `POST /fecha-cobro` `{frecuencia, dia, aceptaInteres}` | `{dia, desde, operacion, costo, interes, diasExtra}` · 400 si el día no está en el set o si lleva interés y no se aceptó |
 | 06 | `GET /apartado/creditos` | créditos apartables |
 | 07 | `GET /apartado/partes?credito=` | partes **permitidas por la frecuencia** (fin de mes → 1; quincena → 2/3/4; semanal → 2/3/4; variable → 2/3) con calendario y montos |
 | 08 | `GET /apartado/origen?credito=&partes=` | cuenta origen (null = abrir cuenta) y los pasos «así funciona» |
@@ -96,8 +96,9 @@ Errores: `{ "message": "…" }` con 400/401/404/409/500.
 ## 3. Reglas de negocio (validadas en el servidor)
 
 - **Fecha de cobro:** solo días en que ya le pagaron (pago +3 y +4; nunca 28-31),
-  y el primer cobro nuevo cae al menos 14 días después del actual. No cambia
-  monto ni plazo.
+  y el primer cobro nuevo cae al menos 14 días después del actual. No cambia la
+  cuota ni el plazo; si la primera cuota se corre, esos días llevan interés una sola
+  vez y solo si se aceptó. Después, la fecha queda fija `fecha.meses_bloqueo` meses.
 - **Partes:** tantas como veces recibe dinero (`CATALOGO_FRECUENCIA.partes_permitidas`).
   Se reparten terminando en el último pago antes del cobro (2 cada 15 días,
   3 cada 10, 4 semanales); los centavos sobrantes van a la primera parte.
@@ -171,18 +172,38 @@ push. Clave de todos: `ruta2026`. Casos útiles:
 
 ```
 config/     WebConfig (CORS, scheduling), AiProperties, RutaProperties, PersistenceConfig
-domain/     entidades JPA (36 tablas)      repository/Repositorios  (Spring Data)
+domain/     entidades JPA (40 tablas)      repository/Repositorios  (Spring Data)
 dto/        App.java (contrato de la app), Api.java (form suggest / login alias)
 service/    Contexto, CalendarioPagos, FechaCobroService, ApartadoService, CuentaDigitalService,
             ProductoService, InicioService, RecordService, AvisoService, PushService, RutaMotor,
-            CitaService, DispositivoService, DashboardService, AuthService, CopyService, Fechas
+            CitaService, DispositivoService, DashboardService, AuthService, CopyService, Fechas,
+            VozService, AuditoriaService
 ai/         LlmRouter, Guardrails, SystemPrompts, AdvisorAiService, FormAiService
-web/        AuthController, AppController, AsesorController, AiController, AdminController
-resources/  application.yml, db/oracle-schema.sql, db/oracle-seed.sql, db/h2/*, static/dashboard.html
+web/        AuthController, AppController, AsesorController, AiController, AdminController,
+            VozController, AuditoriaController
+resources/  application.yml, db/oracle-schema.sql, db/oracle-seed.sql, db/h2/*,
+            static/ (dashboard.html, auditoria.html, llamada-emulada.html, simulador-llamada.html)
 tools/seed/ generate-seed.mjs, oracle-to-h2.mjs
 ```
 
-## 8. Pendientes y notas
+## 8. Auditoría (`service/AuditoriaService`, `/api/auditoria.html`)
+
+Cada cosa que cambia datos o cruza sistemas deja una fila en `EVENTO_AUDITORIA`:
+ingreso, teléfono registrado, fecha cambiada (app o voz), apartado, cuenta, producto,
+aviso, push, motor diario, chat (inicio, interés dicho, acuerdo, escalado), voz
+(llamada, propuesta, formulario, fin), cada mensaje que pasó por n8n con su tiempo, y
+cada error HTTP que vio un cliente.
+
+- **Solo lo que quedó guardado.** Dentro de una transacción, el evento se escribe
+  después del commit; si el negocio falla, queda el error y no un «cambiado» falso.
+- **Nunca rompe el flujo.** Si guardar el evento falla, se avisa en el log y sigue.
+- **Sin datos sensibles.** No guarda claves, tokens ni cuerpos de ingreso; el teléfono
+  va enmascarado. Sin FK a `CLIENTE`, para que el rastro sobreviva al dato.
+- `GET /admin/auditoria` filtra por `canal`, `nivel`, `q`, `cliente` y `desde`;
+  `GET /admin/auditoria/resumen` trae conteos de 24 h, salud de las piezas y la lista
+  de «¿funciona?». Con `ADMIN_KEY` definida, ambas piden `X-Admin-Key`.
+
+## 9. Pendientes y notas
 
 - **Push real**: falta el service account de Firebase (o un `extra.eas.projectId`
   en la app para tokens de Expo). Hasta entonces los envíos quedan `SIMULADO` y

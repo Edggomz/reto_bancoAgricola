@@ -32,3 +32,6 @@ frontend/visual-qa/
 Thumbs.db
 npm-debug.*
 yarn-error.*
+
+# Registros de scripts/levantar-demo.sh
+.demo-logs/
