@@ -223,7 +223,8 @@ Copia `backend/.env.example` a `backend/.env` y rellena la conexión a Oracle y,
 si las tienes, las llaves de IA. Ese archivo nunca se sube.
 
 ```bash
-cd backend && mvn spring-boot:run -Dspring-boot.run.profiles=oracle
+cd backend
+mvn spring-boot:run -Dspring-boot.run.profiles=oracle
 ```
 
 Sin Oracle instalado, `mvn spring-boot:run` a secas arranca con H2 en memoria y el
@@ -240,8 +241,15 @@ adb reverse tcp:8080 tcp:8080
 ```
 
 ```bash
-cd frontend && npm install && npx expo start --android
+cd frontend
+npm install
+npx expo start --android
 ```
+
+En Windows los comandos van en líneas separadas a propósito. El PowerShell que
+trae el sistema es la versión 5.1 y no acepta `&&` como separador, así que
+encadenarlos falla con `El token '&&' no es un separador de instrucciones válido`.
+Si prefieres una sola línea, usa `;` en vez de `&&`.
 
 El túnel de `adb` hace que el emulador alcance el backend como tráfico local, lo
 que además evita cualquier problema de firewall. Hay que repetirlo cada vez que se
