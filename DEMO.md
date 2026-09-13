@@ -43,6 +43,8 @@ Todos con la clave `ruta2026`.
 
 | Usuario | Para mostrar |
 |---|---|
+| `sofia.martinez` | **Todo el flujo hasta el automático.** A1 con cuenta ($2,350.00) y nada activado: fecha, apartar, automático y pago solo |
+| `rene.aguilar` | **La reincidencia.** Categoría B, tres atrasos en 24 meses y sin cuenta de débito: la abre en el flujo y el «mes distinto» aparece al simular |
 | `edgar.gomez` | La app completa: le pagan el 15 y el 30 y su cuota se cobra el 28 |
 | `samuel.quijada` | **La llamada**: no usa la app, cobra una pensión. Termina con la agencia más cercana |
 | `mauricio.sosa` | No tiene cuenta: abre una dentro del flujo de apartar |
@@ -78,7 +80,35 @@ emulador y la llamada y la auditoría abiertas en dos pestañas de Chrome.
 - La lista **¿Funciona?** marca con ✓ lo que se probó en las últimas 24 horas. Toca
   una fila para ver el detalle.
 
-## 6. Si algo falla
+## 6. Probar todas las funciones con dos clientes
+
+Las fechas de cada parte las dice la app en «Tu ruta quedó lista» y en el inicio
+(«Mi ruta»). Para que ocurran sin esperar, en el
+[dashboard](http://localhost:8080/api/dashboard.html) elige el día en **Simular el
+día** y toca **Simular ese día**, una fecha a la vez y en orden. Luego recarga la app.
+Simular mueve a todos los clientes que tengan partes ese día: al terminar, vuelve
+al dataset con `./scripts/levantar-demo.sh --reiniciar`.
+
+**Sofía Martínez (`sofia.martinez`): de cero al pago automático.**
+1. Inicio: saldo, crédito personal que «se cobra el 28», y los dos productos disponibles.
+2. **Cambiar fecha de cobro** → «Quincena y fin de mes» → el 18 (sin interés) o el 3
+   (se ve el interés antes de confirmar) → Listo.
+3. **Apartar mi cuota** → 2 partes → **¿Lo hacemos en automático?** → Tu ruta quedó lista.
+4. Dashboard: simula la fecha de la primera parte («Ya va la mitad»), la de la segunda
+   («Tu cuota ya está completa») y la del cobro («Pagado, y a tiempo»). El récord sube a 22 meses.
+5. Extra: activa el **Depósito a plazo** desde el inicio y abre el **Asesor**.
+
+**René Aguilar (`rene.aguilar`): reincidencia y cuenta abierta en el flujo.**
+1. Inicio: sin cuenta con el banco, crédito personal que «se cobra el 15», récord de 1 mes.
+2. **Cambiar fecha de cobro** → «Quincena y fin de mes» → el 3.
+3. **Apartar mi cuota** → 2 partes → como no tiene cuenta: **Abre tu cuenta** → **Revisa y
+   firma** (marca la casilla) → la cuenta nace con $120.00, su primer ingreso → automático.
+4. Dashboard: simula la primera parte (se aparta: quedan $30.00) y después la segunda:
+   **no alcanza**. En Avisos aparece «Este mes vino distinto, y está bien».
+5. Toca el aviso: el **Asesor** abre sabiendo qué parte no alcanzó y ofrece salidas.
+6. La auditoría muestra la historia completa: cuenta abierta, partes y el choque.
+
+## 7. Si algo falla
 
 | Síntoma | Qué hacer |
 |---|---|
@@ -91,7 +121,7 @@ emulador y la llamada y la auditoría abiertas en dos pestañas de Chrome.
 | El micrófono no entiende | Contesta con los botones o escribiendo: el resultado es el mismo |
 | Algo raro que no se explica | La auditoría muestra el error con su ruta; el backend escribe en `.demo-logs/backend.log` |
 
-## 7. Qué es real y qué es emulado
+## 8. Qué es real y qué es emulado
 
 Conviene decirlo antes de que lo pregunten.
 

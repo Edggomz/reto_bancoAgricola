@@ -249,7 +249,7 @@ const PARAMETROS = [
   ['cita.sobre', 'tu {tema}', 'Sobre qué es la asistencia.'],
   ['cita.nota', '{asesora} ya sabe que es sobre tu {tema}, así llegas y van al grano.', 'Confirmación de la asistencia.'],
   ['apertura.debe_aceptar', 'Para abrir tu cuenta necesitamos que aceptes las condiciones.', 'Mensaje si no se aceptan las condiciones.'],
-  ['demo.deposito_apertura', 'cust-mauricio-sosa=640.00,cust-samuel-quijada=420.00,cust-gabriela-romero=560.00,cust-fatima-argueta=380.00',
+  ['demo.deposito_apertura', 'cust-mauricio-sosa=640.00,cust-samuel-quijada=420.00,cust-gabriela-romero=560.00,cust-fatima-argueta=380.00,cust-rene-aguilar=120.00',
     'Demo: su primer ingreso ya acreditado al abrir la cuenta, para que quien no tenía cuenta tenga saldo que apartar. Ilustrativo: vacío en producción.'],
   ['chat.max_turnos', '30', 'Turnos del cliente antes de escalar a una persona (MAX_MESSAGES_BEFORE_ESCALATION).'],
   ['chat.historial_max', '12', 'Mensajes recientes que se envían como contexto al modelo.'],
@@ -1082,6 +1082,78 @@ for (const cliente of clientes) {
     });
     notifN++;
   }
+}
+
+// ---------------------------------------------------------------------------
+// Dos clientes de prueba guiada, con datos fijos. Van después de todo lo aleatorio
+// para no mover ni un dato de los demás clientes.
+//   sofia.martinez: A1 con cuenta y nada activado → fecha, apartar y automático.
+//   rene.aguilar:   reincidente (tres atrasos en 24 meses), sin cuenta de débito;
+//                   la abre en el flujo y su primer ingreso no alcanza la cuota
+//                   completa: al simular la fecha de una parte nace el choque.
+// ---------------------------------------------------------------------------
+const PRUEBA_GUIADA = [
+  {
+    nombre: 'Sofía', apellido: 'Martínez', perfil: 'impecable', cat: 'A1', tier: 'oro', arq: 'diligente', asesor: 1, meses: 64, color: '#1F5FA8',
+    cuenta: { id: 'acc-sofia-0501', sufijo: '0501', number_full: '3007990501', product_name: 'Max Electrónico', balance: 2350.0 },
+    credito: { id: 'cred-personal-sofia-0502', sufijo: '0502', cuota: 265.4, dia: 28, operacion: '3990502', saldo: 5310.0, tasa: 0.17, apertura: sumarMeses(HOY, -30) },
+    atrasos: [],
+    record: { racha: 21, progreso: 21, hitos: [['22 de 24', etiquetaAnio(sumarMeses(HOY, 1))], ['23 de 24', etiquetaAnio(sumarMeses(HOY, 2))]],
+      sumandos: [`Pagaste ${MESES[(HOY.getMonth() + 11) % 12]} a tiempo`, 'Llevas 21 meses seguidos'] },
+    avisos: [['paid', 'Pagado, y a tiempo', 12, 'record'], ['complete', 'Tu cuota ya está completa', 16, null]],
+  },
+  {
+    nombre: 'René', apellido: 'Aguilar', perfil: 'mejorable', cat: 'B', tier: 'clasica', arq: 'olvidadizo', asesor: 4, meses: 30, color: '#B35C00',
+    cuenta: null,
+    credito: { id: 'cred-personal-rene-0601', sufijo: '0601', cuota: 180.0, dia: 15, operacion: '3990601', saldo: 3240.0, tasa: 0.21, apertura: sumarMeses(HOY, -26) },
+    // Tres pagos tarde que cruzaron A→B en 24 meses: por encima de las dos incidencias toleradas.
+    atrasos: [-125, -95, -65],
+    record: { racha: 1, progreso: 9, hitos: [['Sale de tu historial', etiquetaAnio(sumarMeses(HOY, 6))], ['10 de 24', etiquetaAnio(sumarMeses(HOY, 1))]],
+      sumandos: [`Pagaste ${MESES[(HOY.getMonth() + 11) % 12]} a tiempo`, 'Consultas tu récord seguido'] },
+    avisos: [['confirm', 'Recibimos tu pago', 9, null], ['confirm', 'Recibimos tu abono', 68, null]],
+  },
+];
+for (const c of PRUEBA_GUIADA) {
+  const username = `${slug(c.nombre)}.${slug(c.apellido)}`;
+  const id = `cust-${slug(c.nombre)}-${slug(c.apellido)}`;
+  agregar('CLIENTE', {
+    id, username, password_hash: sha256(`ruta:${username}:${CONTRASENA_DEMO}`), first_name: c.nombre, display_name: `${c.nombre} ${c.apellido}`,
+    initials: `${c.nombre[0]}${c.apellido[0]}`.toUpperCase(), avatar_color: c.color, voice: 'tu', card_tier: c.tier, archetype: c.arq,
+    first_time_at_risk: c.perfil === 'impecable', perfil_crediticio: c.perfil, categoria: c.cat, asesor_id: ASESORES[c.asesor].id,
+    frecuencia_pago: null, telefono: null, municipio: 'San Salvador', departamento: 'San Salvador', fecha_alta: sumarMeses(HOY, -c.meses), activo: true,
+  });
+  if (c.cuenta) {
+    agregar('CUENTA', {
+      id: c.cuenta.id, cliente_id: id, tipo: 'debit', product_name: c.cuenta.product_name, number_masked: `····${c.cuenta.sufijo}`,
+      number_full: c.cuenta.number_full, balance_available: c.cuenta.balance, balance_apartado: 0, currency: 'USD', is_primary_source: true,
+      created_at: momentoRelativo(-400),
+    });
+  }
+  const cr = c.credito;
+  agregar('CREDITO', {
+    id: cr.id, cliente_id: id, kind: 'personal', name: 'Crédito personal', number_masked: `····${cr.sufijo}`, currency: 'USD', apartable: true,
+    credit_limit: null, available: null, used_pct: null, pay_contado: null, installment_amount: cr.cuota, current_due_day: cr.dia,
+    operation_number: cr.operacion, saldo_capital: cr.saldo, tasa_anual: cr.tasa, dia_corte: cr.dia, fecha_apertura: cr.apertura, estado_pago: 'al_dia',
+  });
+  let n = 0;
+  const tx = (fila) => agregar('TRANSACCION', { id: `tx-${cr.sufijo}-${++n}`, credito_id: cr.id, numero_producto: `····${cr.sufijo}`, frontera_contada: null, ...fila });
+  [-125, -95, -65, -35].forEach((dia) => {
+    const tarde = c.atrasos.includes(dia);
+    tx({ fecha: fechaRelativa(dia), tipo: 'D', monto: cr.cuota, descripcion: 'Cuota mensual' });
+    tx({ fecha: fechaRelativa(dia + (tarde ? 12 : 2)), tipo: 'H', monto: cr.cuota, descripcion: tarde ? 'Pago de cuota fuera de fecha' : 'Pago de cuota', frontera_contada: tarde ? 'A_B' : null });
+  });
+  tx({ fecha: fechaRelativa(-2), tipo: 'D', monto: cr.cuota, descripcion: 'Cuota mensual' });
+  tx({ fecha: fechaRelativa(-2), tipo: 'H', monto: cr.cuota, descripcion: 'Pago de cuota' });
+  agregar('RECORD_PAGO', {
+    cliente_id: id, streak_months: c.record.racha, next_plus_one_label: `Tu próximo +1: ${etiquetaLarga(proximoDia(HOY, cr.dia))}`,
+    progress_current: c.record.progreso, progress_total: 24, consults_note: NOTA_CONSULTAS,
+  });
+  c.record.hitos.forEach(([label, date_label], i) => agregar('RECORD_HITO', { cliente_id: id, idx: i + 1, label, date_label }));
+  c.record.sumandos.forEach((label, i) => agregar('RECORD_SUMANDO', { id: `sum-${slug(c.nombre)}-${slug(c.apellido)}-${i + 1}`, cliente_id: id, label, orden: i + 1 }));
+  c.avisos.forEach(([kind, title, hace, target], i) => agregar('AVISO', {
+    id: `aviso-${slug(c.nombre)}-${slug(c.apellido)}-${i + 1}`, cliente_id: id, kind, title, body: null, time_label: null,
+    date_label: etiquetaCorta(sumarDias(HOY, -hace)), read_flag: true, actionable: !!target, target, orden: i + 1, created_at: momentoRelativo(-hace),
+  }));
 }
 
 // ---------------------------------------------------------------------------

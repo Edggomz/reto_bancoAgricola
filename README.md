@@ -44,7 +44,7 @@ qué pasó y comprobar que funciona.
 └───────────────────────────────┬────────────────────────────────────────────────┘
                                 ▼
                      Oracle XE 21c (XEPDB1)  ·  o H2 en memoria
-                     40 tablas · dataset de 42 clientes
+                     40 tablas · dataset de 44 clientes
 ```
 
 **Principio de diseño:** el backend no contiene ni un dato de negocio en el
@@ -176,9 +176,10 @@ Oracle XE 21c sobre el PDB `XEPDB1`, 40 tablas. Los scripts están en
 | `00-crear-usuario.sql` | Crea un usuario de aplicación con privilegios mínimos |
 | `legacy/` | Esquema original del equipo, del que se conservaron el ledger y las funciones de corte |
 
-**Dataset.** 42 clientes repartidos en tres perfiles crediticios, porque el flujo
-se evalúa según el tipo de cliente: 12 impecables, 15 mejorables y 15 fatales, con
-sus categorías A1 a E. Encima, 45 cuentas, 70 créditos entre tarjetas, personales,
+**Dataset.** 44 clientes repartidos en tres perfiles crediticios, porque el flujo
+se evalúa según el tipo de cliente: 13 impecables, 16 mejorables y 15 fatales, con
+sus categorías A1 a E. Dos de ellos tienen datos fijos para probar todo de punta a
+punta (ver `DEMO.md` §6). Encima, 45 cuentas, 70 créditos entre tarjetas, personales,
 hipotecarios y bancarios, más planes, apartados, avisos, récord, citas, chats,
 ledger de transacciones y bitácora de push. Se genera desde una sola definición
 con `node tools/seed/generate-seed.mjs`, que escribe las dos variantes a la vez.
@@ -187,13 +188,15 @@ Clave de todos los usuarios de prueba: **`ruta2026`**.
 
 | Usuario | Para mostrar |
 |---|---|
+| `sofia.martinez` | Todo el flujo desde cero: fecha, apartar, automático y pago solo |
+| `rene.aguilar` | Reincidente sin cuenta de débito: la abre en el flujo y el «mes distinto» aparece al simular |
 | `edgar.gomez` | Caso base de la demo |
 | `mauricio.sosa` | No tiene cuenta con el banco, entra por la rama de apertura |
 | `carlos.ramirez` | Solo cobra a fin de mes, así que ve «1 parte» |
 | `kevin.alas` | Arquetipo resistente, un solo rechazo y el chat escala |
 | `lucia.hernandez` | Tarjeta black, escala con cita con su asesora |
 
-`GET /api/admin/clientes` lista los 42 con perfil, arquetipo y si tienen cuenta.
+`GET /api/admin/clientes` lista los 44 con perfil, arquetipo y si tienen cuenta.
 
 ## 7. Cómo correrlo
 

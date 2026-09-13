@@ -153,8 +153,8 @@ luego `POST /admin/ruta/procesar?fecha=<día de su parte>`.
 ## 6. Datos de prueba
 
 `tools/seed/generate-seed.mjs` genera `db/oracle-seed.sql` y `db/h2/data-h2.sql`
-desde una sola definición: **42 clientes** (12 impecables A1/A2, 15 mejorables
-B/C, 15 fatales D/E), cuentas, 70 créditos (tarjetas, personales, hipotecarios,
+desde una sola definición: **44 clientes** (13 impecables A1/A2, 16 mejorables
+B/C, 15 fatales D/E; Sofía Martínez y René Aguilar con datos fijos para pruebas guiadas), cuentas, 70 créditos (tarjetas, personales, hipotecarios,
 bancarios), planes, apartados, avisos, récord, chats, ledger, dispositivos y
 push. Clave de todos: `ruta2026`. Casos útiles:
 
